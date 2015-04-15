@@ -63,3 +63,18 @@ remove containers and images
 
 	from outside 
 		http://amp.pharm.mssm.edu/clustergram_flask
+
+
+
+-- full instructions 
+Locally
+	sudo docker build -t maayanlab/clustergram_flask:latest .
+
+	sudo docker push maayanlab/clustergram_flask:latest
+
+Loretta
+
+	docker pull maayanlab/clustergram_flask:latest
+	
+
+	docker run -it --rm -p 8087:80 maayanlab/clustergram_flask:latest
