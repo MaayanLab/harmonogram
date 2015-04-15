@@ -29,3 +29,23 @@ start docker server
 remove containers and images 
 	sudo docker ps -a | awk '{print $1}' | xargs sudo docker rm
 	sudo docker images | awk '{print $3}' | xargs sudo docker rmi
+
+
+--- instructions to push to loretta
+	
+	I added in the code using a few ADD lines in the Dockerfile 
+
+	
+	# build image (happens quickly if things are cached)
+	sudo docker build -t clustergram_flask .
+
+	# push to dockerhub 
+	sudo docker push maayanlab/clustergram_flask
+
+	# ssh into loretta
+	ssh root@10.91.53.62
+
+
+
+
+

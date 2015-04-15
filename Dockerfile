@@ -31,5 +31,12 @@ RUN pip install -Iv wsgiref==0.1.2
 # use apt-get to install scipy
 RUN apt-get -y install python-numpy python-scipy python-matplotlib 
 
+# add code
+ADD ajax_flask
+ADD wsgi.py
+ADD boot.sh
+
 # Build the port.
 EXPOSE 80
+
+CMD /app/boot.sh
