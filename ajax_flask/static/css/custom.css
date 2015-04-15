@@ -1,0 +1,416 @@
+#number-projects-nd {
+    font-size: 60px;
+}
+
+#total-donations-nd {
+    font-size: 60px;
+}
+
+.dc-chart g.row text {
+    fill: black;
+    font-size: 12px;
+}
+
+#rank_switch{
+	position:relative;
+	/*top:100px;*/
+	display: block;
+}
+
+.bootstrap-switch{
+	margin-left: 15px;
+}
+
+#submit_genes{
+	margin-left:40px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#gene_input_box{
+	height:300px;
+	width: 150px;
+	position:relative;
+	display:block;
+}
+
+html {
+  min-width: 1040px;
+}
+
+body {
+  position: relative;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  /*margin: 1em auto 2em auto;*/
+  /*width: px;*/
+}
+
+h1 {
+  font-size: 64px;
+  font-weight: 300;
+  /*letter-spacing: -2px;*/
+  margin: .3em 0 .1em 0;
+}
+
+h2 {
+  margin-top: 2em;
+}
+
+h1, h2 {
+  text-rendering: optimizeLegibility;
+}
+
+h2 a {
+  color: #ccc;
+  left: -20px;
+  /*position: absolute;*/
+  /*width: 740px;*/
+}
+
+footer {
+  font-size: small;
+  margin-top: 8em;
+}
+
+header aside {
+  margin-top: 82px;
+}
+
+header aside,
+footer aside {
+  color: #636363;
+  text-align: right;
+}
+
+#the_aside {
+  font-size: 12px;
+  /*left: 715px;*/
+  /*position: absolute;*/
+  /*vertical-align: top;*/
+  width: 300px;
+  margin-top:0px;
+  margin-left:10px;
+  /*display:inline-block;*/
+}
+
+.attribution {
+  font-size: small;
+  margin-bottom: 2em;
+}
+
+body > p, li > p {
+  line-height: 1.5em;
+}
+
+body > p {
+  width: 720px;
+}
+
+body > blockquote {
+  width: 640px;
+}
+
+li {
+  /*width: 680px;*/
+}
+
+a {
+  color: steelblue;
+}
+
+a:not(:hover) {
+  text-decoration: none;
+}
+
+pre, code, textarea {
+  font-family: "Menlo", monospace;
+}
+
+code {
+  line-height: 1em;
+}
+
+textarea {
+  font-size: 100%;
+}
+
+body > pre {
+  border-left: solid 2px #ccc;
+  padding-left: 18px;
+  margin: 2em 0 2em -20px;
+}
+
+.html .value,
+.javascript .string,
+.javascript .regexp {
+  color: #756bb1;
+}
+
+.html .tag,
+.css .tag,
+.javascript .keyword {
+  color: #3182bd;
+}
+
+.comment {
+  color: #636363;
+}
+
+.html .doctype,
+.javascript .number {
+  color: #31a354;
+}
+
+.html .attribute,
+.css .attribute,
+.javascript .class,
+.javascript .special {
+  color: #e6550d;
+}
+
+
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+sup, sub {
+  line-height: 0;
+}
+
+q:before,
+blockquote:before {
+  content: "â€œ";
+}
+
+q:after,
+blockquote:after {
+  content: "â€";
+}
+
+blockquote:before {
+  position: absolute;
+  left: 2em;
+}
+
+blockquote:after {
+  position: absolute;
+}
+
+.background {
+  fill: #eee;
+}
+
+line {
+  stroke: #fff; 
+  /*#fff;*/
+}
+
+text.active {
+  /*fill: blue;*/
+  font-weight: bold;
+}
+
+
+
+
+.bar_graph_text{
+  font-size:10px;
+}
+
+.adj_matrix{
+  border:2px solid;
+}
+
+
+/*#network{
+  font-size:11px;
+}*/
+
+#link_description{
+  margin-bottom:2px;
+}
+
+#bar_title_holder{
+  font-size:12px;
+  margin-left: 10px;
+}
+
+#kinase_bar_title{
+  margin-left:0px;
+  margin-bottom:15px;
+  width:50%;
+  font-size:15px;
+  dfon
+}
+
+#term_bar_title{
+  margin-left:180px;
+  margin-bottom:15px;
+  width:50%;
+  font-size:15px;
+}
+
+#cluster_title{
+  font-size:15px;
+  font-weight:bold;
+  margin-left:80px;
+  margin-bottom:5px;
+  margin-top:10px;
+  /*margin-right:auto;*/
+  width:100%;
+}
+
+#kinase_bar_graph{
+  margin-top:7px;
+  height:300px;
+  width:250px;
+  overflow:auto;
+}
+
+#cluster_bar_graph{
+  margin-top:5px;
+  height:300px;
+  width:370px;
+  overflow-y:auto;
+}
+
+#cluster_bar_title{
+  margin-top:7px;
+}
+
+
+#term_bar_graph{
+  margin-top:5px;
+  height:300px;
+  width:120px;
+  overflow:auto;
+}
+
+#bar_graph_instructions{
+  margin-top:2px;
+  margin-bottom:2px;
+}
+
+aside{
+  margin-top:0px;
+}
+
+h4{
+  margin-bottom: 5px;
+}
+
+#bar_graph_div{
+  margin-left:0px;
+  height:530px;
+  width:375px;
+}
+
+
+
+
+li{
+  display:inline;
+}
+
+#toggle a:link, a:visited {
+    display: inline-block;
+    font-weight: bold;
+    color: black;
+    background-color: #C8C8C8;
+    width: 120px;
+    text-align: center;
+    padding: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#toggle a:hover, a:active {
+    background-color: #909090;
+}
+
+#network_info{
+  background-color: #909090;
+}
+
+
+#order_network{
+  margin-bottom: 15px;
+}
+
+
+#kinase_substrates{
+  margin-top:10px;
+}
+
+.cell_instructions{
+  margin:15px; 
+}
+
+#cell_instructions_div{
+  margin-top:30px;
+}
+
+#instructions_intersect{
+  margin-top:25px;
+}
+
+#title_substrates{
+  margin-left:40px;
+  margin-bottom:10px;
+  margin-top:30px;
+  font-size:13px;
+}
+
+
+
+#choose_protein{
+	margin-top:10px;
+  width:50%;
+  float:left;
+}
+#choose_zscore{
+	margin-top:10px;
+	margin-left:5px;
+  width:45%;
+}
+
+#col_title{
+	position: fixed;
+	top:80px;
+	left: 450px;
+  font-size: 16px;
+  display: none;
+}
+
+#row_title{
+	position: fixed;
+	top: 240px;
+	left:210px;
+  font-size:16px;
+  display: none;
+	transform:rotate(-90deg	);
+}
+
+#svg_div{
+  position:fixed;
+  margin-top:30px;
+  /*position:fixed;*/
+}
+
+#main_svg{
+	position:fixed;
+	top:100px;
+	left:260px;
+  font-size:8.0px;
+ }
+
+#input_col{
+	width:100px;
+}
+
+#viz_col{
+	width:800px;
+}

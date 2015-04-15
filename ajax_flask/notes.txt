@@ -1,0 +1,31 @@
+I have a flask server that is running enrichment analysis and making a clustergram of the input genes and the enriched terms. I need to do the following: 
+
+To Do 
+	1. make virtual environment so that I can load it to one of the servers 
+	2. clean up visualization
+	3. add reorder capabilities by: pval, num of terms, etc
+	
+
+build
+	sudo docker build -t first_image .
+
+remove old images 
+	sudo docker rmi [imageid]
+
+
+view images 
+	sudo docker images
+	(look for image id and place in the docker run id)
+
+get into container
+	sudo docker ps 
+	(look for the container id)
+	sudo docker exec -it 62a74a5ffad3 bash
+
+start docker server 
+	sudo docker run --rm -it -p 80:80 -v /home/nick/Documents/d3_clust_proj:/app 62a74a5ffad3 bash /app/boot.sh
+
+
+remove containers and images 
+	sudo docker ps -a | awk '{print $1}' | xargs sudo docker rm
+	sudo docker images | awk '{print $3}' | xargs sudo docker rmi

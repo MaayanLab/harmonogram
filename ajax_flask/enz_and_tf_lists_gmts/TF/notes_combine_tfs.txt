@@ -1,0 +1,982 @@
+combine tf gmts
+there are 353 chea terms 
+there are 816 encode terms 
+there are 208 chea tfs 
+there are 181 encode tfs 
+there are 325 tfs in both chea and encode
+HSF1
+	found:	2
+	union:	1324	intersection:	81	hc:	81
+SMARCC2
+	found:	1
+	union:	779	intersection:	779	hc:	0
+ZFX
+	found:	1
+	union:	3249	intersection:	3249	hc:	0
+ZFP322A
+	found:	1
+	union:	90	intersection:	90	hc:	0
+FOXA1
+	found:	3
+	union:	2751	intersection:	590	hc:	53
+CDKN2AIP
+	found:	1
+	union:	123	intersection:	123	hc:	0
+CDX2
+	found:	2
+	union:	821	intersection:	17	hc:	17
+NELFE
+	found:	3
+	union:	3578	intersection:	741	hc:	15
+IRF4
+	found:	1
+	union:	1912	intersection:	1912	hc:	0
+MAFK
+	found:	9
+	union:	8531	intersection:	3669	hc:	1419
+WRNIP1
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+POLR3A
+	found:	2
+	union:	624	intersection:	124	hc:	124
+ZKSCAN1
+	found:	3
+	union:	3153	intersection:	317	hc:	21
+MYOG
+	found:	2
+	union:	901	intersection:	40	hc:	40
+CCNT2
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+MAFF
+	found:	2
+	union:	3361	intersection:	639	hc:	639
+NFYB
+	found:	3
+	union:	3484	intersection:	1815	hc:	701
+ETS2
+	found:	1
+	union:	215	intersection:	215	hc:	0
+ZNF143
+	found:	4
+	union:	5315	intersection:	1897	hc:	639
+SRY
+	found:	2
+	union:	3238	intersection:	40	hc:	40
+RARG
+	found:	1
+	union:	390	intersection:	390	hc:	0
+STAT3
+	found:	9
+	union:	11176	intersection:	2886	hc:	683
+BHLHE40
+	found:	6
+	union:	7324	intersection:	2262	hc:	589
+NFE2L2
+	found:	2
+	union:	1533	intersection:	49	hc:	49
+NR0B1
+	found:	1
+	union:	1691	intersection:	1691	hc:	0
+CLOCK
+	found:	1
+	union:	407	intersection:	407	hc:	0
+KLF5
+	found:	1
+	union:	102	intersection:	102	hc:	0
+THRA
+	found:	1
+	union:	179	intersection:	179	hc:	0
+ZFP42
+	found:	1
+	union:	1480	intersection:	1480	hc:	0
+PHC1
+	found:	1
+	union:	922	intersection:	922	hc:	0
+ZNF263
+	found:	3
+	union:	2847	intersection:	122	hc:	3
+CTCFL
+	found:	1
+	union:	2365	intersection:	2365	hc:	0
+MYC
+	found:	20
+	union:	15928	intersection:	8693	hc:	5528
+MYB
+	found:	2
+	union:	1540	intersection:	75	hc:	75
+SETDB1
+	found:	4
+	union:	6368	intersection:	1191	hc:	125
+NFE2
+	found:	2
+	union:	2117	intersection:	170	hc:	170
+BRCA1
+	found:	4
+	union:	5024	intersection:	2057	hc:	756
+WT1
+	found:	2
+	union:	1817	intersection:	45	hc:	45
+TRIM28
+	found:	6
+	union:	9178	intersection:	1466	hc:	219
+SUZ12
+	found:	9
+	union:	6536	intersection:	2898	hc:	1901
+MBD4
+	found:	1
+	union:	1809	intersection:	1809	hc:	0
+ZBTB7A
+	found:	3
+	union:	3430	intersection:	1015	hc:	196
+SP1
+	found:	5
+	union:	4776	intersection:	2041	hc:	692
+SP2
+	found:	3
+	union:	2482	intersection:	1512	hc:	934
+ATF1
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+FLI1
+	found:	3
+	union:	7279	intersection:	1122	hc:	167
+KLF4
+	found:	4
+	union:	4598	intersection:	995	hc:	150
+CREB1
+	found:	9
+	union:	7239	intersection:	3372	hc:	1959
+ESRRA
+	found:	2
+	union:	1080	intersection:	58	hc:	58
+NR2C2
+	found:	4
+	union:	1643	intersection:	982	hc:	532
+GTF2F1
+	found:	3
+	union:	4569	intersection:	1217	hc:	214
+GATA4
+	found:	1
+	union:	2039	intersection:	2039	hc:	0
+MYOD1
+	found:	2
+	union:	2450	intersection:	576	hc:	576
+GATA2
+	found:	9
+	union:	8858	intersection:	2364	hc:	712
+GATA3
+	found:	6
+	union:	5184	intersection:	1226	hc:	292
+GATA1
+	found:	10
+	union:	8274	intersection:	2957	hc:	1165
+KDM1A
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+ARID3A
+	found:	2
+	union:	3406	intersection:	594	hc:	594
+FOXA2
+	found:	3
+	union:	4189	intersection:	479	hc:	59
+ZC3H11A
+	found:	4
+	union:	3948	intersection:	875	hc:	314
+WHSC1
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+TBX3
+	found:	1
+	union:	1068	intersection:	1068	hc:	0
+CCND1
+	found:	1
+	union:	2137	intersection:	2137	hc:	0
+RFX5
+	found:	7
+	union:	6627	intersection:	3014	hc:	1272
+AHR
+	found:	1
+	union:	690	intersection:	690	hc:	0
+MAZ
+	found:	7
+	union:	8679	intersection:	3475	hc:	1323
+TCFAP2C
+	found:	1
+	union:	2667	intersection:	2667	hc:	0
+TCF7L2
+	found:	7
+	union:	6371	intersection:	2428	hc:	970
+RUNX2
+	found:	1
+	union:	3423	intersection:	3423	hc:	0
+NR1I2
+	found:	1
+	union:	939	intersection:	939	hc:	0
+RUNX1
+	found:	4
+	union:	7624	intersection:	1216	hc:	120
+eGFP-JUNB
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+XRN2
+	found:	1
+	union:	1529	intersection:	1529	hc:	0
+NUCKS1
+	found:	1
+	union:	588	intersection:	588	hc:	0
+CTBP2
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+SMARCA4
+	found:	2
+	union:	3481	intersection:	159	hc:	159
+RNF2
+	found:	4
+	union:	3800	intersection:	659	hc:	60
+KDM5A
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+KDM5B
+	found:	3
+	union:	6665	intersection:	1008	hc:	51
+FOXP2
+	found:	4
+	union:	2430	intersection:	162	hc:	20
+DMRT1
+	found:	2
+	union:	2144	intersection:	60	hc:	60
+ZNF217
+	found:	2
+	union:	2782	intersection:	302	hc:	302
+FOXP1
+	found:	2
+	union:	3745	intersection:	5	hc:	5
+HMGN3
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+NKX2
+	found:	1
+	union:	1507	intersection:	1507	hc:	0
+CRX
+	found:	1
+	union:	668	intersection:	668	hc:	0
+CBX8
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+KAT2B
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+HIF1A
+	found:	1
+	union:	321	intersection:	321	hc:	0
+eGFP-NR4A1
+	found:	1
+	union:	1199	intersection:	1199	hc:	0
+GTF3C2
+	found:	2
+	union:	1547	intersection:	462	hc:	462
+ZNF384
+	found:	5
+	union:	6278	intersection:	2431	hc:	1010
+RBBP5
+	found:	2
+	union:	3552	intersection:	448	hc:	448
+DCP1A
+	found:	2
+	union:	758	intersection:	0	hc:	0
+POLR2AphosphoS5
+	found:	18
+	union:	9078	intersection:	5445	hc:	3594
+EED
+	found:	1
+	union:	830	intersection:	830	hc:	0
+THAP11
+	found:	1
+	union:	864	intersection:	864	hc:	0
+JARID1A
+	found:	1
+	union:	2171	intersection:	2171	hc:	0
+POLR2AphosphoS2
+	found:	8
+	union:	10129	intersection:	4010	hc:	1404
+CHD1
+	found:	7
+	union:	8239	intersection:	2493	hc:	646
+SCL
+	found:	2
+	union:	1973	intersection:	63	hc:	63
+CHD2
+	found:	7
+	union:	8188	intersection:	3486	hc:	1454
+SAP30
+	found:	2
+	union:	3569	intersection:	431	hc:	431
+CHD4
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+CHD7
+	found:	3
+	union:	3593	intersection:	546	hc:	2
+RUNX3
+	found:	1
+	union:	1674	intersection:	1674	hc:	0
+ASXL1
+	found:	1
+	union:	807	intersection:	807	hc:	0
+SOX11
+	found:	1
+	union:	1134	intersection:	1134	hc:	0
+BACH1
+	found:	3
+	union:	4772	intersection:	563	hc:	17
+EGR1
+	found:	10
+	union:	10132	intersection:	3579	hc:	1856
+JUN
+	found:	7
+	union:	6659	intersection:	1579	hc:	542
+MEIS1
+	found:	1
+	union:	1452	intersection:	1452	hc:	0
+SOX17
+	found:	1
+	union:	1947	intersection:	1947	hc:	0
+GTF2B
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+MYBL1
+	found:	1
+	union:	161	intersection:	161	hc:	0
+ELK1
+	found:	5
+	union:	5413	intersection:	1829	hc:	504
+ZIC3
+	found:	1
+	union:	365	intersection:	365	hc:	0
+ZBTB33
+	found:	6
+	union:	3470	intersection:	1675	hc:	1101
+TCF12
+	found:	7
+	union:	5110	intersection:	1246	hc:	316
+NR1H3
+	found:	1
+	union:	599	intersection:	599	hc:	0
+TCF4
+	found:	2
+	union:	4138	intersection:	144	hc:	144
+TCF7
+	found:	1
+	union:	1529	intersection:	1529	hc:	0
+ZZZ3
+	found:	2
+	union:	375	intersection:	134	hc:	134
+eGFP-JUND
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+ELK4
+	found:	2
+	union:	3302	intersection:	698	hc:	698
+TCF3
+	found:	5
+	union:	6374	intersection:	1576	hc:	357
+STAT6
+	found:	2
+	union:	547	intersection:	2	hc:	2
+KDM4A
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+ZNF274
+	found:	2
+	union:	1289	intersection:	12	hc:	12
+CBX2
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+eGFP-FOS
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+HOXB4
+	found:	1
+	union:	1824	intersection:	1824	hc:	0
+TBL1XR1
+	found:	2
+	union:	3430	intersection:	570	hc:	570
+PAX5
+	found:	3
+	union:	1941	intersection:	380	hc:	82
+CUX1
+	found:	3
+	union:	6090	intersection:	899	hc:	63
+PPARD
+	found:	3
+	union:	3876	intersection:	278	hc:	3
+DROSHA
+	found:	1
+	union:	456	intersection:	456	hc:	0
+POLR2A
+	found:	47
+	union:	15923	intersection:	11976	hc:	9759
+PAX3
+	found:	1
+	union:	1063	intersection:	1063	hc:	0
+SMAD
+	found:	1
+	union:	124	intersection:	124	hc:	0
+EWS
+	found:	2
+	union:	1524	intersection:	88	hc:	88
+SREBP1
+	found:	1
+	union:	738	intersection:	738	hc:	0
+SREBP2
+	found:	1
+	union:	1095	intersection:	1095	hc:	0
+ZEB1
+	found:	2
+	union:	1025	intersection:	27	hc:	27
+GABPA
+	found:	11
+	union:	6101	intersection:	3760	hc:	3047
+PRDM16
+	found:	1
+	union:	122	intersection:	122	hc:	0
+PRDM14
+	found:	1
+	union:	1944	intersection:	1944	hc:	0
+RELA
+	found:	11
+	union:	6982	intersection:	4238	hc:	2779
+TP53
+	found:	6
+	union:	6136	intersection:	1414	hc:	285
+SIX5
+	found:	4
+	union:	2815	intersection:	1220	hc:	701
+TAF1
+	found:	13
+	union:	6924	intersection:	4182	hc:	2749
+ESR1
+	found:	7
+	union:	3324	intersection:	275	hc:	37
+TBP
+	found:	8
+	union:	8750	intersection:	3841	hc:	1556
+HNF4G
+	found:	1
+	union:	605	intersection:	605	hc:	0
+IRF8
+	found:	3
+	union:	1162	intersection:	119	hc:	13
+HNF4A
+	found:	3
+	union:	7429	intersection:	1270	hc:	173
+HOXD13
+	found:	1
+	union:	196	intersection:	196	hc:	0
+DNAJC2
+	found:	1
+	union:	899	intersection:	899	hc:	0
+MEF2C
+	found:	1
+	union:	155	intersection:	155	hc:	0
+PRDM5
+	found:	1
+	union:	1029	intersection:	1029	hc:	0
+MEF2A
+	found:	3
+	union:	2103	intersection:	212	hc:	19
+PAX6
+	found:	1
+	union:	1001	intersection:	1001	hc:	0
+CTCF
+	found:	109
+	union:	16331	intersection:	12408	hc:	10252
+PHF8
+	found:	3
+	union:	4543	intersection:	869	hc:	78
+EST1
+	found:	1
+	union:	1001	intersection:	1001	hc:	0
+MYCN
+	found:	3
+	union:	2809	intersection:	59	hc:	0
+GLI1
+	found:	1
+	union:	73	intersection:	73	hc:	0
+CREBBP
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+HA-E2F1
+	found:	2
+	union:	3444	intersection:	556	hc:	556
+HDAC1
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+HOXC9
+	found:	1
+	union:	2014	intersection:	2014	hc:	0
+HDAC2
+	found:	4
+	union:	3420	intersection:	428	hc:	50
+YY1
+	found:	14
+	union:	7158	intersection:	3945	hc:	2631
+ASH2L
+	found:	1
+	union:	3336	intersection:	3336	hc:	0
+SMAD4
+	found:	3
+	union:	5016	intersection:	576	hc:	19
+SMAD1
+	found:	1
+	union:	610	intersection:	610	hc:	0
+SMAD2
+	found:	1
+	union:	1936	intersection:	1936	hc:	0
+SMAD3
+	found:	2
+	union:	3233	intersection:	163	hc:	163
+RCOR3
+	found:	1
+	union:	2851	intersection:	2851	hc:	0
+RCOR2
+	found:	1
+	union:	401	intersection:	401	hc:	0
+RCOR1
+	found:	8
+	union:	10881	intersection:	3525	hc:	1120
+VDR
+	found:	3
+	union:	2625	intersection:	73	hc:	2
+FOXM1
+	found:	4
+	union:	2254	intersection:	282	hc:	100
+TBX5
+	found:	1
+	union:	2296	intersection:	2296	hc:	0
+BATF
+	found:	1
+	union:	760	intersection:	760	hc:	0
+ZFP281
+	found:	2
+	union:	2252	intersection:	330	hc:	330
+IKZF1
+	found:	2
+	union:	2143	intersection:	12	hc:	12
+IRF3
+	found:	3
+	union:	2840	intersection:	1328	hc:	396
+NCOR1
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+GBX2
+	found:	1
+	union:	286	intersection:	286	hc:	0
+STAT5
+	found:	1
+	union:	1197	intersection:	1197	hc:	0
+STAT4
+	found:	1
+	union:	1939	intersection:	1939	hc:	0
+NANOG
+	found:	9
+	union:	8446	intersection:	2683	hc:	1200
+STAT2
+	found:	1
+	union:	215	intersection:	215	hc:	0
+STAT1
+	found:	4
+	union:	3414	intersection:	335	hc:	31
+MECOM
+	found:	1
+	union:	1951	intersection:	1951	hc:	0
+CIITA
+	found:	1
+	union:	59	intersection:	59	hc:	0
+SMC3
+	found:	7
+	union:	8716	intersection:	3324	hc:	1209
+NR2F2
+	found:	3
+	union:	2007	intersection:	145	hc:	4
+USF2
+	found:	7
+	union:	7085	intersection:	3422	hc:	1768
+USF1
+	found:	10
+	union:	6168	intersection:	4118	hc:	2624
+KDM6A
+	found:	1
+	union:	479	intersection:	479	hc:	0
+FOSL2
+	found:	4
+	union:	2199	intersection:	334	hc:	82
+FOXP3
+	found:	2
+	union:	1648	intersection:	13	hc:	13
+FOSL1
+	found:	4
+	union:	1392	intersection:	267	hc:	46
+TCF21
+	found:	1
+	union:	153	intersection:	153	hc:	0
+SREBF1
+	found:	2
+	union:	1665	intersection:	71	hc:	71
+NFIC
+	found:	4
+	union:	3137	intersection:	727	hc:	70
+EKLF
+	found:	1
+	union:	1239	intersection:	1239	hc:	0
+eGFP-GATA2
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+LYL1
+	found:	1
+	union:	752	intersection:	752	hc:	0
+ESRRB
+	found:	1
+	union:	1434	intersection:	1434	hc:	0
+THAP1
+	found:	1
+	union:	1775	intersection:	1775	hc:	0
+TET1
+	found:	2
+	union:	3596	intersection:	237	hc:	237
+TTF2
+	found:	2
+	union:	1510	intersection:	0	hc:	0
+IRF1
+	found:	3
+	union:	935	intersection:	79	hc:	1
+PRDM1
+	found:	1
+	union:	1625	intersection:	1625	hc:	0
+CBX3
+	found:	2
+	union:	2149	intersection:	60	hc:	60
+SALL4
+	found:	3
+	union:	3100	intersection:	370	hc:	20
+SALL1
+	found:	1
+	union:	105	intersection:	105	hc:	0
+KAT2A
+	found:	4
+	union:	5202	intersection:	1554	hc:	191
+MAX
+	found:	16
+	union:	10531	intersection:	6505	hc:	4272
+ESR2
+	found:	1
+	union:	424	intersection:	424	hc:	0
+EP300
+	found:	17
+	union:	13983	intersection:	6278	hc:	2864
+OLIG2
+	found:	1
+	union:	2040	intersection:	2040	hc:	0
+TP63
+	found:	4
+	union:	6728	intersection:	1359	hc:	13
+YAP1
+	found:	1
+	union:	2329	intersection:	2329	hc:	0
+FOXO3
+	found:	2
+	union:	2630	intersection:	65	hc:	65
+MTA3
+	found:	1
+	union:	1150	intersection:	1150	hc:	0
+ARNT
+	found:	1
+	union:	1029	intersection:	1029	hc:	0
+RBPJ
+	found:	2
+	union:	2044	intersection:	3	hc:	3
+LMO2
+	found:	1
+	union:	1741	intersection:	1741	hc:	0
+MTF2
+	found:	1
+	union:	2981	intersection:	2981	hc:	0
+SUPT20H
+	found:	2
+	union:	1166	intersection:	138	hc:	138
+NFYA
+	found:	3
+	union:	3687	intersection:	1713	hc:	600
+SREBF2
+	found:	1
+	union:	405	intersection:	405	hc:	0
+STAT5A
+	found:	2
+	union:	1528	intersection:	29	hc:	29
+ERG
+	found:	3
+	union:	3216	intersection:	134	hc:	2
+HDAC6
+	found:	2
+	union:	3626	intersection:	374	hc:	374
+HOXA2
+	found:	1
+	union:	38	intersection:	38	hc:	0
+NFATC1
+	found:	1
+	union:	1532	intersection:	1532	hc:	0
+ZMIZ1
+	found:	3
+	union:	4626	intersection:	708	hc:	58
+NRF2
+	found:	1
+	union:	1055	intersection:	1055	hc:	0
+NRF1
+	found:	6
+	union:	5228	intersection:	2987	hc:	1879
+E2F6
+	found:	4
+	union:	3881	intersection:	1229	hc:	335
+JARID2
+	found:	2
+	union:	1639	intersection:	736	hc:	736
+JUND
+	found:	12
+	union:	7002	intersection:	2207	hc:	737
+BCL11B
+	found:	1
+	union:	43	intersection:	43	hc:	0
+CTNNB1
+	found:	3
+	union:	1748	intersection:	39	hc:	0
+ELF1
+	found:	9
+	union:	5882	intersection:	3078	hc:	1790
+FOXO1
+	found:	1
+	union:	347	intersection:	347	hc:	0
+EZH2
+	found:	19
+	union:	14086	intersection:	7983	hc:	4578
+GABP
+	found:	2
+	union:	3232	intersection:	408	hc:	408
+TAF7
+	found:	2
+	union:	2102	intersection:	157	hc:	157
+EBNA2
+	found:	1
+	union:	1492	intersection:	1492	hc:	0
+MITF
+	found:	1
+	union:	5578	intersection:	5578	hc:	0
+SRF
+	found:	9
+	union:	5324	intersection:	2185	hc:	1453
+MYBL2
+	found:	2
+	union:	3647	intersection:	198	hc:	198
+ELF5
+	found:	1
+	union:	1087	intersection:	1087	hc:	0
+TRP63
+	found:	1
+	union:	143	intersection:	143	hc:	0
+TEAD4
+	found:	8
+	union:	6145	intersection:	1744	hc:	604
+SMARCC1
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+CEBPB
+	found:	14
+	union:	8480	intersection:	3698	hc:	1970
+CEBPA
+	found:	1
+	union:	589	intersection:	589	hc:	0
+GFI1B
+	found:	1
+	union:	1871	intersection:	1871	hc:	0
+SIN3A
+	found:	13
+	union:	8835	intersection:	4256	hc:	2230
+HCFC1
+	found:	6
+	union:	6744	intersection:	2563	hc:	810
+CEBPD
+	found:	3
+	union:	2165	intersection:	208	hc:	3
+TAL1
+	found:	8
+	union:	6780	intersection:	2118	hc:	994
+SPI1
+	found:	10
+	union:	9369	intersection:	3657	hc:	1875
+TFAP2C
+	found:	2
+	union:	2961	intersection:	242	hc:	242
+UBTF
+	found:	3
+	union:	4979	intersection:	927	hc:	94
+BCLAF1
+	found:	2
+	union:	2191	intersection:	306	hc:	306
+EOMES
+	found:	2
+	union:	2581	intersection:	95	hc:	95
+SOX2
+	found:	7
+	union:	9261	intersection:	2493	hc:	710
+ETS1
+	found:	6
+	union:	6250	intersection:	1867	hc:	477
+KLF2
+	found:	1
+	union:	102	intersection:	102	hc:	0
+KLF1
+	found:	1
+	union:	1144	intersection:	1144	hc:	0
+CNOT3
+	found:	1
+	union:	1547	intersection:	1547	hc:	0
+CEBPZ
+	found:	1
+	union:	867	intersection:	867	hc:	0
+NACC1
+	found:	1
+	union:	769	intersection:	769	hc:	0
+SIN3B
+	found:	1
+	union:	4302	intersection:	4302	hc:	0
+FOS
+	found:	5
+	union:	5326	intersection:	1892	hc:	743
+CREM
+	found:	1
+	union:	5776	intersection:	5776	hc:	0
+POU3F2
+	found:	1
+	union:	1702	intersection:	1702	hc:	0
+NR3C1
+	found:	5
+	union:	3518	intersection:	379	hc:	32
+SMARCB1
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+RAD21
+	found:	14
+	union:	9862	intersection:	5102	hc:	3241
+NR4A2
+	found:	1
+	union:	207	intersection:	207	hc:	0
+SP4
+	found:	1
+	union:	1478	intersection:	1478	hc:	0
+PPARG
+	found:	4
+	union:	4976	intersection:	508	hc:	27
+BMI1
+	found:	2
+	union:	1682	intersection:	35	hc:	35
+REST
+	found:	19
+	union:	11334	intersection:	4363	hc:	2079
+RXRA
+	found:	4
+	union:	1201	intersection:	102	hc:	26
+BCL11A
+	found:	2
+	union:	1277	intersection:	26	hc:	26
+AR
+	found:	4
+	union:	6575	intersection:	1050	hc:	91
+POU5F1
+	found:	7
+	union:	6974	intersection:	2321	hc:	751
+PADI4
+	found:	1
+	union:	1037	intersection:	1037	hc:	0
+EBF1
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+PDX1
+	found:	1
+	union:	669	intersection:	669	hc:	0
+DACH1
+	found:	1
+	union:	1698	intersection:	1698	hc:	0
+PML
+	found:	3
+	union:	2738	intersection:	669	hc:	97
+PBX3
+	found:	3
+	union:	3393	intersection:	1407	hc:	695
+SFPI1
+	found:	1
+	union:	2369	intersection:	2369	hc:	0
+PBX1
+	found:	1
+	union:	2299	intersection:	2299	hc:	0
+E2F7
+	found:	1
+	union:	46	intersection:	46	hc:	0
+NFIB
+	found:	1
+	union:	573	intersection:	573	hc:	0
+eGFP-HDAC8
+	found:	1
+	union:	2000	intersection:	2000	hc:	0
+E2F4
+	found:	9
+	union:	8674	intersection:	3845	hc:	1773
+TAF7L
+	found:	1
+	union:	912	intersection:	912	hc:	0
+E2F1
+	found:	4
+	union:	7452	intersection:	1373	hc:	203
+SIRT6
+	found:	2
+	union:	3447	intersection:	553	hc:	553
+MXI1
+	found:	9
+	union:	9351	intersection:	4755	hc:	2270
+SOX9
+	found:	3
+	union:	3172	intersection:	178	hc:	0
+NOTCH1
+	found:	2
+	union:	373	intersection:	6	hc:	6
+TCFCP2L1
+	found:	1
+	union:	1987	intersection:	1987	hc:	0
+BP1
+	found:	1
+	union:	18	intersection:	18	hc:	0
+TFAP2A
+	found:	2
+	union:	3682	intersection:	217	hc:	217
+TFEB
+	found:	1
+	union:	808	intersection:	808	hc:	0
+ATF3
+	found:	6
+	union:	4973	intersection:	1647	hc:	979
+HTT
+	found:	1
+	union:	566	intersection:	566	hc:	0
+ATF2
+	found:	2
+	union:	2757	intersection:	790	hc:	790
+POU2F2
+	found:	2
+	union:	2358	intersection:	763	hc:	763
+BCL3
+	found:	3
+	union:	2819	intersection:	243	hc:	11
+ZNF652
+	found:	1
+	union:	112	intersection:	112	hc:	0
+[Finished in 540.7s]

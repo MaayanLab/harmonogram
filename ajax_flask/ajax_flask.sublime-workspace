@@ -1,0 +1,1371 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"row_labe",
+				"row_label_text"
+			],
+			[
+				"pval_",
+				"pval_bh"
+			],
+			[
+				"tmm",
+				"tmp_margin"
+			],
+			[
+				"col_lab",
+				"col_label_text"
+			],
+			[
+				"col_la",
+				"col_label_width"
+			],
+			[
+				"intes",
+				"interesting_features"
+			],
+			[
+				"intert",
+				"intersting_find"
+			],
+			[
+				"interest",
+				"interesting_features"
+			],
+			[
+				"num_ex",
+				"num_exact_interest"
+			],
+			[
+				"modi",
+				"modified_residue"
+			],
+			[
+				"initili",
+				"initialize_data_mat"
+			],
+			[
+				"fi",
+				"filename"
+			],
+			[
+				"summa",
+				"summary_captions"
+			],
+			[
+				"qu",
+				"qoutes"
+			],
+			[
+				"correcteD",
+				"Corrected"
+			],
+			[
+				"corrected_",
+				"corrected_pvalues_str"
+			],
+			[
+				"corrected",
+				"corrected_pvalues_str"
+			],
+			[
+				"calculate",
+				"calculateGeneFill"
+			],
+			[
+				"buildNe",
+				"buildNetworkModal"
+			],
+			[
+				"term",
+				"terms"
+			],
+			[
+				"quant",
+				"quantilenorm"
+			],
+			[
+				"data",
+				"data"
+			],
+			[
+				"dex",
+				"dex"
+			],
+			[
+				"Dex",
+				"Dex"
+			],
+			[
+				"PPI_AG",
+				"PPI_AG"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "d3_clustergram.py",
+			"settings":
+			{
+				"buffer_size": 15385,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "make_enr_clust.py",
+			"settings":
+			{
+				"buffer_size": 1999,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/nick/Documents/d3_clust_proj/Phosphatase_Substrates_from_DEPOD_table.txt",
+			"settings":
+			{
+				"buffer_size": 1017,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "enz_and_tf_lists_gmts/KIN/kinase_substrate.gmt",
+			"settings":
+			{
+				"buffer_size": 95568,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app.py",
+			"settings":
+			{
+				"buffer_size": 1324,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "notes.txt",
+			"settings":
+			{
+				"buffer_size": 892,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "example_genes_tf.txt",
+			"settings":
+			{
+				"buffer_size": 281,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "calc_enrichment_gl_gmt.py",
+			"settings":
+			{
+				"buffer_size": 5544,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "static/js/click_functions.js",
+			"settings":
+			{
+				"buffer_size": 12887,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/index.html",
+			"settings":
+			{
+				"buffer_size": 3071,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "static/js/graphs.js",
+			"settings":
+			{
+				"buffer_size": 973,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/nick/Documents/d3_clust_proj/example_gene_list_kea2.txt",
+			"settings":
+			{
+				"buffer_size": 178,
+				"line_ending": "Unix",
+				"name": "AIP"
+			}
+		},
+		{
+			"file": "/home/nick/Documents/d3_clust_proj/example_gene_list_kea2_small.txt",
+			"settings":
+			{
+				"buffer_size": 196,
+				"line_ending": "Unix",
+				"name": "RPS6KA4"
+			}
+		}
+	],
+	"build_system": "Packages/User/python.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				],
+				[
+					"Packages/User/python.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/User/python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 128.0,
+		"last_filter": "push",
+		"selected_items":
+		[
+			[
+				"push",
+				"Git: Push"
+			],
+			[
+				"qui",
+				"Git: Quick Commit"
+			],
+			[
+				"add",
+				"Git: Add..."
+			],
+			[
+				"stat",
+				"Git: Status"
+			],
+			[
+				"stats",
+				"Git: Status"
+			],
+			[
+				"status",
+				"Git: Status"
+			],
+			[
+				"qio",
+				"Git: Quick Commit"
+			],
+			[
+				"sta",
+				"Git: Status"
+			],
+			[
+				"pull",
+				"Git: Pull"
+			],
+			[
+				"git pull",
+				"Git: Pull"
+			],
+			[
+				"git stat",
+				"Git: Status"
+			],
+			[
+				"qi",
+				"Git: Quick Commit"
+			],
+			[
+				"satt",
+				"Git: Status"
+			],
+			[
+				"qu",
+				"Git: Quick Commit"
+			],
+			[
+				"statu",
+				"Git: Status"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"git log",
+				"Git: Log All"
+			],
+			[
+				"q",
+				"Git: Quick Commit"
+			],
+			[
+				"package control",
+				"Package Control: Install Package"
+			],
+			[
+				"pu",
+				"Git: Pull"
+			],
+			[
+				"git status",
+				"Git: Status"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"commit",
+				"Git: Commit"
+			],
+			[
+				"git qui",
+				"Git: Quick Commit"
+			],
+			[
+				"git checkout",
+				"Git: Checkout Tag"
+			],
+			[
+				"git check",
+				"Git: Checkout Tag"
+			],
+			[
+				"quick",
+				"Git: Quick Commit"
+			],
+			[
+				"git checkout ",
+				"Git: Checkout Tag"
+			],
+			[
+				"git add",
+				"Git: Add..."
+			],
+			[
+				"git: push ",
+				"Git: Push"
+			],
+			[
+				"remote",
+				"Git: Track Remote Branch"
+			],
+			[
+				"pus",
+				"Git: Push"
+			],
+			[
+				"push ",
+				"Git: Push"
+			],
+			[
+				"git push",
+				"Git: Push"
+			],
+			[
+				"git",
+				"Git: Commit"
+			],
+			[
+				"git ini",
+				"Git: Init"
+			],
+			[
+				"package install",
+				"Package Control: Install Package"
+			],
+			[
+				"package control: install package ",
+				"Package Control: Install Package"
+			],
+			[
+				"package control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"FileDiffs",
+				"FileDiffs: Menu"
+			],
+			[
+				"filed",
+				"FileDiffs: Menu"
+			],
+			[
+				"filediff",
+				"FileDiffs: Menu"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Package Control: Install Package"
+			],
+			[
+				":w",
+				":w - Save"
+			],
+			[
+				":exit",
+				"Set Syntax: Regular Expressions (Python)"
+			],
+			[
+				"pyt",
+				"Set Syntax: Python"
+			],
+			[
+				":",
+				":w - Save"
+			],
+			[
+				":q",
+				"Set Syntax: SQL"
+			]
+		],
+		"width": 435.0
+	},
+	"console":
+	{
+		"height": 351.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/nick/Documents/d3_clust_proj/ajax_flask",
+		"/home/nick/Documents/d3_clust_proj/ajax_flask/networks",
+		"/home/nick/Documents/d3_clust_proj/ajax_flask/templates"
+	],
+	"file_history":
+	[
+		"/home/nick/Documents/d3_clust_proj/ajax_flask/static/js/d3_connect_map.js",
+		"/home/nick/Documents/d3_clust_proj/ajax_flask/calc_enrichment_gl_gmt.py",
+		"/home/nick/Documents/d3_clust_proj/Dockerfile",
+		"/home/nick/Documents/d3_clust_proj/ajax_flask/example_gene_list.txt",
+		"/home/nick/Documents/d3_clust_proj/Dawn_list.txt",
+		"/home/nick/Documents/d3_clust_proj/ajax_flask/make_enr_clust.py",
+		"/home/nick/Documents/d3_clust_proj/ajax_flask/tmp_error.txt",
+		"/tmp/enrichment_results-1.txt",
+		"/tmp/enrichment_results.txt",
+		"/home/nick/Documents/d3_clust_proj/run.py",
+		"/home/nick/Documents/d3_clust_proj/copy_of_Dockerfile",
+		"/home/nick/Documents/d3_clust_proj/ajax_flask/static/lib/js/jquery-1.11.2.min.js",
+		"/home/nick/Documents/d3_clust_proj/ajax_flask/static/js/click_functions.js",
+		"/home/nick/Documents/bootstrap-switch-master/README.md",
+		"/home/nick/Documents/d3_clust_proj/ajax_flask/static/js/map_scripts.js",
+		"/home/nick/Documents/d3_clust_proj/ajax_flask/static/css/custom.css",
+		"/home/nick/Documents/d3_clust_proj/ajax_flask/static/js/remove_update_adj_matrix.js",
+		"/home/nick/Documents/d3_clust_proj/ajax_flask/static/lib/css/keen-dashboards.css",
+		"/home/nick/Documents/d3_clust_proj/ajax_flask/static/css/specific.css",
+		"/home/nick/Downloads/openpaths_cornhundred.json",
+		"/home/nick/Documents/d3_clust_proj/ajax_flask/tmp.py",
+		"/home/nick/Documents/easy.py",
+		"/home/nick/Documents/notebook/Notebook Files/Lab_Notebook.txt.orig",
+		"/home/nick/Documents/flaskr/untitled.sublime-project",
+		"/home/nick/Documents/flaskr/untitled",
+		"/home/nick/Documents/cst_python/find_ptm_near_feature.py",
+		"/opt/lampp/htdocs/CST_correlations/networks/protein_ptm.json",
+		"/opt/lampp/htdocs/CST_correlations/networks/clust_cardio.json",
+		"/home/nick/Documents/cst_python/json_scripts.py",
+		"/opt/lampp/htdocs/CST_correlations/d3_connect_map.js.callback_working_9-9-2014",
+		"/home/nick/Documents/cst_python/json_scripts.pyc",
+		"/home/nick/Documents/cst_python/cst_common.py",
+		"/home/nick/Documents/cst_python/tmp.py",
+		"/home/nick/Documents/homologene/processed_homologene/README_homologue_gmt.txt",
+		"/home/nick/Documents/homologene/processed_homologene/homologene_gmt/process_homologene.py",
+		"/home/nick/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/nick/Documents/homologene/processed_homologene/all_conservation_levels.txt",
+		"/home/nick/Documents/homologene/processed_homologene/human_homologene_conservation.gmt",
+		"/home/nick/Documents/homologene/processed_homologene/check_homology.py",
+		"/home/nick/Documents/homologene/processed_homologene/process_homologene.py",
+		"/home/nick/Documents/homologene/processed_homologene/manual_caption_summary.txt",
+		"/home/nick/Documents/homologene/processed_homologene/homologene.gmt",
+		"/home/nick/Documents/homologene/processed_homologene/homologene_gmt_info.txt",
+		"/home/nick/Documents/homologene/processed_homologene/homologene_gmt/homologene_gmt.txt",
+		"/home/nick/Documents/homologene/processed_homologene/homologene_gmt/README_homologue_gmt.txt",
+		"/home/nick/.cache/.fr-bSNXXd/README_homologue_gmt.txt",
+		"/home/nick/.cache/.fr-CqVBMx/homologene_gmt/README_homologue_gmt.txt",
+		"/home/nick/.cache/.fr-IKqa2Q/homologene_gmt/README_homologue_gmt.txt",
+		"/home/nick/Documents/homologene/processed_homologene/homologene_gmt/homologene.gmt",
+		"/home/nick/Documents/homologene/processed_homologene/processed_homologene.zip",
+		"/home/nick/Documents/homologene/processed_homologene/homologene_gmt.txt",
+		"/home/nick/Documents/homologene/processed_homologene/summary_captions.json",
+		"/home/nick/Documents/homologene/processed_homologene/scraps/ACADM.xml",
+		"/home/nick/Downloads/taxdmp/division.dmp",
+		"/home/nick/Downloads/taxdmp/names.dmp",
+		"/home/nick/Downloads/taxdmp/nodes.dmp",
+		"/home/nick/Documents/homologene/processed_homologene/species_genes.gmt",
+		"/home/nick/Documents/homologene/processed_homologene/notes_processing_homologene.txt",
+		"/home/nick/Dropbox/Work_Desktop_Nick/Documents/Uniprot/Uniprot_human_xml/uniprot-organism%3A9606+AND+keyword%3A-Complete+proteome+%5BKW-0181%5D-+revi--.xml",
+		"/home/nick/Documents/notebook/Notebook Files/Uniprot_xml/process_uniprot_example.py",
+		"/home/nick/Documents/notebook/Notebook Files/Linux_specific_notes/Linux_Laptop.txt",
+		"/home/nick/Documents/notebook/Notebook Files/tmp.py",
+		"/home/nick/Documents/notebook/Notebook_project.sublime-project",
+		"/home/nick/Documents/notebook/Notebook Files/X2K_nosology/X2K_nosology.txt",
+		"/home/nick/Documents/notebook/Notebook Files/Uniprot_xml/notes_Uniprot_xml.txt",
+		"/home/nick/Documents/notebook/Notebook Files/Uniprot_xml/YWHAB.xml",
+		"/home/nick/Documents/notebook/Notebook Files/CST/CST--ACT_MET_CCLE.txt",
+		"/home/nick/Documents/notebook/Notebook Files/CST/thoughts_Uniprot.txt",
+		"/home/nick/Documents/notebook/Notebook Files/CST/Multiple_types_of_PTMs.txt",
+		"/home/nick/.config/sublime-text-3/Packages/User/python.sublime-build",
+		"/home/nick/.config/sublime-text-3/Packages/Package Control/Package Control.sublime-settings",
+		"/home/nick/Documents/notebook/Notebook Files/Archived_Day_Notes.txt",
+		"/home/nick/Documents/notebook/Notebook Files/Uniprot_xml/uniprot_example.xml",
+		"/home/nick/Documents/notebook/Notebook Files/Uniprot_xml/YHAB_xml_proc.txt",
+		"/home/nick/Documents/notebook/Notebook Files/Uniprot_xml/uniprot_example_xml_proc.txt",
+		"/home/nick/Documents/notebook/Notebook Files/Uniprot_xml/uniprot-yourlist%3AM2015010813GVWNQJZ7.xml",
+		"/home/nick/Documents/Uniprot_human_xml/uniprot_human_xml_proc.txt",
+		"/home/nick/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/nick/Documents/notebook/Notebook Files/Uniprot_example_xml/uniprot_example.xml",
+		"/home/nick/Documents/notebook/Notebook Files/Uniprot_example_xml/process_uniprot_example.py",
+		"/home/nick/Documents/notebook/Notebook Files/Archives_Notes.txt",
+		"/home/nick/Documents/notebook/Notebook Files/CST/COSMIC_notes.txt",
+		"/home/nick/Documents/notebook/Notebook Files/CST/Presentation_plan.txt",
+		"/home/nick/Documents/notebook/Notebook Files/CST/cell_line_mutation_pdf_summary.txt",
+		"/home/nick/Documents/notebook/Notebook Files/CST/ACT_MET_CCLE.txt",
+		"/home/nick/Documents/notebook/Notebook Files/lab_meeting_schedule.txt",
+		"/home/nick/Documents/notebook/Notebook Files/CST/new_google_drive_data.txt",
+		"/home/nick/Documents/notebook/Notebook Files/git_notes.txt",
+		"/home/nick/x2k/info",
+		"/home/nick/x2k/installerrequirements",
+		"/home/nick/xampp_instructions.txt",
+		"/home/nick/Documents/notebook/Notebook Files/D3_notes/d3_12-22-2014.txt",
+		"/home/nick/Documents/notebook/Notebook Files/Lab_Notebook.txt",
+		"/C/Users/Nick Fernandez/Documents/TF_histone/ChEA.gmt",
+		"/C/Users/Nick Fernandez/Documents/CST_PTM/Batch_Effect_April_2014/To do CST Phone Meeting 3pm.txt",
+		"/C/Users/Nick Fernandez/Documents/CST_PTM/to do CST 4-22-2014.txt",
+		"/C/Users/Nick Fernandez/Documents/CST_PTM/PY_QN_top_H2405_gene_list.txt",
+		"/C/Users/Nick Fernandez/Documents/Notebook/Notebook Files/CST/CST_notes.txt",
+		"/C/Users/Nick Fernandez/Documents/CST_PTM/NOTES/CST_notes.txt",
+		"/C/Users/Nick Fernandez/Documents/CST_PTM/networks_31/README_networks_31_cells_missing_less_than_10pct_data.txt",
+		"/C/Users/Nick Fernandez/Documents/CST_PTM/clustergram_manual_cell_networks/PY_top_A549_gene_list.txt",
+		"/C/Users/Nick Fernandez/Documents/Notebook/README.txt",
+		"/C/Users/Nick Fernandez/Documents/Notebook/Notebook Files/tmp_file.txt",
+		"/C/Users/Nick Fernandez/Documents/Notebook/Notebook Files/Python/README_abstract_fetch_psite.txt",
+		"/C/Users/Nick Fernandez/Documents/Notebook/Notebook Files/KMC/KMC_meeting_12-12-2014",
+		"/C/Users/Nick Fernandez/Documents/Python Scripts/CST_Hornbeck/new_Hornbeck_PMIDS/Hornbeck_all_psite_pmid_uniq.txt",
+		"/C/Users/Nick Fernandez/Documents/Notebook/Notebook Files/Brazil_presentation_notes_from_memory_2.txt",
+		"/C/Users/Nick Fernandez/Documents/Python Scripts/CST_Hornbeck/Kinome_data_from_Peter_Hornbeck/processed_psite_pmids.txt",
+		"/C/Users/Nick Fernandez/Documents/TF_histone/TF_list/tf_synonyms_highconfidence_crisp.gmt",
+		"/C/Users/Nick Fernandez/Documents/TF_histone/TF_list/tf_gs_high_confidence.txt",
+		"/C/Users/Nick Fernandez/Documents/CST_PTM/MET_ACT_int_gmts/DMET_gs_processed.txt",
+		"/C/Users/Nick Fernandez/Documents/CST_PTM/MET_ACT_int_gmts/MET_gs_processed.txt",
+		"/C/Users/Nick Fernandez/Documents/CST_PTM/MET_ACT_int_gmts/DACT_gs_processed.txt",
+		"/C/Users/Nick Fernandez/Documents/CST_PTM/MET_ACT_int_gmts/ACT_gs_processed.txt",
+		"/C/Users/Nick Fernandez/Documents/CST_PTM/MET_ACT_int_gmts/MET_int_gmt.txt",
+		"/C/Users/Nick Fernandez/Documents/CST_PTM/Enzyme_lists/kinases/Uniprot_kinases_4_27_2014/Uniprot_kinases_processed.txt",
+		"/C/Users/Nick Fernandez/Documents/KEA2_website_files/phosphatase_elucidate/GS_prot_name_phosphatases.txt",
+		"/C/Users/Nick Fernandez/Documents/KEA2_website_files/phosphatase_elucidate/protein_names/protein_name_phosphatases.txt",
+		"/C/Users/Nick Fernandez/Documents/KEA2_website_files/phosphatase_elucidate/gene_symbols/GS_substrates_from_network.txt",
+		"/C/Users/Nick Fernandez/Documents/CST_PTM/Enzyme_lists/phosphatases/all_phosphatases.txt",
+		"/C/Users/Nick Fernandez/Documents/Uniprot/phosphatase_domains/phosphatase_domains.txt",
+		"/C/Users/Nick Fernandez/Documents/CST_PTM/Enzyme_lists/phosphatases/quick_manual_identification_of_phosphatase_type.txt",
+		"/C/Users/Nick Fernandez/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Nick Fernandez/Documents/Notebook/Notebook Files/CST/CST_Matlab_notes.txt",
+		"/C/Users/Nick Fernandez/Documents/Notebook/Notebook Files/IDG_conference_calls/IDG_12-5-2014_1000am.txt",
+		"/C/Users/Nick Fernandez/Documents/Notebook/Notebook Files/KEA2/Adj_Matrix_to_do.txt",
+		"/C/Users/Nick Fernandez/Documents/CCLE/cell_lines.txt",
+		"/C/Users/Nick Fernandez/Documents/Notebook/Notebook Files/KEA2_website/to_do_website_updated.txt"
+	],
+	"find":
+	{
+		"height": 33.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"",
+			"*.py",
+			"",
+			"*.js",
+			"",
+			"*.js",
+			"",
+			"*.js",
+			".js",
+			"",
+			"*.js",
+			".js",
+			"",
+			"<open folders>",
+			"C:\\Users\\Nick Fernandez\\Documents\\MATLAB",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"input_genes",
+			"row_label",
+			"row_labels",
+			"0.1",
+			"scale_exte",
+			"scale_extent",
+			"zoom",
+			"reorder_click_",
+			"col_label_text",
+			"'g'",
+			"gmt",
+			"transcrip",
+			"clust_order",
+			"pval_bh",
+			"p",
+			"pval_bh",
+			"p",
+			"pval_bh",
+			"30",
+			"make_enr_clust",
+			"make_enrichment_clustergram",
+			"num_terms",
+			"convert_enr_to_nodes_mat",
+			"gmt",
+			"int_genes",
+			"creb1",
+			"RPS6KA4	",
+			"RPS6KA4",
+			"SLC9A5",
+			"RPS6KA4",
+			"creb1",
+			"there are ",
+			"cluster_row_and_column",
+			"hier",
+			"clust_order",
+			"there are",
+			"inst_gene_list",
+			"prkcz",
+			"nl_pval",
+			"kinase",
+			"enrichment",
+			"error",
+			"hier.",
+			"figure",
+			"from ajax_",
+			"after",
+			"make_enrichment_",
+			"stats",
+			"calc(",
+			"calc",
+			"loading gmt",
+			"calculating",
+			"debugger",
+			"calculating",
+			"calcula",
+			"calculating",
+			"running",
+			"url",
+			"post",
+			"$.post",
+			"$",
+			"post",
+			"jquer",
+			"google",
+			"print",
+			"generate_data_mat_array",
+			"d3_clustergram",
+			"reorder_clust_rank",
+			"reorder_vlust_rank",
+			"row_function",
+			"make_svg_enrichment_genes",
+			"intersect",
+			"'black'",
+			"main_svg",
+			"<meta",
+			"row_title",
+			"_title",
+			"here",
+			"svg",
+			"main_svg",
+			"60",
+			"top_magin",
+			"rect_margin_top",
+			"margin_top",
+			"rect_margin",
+			"rectf",
+			"tmp_margin",
+			"tmp_",
+			"tmp_margin_small",
+			"tmp_margin_top",
+			"col_margin",
+			"col_labels",
+			"col_label",
+			"35",
+			"buffer_margin",
+			"500",
+			"500p",
+			"top_left_white",
+			"update_",
+			"update_adj_",
+			"top_left_white",
+			"top_margin",
+			"col_label",
+			"rotate",
+			"col_labels",
+			"rotate",
+			"col_label",
+			"col_title",
+			"text",
+			"svg",
+			"main_svg",
+			"row_labels",
+			"row_margin",
+			"70",
+			"tmp",
+			"70",
+			"d3_map_enrichment",
+			"margin.",
+			"adj_mat",
+			"svg_div",
+			"navbar-brand",
+			"svg_div",
+			"svg_main",
+			"svg_div",
+			"default_fs",
+			"reorder",
+			"submit",
+			"input"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"d.pos_y",
+			"d.pos_x",
+			"",
+			"all_ptms",
+			"check_num_human_conserved",
+			"feat_pos",
+			"feat_end",
+			"\nfeat_begin"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": false,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "d3_clustergram.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15385,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "make_enr_clust.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1999,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1165,
+								1165
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 247.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/nick/Documents/d3_clust_proj/Phosphatase_Substrates_from_DEPOD_table.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1017,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1017,
+								1017
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "enz_and_tf_lists_gmts/KIN/kinase_substrate.gmt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 95568,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								87178,
+								87178
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 21977.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1324,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								555,
+								555
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "notes.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 892,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								385,
+								385
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "example_genes_tf.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 281,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								113,
+								113
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 7,
+					"file": "calc_enrichment_gl_gmt.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5544,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "static/js/click_functions.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12887,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4012,
+								4012
+							],
+							[
+								4239,
+								4239
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1420.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "templates/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3071,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1303,
+								1303
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 101.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 10,
+					"file": "static/js/graphs.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 973,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								181,
+								181
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 78.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "/home/nick/Documents/d3_clust_proj/example_gene_list_kea2.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 178,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								128,
+								128
+							]
+						],
+						"settings":
+						{
+							"auto_name": "AIP",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 193.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "/home/nick/Documents/d3_clust_proj/example_gene_list_kea2_small.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 196,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								15,
+								15
+							]
+						],
+						"settings":
+						{
+							"auto_name": "RPS6KA4",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				2
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			],
+			[
+				1,
+				1,
+				2,
+				2
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.0651890482399,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			0.721969684996,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 200.0
+	},
+	"output.find_results":
+	{
+		"height": 442.0
+	},
+	"output.git":
+	{
+		"height": 86.0
+	},
+	"pinned_build_system": "",
+	"project": "ajax_flask.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"calc_enr",
+				"calc_enrichment_gl_gmt.py"
+			],
+			[
+				"calc",
+				"calc_enrichment_gl_gmt.py"
+			],
+			[
+				"click",
+				"static/js/click_functions.js"
+			],
+			[
+				"make",
+				"make_enr_clust.py"
+			],
+			[
+				"d3_",
+				"d3_clustergram.py"
+			],
+			[
+				"calc_",
+				"calc_enrichment_gl_gmt.py"
+			],
+			[
+				"make_",
+				"make_enr_clust.py"
+			],
+			[
+				"jqu",
+				"static/lib/js/jquery-1.11.2.min.js"
+			],
+			[
+				"kee-",
+				"static/lib/css/keen-dashboards.css"
+			],
+			[
+				"specific",
+				"static/css/specific.css"
+			],
+			[
+				"map_",
+				"static/js/map_scripts.js"
+			],
+			[
+				".css",
+				"static/css/custom.css"
+			],
+			[
+				"index",
+				"templates/index.html"
+			],
+			[
+				"map",
+				"static/js/map_scripts.js"
+			],
+			[
+				"make_en",
+				"make_enr_clust.py"
+			],
+			[
+				"exampletf",
+				"example_genes_tf.txt"
+			],
+			[
+				"exampl",
+				"example_gene_list.txt"
+			],
+			[
+				"d3",
+				"static/js/d3_connect_map.js"
+			],
+			[
+				"la",
+				"templates/layout.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 1,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 223.0,
+	"status_bar_visible": false,
+	"template_settings":
+	{
+	}
+}
