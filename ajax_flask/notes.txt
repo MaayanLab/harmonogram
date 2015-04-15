@@ -31,7 +31,7 @@ remove containers and images
 	sudo docker images | awk '{print $3}' | xargs sudo docker rmi
 
 
---- instructions to push to loretta
+--- instructions to run on loretta
 	
 	I added in the code using a few ADD lines in the Dockerfile 
 
@@ -45,7 +45,21 @@ remove containers and images
 	# ssh into loretta
 	ssh root@10.91.53.62
 
+	# pull from dockerhub 
+	docker pull maayanlab/clustergram_flask:latest
 
 
 
+	sudo docker run -it --rm -p 80:80 !!!image_id!!!-or-tag_name 
 
+
+	within loretta
+		docker run -it --rm -p 8087:80 maayanlab/clustergram_flask:latest
+
+
+	accessing 
+	locally 
+		http://10.91.53.62:8087/ 
+
+	from outside 
+		http://amp.pharm.mssm.edu/clustergram_flask

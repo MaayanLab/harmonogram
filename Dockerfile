@@ -32,9 +32,10 @@ RUN pip install -Iv wsgiref==0.1.2
 RUN apt-get -y install python-numpy python-scipy python-matplotlib 
 
 # add code
-ADD ajax_flask
-ADD wsgi.py
-ADD boot.sh
+RUN mkdir /app
+ADD ajax_flask /app/ajax_flask
+ADD wsgi.py /app/wsgi.py
+ADD boot.sh /app/boot.sh
 
 # Build the port.
 EXPOSE 80
