@@ -40,4 +40,5 @@ ADD boot.sh /app/boot.sh
 # Build the port.
 EXPOSE 80
 
-CMD /app/boot.sh
+# keep running by getting the tail of the error log 
+CMD /app/boot.sh && tail -f /var/log/apache2/error.log

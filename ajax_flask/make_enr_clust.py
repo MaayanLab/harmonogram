@@ -1,5 +1,7 @@
 def main(inst_genes, num_terms, dist_type):
 
+	print('in main function of make_enr_clust')
+
 	# calculate enrichment 
 	enr = calc_tf_enrichment(inst_genes)
 
