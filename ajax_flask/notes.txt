@@ -78,4 +78,14 @@ Loretta
 
 	docker pull maayanlab/clustergram_flask:latest
 
+	# run an instance of it and remove it after its done running
 	docker run -it --rm -p 8087:80 maayanlab/clustergram_flask:latest
+
+	# run it in daemonized form 
+	docker run -d -p 8087:80 maayanlab/clustergram_flask:latest
+
+	# see docker containers
+	docker ps -a
+
+	# remove a docker container 
+	docker rm [container id]
