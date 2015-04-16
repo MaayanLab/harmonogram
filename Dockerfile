@@ -41,4 +41,5 @@ ADD boot.sh /app/boot.sh
 EXPOSE 80
 
 # keep running by getting the tail of the error log 
+# tracking the tail is already done in the boot.sh 
 CMD /app/boot.sh && tail -f /var/log/apache2/error.log

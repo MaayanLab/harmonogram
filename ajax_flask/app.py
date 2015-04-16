@@ -7,16 +7,8 @@ import sys
 import logging
 from logging.handlers import RotatingFileHandler
 
-# change routing of logs when running docker 
-logging.basicConfig(stream=sys.stderr) 
-
-# # attempt to log
-# logging.FileHandler('logs.txt',mode='a',encoding=None, delay=False)
-
-# # another attempt to make log file 
-# handler = RotatingFileHandler('foo.log', maxBytes=10000, backupCount=1)
-# handler.setLevel(logging.INFO)
-# app.logger.addHandler(handler)
+# # change routing of logs when running docker 
+# logging.basicConfig(stream=sys.stderr) 
 
 app = Flask(__name__)
 

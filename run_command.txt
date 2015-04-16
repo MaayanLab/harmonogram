@@ -1,1 +1,0 @@
-sudo docker run -it -p 80:80 -v /home/nick/Documents/d3_clust_proj:/app 62a74a5ffad3 bash /app/boot.sh

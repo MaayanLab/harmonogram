@@ -1,12 +1,11 @@
 I have a flask server that is running enrichment analysis and making a clustergram of the input genes and the enriched terms. I need to do the following: 
 
 To Do 
-	1. make virtual environment so that I can load it to one of the servers 
-	2. clean up visualization
-	3. add reorder capabilities by: pval, num of terms, etc
-	
+	-. make virtual environment so that I can load it to one of the servers 
+	-. clean up visualization
+	-. add reorder capabilities by: pval, num of terms, etc
 
-build
+build 
 	sudo docker build -t first_image .
 
 remove old images 
@@ -31,7 +30,7 @@ remove containers and images
 	sudo docker images | awk '{print $3}' | xargs sudo docker rmi
 
 
---- instructions to run on loretta
+--- old instructions to run on loretta
 	
 	I added in the code using a few ADD lines in the Dockerfile 
 
@@ -48,14 +47,10 @@ remove containers and images
 	# pull from dockerhub 
 	docker pull maayanlab/clustergram_flask:latest
 
-
-
 	sudo docker run -it --rm -p 80:80 !!!image_id!!!-or-tag_name 
-
 
 	within loretta
 		docker run -it --rm -p 8087:80 maayanlab/clustergram_flask:latest
-
 
 	accessing 
 	locally 
@@ -65,27 +60,38 @@ remove containers and images
 		http://amp.pharm.mssm.edu/clustergram_flask
 
 
+-- Docker instructions 
 
--- full instructions 
-Locally
-	sudo docker build -t maayanlab/clustergram_flask:latest .
+	Locally
+		sudo docker build -t maayanlab/clustergram_flask:latest .
 
-	sudo docker run -it --rm -p 80:80 maayanlab/clustergram_flask:latest
+		sudo docker run -it --rm -p 80:80 maayanlab/clustergram_flask:latest
 
-	sudo docker push maayanlab/clustergram_flask:latest
+		sudo docker push maayanlab/clustergram_flask:latest
 
-Loretta
+	Loretta
 
-	docker pull maayanlab/clustergram_flask:latest
+		docker pull maayanlab/clustergram_flask:latest
 
-	# run an instance of it and remove it after its done running
-	docker run -it --rm -p 8087:80 maayanlab/clustergram_flask:latest
+		# run an instance of it and remove it after its done running
+		docker run -it --rm -p 8087:80 maayanlab/clustergram_flask:latest
 
-	# run it in daemonized form 
-	docker run -d -p 8087:80 maayanlab/clustergram_flask:latest
+		# run it in daemonized form 
+		docker run -d -p 8087:80 maayanlab/clustergram_flask:latest
 
-	# see docker containers
-	docker ps -a
+		# see docker containers
+		docker ps -a
 
-	# remove a docker container 
-	docker rm [container id]
+		# remove a docker container 
+		docker rm [container id]
+
+		# stop or start container 
+		docker stop/start [container id]
+
+		# access
+		http://amp.pharm.mssm.edu/clustergram_flask
+
+To Do 
+	1. set up code so that it is only run if there are input genes (need to check if inputs are genes)
+
+	2. set up example button to have an example list of genes 
