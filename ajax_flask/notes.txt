@@ -59,7 +59,7 @@ remove containers and images
 
 	accessing 
 	locally 
-		http://10.91.53.62:8087/ 
+			
 
 	from outside 
 		http://amp.pharm.mssm.edu/clustergram_flask
@@ -77,6 +77,5 @@ Locally
 Loretta
 
 	docker pull maayanlab/clustergram_flask:latest
-	
 
 	docker run -it --rm -p 8087:80 maayanlab/clustergram_flask:latest
