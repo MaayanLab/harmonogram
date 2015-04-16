@@ -70,6 +70,8 @@ remove containers and images
 Locally
 	sudo docker build -t maayanlab/clustergram_flask:latest .
 
+	sudo docker run -it --rm -p 80:80 maayanlab/clustergram_flask:latest
+
 	sudo docker push maayanlab/clustergram_flask:latest
 
 Loretta

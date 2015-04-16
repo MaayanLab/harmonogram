@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    
+    print('rendering index template')
     return render_template("index.html")
 
 # try to make post request to make_project_json
