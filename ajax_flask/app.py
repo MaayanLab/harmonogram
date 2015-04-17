@@ -14,12 +14,12 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    # print('Rendering index template')
+    print('Rendering index template')
     return render_template("index.html")
 
 # try to make post request to make_project_json
 ################################################
-# /home/nick/anaconda/bin/python
+# this can be changed to clustergram_flask
 @app.route('/', methods=['GET','POST'])
 def python_function():
     import flask 
@@ -57,3 +57,20 @@ def python_function():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=5000,debug=True)
+
+ 
+# APPLICATION_ROOT = '/spam'
+
+# if __name__ == '__main__':
+#     # Relevant documents:
+#     # http://werkzeug.pocoo.org/docs/middlewares/
+#     # http://flask.pocoo.org/docs/patterns/appdispatch/
+#     from werkzeug.serving import run_simple
+#     from werkzeug.wsgi import DispatcherMiddleware
+#     app.config['DEBUG'] = True
+#     # Load a dummy app at the root URL to give 404 errors.
+#     # Serve app at APPLICATION_ROOT for localhost development.
+#     application = DispatcherMiddleware(Flask('dummy_app'), {
+#         app.config['APPLICATION_ROOT']: app,
+#     })
+#     run_simple('localhost', 5000, application, use_reloader=True)

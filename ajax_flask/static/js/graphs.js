@@ -20,7 +20,9 @@ $( "#searchForm" ).submit( function( event ) {
   // console.log(' ')
 
   // manually set url
-  url = '/clustergram_flask/'
+  // url = '/clustergram_flask/'
+  // !!! temporarily change for local development 
+  url = '/'
 
   // make the post 
   var posting = $.post( url, { genes: inst_genes } );

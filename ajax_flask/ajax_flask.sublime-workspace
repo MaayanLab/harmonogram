@@ -111,31 +111,7 @@
 			"file": "d3_clustergram.py",
 			"settings":
 			{
-				"buffer_size": 15385,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "make_enr_clust.py",
-			"settings":
-			{
-				"buffer_size": 1999,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/nick/Documents/d3_clust_proj/Phosphatase_Substrates_from_DEPOD_table.txt",
-			"settings":
-			{
-				"buffer_size": 1017,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "enz_and_tf_lists_gmts/KIN/kinase_substrate.gmt",
-			"settings":
-			{
-				"buffer_size": 95568,
+				"buffer_size": 15054,
 				"line_ending": "Unix"
 			}
 		},
@@ -143,7 +119,15 @@
 			"file": "app.py",
 			"settings":
 			{
-				"buffer_size": 1324,
+				"buffer_size": 1485,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/nick/Documents/d3_clust_proj/Dockerfile",
+			"settings":
+			{
+				"buffer_size": 1328,
 				"line_ending": "Unix"
 			}
 		},
@@ -151,7 +135,15 @@
 			"file": "notes.txt",
 			"settings":
 			{
-				"buffer_size": 892,
+				"buffer_size": 2421,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/index.html",
+			"settings":
+			{
+				"buffer_size": 3444,
 				"line_ending": "Unix"
 			}
 		},
@@ -164,10 +156,34 @@
 			}
 		},
 		{
+			"file": "static/js/graphs.js",
+			"settings":
+			{
+				"buffer_size": 1181,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "make_enr_clust.py",
+			"settings":
+			{
+				"buffer_size": 1824,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "calc_enrichment_gl_gmt.py",
 			"settings":
 			{
-				"buffer_size": 5544,
+				"buffer_size": 5454,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "static/js/d3_connect_map.js",
+			"settings":
+			{
+				"buffer_size": 9304,
 				"line_ending": "Unix"
 			}
 		},
@@ -175,42 +191,40 @@
 			"file": "static/js/click_functions.js",
 			"settings":
 			{
-				"buffer_size": 12887,
+				"buffer_size": 13062,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "templates/index.html",
+			"file": "static/css/custom.css",
 			"settings":
 			{
-				"buffer_size": 3071,
+				"buffer_size": 4814,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "static/js/graphs.js",
+			"file": "/home/nick/Documents/d3_clust_proj/run.py",
 			"settings":
 			{
-				"buffer_size": 973,
+				"buffer_size": 85,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/home/nick/Documents/d3_clust_proj/example_gene_list_kea2.txt",
+			"file": "/home/nick/Documents/d3_clust_proj/boot.sh",
 			"settings":
 			{
-				"buffer_size": 178,
-				"line_ending": "Unix",
-				"name": "AIP"
+				"buffer_size": 224,
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/home/nick/Documents/d3_clust_proj/example_gene_list_kea2_small.txt",
+			"file": "static/js/map_scripts.js",
 			"settings":
 			{
-				"buffer_size": 196,
-				"line_ending": "Unix",
-				"name": "RPS6KA4"
+				"buffer_size": 4939,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -262,6 +276,14 @@
 				"Git: Status"
 			],
 			[
+				"qu",
+				"Git: Quick Commit"
+			],
+			[
+				"ADD",
+				"Git: Add..."
+			],
+			[
 				"stats",
 				"Git: Status"
 			],
@@ -296,10 +318,6 @@
 			[
 				"satt",
 				"Git: Status"
-			],
-			[
-				"qu",
-				"Git: Quick Commit"
 			],
 			[
 				"statu",
@@ -442,7 +460,7 @@
 				"Set Syntax: SQL"
 			]
 		],
-		"width": 435.0
+		"width": 417.0
 	},
 	"console":
 	{
@@ -462,12 +480,19 @@
 	},
 	"expanded_folders":
 	[
-		"/home/nick/Documents/d3_clust_proj/ajax_flask",
-		"/home/nick/Documents/d3_clust_proj/ajax_flask/networks",
-		"/home/nick/Documents/d3_clust_proj/ajax_flask/templates"
+		"/home/nick/Documents/d3_clust_proj"
 	],
 	"file_history":
 	[
+		"/home/nick/Documents/d3_clust_proj/wsgi.py",
+		"/home/nick/Documents/d3_clust_proj/run_command.txt",
+		"/home/nick/Documents/d3_clust_proj/boot.sh",
+		"/home/nick/Documents/phosphositeplus/Kinase_Substrate_Dataset.txt",
+		"/home/nick/Documents/d3_clust_proj/ajax_flask/d3_clustergram.py",
+		"/home/nick/Documents/d3_clust_proj/example_gene_list_kea2.txt",
+		"/home/nick/Documents/d3_clust_proj/example_gene_list_kea2_small.txt",
+		"/home/nick/Documents/d3_clust_proj/ajax_flask/enz_and_tf_lists_gmts/KIN/kinase_substrate.gmt",
+		"/home/nick/Documents/d3_clust_proj/Phosphatase_Substrates_from_DEPOD_table.txt",
 		"/home/nick/Documents/d3_clust_proj/ajax_flask/static/js/d3_connect_map.js",
 		"/home/nick/Documents/d3_clust_proj/ajax_flask/calc_enrichment_gl_gmt.py",
 		"/home/nick/Documents/d3_clust_proj/Dockerfile",
@@ -586,16 +611,7 @@
 		"/C/Users/Nick Fernandez/Documents/CST_PTM/Enzyme_lists/kinases/Uniprot_kinases_4_27_2014/Uniprot_kinases_processed.txt",
 		"/C/Users/Nick Fernandez/Documents/KEA2_website_files/phosphatase_elucidate/GS_prot_name_phosphatases.txt",
 		"/C/Users/Nick Fernandez/Documents/KEA2_website_files/phosphatase_elucidate/protein_names/protein_name_phosphatases.txt",
-		"/C/Users/Nick Fernandez/Documents/KEA2_website_files/phosphatase_elucidate/gene_symbols/GS_substrates_from_network.txt",
-		"/C/Users/Nick Fernandez/Documents/CST_PTM/Enzyme_lists/phosphatases/all_phosphatases.txt",
-		"/C/Users/Nick Fernandez/Documents/Uniprot/phosphatase_domains/phosphatase_domains.txt",
-		"/C/Users/Nick Fernandez/Documents/CST_PTM/Enzyme_lists/phosphatases/quick_manual_identification_of_phosphatase_type.txt",
-		"/C/Users/Nick Fernandez/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
-		"/C/Users/Nick Fernandez/Documents/Notebook/Notebook Files/CST/CST_Matlab_notes.txt",
-		"/C/Users/Nick Fernandez/Documents/Notebook/Notebook Files/IDG_conference_calls/IDG_12-5-2014_1000am.txt",
-		"/C/Users/Nick Fernandez/Documents/Notebook/Notebook Files/KEA2/Adj_Matrix_to_do.txt",
-		"/C/Users/Nick Fernandez/Documents/CCLE/cell_lines.txt",
-		"/C/Users/Nick Fernandez/Documents/Notebook/Notebook Files/KEA2_website/to_do_website_updated.txt"
+		"/C/Users/Nick Fernandez/Documents/KEA2_website_files/phosphatase_elucidate/gene_symbols/GS_substrates_from_network.txt"
 	],
 	"find":
 	{
@@ -606,6 +622,11 @@
 		"height": 90.0,
 		"where_history":
 		[
+			"",
+			"*.py",
+			"",
+			"*.js",
+			".js",
 			"",
 			"*.py",
 			"",
@@ -629,6 +650,77 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"etc/app",
+			"app",
+			"etc/app",
+			"app",
+			"url",
+			"app",
+			"flask",
+			"apache",
+			"boot.sh",
+			"/app/",
+			"app/",
+			"/app/",
+			"app/",
+			"server root",
+			"ajax_flask",
+			"app",
+			"app.run",
+			"logging",
+			"/clustergram_flask",
+			"app.route",
+			"print",
+			"it works!",
+			"it works",
+			"post",
+			"network_data",
+			"make_new_map",
+			"col_nodes",
+			"start_making_exp",
+			"col_nodes",
+			"static",
+			"blockui",
+			"/static",
+			"static",
+			"/clustergram_flask",
+			"static",
+			"keen-dash",
+			"static",
+			"app.run",
+			"console.log",
+			"debug",
+			"col_label",
+			"row_label",
+			"row_nodes",
+			"row_label_text",
+			"row_labels",
+			"d3.event.translate",
+			"translate",
+			"row_title",
+			"input genes",
+			"col_labels",
+			".col_labels",
+			"col_labels",
+			"col_label",
+			"text",
+			"row_labels",
+			"row_",
+			"row_labels",
+			".row_labels",
+			"row_labels",
+			"inside calc",
+			"before import",
+			"calculating",
+			"print",
+			"row_labels",
+			"col_labels",
+			"row_label_text",
+			"d3_clustergram",
+			"d3_connect",
+			"d3_clustergram",
+			"col_label_text",
+			"row_nodes",
 			"input_genes",
 			"row_label",
 			"row_labels",
@@ -685,78 +777,7 @@
 			"calculating",
 			"calcula",
 			"calculating",
-			"running",
-			"url",
-			"post",
-			"$.post",
-			"$",
-			"post",
-			"jquer",
-			"google",
-			"print",
-			"generate_data_mat_array",
-			"d3_clustergram",
-			"reorder_clust_rank",
-			"reorder_vlust_rank",
-			"row_function",
-			"make_svg_enrichment_genes",
-			"intersect",
-			"'black'",
-			"main_svg",
-			"<meta",
-			"row_title",
-			"_title",
-			"here",
-			"svg",
-			"main_svg",
-			"60",
-			"top_magin",
-			"rect_margin_top",
-			"margin_top",
-			"rect_margin",
-			"rectf",
-			"tmp_margin",
-			"tmp_",
-			"tmp_margin_small",
-			"tmp_margin_top",
-			"col_margin",
-			"col_labels",
-			"col_label",
-			"35",
-			"buffer_margin",
-			"500",
-			"500p",
-			"top_left_white",
-			"update_",
-			"update_adj_",
-			"top_left_white",
-			"top_margin",
-			"col_label",
-			"rotate",
-			"col_labels",
-			"rotate",
-			"col_label",
-			"col_title",
-			"text",
-			"svg",
-			"main_svg",
-			"row_labels",
-			"row_margin",
-			"70",
-			"tmp",
-			"70",
-			"d3_map_enrichment",
-			"margin.",
-			"adj_mat",
-			"svg_div",
-			"navbar-brand",
-			"svg_div",
-			"svg_main",
-			"svg_div",
-			"default_fs",
-			"reorder",
-			"submit",
-			"input"
+			"running"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -764,6 +785,10 @@
 		"regex": false,
 		"replace_history":
 		[
+			"",
+			"/clustergram_flask/static",
+			"",
+			"#col_labels",
 			"d.pos_y",
 			"d.pos_x",
 			"",
@@ -782,7 +807,7 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -791,15 +816,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 15385,
+						"buffer_size": 15054,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								13717,
+								13717
 							]
 						],
 						"settings":
@@ -810,115 +835,27 @@
 							"word_wrap": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 5558.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "make_enr_clust.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1999,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1165,
-								1165
-							]
-						],
-						"settings":
-						{
-							"history_list_is_closing": true,
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false,
-							"word_wrap": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 247.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/home/nick/Documents/d3_clust_proj/Phosphatase_Substrates_from_DEPOD_table.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1017,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1017,
-								1017
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"word_wrap": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "enz_and_tf_lists_gmts/KIN/kinase_substrate.gmt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 95568,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								87178,
-								87178
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 21977.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
 					"file": "app.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1324,
+						"buffer_size": 1485,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								555,
-								555
+								471,
+								471
 							]
 						],
 						"settings":
@@ -932,30 +869,29 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "notes.txt",
+					"buffer": 2,
+					"file": "/home/nick/Documents/d3_clust_proj/Dockerfile",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 892,
+						"buffer_size": 1328,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								385,
-								385
+								1051,
+								1051
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -965,7 +901,67 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 3,
+					"file": "notes.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2421,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1165,
+								1165
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 62.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "templates/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3444,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1743,
+								1743
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
 					"file": "example_genes_tf.txt",
 					"semi_transient": false,
 					"settings":
@@ -977,8 +973,8 @@
 						"selection":
 						[
 							[
-								113,
-								113
+								245,
+								245
 							]
 						],
 						"settings":
@@ -989,63 +985,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 7,
-					"file": "calc_enrichment_gl_gmt.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5544,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
-					"file": "static/js/click_functions.js",
+					"buffer": 6,
+					"file": "static/js/graphs.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 12887,
+						"buffer_size": 1181,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4012,
-								4012
-							],
-							[
-								4239,
-								4239
+								895,
+								895
 							]
 						],
 						"settings":
@@ -1055,7 +1012,73 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1420.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 7,
+					"file": "make_enr_clust.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1824,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								87,
+								87
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "calc_enrichment_gl_gmt.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5454,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2156,
+								2156
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 617.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -1063,55 +1086,49 @@
 				},
 				{
 					"buffer": 9,
-					"file": "templates/index.html",
+					"file": "static/js/d3_connect_map.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3071,
+						"buffer_size": 9304,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1303,
-								1303
+								4672,
+								4672
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 101.0,
+						"translation.y": 1482.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 16,
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 2,
-			"sheets":
-			[
+				},
 				{
 					"buffer": 10,
-					"file": "static/js/graphs.js",
+					"file": "static/js/click_functions.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 973,
+						"buffer_size": 13062,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								181,
-								181
+								1387,
+								1387
 							]
 						],
 						"settings":
@@ -1124,65 +1141,222 @@
 						"translation.y": 78.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
-					"file": "/home/nick/Documents/d3_clust_proj/example_gene_list_kea2.txt",
+					"buffer": 4,
+					"file": "templates/index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 178,
+						"buffer_size": 3444,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								128,
-								128
+								2069,
+								2069
 							]
 						],
 						"settings":
 						{
-							"auto_name": "AIP",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"history_list_is_closing": true,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 193.0,
+						"translation.y": 358.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 10,
 					"type": "text"
 				},
 				{
-					"buffer": 12,
-					"file": "/home/nick/Documents/d3_clust_proj/example_gene_list_kea2_small.txt",
+					"buffer": 11,
+					"file": "static/css/custom.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 196,
+						"buffer_size": 4814,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								15,
-								15
+								4486,
+								4486
 							]
 						],
 						"settings":
 						{
-							"auto_name": "RPS6KA4",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"history_list_is_closing": true,
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4758.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 17,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 9,
+					"file": "static/js/d3_connect_map.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9304,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2667,
+								2667
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 382.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "static/js/graphs.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1181,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								642,
+								642
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 273.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "/home/nick/Documents/d3_clust_proj/run.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 85,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								85,
+								85
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "/home/nick/Documents/d3_clust_proj/boot.sh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 224,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								224,
+								224
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "static/js/map_scripts.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4939,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								555,
+								555
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
 					"type": "text"
 				}
 			]
@@ -1222,13 +1396,13 @@
 		"cols":
 		[
 			0.0,
-			0.0651890482399,
+			0.398314428329,
 			1.0
 		],
 		"rows":
 		[
 			0.0,
-			0.721969684996,
+			0.368671224117,
 			1.0
 		]
 	},
@@ -1249,7 +1423,7 @@
 	"project": "ajax_flask.sublime-project",
 	"replace":
 	{
-		"height": 52.0
+		"height": 62.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1258,6 +1432,54 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"ws",
+				"wsgi.py"
+			],
+			[
+				"wsg",
+				"wsgi.py"
+			],
+			[
+				"run_comm",
+				"run_command.txt"
+			],
+			[
+				"boot",
+				"boot.sh"
+			],
+			[
+				"run.",
+				"run.py"
+			],
+			[
+				"map_sc",
+				"ajax_flask/static/js/map_scripts.js"
+			],
+			[
+				"graphs",
+				"ajax_flask/static/js/graphs.js"
+			],
+			[
+				"index",
+				"ajax_flask/templates/index.html"
+			],
+			[
+				"cus",
+				"static/css/custom.css"
+			],
+			[
+				"d3_conn",
+				"static/js/d3_connect_map.js"
+			],
+			[
+				"d3_cluster",
+				"d3_clustergram.py"
+			],
+			[
+				"cluster",
+				"d3_clustergram.py"
+			],
 			[
 				"calc_enr",
 				"calc_enrichment_gl_gmt.py"
@@ -1307,10 +1529,6 @@
 				"static/css/custom.css"
 			],
 			[
-				"index",
-				"templates/index.html"
-			],
-			[
 				"map",
 				"static/js/map_scripts.js"
 			],
@@ -1355,15 +1573,15 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 1,
+	"selected_group": 2,
 	"settings":
 	{
 	},
 	"show_minimap": true,
 	"show_open_files": true,
 	"show_tabs": true,
-	"side_bar_visible": false,
-	"side_bar_width": 223.0,
+	"side_bar_visible": true,
+	"side_bar_width": 327.0,
 	"status_bar_visible": false,
 	"template_settings":
 	{
