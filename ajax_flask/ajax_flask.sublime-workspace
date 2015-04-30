@@ -119,15 +119,7 @@
 			"file": "app.py",
 			"settings":
 			{
-				"buffer_size": 1485,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/nick/Documents/d3_clust_proj/Dockerfile",
-			"settings":
-			{
-				"buffer_size": 1328,
+				"buffer_size": 2137,
 				"line_ending": "Unix"
 			}
 		},
@@ -135,7 +127,7 @@
 			"file": "notes.txt",
 			"settings":
 			{
-				"buffer_size": 2421,
+				"buffer_size": 3506,
 				"line_ending": "Unix"
 			}
 		},
@@ -143,7 +135,7 @@
 			"file": "templates/index.html",
 			"settings":
 			{
-				"buffer_size": 3444,
+				"buffer_size": 3084,
 				"line_ending": "Unix"
 			}
 		},
@@ -159,7 +151,7 @@
 			"file": "static/js/graphs.js",
 			"settings":
 			{
-				"buffer_size": 1181,
+				"buffer_size": 1247,
 				"line_ending": "Unix"
 			}
 		},
@@ -204,22 +196,6 @@
 			}
 		},
 		{
-			"file": "/home/nick/Documents/d3_clust_proj/run.py",
-			"settings":
-			{
-				"buffer_size": 85,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/nick/Documents/d3_clust_proj/boot.sh",
-			"settings":
-			{
-				"buffer_size": 224,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "static/js/map_scripts.js",
 			"settings":
 			{
@@ -255,10 +231,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 128.0,
-		"last_filter": "push",
+		"height": 374.0,
+		"last_filter": "stat",
 		"selected_items":
 		[
+			[
+				"stat",
+				"Git: Status"
+			],
 			[
 				"push",
 				"Git: Push"
@@ -270,10 +250,6 @@
 			[
 				"add",
 				"Git: Add..."
-			],
-			[
-				"stat",
-				"Git: Status"
 			],
 			[
 				"qu",
@@ -460,7 +436,7 @@
 				"Set Syntax: SQL"
 			]
 		],
-		"width": 417.0
+		"width": 298.0
 	},
 	"console":
 	{
@@ -480,13 +456,17 @@
 	},
 	"expanded_folders":
 	[
-		"/home/nick/Documents/d3_clust_proj"
+		"/Users/nickfernandez/Documents/clustergram_flask",
+		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask"
 	],
 	"file_history":
 	[
+		"/Users/nickfernandez/Documents/x2k-nosology/kinase_kd_l1000/kinase_gene_l1000_dn.gmt",
+		"/home/nick/Documents/d3_clust_proj/run.py",
+		"/home/nick/Documents/d3_clust_proj/Dockerfile",
+		"/home/nick/Documents/d3_clust_proj/boot.sh",
 		"/home/nick/Documents/d3_clust_proj/wsgi.py",
 		"/home/nick/Documents/d3_clust_proj/run_command.txt",
-		"/home/nick/Documents/d3_clust_proj/boot.sh",
 		"/home/nick/Documents/phosphositeplus/Kinase_Substrate_Dataset.txt",
 		"/home/nick/Documents/d3_clust_proj/ajax_flask/d3_clustergram.py",
 		"/home/nick/Documents/d3_clust_proj/example_gene_list_kea2.txt",
@@ -495,14 +475,12 @@
 		"/home/nick/Documents/d3_clust_proj/Phosphatase_Substrates_from_DEPOD_table.txt",
 		"/home/nick/Documents/d3_clust_proj/ajax_flask/static/js/d3_connect_map.js",
 		"/home/nick/Documents/d3_clust_proj/ajax_flask/calc_enrichment_gl_gmt.py",
-		"/home/nick/Documents/d3_clust_proj/Dockerfile",
 		"/home/nick/Documents/d3_clust_proj/ajax_flask/example_gene_list.txt",
 		"/home/nick/Documents/d3_clust_proj/Dawn_list.txt",
 		"/home/nick/Documents/d3_clust_proj/ajax_flask/make_enr_clust.py",
 		"/home/nick/Documents/d3_clust_proj/ajax_flask/tmp_error.txt",
 		"/tmp/enrichment_results-1.txt",
 		"/tmp/enrichment_results.txt",
-		"/home/nick/Documents/d3_clust_proj/run.py",
 		"/home/nick/Documents/d3_clust_proj/copy_of_Dockerfile",
 		"/home/nick/Documents/d3_clust_proj/ajax_flask/static/lib/js/jquery-1.11.2.min.js",
 		"/home/nick/Documents/d3_clust_proj/ajax_flask/static/js/click_functions.js",
@@ -610,8 +588,7 @@
 		"/C/Users/Nick Fernandez/Documents/CST_PTM/MET_ACT_int_gmts/MET_int_gmt.txt",
 		"/C/Users/Nick Fernandez/Documents/CST_PTM/Enzyme_lists/kinases/Uniprot_kinases_4_27_2014/Uniprot_kinases_processed.txt",
 		"/C/Users/Nick Fernandez/Documents/KEA2_website_files/phosphatase_elucidate/GS_prot_name_phosphatases.txt",
-		"/C/Users/Nick Fernandez/Documents/KEA2_website_files/phosphatase_elucidate/protein_names/protein_name_phosphatases.txt",
-		"/C/Users/Nick Fernandez/Documents/KEA2_website_files/phosphatase_elucidate/gene_symbols/GS_substrates_from_network.txt"
+		"/C/Users/Nick Fernandez/Documents/KEA2_website_files/phosphatase_elucidate/protein_names/protein_name_phosphatases.txt"
 	],
 	"find":
 	{
@@ -835,7 +812,7 @@
 							"word_wrap": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 5558.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 11,
@@ -847,15 +824,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1485,
+						"buffer_size": 2137,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								471,
-								471
+								1015,
+								1015
 							]
 						],
 						"settings":
@@ -869,52 +846,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "/home/nick/Documents/d3_clust_proj/Dockerfile",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1328,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1051,
-								1051
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
 					"file": "notes.txt",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2421,
+						"buffer_size": 3506,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1165,
-								1165
+								2156,
+								2156
 							]
 						],
 						"settings":
@@ -923,27 +872,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 62.0,
+						"translation.y": 923.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 3,
 					"file": "templates/index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3444,
+						"buffer_size": 3084,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1743,
-								1743
+								0,
+								0
 							]
 						],
 						"settings":
@@ -961,7 +910,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 4,
 					"file": "example_genes_tf.txt",
 					"semi_transient": false,
 					"settings":
@@ -973,8 +922,8 @@
 						"selection":
 						[
 							[
-								245,
-								245
+								0,
+								281
 							]
 						],
 						"settings":
@@ -985,24 +934,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 5,
 					"file": "static/js/graphs.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1181,
+						"buffer_size": 1247,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								895,
-								895
+								349,
+								349
 							]
 						],
 						"settings":
@@ -1015,17 +964,17 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 1,
+			"selected": 3,
 			"sheets":
 			[
 				{
-					"buffer": 7,
+					"buffer": 6,
 					"file": "make_enr_clust.py",
 					"semi_transient": false,
 					"settings":
@@ -1056,7 +1005,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 7,
 					"file": "calc_enrichment_gl_gmt.py",
 					"semi_transient": false,
 					"settings":
@@ -1068,8 +1017,8 @@
 						"selection":
 						[
 							[
-								2156,
-								2156
+								3586,
+								3586
 							]
 						],
 						"settings":
@@ -1078,14 +1027,14 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 617.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 8,
 					"file": "static/js/d3_connect_map.js",
 					"semi_transient": false,
 					"settings":
@@ -1111,11 +1060,11 @@
 						"translation.y": 1482.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 16,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 9,
 					"file": "static/js/click_functions.js",
 					"semi_transient": false,
 					"settings":
@@ -1127,8 +1076,8 @@
 						"selection":
 						[
 							[
-								1387,
-								1387
+								213,
+								213
 							]
 						],
 						"settings":
@@ -1138,27 +1087,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 78.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 15,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 3,
 					"file": "templates/index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3444,
+						"buffer_size": 3084,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2069,
-								2069
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1169,14 +1118,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 358.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 10,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 10,
 					"file": "static/css/custom.css",
 					"semi_transient": false,
 					"settings":
@@ -1203,17 +1152,17 @@
 						"translation.y": 4758.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 17,
+					"stack_index": 14,
 					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 3,
+			"selected": 2,
 			"sheets":
 			[
 				{
-					"buffer": 9,
+					"buffer": 8,
 					"file": "static/js/d3_connect_map.js",
 					"semi_transient": false,
 					"settings":
@@ -1243,20 +1192,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 5,
 					"file": "static/js/graphs.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1181,
+						"buffer_size": 1247,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								642,
-								642
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1266,71 +1215,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 273.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 12,
-					"file": "/home/nick/Documents/d3_clust_proj/run.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 85,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								85,
-								85
-							]
-						],
-						"settings":
-						{
-							"history_list_is_closing": true,
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 13,
-					"file": "/home/nick/Documents/d3_clust_proj/boot.sh",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 224,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								224,
-								224
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 14,
+					"buffer": 11,
 					"file": "static/js/map_scripts.js",
 					"semi_transient": false,
 					"settings":
@@ -1342,8 +1234,8 @@
 						"selection":
 						[
 							[
-								555,
-								555
+								314,
+								314
 							]
 						],
 						"settings":
@@ -1356,7 +1248,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -1364,7 +1256,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 28.0
+		"height": 25.0
 	},
 	"input":
 	{
@@ -1396,7 +1288,7 @@
 		"cols":
 		[
 			0.0,
-			0.398314428329,
+			0.5029626954,
 			1.0
 		],
 		"rows":
@@ -1423,7 +1315,7 @@
 	"project": "ajax_flask.sublime-project",
 	"replace":
 	{
-		"height": 62.0
+		"height": 46.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1432,6 +1324,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"genes",
+				"~/Documents/clustergram_flask/ajax_flask/example_genes_tf.txt"
+			],
 			[
 				"ws",
 				"wsgi.py"
@@ -1573,14 +1469,14 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 2,
+	"selected_group": 0,
 	"settings":
 	{
 	},
 	"show_minimap": true,
 	"show_open_files": true,
 	"show_tabs": true,
-	"side_bar_visible": true,
+	"side_bar_visible": false,
 	"side_bar_width": 327.0,
 	"status_bar_visible": false,
 	"template_settings":

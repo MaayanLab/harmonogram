@@ -38,6 +38,8 @@ remove containers and images
 	# build image (happens quickly if things are cached)
 	sudo docker build -t clustergram_flask .
 
+	(no sudo required in mac)
+
 	# push to dockerhub 
 	sudo docker push maayanlab/clustergram_flask
 
@@ -103,3 +105,24 @@ Temporary changes for local development
 	I need to figure out how to get the website url to be changed to a subdirectory called clustergram_flask in order to mimic the deployment that will be done on amp.pharm. - which will require greg to set up the correct re-routing (from 10.0... ip address on loretta). 
 
 	Locally, I'll start the server by running run.py from d3_clust_proj/, the directory where the Dockerfile and boot.sh script is located. I don't think run.py is even needed. I'll test this by changing the name to tmp_run.py and see if I can still get a docker image to work locally. 
+
+Mac specific 
+	
+	# start boot2docker 
+	spotlight boot2docker and click the icon 
+
+	# build 
+	sudo docker build -t maayanlab/clustergram_flask:latest .
+
+	# run
+	docker run -it --rm -p 8087:80 clustergram_flask:latest
+
+
+
+
+
+
+
+
+
+
