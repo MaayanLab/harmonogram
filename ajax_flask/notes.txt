@@ -95,7 +95,6 @@ remove containers and images
 
 To Do 
 	1. set up code so that it is only run if there are input genes (need to check if inputs are genes)
-
 	2. set up example button to have an example list of genes 
 
 
