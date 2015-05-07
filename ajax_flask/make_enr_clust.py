@@ -27,7 +27,7 @@ def calc_tf_enrichment(inst_gl):
 
 	# use the intersection tf gmt: tf_inf.gmt, not ChEA.gmt
 	gmt['chea'] = calc_enrichment_gl_gmt.load_gmt('ajax_flask/enz_and_tf_lists_gmts/TF/tf_int.gmt')
-	
+
 	# gmt['chea'] = calc_enrichment_gl_gmt.load_gmt('ajax_flask/enz_and_tf_lists_gmts/TF/ChEA.gmt')
 
 	# gmt['chea'] = calc_enrichment_gl_gmt.load_gmt('ajax_flask/enz_and_tf_lists_gmts/KIN/kinase_substrate.gmt')
@@ -49,15 +49,12 @@ def make_enrichment_clustergram(enr, num_terms, dist_type):
 	import d3_clustergram
 
 	# convert enr to nodes, data_mat 
-	# print('convert enr nodes to mat')
 	nodes, data_mat = d3_clustergram.convert_enr_to_nodes_mat( enr, num_terms )
 
 	# cluster rows and columns 
-	# print('cluster row and column')
 	clust_order = d3_clustergram.cluster_row_and_column( nodes, data_mat, dist_type, enr )
 
 	# generate d3_clust json 
-	# print('cluster single value ')
 	d3_json = d3_clustergram.d3_clust_single_value( nodes, clust_order, data_mat )
 
 	return d3_json

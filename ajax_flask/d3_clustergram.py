@@ -29,7 +29,8 @@ def d3_clust_single_value(nodes, clust_order, mat):
 		# add to d3_json 
 		d3_json['col_nodes'].append(inst_dict)
 
-	# get max and min col and row value for scaling
+	# get max and min col and row value for scaling 
+	# the row nl_pval is just the sum of enriched terms the gene appears in 
 	max_row_value = max(clust_order['nl_pval']['row'])
 	max_col_value = max(clust_order['nl_pval']['col'])
 
@@ -40,10 +41,12 @@ def d3_clust_single_value(nodes, clust_order, mat):
 			inst_dict['source'] = i
 			inst_dict['target'] = j
 			# calculate the inst_value, a combination of col and row attributes
+			# scale value by largest 
 			row_value = clust_order['nl_pval']['row'][i] / max_row_value
 			col_value = clust_order['nl_pval']['col'][j] / max_col_value
+			# take the mean of the two values times the binary mat[i,j]
 			inst_value = ( row_value + col_value )/ 2 * mat[i,j] 
-			inst_dict['value'] = inst_value #!! replace with significance value mat[i,j]
+			inst_dict['value'] = inst_value 
 			inst_dict['dn'] = mat[i,j]
 			inst_dict['merge'] = mat[i,j]
 			d3_json['links'].append( inst_dict )
@@ -147,6 +150,9 @@ def cluster_row_and_column( nodes, data_mat, dist_type, enr ):
 		# gather nl_pval 
 		clust_order['nl_pval']['col'].append( -np.log2(inst_dict['pval_bh']) )
 
+
+	# print( clust_order['nl_pval']['col'] )
+
 	# save rank order 
 	clust_order['rank']['col'] = tmp_col_order
 
@@ -165,8 +171,11 @@ def cluster_row_and_column( nodes, data_mat, dist_type, enr ):
 		# sum the number of terms that the gene is found in 
 		inst_dict['num_term'] = np.sum(data_mat[i,:]) 
 
-		# save the numbe of terms associated with each gene 
-		clust_order['nl_pval']['row'].append(np.sum(data_mat[i,:]))
+		# save the number of terms associated with each gene
+		# data_mat is a binary matrix with 1 for gene in term and 0 for gene not in term  
+		# take the dot product of the nl_pvalues and the binary matrix to get a weighted score for 
+		# each row. The more highly enriched terms a gene is in the darker the tile 
+		clust_order['nl_pval']['row'].append( np.dot( data_mat[i,:], clust_order['nl_pval']['col'] ) )
 
 		# add this to the list of dicts
 		sum_term.append(inst_dict)
