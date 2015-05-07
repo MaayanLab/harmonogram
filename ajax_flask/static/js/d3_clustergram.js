@@ -1,13 +1,13 @@
 
 // make the svg exp map (one value per tile)
-function make_d3_clustergram(sim_matrix) {
+function make_d3_clustergram(network_data) {
 
   // remove old map
   d3.select("#main_svg").remove();
   d3.select('#kinase_substrates').remove();
 
   // initialize clustergram 
-  initialize_clustergram(sim_matrix)
+  initialize_clustergram(network_data)
 
   // display col and row title 
   d3.select('#row_title').style('display','block')
@@ -25,7 +25,7 @@ function make_d3_clustergram(sim_matrix) {
   }); 
 
   // Add information to the matrix
-  sim_matrix.links.forEach( function(link) {
+  network_data.links.forEach( function(link) {
     // transfer link information to the new adj matrix
     matrix[link.source][link.target].value += link.value;
     // transfer group information to the adj matrix 
@@ -55,7 +55,6 @@ function make_d3_clustergram(sim_matrix) {
       .attr("width",  svg_width  + margin.left + margin.right)
       .attr("height", svg_height + margin.top  + margin.bottom)
       .attr('border',1)
-      // .style("margin-left", -margin.left + "px")
       .call( zoom ) 
       .append("g")
       .attr('id', 'adj_mat')
@@ -64,21 +63,20 @@ function make_d3_clustergram(sim_matrix) {
   // disable double-click zoom: double click should reset zoom level 
   d3.select("svg").on("dblclick.zoom", null);    
 
-  // White Rects to cover the svg
+  // column rect 
   d3.select('#main_svg')
     .append('rect')
     .attr('fill', 'white')
-    .attr('width', white_rect_width+'px')
-    .attr('height', '6000px')
-    .attr('transform', 'translate(-'+rect_margin_large+',0)')
+    .attr('width', col_white_width+'px')
+    .attr('height', '1000px')
     .attr('class','white_bars');
 
+  // row width 
   d3.select('#main_svg')
     .append('rect')
     .attr('fill', 'white')
-    .attr('height', white_rect_width+'px')
-    .attr('width', '6000px')
-    .attr('transform', 'translate(0,-'+rect_margin_large+')')
+    .attr('height', row_white_width+'px')
+    .attr('width', '1000px')
     .attr('class','white_bars');
 
   // column group
@@ -99,7 +97,6 @@ function make_d3_clustergram(sim_matrix) {
     .attr('fill', 'white')
     .attr('width',  small_white_rect+'px')
     .attr('height', small_white_rect+'px')
-    .attr('transform', 'translate(-'+rect_margin_small+',-'+rect_margin_small+')')
     .attr('id','top_left_white');
 
   // Add the background - one large rect 
@@ -142,19 +139,20 @@ function make_d3_clustergram(sim_matrix) {
   // set scale for enrichment rects 
   ///////////////////////////////////
   enr_max = Math.max.apply(Math, col_nodes.map(function(o){return Math.abs(o.nl_pval);}))
-  var col_label_width = 50;
+  var col_enr_bar = label_width * 0.75 ;
   var bar_scale_col = d3.scale
     .linear()
     .domain([0, enr_max])
-    .range([0, col_label_width]);    
+    .range([0, col_enr_bar ]); 
 
   // append rects to the row labels for highlighting purposes 
   col_label.append('rect')
     // column is rotated - effectively width and height are switched
     .attr('width', function(d,i) { return bar_scale_col( col_nodes[i].nl_pval ); })
-    .attr('height', x_scale.rangeBand())
+    // separate enrichment bars slightly 
+    .attr('height', x_scale.rangeBand() - 1)
     .attr('fill', 'red')
-    .attr('opacity',0.6)
+    .attr('opacity', 0.5)
     .attr('transform', function(d, i) { return "translate(0,0)"; });
 
   col_label.append('title')
@@ -198,114 +196,6 @@ function make_d3_clustergram(sim_matrix) {
   add_double_click(); 
 };
 
-// initialize clustergram: size, scales, etc. 
-function initialize_clustergram(sim_matrix){
-  // move sim_matrix information into global variables 
-  col_nodes  = sim_matrix.col_nodes ;
-  row_nodes  = sim_matrix.row_nodes ;
-  inst_links = sim_matrix.links; 
-
-  // font size controls 
-  // scale default font size: input domain is the number of nodes
-  min_node_num = 10;
-  max_node_num = 2000;
-  min_fs = 8;
-  max_fs = 16;
-
-  // controls how much the font size is increased by zooming
-  max_fs_zoom = 0.1; 
-  // output range is the font size 
-  scale_font_size = d3.scale.log().domain([min_node_num,max_node_num]).range([min_fs,max_fs]).clamp('true');
-  // define the scaling for the reduce font size factor 
-  scale_reduce_font_size_factor = d3.scale.log().domain([min_node_num,max_node_num]).range([1,max_fs_zoom]).clamp('true');
-  // define the scaling for the zoomability of the adjacency matrix
-  scale_zoom  = d3.scale.log().domain([min_node_num,max_node_num]).range([2,17]).clamp('true');
-  // define the scaling for the rects 
-  scale_rects = d3.scale.log().domain([min_node_num,max_node_num]).range([50,6]).clamp('true');
-
-  // font size is a variable since it gets scaled down with zooming  
-  default_fs = scale_font_size(col_nodes.length); 
-  // calculate the reduce font-size factor: 0 for no reduction in font size and 1 for full reduction of font size
-  reduce_font_size_factor = scale_reduce_font_size_factor(row_nodes.length);
-
-  // margin variables 
-  top_margin = 90;
-  buffer_margin = 5;
-  white_rect_width = 500;
-  small_white_rect = 100;
-  rect_margin_large = white_rect_width - top_margin - buffer_margin;
-  rect_margin_small = small_white_rect - top_margin - buffer_margin;
-
-  // Margins 
-  col_margin = {top:top_margin,               right:0, bottom:0, left:top_margin+buffer_margin};
-  row_margin = {top:top_margin+buffer_margin, right:0, bottom:0, left:top_margin};
-  margin     = {top:top_margin+buffer_margin, right:0, bottom:0, left:top_margin+buffer_margin};
-
-  // map size 
-  overall_size = 400 ;
-  map_width  = overall_size;
-  map_height = overall_size*(row_nodes.length/col_nodes.length);
-  svg_width = 700;
-  svg_height = 1500;
-  
-  // scaling functions 
-  // scale used to size rects 
-  x_scale = d3.scale.ordinal().rangeBands([0, map_width]) ;
-  y_scale = d3.scale.ordinal().rangeBands([0, map_height]); 
-
-  // set opacity scale 
-  // Expression Only 
-  if ( _.contains( _.keys(inst_links[0]), 'value' ) ){
-    // get the object from the arry that has the maximum value 
-    max_link = _.max( inst_links, function(d){ return Math.abs(d.value) } )
-    opacity_scale = d3.scale.linear().domain([0, Math.abs(max_link.value) ]).clamp(true) ;
-  }
-  // Enrichment Only 
-  else if ( _.contains( _.keys(inst_links[0]), 'value_up' ) ){
-    // get the object from the arry that has the maximum value 
-    max_link_up = _.max( inst_links, function(d){ return Math.abs(d.value_up) } )
-    max_value_up = max_link_up['value_up']
-    max_link_dn = _.max( inst_links, function(d){ return Math.abs(d.value_dn) } )
-    max_value_dn = Math.abs(max_link_dn['value_dn'])
-
-    // find the maximum absolute value of the link 
-    max_all = _.max( [max_value_up, max_value_dn] )
-
-    // set the opacity 
-    opacity_scale = d3.scale.linear().domain([0, Math.abs(max_all) ]).clamp(true) ;
-  }
-
-  // Enrichment And Expression 
-  else if ( _.contains( _.keys(inst_links[0]), 'enr' ) ){
-
-    // Expression Opacity Scale 
-    // get the object from the arry that has the maximum value 
-    // up
-    tmp_enr = _.max( inst_links, function(d){ return Math.abs(d.enr_up) } )
-    max_enr_up = tmp_enr['enr_up']
-    // dn
-    tmp_enr = _.max( inst_links, function(d){ return Math.abs(d.enr_dn) } )
-    max_enr_dn = Math.abs(tmp_enr['enr_dn'])
-    console.log(max_enr_up)
-    console.log(max_enr_dn)
-    // global max 
-    max_enr = _.max([max_enr_up, max_enr_dn])
-    console.log( 'max updn ' + max_enr)
-    // set the opacity for enrichment 
-    opacity_scale_enr = d3.scale.linear().domain([0, Math.abs(max_enr) ]).clamp(true) ;
-
-    // Expression Opacity Scale 
-    // get the object from the arry that has the maximum value 
-    tmp_exp = _.max( inst_links, function(d){ return Math.abs(d.exp) } )
-    max_value_exp = tmp_exp['exp']
-    // set the opacity for enrichment 
-    opacity_scale_exp = d3.scale.linear().domain([0, Math.abs(max_value_exp) ]).clamp(true) ;
-
-    console.log('enr ' + max_enr)
-    console.log('exp ' + max_value_exp)
-  };
-}
-
 // row function 
 function row_function(row_data) {
 
@@ -315,26 +205,20 @@ function row_function(row_data) {
     .selectAll(".cell")
     .data( row_data )
     .enter()
-    // append rect 
     .append("rect")
-    // set class 
     .attr('class', 'cell')
-    // set x position of rect
     .attr("x", function(d) { return x_scale(d.pos_x); })
-    // set rect width
     .attr("width", x_scale.rangeBand())
-    // set rect height
     .attr("height", y_scale.rangeBand())
-    // set opacity of rect
+    // tile opacity 
     .style("fill-opacity", function(d) { 
       // calculate output opacity using the scale 
       output_opacity = opacity_scale( Math.abs(d.value) );
       // return z
       return output_opacity ; 
     }) 
-    // set rect fill: red #FF0000: up-regulated kinase, blue #1C86EE : down-regulated kinase 
+    // switch the color based on up/dn enrichment 
     .style('fill', function(d) { 
-      // switch the color based on up/dn enrichment 
       return d.value > 0 ? '#FF0000' : '#1C86EE' ;
     } )
     .on("mouseover", function(p) {
