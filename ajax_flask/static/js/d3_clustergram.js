@@ -6,7 +6,7 @@ function make_d3_clustergram(network_data) {
   d3.select("#main_svg").remove();
   d3.select('#kinase_substrates').remove();
 
-  // initialize clustergram 
+  // initialize clustergram variables 
   initialize_clustergram(network_data)
 
   // display col and row title 
@@ -48,8 +48,8 @@ function make_d3_clustergram(network_data) {
   x_scale.domain(orders.clust_row);
   y_scale.domain(orders.clust_col);
 
-  // INITIALIZE SVG
-  svg = d3.select("#svg_div")
+  // initailize svg_obj 
+  svg_obj = d3.select("#svg_div")
       .append("svg")
       .attr('id', 'main_svg')
       .attr("width",  svg_width  + margin.left + margin.right)
@@ -109,7 +109,7 @@ function make_d3_clustergram(network_data) {
   // Make Expression Rows   
   // use matrix for the data join, which contains a two dimensional 
   // array of objects, each row of this matrix will be passed into the row function 
-  var row_obj =  svg.selectAll(".row")
+  var row_obj =  svg_obj.selectAll(".row")
     .data(matrix)
     .enter()
     .append("g")
@@ -135,9 +135,8 @@ function make_d3_clustergram(network_data) {
   col_label_obj.append('line')
     .attr('x2', -clustergram_height)
 
-  // set scale for enrichment rects 
-  ///////////////////////////////////
-  enr_max = Math.max.apply(Math, col_nodes.map(function(o){return Math.abs(o.nl_pval);}))
+  // get the max abs nl_pval (find obj and get nl_pval)
+  enr_max = _.max( col_nodes, function(d) { return Math.abs(d.nl_pval) } ).nl_pval ; 
 
   // the enrichment bar should be 3/4ths of the height of the column labels 
   bar_scale_col = d3.scale
@@ -192,7 +191,7 @@ function make_d3_clustergram(network_data) {
 // row function 
 function row_function(row_data) {
 
-  // generate cells in the current row 
+  // generate tiles in the current row 
   cell =  d3.select(this)
     // data join 
     .selectAll(".cell")
@@ -203,11 +202,9 @@ function row_function(row_data) {
     .attr("x", function(d) { return x_scale(d.pos_x); })
     .attr("width", x_scale.rangeBand())
     .attr("height", y_scale.rangeBand())
-    // tile opacity 
     .style("fill-opacity", function(d) { 
-      // calculate output opacity using the scale 
+      // calculate output opacity using the opacity scale 
       output_opacity = opacity_scale( Math.abs(d.value) );
-      // return z
       return output_opacity ; 
     }) 
     // switch the color based on up/dn enrichment 
@@ -223,7 +220,6 @@ function row_function(row_data) {
     })
 };
 
-// reorder clustergram 
 function reorder_clust_rank(order_type) {
 
   // load orders 
@@ -239,7 +235,7 @@ function reorder_clust_rank(order_type) {
   };
 
   // define the t variable as the transition function 
-  var t = svg.transition().duration(2500);
+  var t = svg_obj.transition().duration(2500);
 
   // reorder matrix
   t.selectAll(".row")

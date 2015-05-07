@@ -41,7 +41,7 @@ function zoomed() {
   // };
 
   // matrix
-  svg.attr("transform", "translate(" + [ trans_x + margin.left, trans_y + margin.top ] 
+  svg_obj.attr("transform", "translate(" + [ trans_x + margin.left, trans_y + margin.top ] 
     + ") scale(" + d3.event.scale + ")");
 
   // column labels
@@ -67,9 +67,9 @@ function zoomed() {
   d3.selectAll('.row_label_text').select('text').style('font-size', fin_font);
   d3.selectAll('.col_label_text').select('text').style('font-size', fin_font);
 
-  
+
   // reduce the height of the enrichment bars based on the zoom applied 
-  
+
 
 };
 
@@ -113,7 +113,7 @@ function reorder_click_row(d,i){
 
   // reorder
   // define the t variable as the transition function 
-  var t = svg.transition().duration(2500);
+  var t = svg_obj.transition().duration(2500);
 
   // reorder matrix
   t.selectAll(".row")
@@ -178,7 +178,7 @@ function reorder_click_col(d,i){
 
   // reorder
   // define the t variable as the transition function 
-  var t = svg.transition().duration(2500);
+  var t = svg_obj.transition().duration(2500);
 
   // reorder matrix
   t.selectAll(".row")
