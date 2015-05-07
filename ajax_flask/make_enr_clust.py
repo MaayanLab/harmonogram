@@ -27,6 +27,9 @@ def calc_tf_enrichment(inst_gl):
 
 	# use the intersection tf gmt: tf_inf.gmt, not ChEA.gmt
 	gmt['chea'] = calc_enrichment_gl_gmt.load_gmt('ajax_flask/enz_and_tf_lists_gmts/TF/tf_int.gmt')
+	
+	# gmt['chea'] = calc_enrichment_gl_gmt.load_gmt('ajax_flask/enz_and_tf_lists_gmts/TF/ChEA.gmt')
+
 	# gmt['chea'] = calc_enrichment_gl_gmt.load_gmt('ajax_flask/enz_and_tf_lists_gmts/KIN/kinase_substrate.gmt')
 	# gmt['chea'] = calc_enrichment_gl_gmt.load_gmt('ajax_flask/enz_and_tf_lists_gmts/PP/phosphatase_substrate_GMT.txt')
 
