@@ -35,10 +35,6 @@ def python_function():
     # get the number of enriched terms 
     num_terms = int(request.form['num_terms'])
 
-    print('the number of terms returned from the request')
-    print(type(num_terms))
-    print(num_terms)
-
     # convert to uppercase 
     inst_genes = [x.upper().strip() for x in inst_genes]
 

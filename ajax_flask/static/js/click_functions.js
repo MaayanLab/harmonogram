@@ -66,7 +66,7 @@ function zoomed() {
   // change the font size of the labels 
   d3.selectAll('.row_label_text').select('text').style('font-size', fin_font);
   d3.selectAll('.col_label_text').select('text').style('font-size', fin_font);
-}
+};
 
 // reorder columns with row click 
 function reorder_click_row(d,i){
@@ -195,4 +195,4 @@ function reorder_click_col(d,i){
     .attr("transform", function(d, i) { 
       return "translate(" + x_scale(i) + ")rotate(-90)"; 
     });
-}
+};
