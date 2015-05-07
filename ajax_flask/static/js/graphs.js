@@ -1,6 +1,5 @@
 
-
-// test form 
+// gene input form 
 $( "#searchForm" ).submit( function( event ) {
  
   // stop form from working normally 
@@ -12,39 +11,33 @@ $( "#searchForm" ).submit( function( event ) {
  	// get gene names from textarea 
   var inst_genes = $form.find( "textarea[name='genes']" ).val();
   var url = $form.attr( "action" );
- 	
-  // console.log('inst_genes: ')
- 	// console.log(inst_genes)
-  // console.log('original url')
-  // console.log(url)
-  // console.log(' ')
 
   // manually set url
   // url = '/clustergram_flask/'
   // !!! temporarily change for local development 
   url = '/'
 
-  // make the post 
+  // set up variable for the post request with gene list: inst_genes
   var posting = $.post( url, { genes: inst_genes } );
  
-	  // set up wait message 
-	  $.blockUI({ css: { 
-            border: 'none', 
-            padding: '15px', 
-            backgroundColor: '#000', 
-            '-webkit-border-radius': '10px', 
-            '-moz-border-radius': '10px', 
-            opacity: .8, 
-            color: '#fff' 
-        } });
+  console.log('making post request')
 
+  // set up wait message before request is made 
+  $.blockUI({ css: { 
+          border: 'none', 
+          padding: '15px', 
+          backgroundColor: '#000', 
+          '-webkit-border-radius': '10px', 
+          '-moz-border-radius': '10px', 
+          opacity: .8, 
+          color: '#fff' 
+      } });
 
-  console.log('about to make post request')
+  // when results are returned from flask 
+  // generate d3 visualization 
+  posting.done( function( network_data ) { 
 
-  // wait until results are returned from flask 
-  posting.done(function( network_data ) { 
-
-    // try to make a map from the returned object 
+    // make a map from the returned object 
     make_new_map(network_data);
 
 		// turn off the wait sign 

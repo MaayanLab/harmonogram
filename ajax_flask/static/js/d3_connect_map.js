@@ -195,8 +195,6 @@ function make_svg_enrichment_genes(sim_matrix) {
     .style('font-size',default_fs+'px')
     .text(function(d, i) { return row_nodes[i].name; } ); 
 
-
-
   // run add double click zoom function 
   add_double_click(); 
 };

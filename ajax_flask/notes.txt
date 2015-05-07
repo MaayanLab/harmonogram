@@ -123,8 +123,8 @@ To Do Clustergram visualization
 	4. add dynamically adjusting top column that will adjust to the length of the enriched terms 
 **5. add enrichment for multiple gmts at once
 	6. set up modified highlighting scheme 
-	7. set up up/dn gene lists - this has some cool possibilities for coloring/opacity 
-	8. find similar genes: show similar genes based on different attributes that can be selected from a multiple checkbox region 
+	??. set up up/dn gene lists - this has some cool possibilities for coloring/opacity 
+	??. find similar genes: show similar genes based on different attributes that can be selected from a multiple checkbox region 
 	9. highlight transcription factors that are in the input list. 
 	10. add pop-up instructions 
 
@@ -134,7 +134,7 @@ To Do Clustergram visualization
 	Up/Dn Gene lists 
 		I can highlight the input genes based on their being up/dn. I can also highlight the enriched terms based on how many of the intersecting genes are up/dn. 
 
-	Find simiar genes/ gene search
+	Find simiar genes/gene search
 		This will function as half enrichr gene search, which gives the user access to all of the information from the gmts for a specific gene, and half lists2netowrks, which I believe fills in a gene list with similar genes. This would be a cool way for users to visually seethe information we have available. A user could for instance search for EGFR, find all the transcription factors that bind to the promoter region of EGFR and find other genes that are also bound by these transcription factor.
 
 
