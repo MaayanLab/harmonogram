@@ -1,6 +1,10 @@
 
 // make the svg exp map (one value per tile)
-function make_svg_enrichment_genes(sim_matrix) {
+function make_d3_clustergram(sim_matrix) {
+
+  // remove old map
+  d3.select("#main_svg").remove();
+  d3.select('#kinase_substrates').remove();
 
   // initialize clustergram 
   initialize_clustergram(sim_matrix)
