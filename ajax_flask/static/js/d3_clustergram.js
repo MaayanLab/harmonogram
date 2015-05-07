@@ -186,14 +186,6 @@ function make_d3_clustergram(sim_matrix) {
     .linear()
     .domain([0, term_max])
     .range([0, row_label_width]);    
-                    
-  // // append rects to the row labels for highlighting purposes 
-  // row_label.append('rect')
-  //   .attr('width', function(d,i) { return bar_scale_row( row_nodes[i].nl_pval )} )
-  //   .attr('height', x_scale.rangeBand())
-  //   .attr('fill', 'black')
-  //   .attr('transform', function(d, i) { return "translate(-"+ bar_scale_row( row_nodes[i].nl_pval ) +",0)"; })
-  //   .attr('opacity','0.3'); // remove the bar for now
 
   row_label.append('text')
     .attr('y', x_scale.rangeBand() / 2)
@@ -206,7 +198,7 @@ function make_d3_clustergram(sim_matrix) {
   add_double_click(); 
 };
 
-// initialize function 
+// initialize clustergram: size, scales, etc. 
 function initialize_clustergram(sim_matrix){
   // move sim_matrix information into global variables 
   col_nodes  = sim_matrix.col_nodes ;
@@ -312,17 +304,17 @@ function initialize_clustergram(sim_matrix){
     console.log('enr ' + max_enr)
     console.log('exp ' + max_value_exp)
   };
-
 }
 
 // row function 
 function row_function(row_data) {
-  // generate cells in each row (this is the current row)
+
+  // generate cells in the current row 
   cell =  d3.select(this)
+    // data join 
     .selectAll(".cell")
     .data( row_data )
     .enter()
-
     // append rect 
     .append("rect")
     // set class 
@@ -340,15 +332,10 @@ function row_function(row_data) {
       // return z
       return output_opacity ; 
     }) 
-
     // set rect fill: red #FF0000: up-regulated kinase, blue #1C86EE : down-regulated kinase 
     .style('fill', function(d) { 
-
-      // only one value for each tile 
-      inst_z = d.value ;
-
       // switch the color based on up/dn enrichment 
-      return inst_z > 0 ? '#FF0000' : '#1C86EE' ;
+      return d.value > 0 ? '#FF0000' : '#1C86EE' ;
     } )
     .on("mouseover", function(p) {
       d3.selectAll(".row_label_text text").classed("active", function(d, i) { return i == p.pos_y; });
@@ -359,9 +346,10 @@ function row_function(row_data) {
     })
 };
 
-// reorder based on cluetering and rank of results 
+// reorder clustergram 
 function reorder_clust_rank(order_type) {
 
+  // load orders 
   if ( order_type == 'clust' ){ 
     // order by enrichment 
     x_scale.domain(orders.clust_row);
@@ -385,15 +373,14 @@ function reorder_clust_rank(order_type) {
     })
 
   // Move Row Labels
-  // 
   d3.select('#row_labels').selectAll('.row_label_text')
-      .transition().duration(2500)
-      .attr('transform', function(d, i) { return 'translate(0,' + y_scale(i) + ')'; });
+    .transition().duration(2500)
+    .attr('transform', function(d, i) { return 'translate(0,' + y_scale(i) + ')'; });
 
   // t.selectAll(".column")
   d3.select('#col_labels').selectAll(".col_label_text")
-      .transition().duration(2500)
-      .attr("transform", function(d, i) { 
-        return "translate(" + x_scale(i) + ")rotate(-90)"; 
-      });
+    .transition().duration(2500)
+    .attr("transform", function(d, i) { 
+      return "translate(" + x_scale(i) + ")rotate(-90)"; 
+    });
 };

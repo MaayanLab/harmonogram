@@ -1,3 +1,4 @@
+
 from flask import Flask
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
@@ -16,9 +17,7 @@ def index():
     print('Rendering index template')
     return render_template("index.html")
 
-# try to make post request to make_project_json
-################################################
-# this can be changed to clustergram_flask
+# post request
 @app.route('/', methods=['GET','POST'])
 def python_function():
     import flask 
@@ -44,12 +43,9 @@ def python_function():
     # make enrichment json for d3 
     network = make_enr_clust.main(inst_genes, num_terms, 'jaccard')
 
-    # jsonify a dict     
-    ########################
     # jsonify a list of dicts 
     return flask.jsonify( network )
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=5000,debug=True)
-
  
