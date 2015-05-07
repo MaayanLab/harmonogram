@@ -117,9 +117,7 @@ Mac specific docker notes
 	I'm starting to work on this again. In the meantime I was working on Cardaic mutation data from Bruce stuff for kit, KEA2, kit etc. I want to use this visualization for multiple projects. It could be useful for KEA2, Nosology X2K, and Kit's project (which is similar to Nosology X2K). 
 
 To Do Clustergram visualization
-	0. only highlight significantly enriched 
-	0.1 rescale enrichment bar with zoom 
-	0.2 change scale functions to work with a variable number of enriched terms 
+	0. only return/highlight significantly enriched 
 	1. set up code so that it is only run if there are input genes (need to check if inputs are genes)
 	2. set up example button to have an example list of genes 
 	3. add all gmts 
@@ -130,6 +128,8 @@ To Do Clustergram visualization
 	??. find similar genes: show similar genes based on different attributes that can be selected from a multiple checkbox region 
 	9. highlight transcription factors that are in the input list. 
 	10. add pop-up instructions 
+	-. change scale functions to work with a variable number of enriched terms 
+	-. rescale enrichment bar with zoom 
 	-. initialize in cluster view 
 	-. pass more information in request 
 

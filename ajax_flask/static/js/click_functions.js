@@ -40,37 +40,27 @@ function zoomed() {
   trans_x = d3.event.translate[0]
   trans_y = d3.event.translate[1]
 
-  // // restrict translate
-  // if (trans_x>0){
-  //   trans_x = 0;
-  // };
-  // if (trans_y>0){
-  //   trans_y = 0;
-  // };
-
   // matrix
   svg_obj.attr("transform", "translate(" + [ trans_x + margin.left, trans_y + margin.top ] 
     + ") scale(" + d3.event.scale + ")");
 
-  // column labels
+  // column labels - only translate in one dimension, also zoom  
   d3.select('#col_labels')
   .attr("transform", "translate(" + [col_margin.left + trans_x, col_margin.top + (d3.event.scale-1)*0.0] 
     + ") scale(" + d3.event.scale + ")");
   
-  // row labels 
+  // row labels - only translate in one dimension, also zoom 
   d3.select('#row_labels')
   .attr("transform", "translate(" + [row_margin.left + (d3.event.scale-1)*0.0 , row_margin.top+ trans_y ] 
     + ") scale(" + d3.event.scale + ")");
 
-  // reduce font size based on the zoom applied
-  //
+  // reduce font-size to compensate for zoom 
   // calculate the recuction of the font size 
   reduce_font_size = d3.scale.linear().domain([0,1]).range([1,d3.event.scale]).clamp('true');
   // scale down the font to compensate for zooming 
   fin_font = default_fs/(reduce_font_size(reduce_font_size_factor)); 
   // add back the 'px' to the font size 
   fin_font = fin_font + 'px';
-
   // change the font size of the labels 
   d3.selectAll('.row_label_text').select('text').style('font-size', fin_font);
   d3.selectAll('.col_label_text').select('text').style('font-size', fin_font);
@@ -79,8 +69,7 @@ function zoomed() {
   // recalculate the height and divide by the zooming scale 
   col_label_obj.select('rect')
     // column is rotated - effectively width and height are switched
-    .attr('width', function(d,i) { return bar_scale_col( d.nl_pval ) / d3.event.scale ; })
-    .attr('transform', function(d, i) { return "translate(0,0)"; });
+    .attr('width', function(d,i) { return bar_scale_col( d.nl_pval ) / d3.event.scale ; });
 
 };
 
