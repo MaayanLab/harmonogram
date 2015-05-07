@@ -118,7 +118,8 @@ Mac specific docker notes
 
 To Do Clustergram visualization
 	0. only highlight significantly enriched 
-	0.1 rescale enrichment bar 
+	0.1 rescale enrichment bar with zoom 
+	0.2 change scale functions to work with a variable number of enriched terms 
 	1. set up code so that it is only run if there are input genes (need to check if inputs are genes)
 	2. set up example button to have an example list of genes 
 	3. add all gmts 
@@ -129,6 +130,8 @@ To Do Clustergram visualization
 	??. find similar genes: show similar genes based on different attributes that can be selected from a multiple checkbox region 
 	9. highlight transcription factors that are in the input list. 
 	10. add pop-up instructions 
+	-. initialize in cluster view 
+	-. pass more information in request 
 
 	Multiple GMT Enrichment at once
 		This wouldn't be that difficult if I just leave the enrichment bar scaling the same for all gmt types. 
