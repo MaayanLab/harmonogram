@@ -107,7 +107,9 @@ function make_d3_clustergram(network_data) {
     .attr("height", clustergram_height);
 
   // Make Expression Rows   
-  var row =  svg.selectAll(".row")
+  // use matrix for the data join, which contains a two dimensional 
+  // array of objects, each row of this matrix will be passed into the row function 
+  var row_obj =  svg.selectAll(".row")
     .data(matrix)
     .enter()
     .append("g")
@@ -116,7 +118,7 @@ function make_d3_clustergram(network_data) {
     .each( row_function );
 
   // horizontal line
-  row.append('line')
+  row_obj.append('line')
     .attr('x2', clustergram_width)
 
   // select all columns 
@@ -166,9 +168,9 @@ function make_d3_clustergram(network_data) {
     .text(function(d, i) { return d.name; });
 
   // generate and position the row labels
-  var row_label = d3.select('#row_labels')
+  var row_label_obj = d3.select('#row_labels')
     .selectAll('.row_label_text')
-    .data(matrix)
+    .data(row_nodes)
     .enter()
     .append('g')
     .attr('class','row_label_text')
@@ -176,12 +178,12 @@ function make_d3_clustergram(network_data) {
     .on('click', reorder_click_row );
 
   // append row label text 
-  row_label.append('text')
+  row_label_obj.append('text')
     .attr('y', x_scale.rangeBand() / 2)
     .attr('dy', '.32em')
     .attr('text-anchor','end')
     .style('font-size',default_fs+'px')
-    .text(function(d, i) { return row_nodes[i].name; } ); 
+    .text(function(d, i) { return d.name; } ); 
 
   // run add double click zoom function 
   add_double_click(); 
