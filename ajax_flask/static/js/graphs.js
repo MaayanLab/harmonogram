@@ -8,9 +8,12 @@ $( "#searchForm" ).submit( function( event ) {
   // get data from forms 
   var $form = $( this );
   
- 	// get gene names from textarea 
+  // get gene names from textarea 
   var inst_genes = $form.find( "textarea[name='genes']" ).val();
   var url = $form.attr( "action" );
+
+  // number of enriched terms 
+  num_terms = 30; 
 
   // manually set url
   // url = '/clustergram_flask/'
@@ -18,7 +21,7 @@ $( "#searchForm" ).submit( function( event ) {
   url = '/'
 
   // set up variable for the post request with gene list: inst_genes
-  var posting = $.post( url, { genes: inst_genes } );
+  var posting = $.post( url, { genes: inst_genes, num_terms: num_terms } );
  
   console.log('making post request')
 
@@ -40,8 +43,8 @@ $( "#searchForm" ).submit( function( event ) {
     // make a map from the returned object 
     make_new_map(network_data);
 
-		// turn off the wait sign 
-	   $.unblockUI();
+    // turn off the wait sign 
+     $.unblockUI();
 
   });
 

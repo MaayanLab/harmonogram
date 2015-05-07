@@ -32,14 +32,18 @@ def python_function():
     # get the genes from the request 
     inst_genes = request.form['genes'].split('\n')
 
+    # get the number of enriched terms 
+    num_terms = int(request.form['num_terms'])
+
+    print('the number of terms returned from the request')
+    print(type(num_terms))
+    print(num_terms)
+
     # convert to uppercase 
     inst_genes = [x.upper().strip() for x in inst_genes]
 
     # obtain unique genes 
     inst_genes = list(set(inst_genes))
-
-    # the number of enriched terms to show 
-    num_terms = 30
 
     # make enrichment json for d3 
     network = make_enr_clust.main(inst_genes, num_terms, 'jaccard')
