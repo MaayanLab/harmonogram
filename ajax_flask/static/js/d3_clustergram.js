@@ -103,8 +103,8 @@ function make_d3_clustergram(network_data) {
   d3.select('#adj_mat')
     .append("rect")
     .attr("class", "background")
-    .attr("width", map_width)
-    .attr("height", map_height);
+    .attr("width", clustergram_width)
+    .attr("height", clustergram_height);
 
   // Make Expression Rows   
   var row =  svg.selectAll(".row")
@@ -117,55 +117,53 @@ function make_d3_clustergram(network_data) {
 
   // horizontal line
   row.append('line')
-    .attr('x2', map_width)
+    .attr('x2', clustergram_width)
 
   // select all columns 
-  var col_label = d3.select('#col_labels')
+  col_label_obj = d3.select('#col_labels')
     .selectAll(".col_label_text")
-    // append one row of the matrix 
-    .data(matrix[0])
+    .data(col_nodes)
     .enter()
     .append("g")
     .attr("class", "col_label_text")
     .attr("transform", function(d, i) { return "translate(" + x_scale(i) + ") rotate(-90)"; })
     .on('click', reorder_click_col ); 
 
-  // vertical line
-  col_label.append('line')
-    .attr('x2', -100*map_height)
-
-  var text_offset = 5;
+  // add separating vertical line, below the labels 
+  col_label_obj.append('line')
+    .attr('x2', -clustergram_height)
 
   // set scale for enrichment rects 
   ///////////////////////////////////
   enr_max = Math.max.apply(Math, col_nodes.map(function(o){return Math.abs(o.nl_pval);}))
+
   // the enrichment bar should be 3/4ths of the height of the column labels 
-  var col_enr_bar = col_label_width * 0.75 ;
-  var bar_scale_col = d3.scale
+  bar_scale_col = d3.scale
     .linear()
     .domain([0, enr_max])
-    .range([0, col_enr_bar ]); 
+    .range([0, col_label_width * 0.75 ]); 
 
   // append rects to the row labels for highlighting purposes 
-  col_label.append('rect')
+  col_label_obj.append('rect')
     // column is rotated - effectively width and height are switched
-    .attr('width', function(d,i) { return bar_scale_col( col_nodes[i].nl_pval ); })
+    .attr('width', function(d,i) { return bar_scale_col( d.nl_pval ); })
     // separate enrichment bars slightly 
     .attr('height', x_scale.rangeBand() - 1)
     .attr('fill', 'red')
     .attr('opacity', 0.5)
     .attr('transform', function(d, i) { return "translate(0,0)"; });
 
-  col_label.append('title')
-    .text(function(d,i){ return col_nodes[i].pval_bh});
+  // for hover effect 
+  col_label_obj.append('title')
+    .text(function(d,i){ return d.pval_bh});
 
-  col_label.append("text")
+  col_label_obj.append("text")
     .attr("x", 0)
     .attr("y", x_scale.rangeBand() / 2)
     .attr("dy", ".32em")
     .attr("text-anchor", "start")
     .style('font-size',default_fs+'px')
-    .text(function(d, i) { return col_nodes[i].name; });
+    .text(function(d, i) { return d.name; });
 
   // generate and position the row labels
   var row_label = d3.select('#row_labels')

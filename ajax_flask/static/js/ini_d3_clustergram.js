@@ -48,7 +48,7 @@ function initialize_clustergram(network_data){
   min_num_char = 7;
   max_num_char = 50;
   min_label_width = 85;
-  max_label_width = 250;
+  max_label_width = 200;
   label_scale = d3.scale.linear().domain([min_num_char,max_num_char]).range([min_label_width,max_label_width]).clamp('true');
 
   // set col_label_width and row_label_width
@@ -62,15 +62,15 @@ function initialize_clustergram(network_data){
 
   // clustergram size 
   overall_size = 500 ;
-  map_width  = overall_size;
-  map_height = overall_size*(row_nodes.length/col_nodes.length);
+  clustergram_width  = overall_size;
+  clustergram_height = overall_size*(row_nodes.length/col_nodes.length);
   svg_width = 800;
   svg_height = 1500;
   
   // scaling functions 
   // scale used to size rects 
-  x_scale = d3.scale.ordinal().rangeBands([0, map_width]) ;
-  y_scale = d3.scale.ordinal().rangeBands([0, map_height]); 
+  x_scale = d3.scale.ordinal().rangeBands([0, clustergram_width]) ;
+  y_scale = d3.scale.ordinal().rangeBands([0, clustergram_height]); 
 
   // set opacity scale 
   // Expression Only 
