@@ -93,10 +93,6 @@ remove containers and images
 		# access
 		http://amp.pharm.mssm.edu/clustergram_flask
 
-To Do 
-	1. set up code so that it is only run if there are input genes (need to check if inputs are genes)
-	2. set up example button to have an example list of genes 
-
 
 Temporary changes for local development 
 	In order to be able to develop locally I'm going to temporarily remove the clustergram_flask path from the static files directory and from the post request. I also temporarily removed clustergram_flask from the post request path. 
@@ -105,7 +101,7 @@ Temporary changes for local development
 
 	Locally, I'll start the server by running run.py from d3_clust_proj/, the directory where the Dockerfile and boot.sh script is located. I don't think run.py is even needed. I'll test this by changing the name to tmp_run.py and see if I can still get a docker image to work locally. 
 
-Mac specific 
+Mac specific docker notes 
 	
 	# start boot2docker 
 	spotlight boot2docker and click the icon 
@@ -117,11 +113,28 @@ Mac specific
 	docker run -it --rm -p 8087:80 clustergram_flask:latest
 
 
+5-6-2015 
+	I'm starting to work on this again. In the meantime I was working on Cardaic mutation data from Bruce stuff for kit, KEA2, kit etc. I want to use this visualization for multiple projects. It could be useful for KEA2, Nosology X2K, and Kit's project (which is similar to Nosology X2K). 
 
+To Do Clustergram visualization
+	1. set up code so that it is only run if there are input genes (need to check if inputs are genes)
+	2. set up example button to have an example list of genes 
+	3. add all gmts 
+	4. add dynamically adjusting top column that will adjust to the length of the enriched terms 
+**5. add enrichment for multiple gmts at once
+	6. set up modified highlighting scheme 
+	7. set up up/dn gene lists - this has some cool possibilities for coloring/opacity 
+	8. find similar genes: show similar genes based on different attributes that can be selected from a multiple checkbox region 
+	9. highlight transcription factors that are in the input list. 
+	10. add pop-up instructions 
 
+	Multiple GMT Enrichment at once
+		This wouldn't be that difficult if I just leave the enrichment bar scaling the same for all gmt types. 
 
+	Up/Dn Gene lists 
+		I can highlight the input genes based on their being up/dn. I can also highlight the enriched terms based on how many of the intersecting genes are up/dn. 
 
-
-
+	Find simiar genes/ gene search
+		This will function as half enrichr gene search, which gives the user access to all of the information from the gmts for a specific gene, and half lists2netowrks, which I believe fills in a gene list with similar genes. This would be a cool way for users to visually seethe information we have available. A user could for instance search for EGFR, find all the transcription factors that bind to the promoter region of EGFR and find other genes that are also bound by these transcription factor.
 
 
