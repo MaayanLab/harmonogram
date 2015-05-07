@@ -7,7 +7,7 @@ function add_double_click() {
     .on('dblclick', function() { 
 
       // reset adj zoom 
-      d3.select('#adj_mat')
+      d3.select('#clust_group')
         .attr("transform", "translate(" + (margin.left) + "," + (margin.top) + ")");
       // reset column label zoom 
       d3.select('#col_labels')
@@ -21,6 +21,14 @@ function add_double_click() {
       // reset the font size because double click zoom is not disabled
       d3.selectAll('.row_label_text').select('text').style('font-size', default_fs+'px');
       d3.selectAll('.col_label_text').select('text').style('font-size', default_fs+'px');
+
+      // reset the heights of the bars
+      // recalculate the original heights
+      col_label_obj.select('rect')
+        // column is rotated - effectively width and height are switched
+        .attr('width', function(d,i) { return bar_scale_col( d.nl_pval ); })
+        .attr('transform', function(d, i) { return "translate(0,0)"; });
+
 
     });
 };
@@ -67,9 +75,12 @@ function zoomed() {
   d3.selectAll('.row_label_text').select('text').style('font-size', fin_font);
   d3.selectAll('.col_label_text').select('text').style('font-size', fin_font);
 
-
   // reduce the height of the enrichment bars based on the zoom applied 
-
+  // recalculate the height and divide by the zooming scale 
+  col_label_obj.select('rect')
+    // column is rotated - effectively width and height are switched
+    .attr('width', function(d,i) { return bar_scale_col( d.nl_pval ) / d3.event.scale ; })
+    .attr('transform', function(d, i) { return "translate(0,0)"; });
 
 };
 

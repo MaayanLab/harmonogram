@@ -57,7 +57,7 @@ function make_d3_clustergram(network_data) {
       .attr('border',1)
       .call( zoom ) 
       .append("g")
-      .attr('id', 'adj_mat')
+      .attr('id', 'clust_group')
       .attr("transform", "translate(" + (margin.left) + "," + (margin.top) + ")");
 
   // disable double-click zoom: double click should reset zoom level 
@@ -100,7 +100,7 @@ function make_d3_clustergram(network_data) {
     .attr('id','top_left_white');
 
   // Add the background - one large rect 
-  d3.select('#adj_mat')
+  d3.select('#clust_group')
     .append("rect")
     .attr("class", "background")
     .attr("width", clustergram_width)
@@ -139,16 +139,14 @@ function make_d3_clustergram(network_data) {
   enr_max = _.max( col_nodes, function(d) { return Math.abs(d.nl_pval) } ).nl_pval ; 
 
   // the enrichment bar should be 3/4ths of the height of the column labels 
-  bar_scale_col = d3.scale
-    .linear()
+  bar_scale_col = d3.scale.linear()
     .domain([0, enr_max])
     .range([0, col_label_width * 0.75 ]); 
 
-  // append rects to the row labels for highlighting purposes 
+  // append enrichment bars  
   col_label_obj.append('rect')
     // column is rotated - effectively width and height are switched
     .attr('width', function(d,i) { return bar_scale_col( d.nl_pval ); })
-    // separate enrichment bars slightly 
     .attr('height', x_scale.rangeBand() - 1)
     .attr('fill', 'red')
     .attr('opacity', 0.5)
