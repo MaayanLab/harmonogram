@@ -34,23 +34,17 @@ function initialize_clustergram(network_data){
   // distance between labels and clustergram
   label_margin = 5;
 
-  // margin variables 
-  top_margin = label_width - label_margin ;
-
-  // width of large white rects 
-  white_rect_width = label_width;
-
   // this is the final rect 
   small_white_rect = label_width;
 
-  // set col_white_width and row_white_width
-  col_white_width = white_rect_width
-  row_white_width = white_rect_width
+  // set col_label_width and row_label_width
+  col_label_width = label_width ;
+  row_label_width = label_width ;
 
   // Margins 
-  col_margin = { top:top_margin,              right:0, bottom:0, left:top_margin+label_margin };
-  row_margin = { top:top_margin+label_margin, right:0, bottom:0, left:top_margin };
-  margin     = { top:top_margin+label_margin, right:0, bottom:0, left:top_margin+label_margin };
+  col_margin = { top:col_label_width - label_margin,  right:0, bottom:0, left:row_label_width };
+  row_margin = { top:col_label_width, right:0, bottom:0, left:row_label_width - label_margin };
+  margin     = { top:col_label_width, right:0, bottom:0, left:row_label_width };
 
   // clustergram size 
   overall_size = 500 ;

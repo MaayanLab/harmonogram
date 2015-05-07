@@ -63,19 +63,19 @@ function make_d3_clustergram(network_data) {
   // disable double-click zoom: double click should reset zoom level 
   d3.select("svg").on("dblclick.zoom", null);    
 
-  // column rect 
+  // row white rect 
   d3.select('#main_svg')
     .append('rect')
     .attr('fill', 'white')
-    .attr('width', col_white_width+'px')
+    .attr('width', row_label_width+'px')
     .attr('height', '1000px')
     .attr('class','white_bars');
 
-  // row width 
+  // col white rect 
   d3.select('#main_svg')
     .append('rect')
     .attr('fill', 'white')
-    .attr('height', row_white_width+'px')
+    .attr('height', col_label_width+'px')
     .attr('width', '1000px')
     .attr('class','white_bars');
 
@@ -95,8 +95,8 @@ function make_d3_clustergram(network_data) {
   d3.select('#main_svg')
     .append('rect')
     .attr('fill', 'white')
-    .attr('width',  small_white_rect+'px')
-    .attr('height', small_white_rect+'px')
+    .attr('width',  row_label_width+'px')
+    .attr('height', col_label_width+'px')
     .attr('id','top_left_white');
 
   // Add the background - one large rect 
@@ -139,7 +139,8 @@ function make_d3_clustergram(network_data) {
   // set scale for enrichment rects 
   ///////////////////////////////////
   enr_max = Math.max.apply(Math, col_nodes.map(function(o){return Math.abs(o.nl_pval);}))
-  var col_enr_bar = label_width * 0.75 ;
+  // the enrichment bar should be 3/4ths of the height of the column labels 
+  var col_enr_bar = col_label_width * 0.75 ;
   var bar_scale_col = d3.scale
     .linear()
     .domain([0, enr_max])
@@ -176,15 +177,7 @@ function make_d3_clustergram(network_data) {
     .attr('transform', function(d, i) { return "translate(0," + y_scale(i) + ")"; })
     .on('click', reorder_click_row );
 
-  // set scale for enrichment rects 
-  ///////////////////////////////////
-  term_max = Math.max.apply(Math, row_nodes.map(function(o){return Math.abs(o.nl_pval);}))
-  var row_label_width = 50;
-  var bar_scale_row = d3.scale
-    .linear()
-    .domain([0, term_max])
-    .range([0, row_label_width]);    
-
+  // append row label text 
   row_label.append('text')
     .attr('y', x_scale.rangeBand() / 2)
     .attr('dy', '.32em')
