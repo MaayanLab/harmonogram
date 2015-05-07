@@ -8,18 +8,18 @@ function initialize_clustergram(network_data){
 
   // font size controls 
   // scale default font size: input domain is the number of nodes
-  max_node_num = 1000;
   min_node_num = 10;
-  min_fs = 10;
-  max_fs = 18;
+  max_node_num = 100;
+  max_fs = 15;
+  min_fs = 6;
 
   // controls how much the font size is increased by zooming when the number of nodes is at its max
   // and they need to be zoomed into
   // 1: do not increase font size while zooming
   // 0: increase font size while zooming
-  max_fs_zoom = 0.3; 
+  max_fs_zoom = 0.7; 
   // output range is the font size 
-  scale_font_size = d3.scale.linear().domain([min_node_num,max_node_num]).range([min_fs,max_fs]).clamp('true');
+  scale_font_size = d3.scale.log().domain([min_node_num,max_node_num]).range([max_fs,min_fs]).clamp('true');
   // define the scaling for the reduce font size factor 
   scale_reduce_font_size_factor = d3.scale.log().domain([min_node_num,max_node_num]).range([1,max_fs_zoom]).clamp('true');
   // define the scaling for the zoomability of the adjacency matrix
@@ -31,6 +31,8 @@ function initialize_clustergram(network_data){
   default_fs = scale_font_size(col_nodes.length); 
   // calculate the reduce font-size factor: 0 for no reduction in font size and 1 for full reduction of font size
   reduce_font_size_factor = scale_reduce_font_size_factor(row_nodes.length);
+
+  console.log(default_fs)
 
   // label width
   label_width = 100;
