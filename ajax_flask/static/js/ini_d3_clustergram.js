@@ -37,9 +37,20 @@ function initialize_clustergram(network_data){
   // this is the final rect 
   small_white_rect = label_width;
 
+  // find the label with the most characters and use it to adjust the row and col margins 
+  row_max_char = _.max(row_nodes, function(inst) {return inst.name.length;}).name.length;
+  col_max_char = _.max(col_nodes, function(inst) {return inst.name.length;}).name.length;
+
+  // emperical scaling
+  // 7 characters -> 85px 
+  // 25 characters -> 220px
+
+  // define label scale 
+  label_scale = d3.scale.linear().domain([7,25]).range([85,225]).clamp('true');
+
   // set col_label_width and row_label_width
-  col_label_width = label_width ;
-  row_label_width = label_width ;
+  row_label_width = label_scale(row_max_char) ;
+  col_label_width = label_scale(col_max_char) ;
 
   // Margins 
   col_margin = { top:col_label_width - label_margin,  right:0, bottom:0, left:row_label_width };
