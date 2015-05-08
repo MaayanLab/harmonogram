@@ -40,8 +40,10 @@ def python_function():
     # obtain unique genes 
     inst_genes = list(set(inst_genes))
 
-    # make enrichment json for d3 
-    network = make_enr_clust.main(inst_genes, num_terms, 'jaccard')
+    # get the gmt name
+    inst_gmt = request.form['gmt_name']
+
+    network = make_enr_clust.main(inst_gmt, inst_genes, num_terms, 'jaccard')
 
     # jsonify a list of dicts 
     return flask.jsonify( network )

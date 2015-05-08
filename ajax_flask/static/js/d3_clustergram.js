@@ -119,7 +119,7 @@ function make_d3_clustergram(network_data) {
 
   // horizontal line
   row_obj.append('line')
-    .attr('x2', clustergram_width)
+    .attr('x2', 20*clustergram_width)
 
   // select all columns 
   col_label_obj = d3.select('#col_labels')
@@ -133,7 +133,7 @@ function make_d3_clustergram(network_data) {
 
   // add separating vertical line, below the labels 
   col_label_obj.append('line')
-    .attr('x2', -clustergram_height)
+    .attr('x2', -20*clustergram_height)
 
   // get the max abs nl_pval (find obj and get nl_pval)
   enr_max = _.max( col_nodes, function(d) { return Math.abs(d.nl_pval) } ).nl_pval ; 
