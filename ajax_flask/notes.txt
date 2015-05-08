@@ -33,12 +33,12 @@ remove containers and images
 --- old instructions to run on loretta
 	
 	I added in the code using a few ADD lines in the Dockerfile 
+	(no sudo required in mac)
+	sudo docker run -it --rm -p 80:80 !!!image_id!!!-or-tag_name 
 
 	
 	# build image (happens quickly if things are cached)
 	sudo docker build -t clustergram_flask .
-
-	(no sudo required in mac)
 
 	# push to dockerhub 
 	sudo docker push maayanlab/clustergram_flask
@@ -49,16 +49,10 @@ remove containers and images
 	# pull from dockerhub 
 	docker pull maayanlab/clustergram_flask:latest
 
-	sudo docker run -it --rm -p 80:80 !!!image_id!!!-or-tag_name 
-
-	within loretta
+	# within loretta
 		docker run -it --rm -p 8087:80 maayanlab/clustergram_flask:latest
 
-	accessing 
-	locally 
-			
-
-	from outside 
+	# from outside 
 		http://amp.pharm.mssm.edu/clustergram_flask
 
 
@@ -117,8 +111,7 @@ Mac specific docker notes
 	I'm starting to work on this again. In the meantime I was working on Cardaic mutation data from Bruce stuff for kit, KEA2, kit etc. I want to use this visualization for multiple projects. It could be useful for KEA2, Nosology X2K, and Kit's project (which is similar to Nosology X2K). 
 
 To Do Clustergram visualization
-	6. set up modified highlighting scheme 
-	3. add all gmts 
+	3. add all other gmts 
 **5. add enrichment for multiple gmts at once
 
 	0. only return/highlight significantly enriched 
@@ -135,6 +128,7 @@ To Do Clustergram visualization
 	-. rescale enrichment bar with zoom 
 	-. initialize in cluster view 
 	-. pass more information in request 
+	-. set up modified highlighting scheme - weighted sum of nl_pvals
 
 	Multiple GMT Enrichment at once
 		This wouldn't be that difficult if I just leave the enrichment bar scaling the same for all gmt types. 

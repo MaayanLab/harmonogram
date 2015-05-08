@@ -32,8 +32,6 @@ function initialize_clustergram(network_data){
   // calculate the reduce font-size factor: 0 for no reduction in font size and 1 for full reduction of font size
   reduce_font_size_factor = scale_reduce_font_size_factor(row_nodes.length);
 
-  console.log(default_fs)
-
   // label width
   label_width = 100;
   // distance between labels and clustergram

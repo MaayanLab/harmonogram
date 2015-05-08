@@ -43,9 +43,8 @@ def calc_tf_enrichment(inst_gl):
 
 	return enr
 
-# this will make enrichment clustergrams in NSCLC cell lines 
+# make clustergram
 def make_enrichment_clustergram(enr, num_terms, dist_type):
-	# print('make enrichment clustergrams')
 	import d3_clustergram
 
 	# convert enr to nodes, data_mat 

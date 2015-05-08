@@ -21,7 +21,7 @@ $( "#searchForm" ).submit( function( event ) {
   url = '/'
 
   // set up variable for the post request with gene list: inst_genes
-  var posting = $.post( url, { genes: inst_genes, num_terms: num_terms } );
+  var posting = $.post( url, { genes: inst_genes, num_terms: num_terms, gmt_name: 'tf' } );
  
   console.log('making post request')
 

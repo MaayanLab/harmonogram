@@ -108,10 +108,18 @@
 	"buffers":
 	[
 		{
-			"file": "d3_clustergram.py",
+			"file": "templates/index.html",
 			"settings":
 			{
-				"buffer_size": 15054,
+				"buffer_size": 2648,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "static/js/request_clustergram.js",
+			"settings":
+			{
+				"buffer_size": 1352,
 				"line_ending": "Unix"
 			}
 		},
@@ -119,39 +127,7 @@
 			"file": "app.py",
 			"settings":
 			{
-				"buffer_size": 2137,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "notes.txt",
-			"settings":
-			{
-				"buffer_size": 3506,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "templates/index.html",
-			"settings":
-			{
-				"buffer_size": 3084,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "example_genes_tf.txt",
-			"settings":
-			{
-				"buffer_size": 281,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "static/js/graphs.js",
-			"settings":
-			{
-				"buffer_size": 1247,
+				"buffer_size": 1217,
 				"line_ending": "Unix"
 			}
 		},
@@ -159,23 +135,39 @@
 			"file": "make_enr_clust.py",
 			"settings":
 			{
-				"buffer_size": 1824,
+				"buffer_size": 1733,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "calc_enrichment_gl_gmt.py",
+			"file": "tf_enr.json",
 			"settings":
 			{
-				"buffer_size": 5454,
+				"buffer_size": 135432,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "static/js/d3_connect_map.js",
+			"file": "d3_clustergram.py",
 			"settings":
 			{
-				"buffer_size": 9304,
+				"buffer_size": 15514,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "example_gene_list.txt",
+			"settings":
+			{
+				"buffer_size": 584,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "static/js/ini_d3_clustergram.js",
+			"settings":
+			{
+				"buffer_size": 5342,
 				"line_ending": "Unix"
 			}
 		},
@@ -183,23 +175,31 @@
 			"file": "static/js/click_functions.js",
 			"settings":
 			{
-				"buffer_size": 13062,
+				"buffer_size": 6814,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "static/css/custom.css",
+			"file": "static/js/d3_clustergram.js",
 			"settings":
 			{
-				"buffer_size": 4814,
+				"buffer_size": 8326,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "static/js/map_scripts.js",
+			"file": "notes.txt",
 			"settings":
 			{
-				"buffer_size": 4939,
+				"buffer_size": 5504,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "notes_docker.txt",
+			"settings":
+			{
+				"buffer_size": 950,
 				"line_ending": "Unix"
 			}
 		}
@@ -231,14 +231,10 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 374.0,
-		"last_filter": "stat",
+		"height": 118.0,
+		"last_filter": "push",
 		"selected_items":
 		[
-			[
-				"stat",
-				"Git: Status"
-			],
 			[
 				"push",
 				"Git: Push"
@@ -250,6 +246,54 @@
 			[
 				"add",
 				"Git: Add..."
+			],
+			[
+				"sta",
+				"Git: Status"
+			],
+			[
+				"stat",
+				"Git: Status"
+			],
+			[
+				"diff",
+				"Git: Diff Staged Files"
+			],
+			[
+				"qio",
+				"Git: Quick Commit"
+			],
+			[
+				"q	ui",
+				"Git: Quick Commit"
+			],
+			[
+				"ad",
+				"Git: Add..."
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"extrac",
+				"Extract Sublime Package: Extract open Package File"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"packages",
+				"Package Control: List Packages"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
 			],
 			[
 				"qu",
@@ -265,14 +309,6 @@
 			],
 			[
 				"status",
-				"Git: Status"
-			],
-			[
-				"qio",
-				"Git: Quick Commit"
-			],
-			[
-				"sta",
 				"Git: Status"
 			],
 			[
@@ -300,10 +336,6 @@
 				"Git: Status"
 			],
 			[
-				"package",
-				"Package Control: Install Package"
-			],
-			[
 				"git log",
 				"Git: Log All"
 			],
@@ -322,10 +354,6 @@
 			[
 				"git status",
 				"Git: Status"
-			],
-			[
-				"packa",
-				"Package Control: Install Package"
 			],
 			[
 				"commit",
@@ -408,10 +436,6 @@
 				"FileDiffs: Menu"
 			],
 			[
-				"insta",
-				"Package Control: Install Package"
-			],
-			[
 				"",
 				"Package Control: Install Package"
 			],
@@ -436,7 +460,7 @@
 				"Set Syntax: SQL"
 			]
 		],
-		"width": 298.0
+		"width": 561.0
 	},
 	"console":
 	{
@@ -457,10 +481,31 @@
 	"expanded_folders":
 	[
 		"/Users/nickfernandez/Documents/clustergram_flask",
-		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask"
+		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask",
+		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask/enz_and_tf_lists_gmts",
+		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask/enz_and_tf_lists_gmts/TF",
+		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask/static",
+		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask/static/js",
+		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask/templates"
 	],
 	"file_history":
 	[
+		"/Users/nickfernandez/Documents/lab_meeting/Python_Flask_Generated_Clustergram.pptx",
+		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask/static/css/custom.css",
+		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask/static/js/toggle_switch.js",
+		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask/example_gene_list.txt",
+		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask/static/js/map_scripts.js",
+		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask/notes.txt",
+		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask/static/js/d3_connect_map.js",
+		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask/static/js/graphs.js",
+		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask/templates/index.html",
+		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask/static/js/click_functions.js",
+		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask/calc_enrichment_gl_gmt.py",
+		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask/example_genes_tf.txt",
+		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask/d3_clustergram.py",
+		"/Users/nickfernandez/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/nickfernandez/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/nickfernandez/Library/Application Support/Sublime Text 3/Installed Packages/Vintageous.sublime-package",
 		"/Users/nickfernandez/Documents/x2k-nosology/kinase_kd_l1000/kinase_gene_l1000_dn.gmt",
 		"/home/nick/Documents/d3_clust_proj/run.py",
 		"/home/nick/Documents/d3_clust_proj/Dockerfile",
@@ -572,23 +617,7 @@
 		"/C/Users/Nick Fernandez/Documents/CST_PTM/NOTES/CST_notes.txt",
 		"/C/Users/Nick Fernandez/Documents/CST_PTM/networks_31/README_networks_31_cells_missing_less_than_10pct_data.txt",
 		"/C/Users/Nick Fernandez/Documents/CST_PTM/clustergram_manual_cell_networks/PY_top_A549_gene_list.txt",
-		"/C/Users/Nick Fernandez/Documents/Notebook/README.txt",
-		"/C/Users/Nick Fernandez/Documents/Notebook/Notebook Files/tmp_file.txt",
-		"/C/Users/Nick Fernandez/Documents/Notebook/Notebook Files/Python/README_abstract_fetch_psite.txt",
-		"/C/Users/Nick Fernandez/Documents/Notebook/Notebook Files/KMC/KMC_meeting_12-12-2014",
-		"/C/Users/Nick Fernandez/Documents/Python Scripts/CST_Hornbeck/new_Hornbeck_PMIDS/Hornbeck_all_psite_pmid_uniq.txt",
-		"/C/Users/Nick Fernandez/Documents/Notebook/Notebook Files/Brazil_presentation_notes_from_memory_2.txt",
-		"/C/Users/Nick Fernandez/Documents/Python Scripts/CST_Hornbeck/Kinome_data_from_Peter_Hornbeck/processed_psite_pmids.txt",
-		"/C/Users/Nick Fernandez/Documents/TF_histone/TF_list/tf_synonyms_highconfidence_crisp.gmt",
-		"/C/Users/Nick Fernandez/Documents/TF_histone/TF_list/tf_gs_high_confidence.txt",
-		"/C/Users/Nick Fernandez/Documents/CST_PTM/MET_ACT_int_gmts/DMET_gs_processed.txt",
-		"/C/Users/Nick Fernandez/Documents/CST_PTM/MET_ACT_int_gmts/MET_gs_processed.txt",
-		"/C/Users/Nick Fernandez/Documents/CST_PTM/MET_ACT_int_gmts/DACT_gs_processed.txt",
-		"/C/Users/Nick Fernandez/Documents/CST_PTM/MET_ACT_int_gmts/ACT_gs_processed.txt",
-		"/C/Users/Nick Fernandez/Documents/CST_PTM/MET_ACT_int_gmts/MET_int_gmt.txt",
-		"/C/Users/Nick Fernandez/Documents/CST_PTM/Enzyme_lists/kinases/Uniprot_kinases_4_27_2014/Uniprot_kinases_processed.txt",
-		"/C/Users/Nick Fernandez/Documents/KEA2_website_files/phosphatase_elucidate/GS_prot_name_phosphatases.txt",
-		"/C/Users/Nick Fernandez/Documents/KEA2_website_files/phosphatase_elucidate/protein_names/protein_name_phosphatases.txt"
+		"/C/Users/Nick Fernandez/Documents/Notebook/README.txt"
 	],
 	"find":
 	{
@@ -599,6 +628,9 @@
 		"height": 90.0,
 		"where_history":
 		[
+			"*.py",
+			"",
+			".js",
 			"",
 			"*.py",
 			"",
@@ -627,134 +659,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"etc/app",
-			"app",
-			"etc/app",
-			"app",
-			"url",
-			"app",
-			"flask",
-			"apache",
-			"boot.sh",
-			"/app/",
-			"app/",
-			"/app/",
-			"app/",
-			"server root",
-			"ajax_flask",
-			"app",
-			"app.run",
-			"logging",
-			"/clustergram_flask",
-			"app.route",
+			"single_value",
+			"dot",
 			"print",
-			"it works!",
-			"it works",
-			"post",
-			"network_data",
-			"make_new_map",
-			"col_nodes",
-			"start_making_exp",
-			"col_nodes",
-			"static",
-			"blockui",
-			"/static",
-			"static",
-			"/clustergram_flask",
-			"static",
-			"keen-dash",
-			"static",
-			"app.run",
-			"console.log",
-			"debug",
-			"col_label",
-			"row_label",
-			"row_nodes",
-			"row_label_text",
-			"row_labels",
-			"d3.event.translate",
-			"translate",
-			"row_title",
-			"input genes",
-			"col_labels",
-			".col_labels",
-			"col_labels",
-			"col_label",
-			"text",
-			"row_labels",
-			"row_",
-			"row_labels",
-			".row_labels",
-			"row_labels",
-			"inside calc",
-			"before import",
-			"calculating",
-			"print",
-			"row_labels",
-			"col_labels",
-			"row_label_text",
-			"d3_clustergram",
-			"d3_connect",
-			"d3_clustergram",
-			"col_label_text",
-			"row_nodes",
-			"input_genes",
-			"row_label",
-			"row_labels",
-			"0.1",
-			"scale_exte",
-			"scale_extent",
-			"zoom",
-			"reorder_click_",
-			"col_label_text",
-			"'g'",
-			"gmt",
-			"transcrip",
-			"clust_order",
-			"pval_bh",
-			"p",
-			"pval_bh",
-			"p",
-			"pval_bh",
-			"30",
-			"make_enr_clust",
-			"make_enrichment_clustergram",
-			"num_terms",
-			"convert_enr_to_nodes_mat",
-			"gmt",
-			"int_genes",
-			"creb1",
-			"RPS6KA4	",
-			"RPS6KA4",
-			"SLC9A5",
-			"RPS6KA4",
-			"creb1",
-			"there are ",
-			"cluster_row_and_column",
-			"hier",
-			"clust_order",
-			"there are",
-			"inst_gene_list",
-			"prkcz",
+			"comb",
 			"nl_pval",
-			"kinase",
-			"enrichment",
-			"error",
-			"hier.",
-			"figure",
-			"from ajax_",
-			"after",
-			"make_enrichment_",
-			"stats",
-			"calc(",
-			"calc",
-			"loading gmt",
-			"calculating",
-			"debugger",
-			"calculating",
-			"calcula",
-			"calculating",
-			"running"
+			"d3_clust_single_value",
+			"value",
+			"opacity",
+			"default_fs",
+			"min_fs",
+			"font",
+			"enr",
+			"adj_mat",
+			"_.max",
+			"_.",
+			"row_obj",
+			"row_label_obj",
+			"text_offset",
+			"5",
+			"100",
+			"map_height",
+			"clustergram_height",
+			"map_height",
+			"col_label",
+			"col_enr_bar",
+			"col_label",
+			"reduce_font_siz",
+			"zoomed",
+			"zoom",
+			".gmt",
+			"scale_font_size",
+			"d3.scale",
+			"label_scale",
+			"d3.scale",
+			"col_label_width",
+			"label_width",
+			" margin",
+			" margin ",
+			"top_margin",
+			"col_margin",
+			"top_margin",
+			"label_width",
+			"small_white_rect",
+			"col_label_width",
+			" label_width",
+			"label_width",
+			"white_rect_width",
+			"col_white",
+			"row_white_width",
+			"col_white",
+			"row_white_width",
+			"col_white_width",
+			"col_label_width",
+			"white_rect_width",
+			"col_white_width",
+			"col_white_widt",
+			"label_width",
+			"term_max",
+			"term_maxn",
+			"term_max",
+			"bar_scale_row",
+			"row_label",
+			"rw_label",
+			"col_label",
+			"col_label_width",
+			"label_width",
+			"map ",
+			"label_margin",
+			"label_width",
+			"top_margin",
+			"offset_",
+			"offset_large_rects",
+			"col_rect",
+			"label_margin",
+			"rect_margin_small",
+			"label_width",
+			"white_rect_width",
+			"buffer_margin",
+			"adj_",
+			"top_margin",
+			"initialize_clustergram",
+			"sim_matrix",
+			"row_function",
+			"row_",
+			"keen",
+			"Ajax example",
+			"ajax_flask",
+			"click_functions",
+			"display_intersect",
+			"click_tile",
+			"add_double_click",
+			"make_d3_clustergram",
+			"make_svg_enrichment_genes",
+			"start_making_exp_map",
+			"make_new_map",
+			"request_clustergram",
+			"make_clustergram",
+			"make_new_map",
+			"make_new_mapggn",
+			"make_new_map",
+			"map_scripts",
+			"make_clustergram",
+			"graphs",
+			"tmp_col_order",
+			"d3_connect_map",
+			"d3_clustergram",
+			"rank_row",
+			"orders",
+			"'rank'",
+			"sort_index",
+			"'rank'",
+			"orders",
+			"cluster",
+			"make_svg_enrichment_genes",
+			"unblockui",
+			"make_new_map",
+			"graphs.js",
+			"post",
+			"request",
+			"clustergram_flask",
+			"command",
+			"commane",
+			"context",
+			"true",
+			"truen",
+			"true",
+			"row_nodes",
+			"etc/app"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -784,35 +816,51 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "d3_clustergram.py",
+					"file": "templates/index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 15054,
+						"buffer_size": 2648,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								13717,
-								13717
+								1459,
+								1459
 							]
 						],
 						"settings":
 						{
+							"auto_complete": false,
 							"history_list_is_closing": true,
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false,
-							"word_wrap": true
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 8
+							}
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 348.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 11,
@@ -820,302 +868,95 @@
 				},
 				{
 					"buffer": 1,
-					"file": "app.py",
+					"file": "static/js/request_clustergram.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2137,
+						"buffer_size": 1352,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1015,
-								1015
+								1343,
+								1343
 							]
 						],
 						"settings":
 						{
-							"history_list_is_closing": true,
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "notes.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3506,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2156,
-								2156
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 923.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "templates/index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3084,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"history_list_is_closing": true,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "example_genes_tf.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 281,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								281
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "static/js/graphs.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1247,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								349,
-								349
-							]
-						],
-						"settings":
-						{
+							"auto_complete": false,
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 4
+							}
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 104.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 7,
 					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 3,
+			"selected": 4,
 			"sheets":
 			[
 				{
-					"buffer": 6,
-					"file": "make_enr_clust.py",
+					"buffer": 2,
+					"file": "app.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1824,
+						"buffer_size": 1217,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								87,
-								87
+								726,
+								726
 							]
 						],
 						"settings":
 						{
+							"auto_complete": false,
 							"history_list_is_closing": true,
 							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false,
-							"word_wrap": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 12,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "calc_enrichment_gl_gmt.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5454,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3586,
-								3586
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "static/js/d3_connect_map.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 9304,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4672,
-								4672
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1482.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 13,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "static/js/click_functions.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 13062,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								213,
-								213
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "templates/index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3084,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"history_list_is_closing": true,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1125,130 +966,418 @@
 					"type": "text"
 				},
 				{
-					"buffer": 10,
-					"file": "static/css/custom.css",
+					"buffer": 3,
+					"file": "make_enr_clust.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4814,
+						"buffer_size": 1733,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4486,
-								4486
+								782,
+								782
 							]
 						],
 						"settings":
 						{
+							"auto_complete": false,
+							"highlight_line": true,
 							"history_list_is_closing": true,
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 53
+							},
+							"word_wrap": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4758.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 14,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 2,
-			"sheets":
-			[
-				{
-					"buffer": 8,
-					"file": "static/js/d3_connect_map.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 9304,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2667,
-								2667
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 382.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 9,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "static/js/graphs.js",
+					"buffer": 4,
+					"file": "tf_enr.json",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1247,
+						"buffer_size": 135432,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								84868,
+								84868
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 6,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 16
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 73597.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "d3_clustergram.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15514,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								71,
+								71
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"highlight_line": true,
+							"history_list_is_closing": true,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": true,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_insert",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 22
+							}
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "example_gene_list.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 584,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								244,
+								250
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"vintage":
+							{
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 7,
+					"file": "static/js/ini_d3_clustergram.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5342,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								404,
+								404
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 20
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "static/js/click_functions.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6814,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1328,
+								1328
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": true,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_insert",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 9
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 304.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "static/js/d3_clustergram.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8326,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4737,
+								4737
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"highlight_line": true,
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": true,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_insert",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 66
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 1218.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "notes.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5504,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3928,
+								3928
+							]
+						],
+						"settings":
+						{
+							"highlight_line": true,
+							"history_list_is_closing": true,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 36
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 1822.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
 					"buffer": 11,
-					"file": "static/js/map_scripts.js",
+					"file": "notes_docker.txt",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4939,
+						"buffer_size": 950,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								314,
-								314
+								676,
+								676
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 31
+							}
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -1256,7 +1385,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 25.0
+		"height": 33.0
 	},
 	"input":
 	{
@@ -1270,31 +1399,31 @@
 				0,
 				0,
 				1,
-				2
+				1
 			],
 			[
 				1,
 				0,
 				2,
-				1
+				2
 			],
 			[
+				0,
 				1,
 				1,
-				2,
 				2
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.5029626954,
+			0.775880973119,
 			1.0
 		],
 		"rows":
 		[
 			0.0,
-			0.368671224117,
+			0.214662435993,
 			1.0
 		]
 	},
@@ -1325,8 +1454,40 @@
 		"selected_items":
 		[
 			[
+				"enr",
+				"ajax_flask/tf_enr.json"
+			],
+			[
+				"notes",
+				"ajax_flask/notes.txt"
+			],
+			[
+				"custom",
+				"ajax_flask/static/css/custom.css"
+			],
+			[
+				"example",
+				"ajax_flask/example_gene_list.txt"
+			],
+			[
+				"d3_clustergra",
+				"ajax_flask/d3_clustergram.py"
+			],
+			[
+				"d3_cls",
+				"ajax_flask/d3_clustergram.py"
+			],
+			[
+				"d3_conn",
+				"ajax_flask/static/js/d3_connect_map.js"
+			],
+			[
+				"map_sc",
+				"ajax_flask/static/js/map_scripts.js"
+			],
+			[
 				"genes",
-				"~/Documents/clustergram_flask/ajax_flask/example_genes_tf.txt"
+				"ajax_flask/example_gene_list.txt"
 			],
 			[
 				"ws",
@@ -1349,10 +1510,6 @@
 				"run.py"
 			],
 			[
-				"map_sc",
-				"ajax_flask/static/js/map_scripts.js"
-			],
-			[
 				"graphs",
 				"ajax_flask/static/js/graphs.js"
 			],
@@ -1363,10 +1520,6 @@
 			[
 				"cus",
 				"static/css/custom.css"
-			],
-			[
-				"d3_conn",
-				"static/js/d3_connect_map.js"
 			],
 			[
 				"d3_cluster",
@@ -1469,9 +1622,16 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 0,
+	"selected_group": 2,
 	"settings":
 	{
+		"_vintageous_last_buffer_search": "dot",
+		"_vintageous_last_buffer_search_command": "vi_slash",
+		"_vintageous_reset_during_init": true,
+		"vintage":
+		{
+			"_cmdline_cd": "/Users/nickfernandez/Library/Application Support/Sublime Text 3/Installed Packages"
+		}
 	},
 	"show_minimap": true,
 	"show_open_files": true,
