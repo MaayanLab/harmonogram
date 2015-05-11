@@ -111,7 +111,7 @@
 			"file": "templates/index.html",
 			"settings":
 			{
-				"buffer_size": 2648,
+				"buffer_size": 3200,
 				"line_ending": "Unix"
 			}
 		},
@@ -119,7 +119,7 @@
 			"file": "static/js/request_clustergram.js",
 			"settings":
 			{
-				"buffer_size": 1352,
+				"buffer_size": 1800,
 				"line_ending": "Unix"
 			}
 		},
@@ -127,7 +127,7 @@
 			"file": "app.py",
 			"settings":
 			{
-				"buffer_size": 1217,
+				"buffer_size": 1256,
 				"line_ending": "Unix"
 			}
 		},
@@ -135,7 +135,7 @@
 			"file": "make_enr_clust.py",
 			"settings":
 			{
-				"buffer_size": 1733,
+				"buffer_size": 1827,
 				"line_ending": "Unix"
 			}
 		},
@@ -167,7 +167,7 @@
 			"file": "static/js/ini_d3_clustergram.js",
 			"settings":
 			{
-				"buffer_size": 5342,
+				"buffer_size": 5315,
 				"line_ending": "Unix"
 			}
 		},
@@ -183,7 +183,15 @@
 			"file": "static/js/d3_clustergram.js",
 			"settings":
 			{
-				"buffer_size": 8326,
+				"buffer_size": 8332,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/nickfernandez/Documents/clustergram_flask/Dockerfile",
+			"settings":
+			{
+				"buffer_size": 1328,
 				"line_ending": "Unix"
 			}
 		},
@@ -191,7 +199,7 @@
 			"file": "notes.txt",
 			"settings":
 			{
-				"buffer_size": 5504,
+				"buffer_size": 5479,
 				"line_ending": "Unix"
 			}
 		},
@@ -231,12 +239,12 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 118.0,
-		"last_filter": "push",
+		"height": 374.0,
+		"last_filter": "pus",
 		"selected_items":
 		[
 			[
-				"push",
+				"pus",
 				"Git: Push"
 			],
 			[
@@ -248,11 +256,15 @@
 				"Git: Add..."
 			],
 			[
-				"sta",
+				"stat",
 				"Git: Status"
 			],
 			[
-				"stat",
+				"push",
+				"Git: Push"
+			],
+			[
+				"sta",
 				"Git: Status"
 			],
 			[
@@ -392,10 +404,6 @@
 				"Git: Track Remote Branch"
 			],
 			[
-				"pus",
-				"Git: Push"
-			],
-			[
 				"push ",
 				"Git: Push"
 			],
@@ -481,7 +489,6 @@
 	"expanded_folders":
 	[
 		"/Users/nickfernandez/Documents/clustergram_flask",
-		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask",
 		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask/enz_and_tf_lists_gmts",
 		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask/enz_and_tf_lists_gmts/TF",
 		"/Users/nickfernandez/Documents/clustergram_flask/ajax_flask/static",
@@ -628,6 +635,7 @@
 		"height": 90.0,
 		"where_history":
 		[
+			"",
 			"*.py",
 			"",
 			".js",
@@ -659,6 +667,22 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"col_margin",
+			"label_scale",
+			"col_label_width",
+			"zoom",
+			"clust_group",
+			"svg_div",
+			"enriched transcription",
+			"onclick",
+			"'line'",
+			"col_label",
+			"make_enr_clust",
+			"loretta",
+			"lorett",
+			"cather",
+			"loretta",
+			"reorder",
 			"single_value",
 			"dot",
 			"print",
@@ -770,23 +794,7 @@
 			"'rank'",
 			"sort_index",
 			"'rank'",
-			"orders",
-			"cluster",
-			"make_svg_enrichment_genes",
-			"unblockui",
-			"make_new_map",
-			"graphs.js",
-			"post",
-			"request",
-			"clustergram_flask",
-			"command",
-			"commane",
-			"context",
-			"true",
-			"truen",
-			"true",
-			"row_nodes",
-			"etc/app"
+			"orders"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -816,7 +824,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -825,15 +833,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2648,
+						"buffer_size": 3200,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1459,
-								1459
+								2729,
+								2786
 							]
 						],
 						"settings":
@@ -845,10 +853,10 @@
 							"translate_tabs_to_spaces": true,
 							"vintage":
 							{
-								"_vintageous_glue_until_normal_mode": false,
+								"_vintageous_glue_until_normal_mode": true,
 								"action": null,
 								"action_count": "",
-								"mode": "mode_normal",
+								"mode": "mode_insert",
 								"motion": null,
 								"motion_count": "",
 								"must_capture_register_name": false,
@@ -856,14 +864,14 @@
 								"partial_sequence": "",
 								"register": "\"",
 								"sequence": "",
-								"xpos": 8
+								"xpos": 2
 							}
 						},
 						"translation.x": 0.0,
-						"translation.y": 348.0,
+						"translation.y": 1084.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -872,15 +880,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1352,
+						"buffer_size": 1800,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1343,
-								1343
+								707,
+								707
 							]
 						],
 						"settings":
@@ -902,14 +910,14 @@
 								"partial_sequence": "",
 								"register": "\"",
 								"sequence": "",
-								"xpos": 4
+								"xpos": 47
 							}
 						},
 						"translation.x": 0.0,
-						"translation.y": 104.0,
+						"translation.y": 312.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -924,15 +932,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1217,
+						"buffer_size": 1256,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								726,
-								726
+								1046,
+								1046
 							]
 						],
 						"settings":
@@ -955,14 +963,14 @@
 								"partial_sequence": "",
 								"register": "\"",
 								"sequence": "",
-								"xpos": 0
+								"xpos": 14
 							}
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 49.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -971,15 +979,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1733,
+						"buffer_size": 1827,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								782,
-								782
+								836,
+								836
 							]
 						],
 						"settings":
@@ -991,10 +999,10 @@
 							"translate_tabs_to_spaces": false,
 							"vintage":
 							{
-								"_vintageous_glue_until_normal_mode": false,
+								"_vintageous_glue_until_normal_mode": true,
 								"action": null,
 								"action_count": "",
-								"mode": "mode_normal",
+								"mode": "mode_insert",
 								"motion": null,
 								"motion_count": "",
 								"must_capture_register_name": false,
@@ -1002,7 +1010,7 @@
 								"partial_sequence": "",
 								"register": "\"",
 								"sequence": "",
-								"xpos": 53
+								"xpos": 51
 							},
 							"word_wrap": true
 						},
@@ -1010,7 +1018,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
@@ -1050,10 +1058,10 @@
 							}
 						},
 						"translation.x": 0.0,
-						"translation.y": 73597.0,
+						"translation.y": 7402.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
@@ -1100,7 +1108,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
@@ -1116,8 +1124,8 @@
 						"selection":
 						[
 							[
-								244,
-								250
+								383,
+								389
 							]
 						],
 						"settings":
@@ -1134,20 +1142,20 @@
 								"partial_sequence": "",
 								"register": "\"",
 								"sequence": "",
-								"xpos": 0
+								"xpos": 4
 							}
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -1156,15 +1164,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5342,
+						"buffer_size": 5315,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								404,
-								404
+								2574,
+								2574
 							]
 						],
 						"settings":
@@ -1186,14 +1194,14 @@
 								"partial_sequence": "",
 								"register": "\"",
 								"sequence": "",
-								"xpos": 20
+								"xpos": 39
 							}
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -1209,8 +1217,8 @@
 						"selection":
 						[
 							[
-								1328,
-								1328
+								1442,
+								1442
 							]
 						],
 						"settings":
@@ -1221,10 +1229,10 @@
 							"translate_tabs_to_spaces": true,
 							"vintage":
 							{
-								"_vintageous_glue_until_normal_mode": true,
+								"_vintageous_glue_until_normal_mode": false,
 								"action": null,
 								"action_count": "",
-								"mode": "mode_insert",
+								"mode": "mode_normal",
 								"motion": null,
 								"motion_count": "",
 								"must_capture_register_name": false,
@@ -1232,14 +1240,14 @@
 								"partial_sequence": "",
 								"register": "\"",
 								"sequence": "",
-								"xpos": 9
+								"xpos": 0
 							}
 						},
 						"translation.x": 0.0,
-						"translation.y": 304.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -1248,15 +1256,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8326,
+						"buffer_size": 8332,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4737,
-								4737
+								2904,
+								2914
 							]
 						],
 						"settings":
@@ -1269,10 +1277,10 @@
 							"translate_tabs_to_spaces": true,
 							"vintage":
 							{
-								"_vintageous_glue_until_normal_mode": true,
+								"_vintageous_glue_until_normal_mode": false,
 								"action": null,
 								"action_count": "",
-								"mode": "mode_insert",
+								"mode": "mode_visual",
 								"motion": null,
 								"motion_count": "",
 								"must_capture_register_name": false,
@@ -1280,31 +1288,72 @@
 								"partial_sequence": "",
 								"register": "\"",
 								"sequence": "",
-								"xpos": 66
+								"xpos": 58
 							}
 						},
 						"translation.x": 0.0,
-						"translation.y": 1218.0,
+						"translation.y": 307.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 10,
-					"file": "notes.txt",
-					"semi_transient": false,
+					"file": "/Users/nickfernandez/Documents/clustergram_flask/Dockerfile",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 5504,
+						"buffer_size": 1328,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3928,
-								3928
+								1166,
+								1166
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"vintage":
+							{
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 8
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "notes.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5479,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1745,
+								1745
 							]
 						],
 						"settings":
@@ -1326,18 +1375,18 @@
 								"partial_sequence": "",
 								"register": "\"",
 								"sequence": "",
-								"xpos": 36
+								"xpos": 41
 							}
 						},
 						"translation.x": 0.0,
-						"translation.y": 1822.0,
+						"translation.y": 443.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 12,
 					"file": "notes_docker.txt",
 					"semi_transient": false,
 					"settings":
@@ -1377,7 +1426,7 @@
 						"translation.y": 1.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 11,
 					"type": "text"
 				}
 			]
@@ -1417,13 +1466,13 @@
 		"cols":
 		[
 			0.0,
-			0.775880973119,
+			0.806702466447,
 			1.0
 		],
 		"rows":
 		[
 			0.0,
-			0.214662435993,
+			0.177526400209,
 			1.0
 		]
 	},
@@ -1625,7 +1674,7 @@
 	"selected_group": 2,
 	"settings":
 	{
-		"_vintageous_last_buffer_search": "dot",
+		"_vintageous_last_buffer_search": "zoom",
 		"_vintageous_last_buffer_search_command": "vi_slash",
 		"_vintageous_reset_during_init": true,
 		"vintage":

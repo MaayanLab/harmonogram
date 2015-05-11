@@ -41,9 +41,9 @@ def python_function():
     inst_genes = list(set(inst_genes))
 
     # get the gmt name
-    inst_gmt = request.form['gmt_name']
+    gmt_name = request.form['gmt_name']
 
-    network = make_enr_clust.main(inst_gmt, inst_genes, num_terms, 'jaccard')
+    network = make_enr_clust.main(gmt_name, inst_genes, num_terms, 'jaccard')
 
     # jsonify a list of dicts 
     return flask.jsonify( network )

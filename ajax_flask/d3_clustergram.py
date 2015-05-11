@@ -407,7 +407,7 @@ def convert_enr_dict_to_array(enr, pval_cutoff):
 			# there is only dn enrichment
 			elif np.isnan(pval_nl['dn_genes']) == False:
 				# set value of data_mat as the mean of up/dn enrichment 
-				data_mat['merge'][i,j] =  pval_nl['dn_genes']
+				data_mat['merge'][i,j] = -pval_nl['dn_genes']
 				data_mat['dn'   ][i,j] = -pval_nl['dn_genes']
 
 
