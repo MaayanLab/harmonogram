@@ -46,6 +46,8 @@ def main( gmt_name, inst_genes, num_terms, dist_type):
 		inst_dict['combined_score'] = inst_enr[4]
 		# transfer int_genes 
 		inst_dict['int_genes'] = inst_enr[5]
+		# # adjusted pval
+		# inst_dict['pval_bh'] = inst_enr[6]
 
 		# append dict
 		enr.append(inst_dict)
@@ -115,9 +117,11 @@ def make_enrichment_clustergram(enr, num_terms, dist_type):
 
 def enrichr_result(genes, meta='', gmt=''):
 	import cookielib, poster, urllib2, json
+	import time
 
 	global baseurl
-	baseurl = 'amp.pharm.mssm.edu'
+	# baseurl = 'amp.pharm.mssm.edu'
+	baseurl = 'matthews-mbp:8080'
 
 	"""return the enrichment results for a specific gene-set library on Enrichr"""
 	cj = cookielib.CookieJar()
@@ -125,11 +129,15 @@ def enrichr_result(genes, meta='', gmt=''):
 	opener.add_handler(urllib2.HTTPCookieProcessor(cookielib.CookieJar()))
 	genesStr = '\n'.join(genes)
 
-	params = {'list':genesStr,'description':meta}
+	params = {'list':genesStr,'description':meta,'inputMethod':'enrichr_cluster'}
 	datagen, headers = poster.encode.multipart_encode(params)
 	url = "http://" + baseurl + "/Enrichr/enrich"
 	request = urllib2.Request(url, datagen, headers)
 	urllib2.urlopen(request)
+
+	# wait for request 
+
+	time.sleep(1)
 
 	x = urllib2.urlopen("http://" + baseurl + "/Enrichr/enrich?backgroundType=" + gmt)
 	response = x.read()
