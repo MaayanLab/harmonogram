@@ -25,11 +25,38 @@ def python_function():
     import json 
     import json_scripts 
     import sys
+    import cookielib, poster, urllib2, json
 
     error = None 
 
+    # # make a post request to enrichr 
+    # # 
+    # global baseurl
+    # baseurl = 'amp.pharm.mssm.edu'
+
+    # # genes_string = request.form['genes']
+    # # print(genes_string)
+    # genes_string = 'DCX\nEIF6'
+    # meta = ''
+
+    # # make post request
+    # params = {'list':genes_string,'description':meta}
+    # datagen, headers = poster.encode.multipart_encode(params)
+    # url = "http://" + baseurl + "/Enrichr/enrich"
+    # request = urllib2.Request(url, datagen, headers)
+    # urllib2.urlopen(request)
+
+    # # x = urllib2.urlopen("http://" + baseurl + "/Enrichr/enrich?backgroundType=" + gmt)
+    # # response = x.read()
+    # # response_dict = json.loads(response)
+    # # print(response_dict)
+    # # return response_dict[gmt]
+
+
     # get the genes from the request 
     inst_genes = request.form['genes'].split('\n')
+
+    enrichr_result(inst_genes, '', 'GO_Biological_Process')
 
     # get the number of enriched terms 
     num_terms = int(request.form['num_terms'])
@@ -47,6 +74,35 @@ def python_function():
 
     # jsonify a list of dicts 
     return flask.jsonify( network )
+
+
+
+def enrichr_result(genes, meta='', gmt=''):
+    import cookielib, poster, urllib2, json
+
+    global baseurl
+    baseurl = 'amp.pharm.mssm.edu'
+
+    """return the enrichment results for a specific gene-set library on Enrichr"""
+    cj = cookielib.CookieJar()
+    opener = poster.streaminghttp.register_openers()
+    opener.add_handler(urllib2.HTTPCookieProcessor(cookielib.CookieJar()))
+    genesStr = '\n'.join(genes)
+
+    params = {'list':genesStr,'description':meta}
+    datagen, headers = poster.encode.multipart_encode(params)
+    url = "http://" + baseurl + "/Enrichr/enrich"
+    request = urllib2.Request(url, datagen, headers)
+    urllib2.urlopen(request)
+
+    x = urllib2.urlopen("http://" + baseurl + "/Enrichr/enrich?backgroundType=" + gmt)
+    response = x.read()
+    response_dict = json.loads(response)
+    print(response_dict.keys())
+    return response_dict[gmt]
+
+
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=5000,debug=True)

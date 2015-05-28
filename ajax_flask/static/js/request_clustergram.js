@@ -16,6 +16,18 @@ $( "#searchForm" ).submit( function( event ) {
   var inst_genes = $form.find( "textarea[name='genes']" ).val();
   var url = $form.attr( "action" );
 
+  // // 
+  // console.log('inst_genes')
+  // console.log(inst_genes)
+  // console.log('making request to enrichr')
+  // enrich( {list:inst_genes} )
+
+  // // run enrichr using api 
+  // enrichr_url = 'http://amp.pharm.mssm.edu/Enrichr/enrich'
+  // var post_enrichr = $.post( enrichr_url, { list: inst_genes } );
+
+
+
   // number of enriched terms 
   num_terms = 30; 
 
@@ -65,8 +77,6 @@ $( "#searchForm" ).submit( function( event ) {
       
        d3.select('#col_title').text( 'Enriched Transcription Factors' )
     }
-
-
 
     // turn off the wait sign 
     $.unblockUI();

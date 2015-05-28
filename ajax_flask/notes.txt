@@ -139,4 +139,5 @@ To Do Clustergram visualization
 	Find simiar genes/gene search
 		This will function as half enrichr gene search, which gives the user access to all of the information from the gmts for a specific gene, and half lists2netowrks, which I believe fills in a gene list with similar genes. This would be a cool way for users to visually seethe information we have available. A user could for instance search for EGFR, find all the transcription factors that bind to the promoter region of EGFR and find other genes that are also bound by these transcription factor.
 
-
+5-28-2015 
+	Will set up the code to calculate enrichment through Enrichr. 
