@@ -4,8 +4,7 @@ def main( gmt_name, inst_genes, num_terms, dist_type):
     
 	# get results from enrichr 
 	# 
-	inst_gmt = 'GO_Biological_Process'
-	response_dict = enrichr_result(inst_genes, '', inst_gmt)
+	response_dict = enrichr_result(inst_genes, '', gmt_name)
 
 	# p-value, adjusted pvalue, z-score, combined score, genes 
 	# 1: Term 

@@ -45,7 +45,8 @@ def python_function():
   gmt_name = request.form['gmt_name']
 
   # temporariy change
-  gmt_name = 'GO_Biological_Process'
+  # gmt_name = 'GO_Biological_Process'
+  gmt_name = 'ChEA'
 
   # calc enrichment and cluster 
   network = make_enr_clust.main(gmt_name, inst_genes, num_terms, 'jaccard')
