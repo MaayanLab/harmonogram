@@ -147,9 +147,16 @@ def cluster_row_and_column( nodes, data_mat, dist_type, enr ):
 		# gather pval 
 		clust_order['pval']['col'].append( inst_dict['pval'] )
 		# gather pval_bh 
-		clust_order['pval_bh']['col'].append( inst_dict['pval_bh'] )
+		# clust_order['pval_bh']['col'].append( inst_dict['pval_bh'] )
+		# use combined score instead 
+		# 
+		clust_order['pval_bh']['col'].append( inst_dict['combined_score'] )
+
 		# gather nl_pval 
-		clust_order['nl_pval']['col'].append( -np.log2(inst_dict['pval_bh']) )
+		# clust_order['nl_pval']['col'].append( -np.log2(inst_dict['pval_bh']) )
+		# use combined score instead 
+		#
+		clust_order['nl_pval']['col'].append( inst_dict['combined_score'] )
 
 
 	# print( clust_order['nl_pval']['col'] )

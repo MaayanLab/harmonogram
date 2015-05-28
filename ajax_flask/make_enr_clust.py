@@ -1,9 +1,55 @@
 def main( gmt_name, inst_genes, num_terms, dist_type):
 
 	print('in main function of make_enr_clust')
+    
+	# get results from enrichr 
+	# 
+	inst_gmt = 'GO_Biological_Process'
+	response_dict = enrichr_result(inst_genes, '', inst_gmt)
 
-	# calculate enrichment 
-	enr = calc_tf_enrichment(gmt_name, inst_genes)
+	# p-value, adjusted pvalue, z-score, combined score, genes 
+	# 1: Term 
+	# 2: P-value
+	# 3: Z-score
+	# 4: Combined Score
+	# 5: Genes
+	for inst_elem in response_dict[0]:
+	    print(inst_elem)
+	print('\n')
+
+
+	# # calculate enrichment 
+	# enr = calc_tf_enrichment(gmt_name, inst_genes)
+
+	# print(enr[0].keys())
+	# array of dicts 
+	# pval
+	# pval_bon
+	# pval_bh
+	# name
+	# int_genes
+
+	# transfer response_dict to enr structure 
+	#
+	# initialize enr
+	enr = []
+	for inst_enr in response_dict:
+		# initialize dict 
+		inst_dict = {}
+
+		# transfer term 
+		inst_dict['name'] = inst_enr[1]
+		# transfer pval
+		inst_dict['pval'] = inst_enr[2]
+		# transfer zscore
+		inst_dict['zscore'] = inst_enr[3]
+		# transfer combined_score
+		inst_dict['combined_score'] = inst_enr[4]
+		# transfer int_genes 
+		inst_dict['int_genes'] = inst_enr[5]
+
+		# append dict
+		enr.append(inst_dict)
 
 	# reduce the number of enriched terms if necessary
 	if len(enr) < num_terms:
@@ -24,6 +70,9 @@ def calc_tf_enrichment(gmt_name, inst_gl):
 	gmt = {} 
 
 	# print('loading gmt')
+
+	# defaule 
+	filename = 'ajax_flask/enz_and_tf_lists_gmts/TF/tf_int.gmt'
 
 	if gmt_name == 'tf_int':
 		filename = 'ajax_flask/enz_and_tf_lists_gmts/TF/tf_int.gmt'
@@ -63,3 +112,27 @@ def make_enrichment_clustergram(enr, num_terms, dist_type):
 	d3_json = d3_clustergram.d3_clust_single_value( nodes, clust_order, data_mat )
 
 	return d3_json
+
+
+def enrichr_result(genes, meta='', gmt=''):
+	import cookielib, poster, urllib2, json
+
+	global baseurl
+	baseurl = 'amp.pharm.mssm.edu'
+
+	"""return the enrichment results for a specific gene-set library on Enrichr"""
+	cj = cookielib.CookieJar()
+	opener = poster.streaminghttp.register_openers()
+	opener.add_handler(urllib2.HTTPCookieProcessor(cookielib.CookieJar()))
+	genesStr = '\n'.join(genes)
+
+	params = {'list':genesStr,'description':meta}
+	datagen, headers = poster.encode.multipart_encode(params)
+	url = "http://" + baseurl + "/Enrichr/enrich"
+	request = urllib2.Request(url, datagen, headers)
+	urllib2.urlopen(request)
+
+	x = urllib2.urlopen("http://" + baseurl + "/Enrichr/enrich?backgroundType=" + gmt)
+	response = x.read()
+	response_dict = json.loads(response)
+	return response_dict[gmt]

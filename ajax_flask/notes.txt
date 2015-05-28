@@ -157,3 +157,7 @@ To Do Clustergram visualization
 	I should ask Matthew to get Enrichr to return the adjusted pvalues. 
 
 	First, I'll finish getting the tool to get its enrichment results from the Enrihr API. 
+
+	Obtain all of the gene set libraries 
+
+		http://amp.pharm.mssm.edu/Enrichr/geneSetLibrary?mode=meta
