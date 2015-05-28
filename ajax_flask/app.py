@@ -30,14 +30,20 @@ def python_function():
     error = None 
 
     # get the genes from the request 
-    inst_genes = request.form['genes'].split('\n')
+    inst_genes = request.form['genes'].strip().split('\n')
+
+    # clean up genes 
+    inst_genes = [x.upper().strip() for x in inst_genes]
 
     # get results from enrichr 
     # 
     inst_gmt = 'GO_Biological_Process'
     response_dict = enrichr_result(inst_genes, '', inst_gmt)
 
+    # p-value, adjusted pvalue, z-score, combined score, genes 
+    # Term   P-value   Z-score Combined Score  Genes
     print(response_dict[0])
+    print('\n')
 
     # get the number of enriched terms 
     num_terms = int(request.form['num_terms'])
@@ -55,8 +61,6 @@ def python_function():
 
     # jsonify a list of dicts 
     return flask.jsonify( network )
-
-
 
 def enrichr_result(genes, meta='', gmt=''):
     import cookielib, poster, urllib2, json

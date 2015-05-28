@@ -107,8 +107,9 @@ def cluster_row_and_column( nodes, data_mat, dist_type, enr ):
 
 	# Cluster Rows
 	###############
+	cluster_method = 'centroid'
 	# calculate linkage 
-	Y = hier.linkage( row_dm, method='centroid')
+	Y = hier.linkage( row_dm, method=cluster_method)
 	# getting error at dendrogram 
 	Z = hier.dendrogram( Y, no_plot=True  )
 	# get ordering
@@ -118,7 +119,7 @@ def cluster_row_and_column( nodes, data_mat, dist_type, enr ):
 	##################
 	# calculate linkage 
 	# print('clustering columns')
-	Y = hier.linkage( col_dm, method='centroid')
+	Y = hier.linkage( col_dm, method=cluster_method)
 	Z = hier.dendrogram( Y, no_plot=True )
 	# get ordering
 	clust_order['clust']['col'] = Z['leaves']
