@@ -29,34 +29,15 @@ def python_function():
 
     error = None 
 
-    # # make a post request to enrichr 
-    # # 
-    # global baseurl
-    # baseurl = 'amp.pharm.mssm.edu'
-
-    # # genes_string = request.form['genes']
-    # # print(genes_string)
-    # genes_string = 'DCX\nEIF6'
-    # meta = ''
-
-    # # make post request
-    # params = {'list':genes_string,'description':meta}
-    # datagen, headers = poster.encode.multipart_encode(params)
-    # url = "http://" + baseurl + "/Enrichr/enrich"
-    # request = urllib2.Request(url, datagen, headers)
-    # urllib2.urlopen(request)
-
-    # # x = urllib2.urlopen("http://" + baseurl + "/Enrichr/enrich?backgroundType=" + gmt)
-    # # response = x.read()
-    # # response_dict = json.loads(response)
-    # # print(response_dict)
-    # # return response_dict[gmt]
-
-
     # get the genes from the request 
     inst_genes = request.form['genes'].split('\n')
 
-    enrichr_result(inst_genes, '', 'GO_Biological_Process')
+    # get results from enrichr 
+    # 
+    inst_gmt = 'GO_Biological_Process'
+    response_dict = enrichr_result(inst_genes, '', inst_gmt)
+
+    print(response_dict[0])
 
     # get the number of enriched terms 
     num_terms = int(request.form['num_terms'])
@@ -98,7 +79,6 @@ def enrichr_result(genes, meta='', gmt=''):
     x = urllib2.urlopen("http://" + baseurl + "/Enrichr/enrich?backgroundType=" + gmt)
     response = x.read()
     response_dict = json.loads(response)
-    print(response_dict.keys())
     return response_dict[gmt]
 
 
