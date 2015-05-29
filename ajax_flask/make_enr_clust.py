@@ -6,15 +6,15 @@ def main( gmt_name, inst_genes, num_terms, dist_type):
 	# 
 	response_dict = enrichr_result(inst_genes, '', gmt_name)
 
-	# p-value, adjusted pvalue, z-score, combined score, genes 
-	# 1: Term 
-	# 2: P-value
-	# 3: Z-score
-	# 4: Combined Score
-	# 5: Genes
-	for inst_elem in response_dict[0]:
-	    print(inst_elem)
-	print('\n')
+	# # p-value, adjusted pvalue, z-score, combined score, genes 
+	# # 1: Term 
+	# # 2: P-value
+	# # 3: Z-score
+	# # 4: Combined Score
+	# # 5: Genes
+	# for inst_elem in response_dict[0]:
+	#     print(inst_elem)
+	# print('\n')
 
 
 	# # calculate enrichment 
@@ -120,8 +120,8 @@ def enrichr_result(genes, meta='', gmt=''):
 	import time
 
 	global baseurl
-	# baseurl = 'amp.pharm.mssm.edu'
-	baseurl = 'matthews-mbp:8080'
+	baseurl = 'amp.pharm.mssm.edu'
+	# baseurl = 'matthews-mbp:8080'
 
 	"""return the enrichment results for a specific gene-set library on Enrichr"""
 	cj = cookielib.CookieJar()
@@ -133,11 +133,17 @@ def enrichr_result(genes, meta='', gmt=''):
 	datagen, headers = poster.encode.multipart_encode(params)
 	url = "http://" + baseurl + "/Enrichr/enrich"
 	request = urllib2.Request(url, datagen, headers)
-	urllib2.urlopen(request)
 
 	# wait for request 
+	resp = urllib2.urlopen(request)
+	print(resp.read())
 
-	time.sleep(1)
+	# alternate wait for response
+	# try:
+	# 	resp = urllib2.urlopen(request)
+	# 	print(resp.read())
+	# except IOError as e:
+	# 	pass
 
 	x = urllib2.urlopen("http://" + baseurl + "/Enrichr/enrich?backgroundType=" + gmt)
 	response = x.read()
