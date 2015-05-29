@@ -129,11 +129,18 @@ function make_d3_clustergram(network_data) {
     .append("g")
     .attr("class", "col_label_text")
     .attr("transform", function(d, i) { return "translate(" + x_scale(i) + ") rotate(-90)"; })
-    .on('click', reorder_click_col ); 
+    // append new group for rect and label (not white lines)
+    .append('g')
+    .attr('class','col_label_click')
+    .on('click', reorder_click_col )
 
   // add separating vertical line, below the labels 
-  col_label_obj.append('line')
+  // col_label_obj
+  d3.select('#col_labels')
+    .selectAll('.col_label_text')
+    .append('line')
     .attr('x2', -20*clustergram_height)
+
 
   // get the max abs nl_pval (find obj and get nl_pval)
   enr_max = _.max( col_nodes, function(d) { return Math.abs(d.nl_pval) } ).nl_pval ; 
@@ -144,7 +151,11 @@ function make_d3_clustergram(network_data) {
     .range([0, col_label_width * 0.75 ]); 
 
   // append enrichment bars  
-  col_label_obj.append('rect')
+  // col_label_obj
+  d3.select('#col_labels')
+    .selectAll('.col_label_text')
+    .selectAll('.col_label_click')
+    .append('rect')
     // column is rotated - effectively width and height are switched
     .attr('width', function(d,i) { return bar_scale_col( d.nl_pval ); })
     .attr('height', x_scale.rangeBand() - 1)
@@ -153,10 +164,19 @@ function make_d3_clustergram(network_data) {
     .attr('transform', function(d, i) { return "translate(0,0)"; });
 
   // for hover effect 
-  col_label_obj.append('title')
+  // col_label_obj
+  d3.select('#col_labels')
+    .selectAll('.col_label_text')
+    .selectAll('.col_label_click')
+    // .select('.col_label_click')
+    .append('title')
     .text(function(d,i){ return d.pval_bh});
 
-  col_label_obj.append("text")
+  // col_label_obj
+  d3.select('#col_labels')
+    .selectAll('.col_label_text')
+    .selectAll('.col_label_click')
+    .append("text")
     .attr("x", 0)
     .attr("y", x_scale.rangeBand() / 2)
     .attr("dy", ".32em")

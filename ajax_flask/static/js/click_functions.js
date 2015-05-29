@@ -140,7 +140,6 @@ function reorder_click_row(d,i){
 function reorder_click_col(d,i){
 
   // get inst col (term)
-  // inst_term = d3.select(this).select('text').text();
   inst_term = d3.select(this).select('text').attr('full_name')
 
   // add outline 
