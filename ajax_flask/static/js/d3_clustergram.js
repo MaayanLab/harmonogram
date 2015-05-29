@@ -161,8 +161,9 @@ function make_d3_clustergram(network_data) {
     .attr("y", x_scale.rangeBand() / 2)
     .attr("dy", ".32em")
     .attr("text-anchor", "start")
+    .attr('full_name',function(d) { return d.name } )
     .style('font-size',default_fs+'px')
-    .text(function(d, i) { return d.name; });
+    .text(function(d, i) { return d.name.split('_')[0]; });
 
   // generate and position the row labels
   var row_label_obj = d3.select('#row_labels')

@@ -86,6 +86,25 @@
 
   d3.json('./static/enrichr_gmt_data/enrichr_gmts.json', function(data){
     console.log(data)
+
+    gmt_data = data['libraries']
+
+    // generate array of gene names 
+    gmt_names = []
+
+    // gather gmt names 
+    for (i = 0; i < gmt_data.length; i++){
+
+      console.log( gmt_data[i].isActive )
+      // only keep active gmts 
+      if (gmt_data[i].isActive == true){ 
+        // get gmt names 
+        gmt_names.push( gmt_data[i].libraryName );
+      }
+    }
+
+    console.log(gmt_names)
+
   })
 
   </script>
