@@ -42,7 +42,7 @@ function initialize_clustergram(network_data){
 
   // find the label with the most characters and use it to adjust the row and col margins 
   row_max_char = _.max(row_nodes, function(inst) {return inst.name.length;}).name.length;
-  col_max_char = _.max(col_nodes, function(inst) {return inst.name.length;}).name.length;
+  col_max_char = _.max(col_nodes, function(inst) {return inst.name.length;}).name.split('_')[0].length;
 
   // define label scale parameters: the more characters in the longest name, the larger the margin 
   min_num_char = 7;
