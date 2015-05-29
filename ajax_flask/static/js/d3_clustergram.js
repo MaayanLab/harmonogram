@@ -134,6 +134,7 @@ function make_d3_clustergram(network_data) {
     // append new group for rect and label (not white lines)
     .append('g')
     .attr('class','col_label_click')
+    // .attr('transform', 'translate(10,'+x_scale.rangeBand()/2+') rotate(45)')
     .on('click', reorder_click_col );
 
   // add separating vertical line, below the labels 

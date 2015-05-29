@@ -1,6 +1,6 @@
 
 // initialize gmt 
-gmt_name = 'tf_int'
+gmt_name = 'ChEA'
 
 
 // request clustergram 

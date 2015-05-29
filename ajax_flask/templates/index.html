@@ -30,10 +30,10 @@
 
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Choose GMT<span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#" onclick="gmt_name = 'tf_int'; ">TF Intersection</a></li>
+              <ul class="dropdown-menu" role="menu" id='dropdown_list'>
+                <!-- <li><a href="#" onclick="gmt_name = 'tf_int'; ">TF Intersection</a></li>
                 <li><a href="#" onclick="gmt_name = 'chea';   ">ChEA</a></li>
-                <li><a href="#" onclick="gmt_name = 'kea';    ">KEA</a></li>
+                <li><a href="#" onclick="gmt_name = 'kea';    ">KEA</a></li> -->
               </ul>
             </li>
         
@@ -49,8 +49,6 @@
     <textarea  name="genes" placeholder='input genes' id='gene_input_box'></textarea>
     <button type="submit" id='submit_genes'>Submit</button>
   </form>
-
-
 
   
   <input type="checkbox" name="my-checkbox" data-on-text="Cluster" data-off-text="Rank" id='rank_switch' checked>
@@ -95,7 +93,7 @@
     // gather gmt names 
     for (i = 0; i < gmt_data.length; i++){
 
-      console.log( gmt_data[i].isActive )
+      // console.log( gmt_data[i].isActive )
       // only keep active gmts 
       if (gmt_data[i].isActive == true){ 
         // get gmt names 
@@ -103,7 +101,20 @@
       }
     }
 
-    console.log(gmt_names)
+    // console.log(gmt_names)
+
+    // use d3 to add new elements
+    d3.select('#dropdown_list')
+      .selectAll()
+      .data(gmt_names)
+      .enter()
+      .append('li')
+      .append('a')
+      .attr('onclick', function(d,i){ return "gmt_name = " + "'" + d + "'" ; })
+      .html(function(d,i){return d})
+      .attr('href','#')
+      // set global variable
+      // .append('li')
 
   })
 
