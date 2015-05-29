@@ -36,8 +36,7 @@
                 <li><a href="#" onclick="gmt_name = 'kea';    ">KEA</a></li>
               </ul>
             </li>
-          
-
+        
           </ul>
         </div> 
       </div>
@@ -81,6 +80,15 @@
   <script src='./static/js/click_functions.js'></script>
   <script src='./static/js/toggle_switch.js'></script>
   <script src='./static/js/enrich.js'></script>
+
+  <script>
+  console.log('make jquery get request')
+
+  d3.json('./static/enrichr_gmt_data/enrichr_gmts.json', function(data){
+    console.log(data)
+  })
+
+  </script>
 
 </body>
 </html>

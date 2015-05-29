@@ -1,5 +1,5 @@
 def main():
-	import cookielib, poster, urllib2, json
+	import cookielib, poster, urllib2, json, json_scripts
 
 	# make a get request to get the gmt names and meta data from Enrichr
 	x = urllib2.urlopen('http://amp.pharm.mssm.edu/Enrichr/geneSetLibrary?mode=meta')
@@ -20,7 +20,12 @@ def main():
 
 			gmt_names.append(inst_gmt['libraryName'])
 
-	return gmt_names
+	inst_dict = {}
+	inst_dict['names'] = gmt_names
+
+	# save json with list of gmt names 
+	json_scripts.save_to_json(inst_dict,'gmt_names.json','noindent')
+
 
 # run main
 main()

@@ -6,27 +6,13 @@ def main( gmt_name, inst_genes, num_terms, dist_type):
 	# 
 	response_dict = enrichr_result(inst_genes, '', gmt_name)
 
-	# # p-value, adjusted pvalue, z-score, combined score, genes 
-	# # 1: Term 
-	# # 2: P-value
-	# # 3: Z-score
-	# # 4: Combined Score
-	# # 5: Genes
-	# for inst_elem in response_dict[0]:
-	#     print(inst_elem)
-	# print('\n')
-
-
-	# # calculate enrichment 
-	# enr = calc_tf_enrichment(gmt_name, inst_genes)
-
-	# print(enr[0].keys())
-	# array of dicts 
-	# pval
-	# pval_bon
-	# pval_bh
-	# name
-	# int_genes
+	# p-value, adjusted pvalue, z-score, combined score, genes 
+	# 1: Term 
+	# 2: P-value
+	# 3: Z-score
+	# 4: Combined Score
+	# 5: Genes
+	# 6: pval_bh
 
 	# transfer response_dict to enr structure 
 	#
@@ -46,8 +32,8 @@ def main( gmt_name, inst_genes, num_terms, dist_type):
 		inst_dict['combined_score'] = inst_enr[4]
 		# transfer int_genes 
 		inst_dict['int_genes'] = inst_enr[5]
-		# # adjusted pval
-		# inst_dict['pval_bh'] = inst_enr[6]
+		# adjusted pval
+		inst_dict['pval_bh'] = inst_enr[6]
 
 		# append dict
 		enr.append(inst_dict)
