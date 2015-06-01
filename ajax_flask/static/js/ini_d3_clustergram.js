@@ -6,6 +6,37 @@ function initialize_clustergram(network_data){
   row_nodes  = network_data.row_nodes ;
   inst_links = network_data.links; 
 
+  // clustergram size 
+  overall_size = 500 ;
+  clustergram_width  = overall_size;
+  clustergram_height = overall_size*(row_nodes.length/col_nodes.length);
+  svg_width = 800;
+  svg_height = 1500;
+  
+  // scaling functions 
+  // scale used to size rects 
+  x_scale = d3.scale.ordinal().rangeBands([0, clustergram_width]) ;
+  y_scale = d3.scale.ordinal().rangeBands([0, clustergram_height]); 
+
+  // Sort rows and columns 
+  orders = {
+    name:     d3.range(col_nodes.length).sort(function(a, b) { return d3.ascending( col_nodes[a].name, col_nodes[b].name); }),
+
+    rank_row: d3.range(col_nodes.length).sort(function(a, b) { return col_nodes[b].rank  - col_nodes[a].rank; }),
+    rank_col: d3.range(row_nodes.length).sort(function(a, b) { return row_nodes[b].rank  - row_nodes[a].rank; }),
+
+    clust_row: d3.range(col_nodes.length).sort(function(a, b) { return col_nodes[b].clust  - col_nodes[a].clust; }),
+    clust_col: d3.range(row_nodes.length).sort(function(a, b) { return row_nodes[b].clust  - row_nodes[a].clust; })
+    
+  };
+  
+  // Assign the default sort order for the columns 
+  x_scale.domain(orders.clust_row);
+  y_scale.domain(orders.clust_col);
+
+  // define border width 
+  border_width = x_scale.rangeBand()/16.66
+
   // font size controls 
   // scale default font size: input domain is the number of nodes
   min_node_num = 10;
@@ -35,7 +66,7 @@ function initialize_clustergram(network_data){
   // label width
   label_width = 100;
   // distance between labels and clustergram
-  label_margin = 5;
+  label_margin = 3*border_width;
 
   // this is the final rect 
   small_white_rect = label_width;
@@ -59,18 +90,6 @@ function initialize_clustergram(network_data){
   col_margin = { top:col_label_width - label_margin,  right:0, bottom:0, left:row_label_width };
   row_margin = { top:col_label_width, right:0, bottom:0, left:row_label_width - label_margin };
   margin     = { top:col_label_width, right:0, bottom:0, left:row_label_width };
-
-  // clustergram size 
-  overall_size = 500 ;
-  clustergram_width  = overall_size;
-  clustergram_height = overall_size*(row_nodes.length/col_nodes.length);
-  svg_width = 800;
-  svg_height = 1500;
-  
-  // scaling functions 
-  // scale used to size rects 
-  x_scale = d3.scale.ordinal().rangeBands([0, clustergram_width]) ;
-  y_scale = d3.scale.ordinal().rangeBands([0, clustergram_height]); 
 
   // set opacity scale 
   // Expression Only 
@@ -105,11 +124,8 @@ function initialize_clustergram(network_data){
     // dn
     tmp_enr = _.max( inst_links, function(d){ return Math.abs(d.enr_dn) } )
     max_enr_dn = Math.abs(tmp_enr['enr_dn'])
-    console.log(max_enr_up)
-    console.log(max_enr_dn)
     // global max 
     max_enr = _.max([max_enr_up, max_enr_dn])
-    console.log( 'max updn ' + max_enr)
     // set the opacity for enrichment 
     opacity_scale_enr = d3.scale.linear().domain([0, Math.abs(max_enr) ]).clamp(true) ;
 
@@ -120,7 +136,5 @@ function initialize_clustergram(network_data){
     // set the opacity for enrichment 
     opacity_scale_exp = d3.scale.linear().domain([0, Math.abs(max_value_exp) ]).clamp(true) ;
 
-    console.log('enr ' + max_enr)
-    console.log('exp ' + max_value_exp)
   };
 };

@@ -32,7 +32,7 @@ function make_d3_clustergram(network_data) {
     matrix[link.source][link.target].group = 1;
   });
 
-  // Sort single values 
+  // Sort rows and columns 
   orders = {
     name:     d3.range(col_nodes.length).sort(function(a, b) { return d3.ascending( col_nodes[a].name, col_nodes[b].name); }),
 
@@ -117,8 +117,8 @@ function make_d3_clustergram(network_data) {
     .attr("transform", function(d, i) { return "translate(0," + y_scale(i) + ")"; })
     .each( row_function );
 
-  // define border width 
-  border_width = x_scale.rangeBand()/16.66
+  // // define border width 
+  // border_width = x_scale.rangeBand()/16.66
   // offset click group column label 
   x_offset_click = x_scale.rangeBand()/2 + border_width
   // reduce width of rotated rects
