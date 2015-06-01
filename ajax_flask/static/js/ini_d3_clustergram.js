@@ -45,13 +45,14 @@ d3.json('./static/enrichr_gmt_data/enrichr_gmts.json', function(data){
   // all_categories
   all_categories = Object.keys(gmt_cat);
 
+  // manually define categories (manual order)
+  all_categories = ["Transcription", "Pathways", "Ontologies", "Disease/Drugs", "Cell Types", "Misc" ]
+
   // remove legacy from options 
   var index = all_categories.indexOf('Legacy');    // <-- Not supported in <IE9
   if (index !== -1) {
       all_categories.splice(index, 1);
   }
-
-  console.log(all_categories)
 
   // add dropdown elements with d3 
   d3.select('#dropdown_list')
@@ -88,6 +89,9 @@ d3.json('./static/enrichr_gmt_data/enrichr_gmts.json', function(data){
 
     // select button 
     d3.select('#'+all_categories[i].replace(' ','_').replace('/','_'))
+    .selectAll()
+    .data( gmt_cat[all_categories[i]] )
+    .enter()
     .append('div')
     .attr('data-content','')
     
@@ -99,20 +103,20 @@ d3.json('./static/enrichr_gmt_data/enrichr_gmts.json', function(data){
     .append('button')
     .attr('data-control','')
     .attr('class','h_medium btn')
-    .html('here')
-
+    .html(function(d){return d})
 
     
   }
 
+  // Initialize the collapsable menu after everything has been made by d3
 
-  $(document).ready(function() {
-  $('#gmt_menu [data-accordion]').accordion();
-  });
+  // $(document).ready(function() {
+  // $('#gmt_menu [data-accordion]').accordion();
+  // });
 
   $(document).ready(function() {
   $('#gmt_menu [data-accordion]').accordion({
-  transitionSpeed: 300, // Transition speed on miliseconds.
+  transitionSpeed: 800, // Transition speed on miliseconds.
   transitionEasing: 'ease', // CSS value for easing
   controlElement: '[data-control]', // CSS selector for the element acting as a button inside accordions.
   contentElement: '[data-content]', // CSS selector for the element containing hide/show content.
