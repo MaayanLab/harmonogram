@@ -154,7 +154,12 @@ function make_d3_clustergram(network_data) {
   col_label_click
     .append('rect')
     // column is rotated - effectively width and height are switched
-    .attr('width', function(d,i) { return bar_scale_col( d.nl_pval ); })
+    .attr('width', function(d,i) { 
+      console.log( 'appending enrichment bars'  )
+      console.log( d.nl_pval  )
+      console.log( bar_scale_col( d.nl_pval ) )
+      return bar_scale_col( d.nl_pval ); 
+    })
     // rotate labels - reduce width if rotating
     .attr('height', x_scale.rangeBand() - reduce_rect_width)
     .attr('fill', 'red')

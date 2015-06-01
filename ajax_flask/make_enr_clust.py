@@ -47,44 +47,6 @@ def main( gmt_name, inst_genes, num_terms, dist_type):
 
 	return d3_json
 
-# transcription factor enrichment 
-def calc_tf_enrichment(gmt_name, inst_gl):
-	import calc_enrichment_gl_gmt
-	import os
-
-
-	# import chea gmt
-	gmt = {} 
-
-	# print('loading gmt')
-
-	# defaule 
-	filename = 'ajax_flask/enz_and_tf_lists_gmts/TF/tf_int.gmt'
-
-	if gmt_name == 'tf_int':
-		filename = 'ajax_flask/enz_and_tf_lists_gmts/TF/tf_int.gmt'
-
-	elif gmt_name == 'chea':
-		filename = 'ajax_flask/enz_and_tf_lists_gmts/TF/ChEA.gmt' 
-
-	elif gmt_name == 'kea':
-		filename = 'ajax_flask/enz_and_tf_lists_gmts/KIN/kinase_substrate.gmt' 
-
-	# use the intersection tf gmt: tf_inf.gmt, not ChEA.gmt
-	gmt = calc_enrichment_gl_gmt.load_gmt(filename)
-
-	# gmt['chea'] = calc_enrichment_gl_gmt.load_gmt()
-	# gmt['chea'] = calc_enrichment_gl_gmt.load_gmt('ajax_flask/enz_and_tf_lists_gmts/PP/phosphatase_substrate_GMT.txt')
-	# gmt['chea'] = calc_enrichment_gl_gmt.load_gmt('ajax_flask/enz_and_tf_lists_gmts/Phosphatase_Substrates_from_DEPOD.txt')
-
-	# initialize enrichment data 
-	enr = {}
-
-	# calculate enrichment
-	enr = calc_enrichment_gl_gmt.calc( inst_gl, gmt )
-
-	return enr
-
 # make clustergram
 def make_enrichment_clustergram(enr, num_terms, dist_type):
 	import d3_clustergram
@@ -99,7 +61,6 @@ def make_enrichment_clustergram(enr, num_terms, dist_type):
 	d3_json = d3_clustergram.d3_clust_single_value( nodes, clust_order, data_mat )
 
 	return d3_json
-
 
 def enrichr_result(genes, meta='', gmt=''):
 	import cookielib, poster, urllib2, json
@@ -122,7 +83,8 @@ def enrichr_result(genes, meta='', gmt=''):
 
 	# wait for request 
 	resp = urllib2.urlopen(request)
-	print(resp.read())
+	# print(resp.read())
+	time.sleep(2)
 
 	# alternate wait for response
 	# try:

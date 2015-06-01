@@ -1,6 +1,7 @@
 
 // initialize gmt 
-gmt_name = 'ChEA'
+// gmt_name = 'ChEA'
+gmt_name = 'KEA'
 
 
 // request clustergram 

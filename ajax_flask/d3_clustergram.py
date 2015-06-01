@@ -44,11 +44,15 @@ def d3_clust_single_value(nodes, clust_order, mat):
 			# scale value by largest 
 			row_value = clust_order['nl_pval']['row'][i] / max_row_value
 			col_value = clust_order['nl_pval']['col'][j] / max_col_value
+
 			# take the mean of the two values times the binary mat[i,j]
 			inst_value = ( row_value + col_value )/ 2 * mat[i,j] 
 			inst_dict['value'] = inst_value 
-			inst_dict['dn'] = mat[i,j]
-			inst_dict['merge'] = mat[i,j]
+
+
+			# inst_dict['dn'] = mat[i,j]
+			# inst_dict['merge'] = mat[i,j]
+
 			d3_json['links'].append( inst_dict )
 
 	return d3_json
@@ -152,12 +156,15 @@ def cluster_row_and_column( nodes, data_mat, dist_type, enr ):
 		# 
 		clust_order['pval_bh']['col'].append( inst_dict['combined_score'] )
 
-		# gather nl_pval 
+		# # gather nl_pval 
 		# clust_order['nl_pval']['col'].append( -np.log2(inst_dict['pval_bh']) )
-		# use combined score instead 
-		#
-		clust_order['nl_pval']['col'].append( inst_dict['combined_score'] )
 
+		# use combined score instead 
+		# the combined score can be negative if the zscore is positive 
+		if inst_dict['combined_score'] < 0:
+			clust_order['nl_pval']['col'].append( 0 )
+		else: 
+			clust_order['nl_pval']['col'].append( inst_dict['combined_score'] )
 
 	# print( clust_order['nl_pval']['col'] )
 
@@ -434,7 +441,7 @@ def convert_enr_to_nodes_mat(enr, num_terms):
 	# # the cols are the enriched terms 
 	# all_col = [d['name'] for d in enr]
 
-	# only include the top 20 enriched terms
+	# gather all enriched terms 
 	all_col = []
 	for i in range(num_terms):
 		all_col.append(enr[i]['name'])
@@ -449,9 +456,6 @@ def convert_enr_to_nodes_mat(enr, num_terms):
 
 		# load inst_enr dict from the list of dicts, enr
 		inst_enr = enr[i]
-
-		# # check if terms is significantly enriched 
-		# if inst_enr['pval_bh'] < 0.01: 
 
 		# extend genes to all_row
 		all_row.extend( inst_enr['int_genes'] )
