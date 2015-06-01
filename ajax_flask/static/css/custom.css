@@ -411,3 +411,36 @@ li{
 #viz_col{
 	width:800px;
 }
+
+
+.h_top{
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-size:12px;
+  padding-left:10px;
+  width:245px;
+  text-align: left; 
+  background: #8C8C8C;
+}
+
+.h_medium{
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-size:12px;
+  padding-left:30px;
+  width:245px;
+  text-align: left; 
+  background: #BABABA;
+}
+
+.h_disease{
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-size:12px;
+  padding-left:40px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-right: 5px;
+  width:245px;
+  text-align: left;
+  background: #31B94D;
+  opacity: 0.7;
+  color: white;
+}

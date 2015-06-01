@@ -66,7 +66,7 @@ function initialize_clustergram(network_data){
   // label width
   label_width = 100;
   // distance between labels and clustergram
-  label_margin = 3*border_width;
+  label_margin = 2*border_width;
 
   // this is the final rect 
   small_white_rect = label_width;
