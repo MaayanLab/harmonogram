@@ -1,7 +1,7 @@
 
 // initialize gmt 
-// gmt_name = 'ChEA'
-gmt_name = 'KEA'
+gmt_name = 'ChEA'
+// gmt_name = 'KEA'
 
 
 // request clustergram 
@@ -18,7 +18,7 @@ $( "#searchForm" ).submit( function( event ) {
   var url = $form.attr( "action" );
 
   // number of enriched terms 
-  num_terms = 50; 
+  num_terms = 30; 
 
   // manually set url
   // url = '/clustergram_flask/'
