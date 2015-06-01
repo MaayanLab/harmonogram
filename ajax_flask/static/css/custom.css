@@ -413,6 +413,23 @@ li{
 }
 
 
+/** {
+  border-radius: : 0 !important ;
+}*/
+
+#title_nosology_list{
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-size:14px;
+  color:white;
+  font-weight: bold;
+  padding-top:12px;
+  padding-bottom:12px;
+  padding-left:10px;
+  width:245px;
+  text-align: left; 
+  background: #333333;  
+}
+
 .h_top{
   font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
   font-size:12px;
@@ -420,6 +437,7 @@ li{
   width:245px;
   text-align: left; 
   background: #8C8C8C;
+  border-radius: 0;
 }
 
 .h_medium{
