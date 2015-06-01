@@ -54,16 +54,7 @@ d3.json('./static/enrichr_gmt_data/enrichr_gmts.json', function(data){
       all_categories.splice(index, 1);
   }
 
-  // add dropdown elements with d3 
-  d3.select('#dropdown_list')
-    .selectAll()
-    .data(gmt_names)
-    .enter()
-    .append('li')
-    .append('a')
-    .attr('onclick', function(d,i){ return "gmt_name = " + "'" + d + "'" ; })
-    .html(function(d,i){return d})
-    .attr('href','#')
+
 
   // construct collapsable menu from gmts 
   gmt_buttons = d3.select('#gmt_menu')
