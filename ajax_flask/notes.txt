@@ -145,12 +145,15 @@ To Do Clustergram visualization
 	Enrichr returns pval, z-score, and combined score. I'm not sure if the combined score is calculated with the regular or adjusted pval. It also seems that inputting the exaple list from Enrichr results in an error. 
 
 	Avi wants me to add 
+		0. figure out why some tiles are negative (KEA with defaule gene list)
 		1. Add a counter for the number of lists that have been processed
 			need to set up mongodb database
 		2. add multiple gmt files in the same enrichment, for example, ENCODE, ChEA, and Epigenomics Roadmap. Each should be in a different color but they should be mixed. 
 		3. you should be able to select which gmt files to include and allow a maximum of three
-		4. the cluster option should be the defaule, and change the colors on the toggle switch
+		4. change the colors on the toggle switch
 		5. The user should have a way to see the pvalue and download the results 
+		6. functionalize the y offset on the rows 
+		-. the cluster option should be the defaule
 
 	Avi wants me to let him know when I have most of the changes implemented and show him a new version. 
 
@@ -161,3 +164,5 @@ To Do Clustergram visualization
 	Obtain all of the gene set libraries 
 
 		http://amp.pharm.mssm.edu/Enrichr/geneSetLibrary?mode=meta
+
+	As of 5-29-2015, I can run the tool on all gene set libraries in Enrichr. 

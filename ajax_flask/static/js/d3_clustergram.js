@@ -130,11 +130,13 @@ function make_d3_clustergram(network_data) {
     .attr("class", "col_label_text")
     .attr("transform", function(d, i) { return "translate(" + x_scale(i) + ") rotate(-90)"; })
 
+  x_offset_click = x_scale.rangeBand()/2 + 1
   col_label_click = col_label_obj
     // append new group for rect and label (not white lines)
     .append('g')
     .attr('class','col_label_click')
-    // .attr('transform', 'translate(10,'+x_scale.rangeBand()/2+') rotate(45)')
+    // rotate column labels 
+    .attr('transform', 'translate(8,'+ x_offset_click +') rotate(45)')
     .on('click', reorder_click_col );
 
   // add separating vertical line, below the labels 
@@ -158,7 +160,8 @@ function make_d3_clustergram(network_data) {
     .append('rect')
     // column is rotated - effectively width and height are switched
     .attr('width', function(d,i) { return bar_scale_col( d.nl_pval ); })
-    .attr('height', x_scale.rangeBand() - 1)
+    // rotate labels - reduce width if rotating: increase subtraction from 1 to 5
+    .attr('height', x_scale.rangeBand() - 6)
     .attr('fill', 'red')
     .attr('opacity', 0.5)
     .attr('transform', function(d, i) { return "translate(0,0)"; });
@@ -173,11 +176,29 @@ function make_d3_clustergram(network_data) {
     .append("text")
     .attr("x", 0)
     .attr("y", x_scale.rangeBand() / 2)
-    .attr("dy", ".32em")
+    // .attr("dy", ".32em")
     .attr("text-anchor", "start")
     .attr('full_name',function(d) { return d.name } )
     .style('font-size',default_fs+'px')
     .text(function(d, i) { return d.name.split('_')[0]; });
+
+
+  // add triangle under rotated labels
+  col_label_click
+    .append('path')
+    // .style('stroke','black')
+    .style('stroke-width',0)
+    .attr('d', function(d) { 
+        // x and y are flipped since its rotated 
+        start_x = 0;
+        final_x =  x_scale.rangeBand() - 6 ;
+        start_y = -(x_scale.rangeBand() - 6 + 1) ;
+        final_y =  -1;
+        output_string = 'M -1,0 L ' + start_y + ',' + start_x + ', L ' + final_y + ','+final_x+' Z';
+        console.log(output_string)
+        return output_string;
+       })
+    .attr('fill','#eee')
 
   // generate and position the row labels
   var row_label_obj = d3.select('#row_labels')
