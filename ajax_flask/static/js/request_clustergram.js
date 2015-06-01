@@ -53,7 +53,7 @@ $( "#searchForm" ).submit( function( event ) {
 
  
     // change the title of the terms 
-    d3.select('#col_title').text( 'Enriched ' + gmt_name.replace('_',' ') + ' Terms')
+    d3.select('#col_title').text( 'Enriched ' + gmt_name.replace( /_/g, ' ') + ' Terms')
 
     // turn off the wait sign 
     $.unblockUI();

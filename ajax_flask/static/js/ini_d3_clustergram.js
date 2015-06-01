@@ -23,12 +23,6 @@ d3.json('./static/enrichr_gmt_data/enrichr_gmts.json', function(data){
       // get category names 
       category_names.push( gmt_data[i].category )
 
-      // // generate the dicrionary 
-      // gmt_cat.push({
-      //   key: gmt_data[i].libraryName,
-      //   value: gmt_data[i].category
-      // })
-
       // generate the dictionary 
       if (gmt_data[i].category in gmt_cat){
         gmt_cat[gmt_data[i].category].push(gmt_data[i].libraryName)
@@ -95,8 +89,7 @@ d3.json('./static/enrichr_gmt_data/enrichr_gmts.json', function(data){
     .attr('data-control','')
     .attr('class','h_medium btn')
     .attr('onclick', function(d,i){ return "gmt_name = " + "'" + d + "'" ; })
-    .html(function(d){return d})
-
+    .html(function(d){return d.replace( /_/g, ' ')})
     
   }
 
