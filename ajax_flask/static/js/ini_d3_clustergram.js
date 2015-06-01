@@ -42,52 +42,93 @@ d3.json('./static/enrichr_gmt_data/enrichr_gmts.json', function(data){
     }
   }
 
-  //
+  // all_categories
+  all_categories = Object.keys(gmt_cat);
+
+  // remove legacy from options 
+  var index = all_categories.indexOf('Legacy');    // <-- Not supported in <IE9
+  if (index !== -1) {
+      all_categories.splice(index, 1);
+  }
+
+  console.log(all_categories)
+
+  // add dropdown elements with d3 
+  d3.select('#dropdown_list')
+    .selectAll()
+    .data(gmt_names)
+    .enter()
+    .append('li')
+    .append('a')
+    .attr('onclick', function(d,i){ return "gmt_name = " + "'" + d + "'" ; })
+    .html(function(d,i){return d})
+    .attr('href','#')
+
+  // construct collapsable menu from gmts 
+  gmt_buttons = d3.select('#gmt_menu')
+    .selectAll()
+    .data(all_categories)
+    .enter()
+
+    // selection 
+    .append('section')
+    .attr('data-accordion','')
+    .attr('id',function(d){return d.replace(' ','_').replace('/','_') })
+
+    // button 
+    .append('button')
+    .attr('data-control','')
+    .attr('class','h_top btn')
+    .html(function(d){return d})
+
+  // fill in lower level 
+  // 
+  // loop through categories 
+  for (i=0; i<all_categories.length; i++){
+
+    // select button 
+    d3.select('#'+all_categories[i].replace(' ','_').replace('/','_'))
+    .append('div')
+    .attr('data-content','')
+    
+    // append atricle
+    .append('article')
+    .attr('data-accordion','')
+
+    // append button
+    .append('button')
+    .attr('data-control','')
+    .attr('class','h_medium btn')
+    .html('here')
 
 
-  // // add dropdown elements with d3 
-  // d3.select('#dropdown_list')
-  //   .selectAll()
-  //   .data(gmt_names)
-  //   .enter()
-  //   .append('li')
-  //   .append('a')
-  //   .attr('onclick', function(d,i){ return "gmt_name = " + "'" + d + "'" ; })
-  //   .html(function(d,i){return d})
-  //   .attr('href','#')
-
-  // // construct collapsable menu from gmts 
-  // gmt_buttons = d3.select('#gmt_menu')
-  //   .selectAll()
-  //   .data(gmt_names)
-  //   .enter()
-
-  //   // selection 
-  //   .append('section')
-  //   .attr('data-accordion','')
-
-  //   // button 
-  //   .append('button')
-  //   .attr('data-control','')
-  //   .attr('class','h_top btn')
-  //   .html(function(d,i){return d})
-
-  //   // data content div 
-  //   .append('div')
-  //   .attr('data-content','')
-
-  //   // append article 
-  //   .append('article')
-  //   .attr('attr','data-accordion')
-
-  //   // append button 
-  //   .append('button')
-  //   .attr('data-control','')
-  //   .attr('class','h_medium btn')
-  //   .html('something')
+    
+  }
 
 
-  })
+  $(document).ready(function() {
+  $('#gmt_menu [data-accordion]').accordion();
+  });
+
+  $(document).ready(function() {
+  $('#gmt_menu [data-accordion]').accordion({
+  transitionSpeed: 300, // Transition speed on miliseconds.
+  transitionEasing: 'ease', // CSS value for easing
+  controlElement: '[data-control]', // CSS selector for the element acting as a button inside accordions.
+  contentElement: '[data-content]', // CSS selector for the element containing hide/show content.
+  groupElement: '[data-accordion-group]', // CSS selector for a parent element containing a group of accordions.
+  singleOpen: true // Opens a single accordion a time. If false, multiple accordions can be open a time.
+  });
+  });
+
+
+})
+
+
+
+
+
+
 
 // initialize clustergram: size, scales, etc. 
 function initialize_clustergram(network_data){
