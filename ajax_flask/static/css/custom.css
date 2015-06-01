@@ -400,7 +400,7 @@ li{
 #main_svg{
 	position:fixed;
 	top:100px;
-	left:260px;
+	left:280px;
   font-size:8.0px;
  }
 
@@ -447,18 +447,9 @@ li{
   width:245px;
   text-align: left; 
   background: #BABABA;
+  border-radius: 0;
 }
 
-.h_disease{
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-size:12px;
-  padding-left:40px;
-  padding-top: 6px;
-  padding-bottom: 6px;
-  padding-right: 5px;
-  width:245px;
-  text-align: left;
-  background: #31B94D;
-  opacity: 0.7;
-  color: white;
+#gmt_menu{
+  margin-top: 10px
 }

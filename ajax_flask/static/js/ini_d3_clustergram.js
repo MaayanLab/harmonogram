@@ -1,3 +1,94 @@
+// initialize dropdown 
+console.log('make jquery get request')
+
+d3.json('./static/enrichr_gmt_data/enrichr_gmts.json', function(data){
+
+  gmt_data = data['libraries']
+
+  // generate array of gene names 
+  gmt_names = []
+  // gather category names 
+  category_names = []
+
+  // generate a gmt category object 
+  gmt_cat = {}
+
+  // gather gmt names 
+  for (i = 0; i < gmt_data.length; i++){
+    // console.log( gmt_data[i].isActive )
+    // only keep active gmts 
+    if (gmt_data[i].isActive == true){ 
+      // get gmt names 
+      gmt_names.push( gmt_data[i].libraryName );
+      // get category names 
+      category_names.push( gmt_data[i].category )
+
+      // // generate the dicrionary 
+      // gmt_cat.push({
+      //   key: gmt_data[i].libraryName,
+      //   value: gmt_data[i].category
+      // })
+
+      // generate the dictionary 
+      if (gmt_data[i].category in gmt_cat){
+        gmt_cat[gmt_data[i].category].push(gmt_data[i].libraryName)
+      }
+      else{
+        // set the key value pair 
+        gmt_cat[gmt_data[i].category] = []
+        gmt_cat[gmt_data[i].category].push(gmt_data[i].libraryName)
+      }
+
+    }
+  }
+
+  //
+
+
+  // // add dropdown elements with d3 
+  // d3.select('#dropdown_list')
+  //   .selectAll()
+  //   .data(gmt_names)
+  //   .enter()
+  //   .append('li')
+  //   .append('a')
+  //   .attr('onclick', function(d,i){ return "gmt_name = " + "'" + d + "'" ; })
+  //   .html(function(d,i){return d})
+  //   .attr('href','#')
+
+  // // construct collapsable menu from gmts 
+  // gmt_buttons = d3.select('#gmt_menu')
+  //   .selectAll()
+  //   .data(gmt_names)
+  //   .enter()
+
+  //   // selection 
+  //   .append('section')
+  //   .attr('data-accordion','')
+
+  //   // button 
+  //   .append('button')
+  //   .attr('data-control','')
+  //   .attr('class','h_top btn')
+  //   .html(function(d,i){return d})
+
+  //   // data content div 
+  //   .append('div')
+  //   .attr('data-content','')
+
+  //   // append article 
+  //   .append('article')
+  //   .attr('attr','data-accordion')
+
+  //   // append button 
+  //   .append('button')
+  //   .attr('data-control','')
+  //   .attr('class','h_medium btn')
+  //   .html('something')
+
+
+  })
+
 // initialize clustergram: size, scales, etc. 
 function initialize_clustergram(network_data){
   
