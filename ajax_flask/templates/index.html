@@ -77,13 +77,11 @@
   <script src='./static/js/d3_clustergram.js'></script>
   <script src='./static/js/click_functions.js'></script>
   <script src='./static/js/toggle_switch.js'></script>
-  <script src='./static/js/enrich.js'></script>
 
   <script>
   console.log('make jquery get request')
 
   d3.json('./static/enrichr_gmt_data/enrichr_gmts.json', function(data){
-    console.log(data)
 
     gmt_data = data['libraries']
 
@@ -113,9 +111,6 @@
       .attr('onclick', function(d,i){ return "gmt_name = " + "'" + d + "'" ; })
       .html(function(d,i){return d})
       .attr('href','#')
-      // set global variable
-      // .append('li')
-
   })
 
   </script>

@@ -97,3 +97,5 @@ def enrichr_result(genes, meta='', gmt=''):
 	response = x.read()
 	response_dict = json.loads(response)
 	return response_dict[gmt]
+
+	

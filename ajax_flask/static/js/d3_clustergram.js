@@ -129,7 +129,7 @@ function make_d3_clustergram(network_data) {
     .append('g')
     .attr('class','col_label_click')
     // rotate column labels 
-    .attr('transform', 'translate(8,'+ x_offset_click +') rotate(45)')
+    .attr('transform', 'translate('+x_scale.rangeBand()/2+','+ x_offset_click +') rotate(45)')
     .on('click', reorder_click_col );
 
   // add separating vertical line, below the labels 
@@ -148,16 +148,13 @@ function make_d3_clustergram(network_data) {
   // the enrichment bar should be 3/4ths of the height of the column labels 
   bar_scale_col = d3.scale.linear()
     .domain([0, enr_max])
-    .range([0, col_label_width * 0.75 ]); 
+    .range([0, col_label_width * 0.90 ]); 
 
   // append enrichment bars  
   col_label_click
     .append('rect')
     // column is rotated - effectively width and height are switched
     .attr('width', function(d,i) { 
-      console.log( 'appending enrichment bars'  )
-      console.log( d.nl_pval  )
-      console.log( bar_scale_col( d.nl_pval ) )
       return bar_scale_col( d.nl_pval ); 
     })
     // rotate labels - reduce width if rotating
@@ -181,7 +178,7 @@ function make_d3_clustergram(network_data) {
     .attr("text-anchor", "start")
     .attr('full_name',function(d) { return d.name } )
     .style('font-size',default_fs+'px')
-    .text(function(d, i) { return d.name.split('_')[0]; });
+    .text(function(d, i) { return d.name; });
 
 
   // add triangle under rotated labels

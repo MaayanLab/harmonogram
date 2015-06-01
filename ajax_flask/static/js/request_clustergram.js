@@ -18,7 +18,7 @@ $( "#searchForm" ).submit( function( event ) {
   var url = $form.attr( "action" );
 
   // number of enriched terms 
-  num_terms = 30; 
+  num_terms = 50; 
 
   // manually set url
   // url = '/clustergram_flask/'
