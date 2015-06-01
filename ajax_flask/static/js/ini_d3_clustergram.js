@@ -103,6 +103,7 @@ d3.json('./static/enrichr_gmt_data/enrichr_gmts.json', function(data){
     .append('button')
     .attr('data-control','')
     .attr('class','h_medium btn')
+    .attr('onclick', function(d,i){ return "gmt_name = " + "'" + d + "'" ; })
     .html(function(d){return d})
 
     
