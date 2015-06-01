@@ -117,9 +117,17 @@ function make_d3_clustergram(network_data) {
     .attr("transform", function(d, i) { return "translate(0," + y_scale(i) + ")"; })
     .each( row_function );
 
+  // define border width 
+  border_width = x_scale.rangeBand()/16.66
+  // offset click group column label 
+  x_offset_click = x_scale.rangeBand()/2 + border_width
+  // reduce width of rotated rects
+  reduce_rect_width = x_scale.rangeBand()* 0.36 
+
   // horizontal line
   row_obj.append('line')
     .attr('x2', 20*clustergram_width)
+    .attr('stroke-width', border_width+'px')
 
   // select all columns 
   col_label_obj = d3.select('#col_labels')
@@ -130,7 +138,6 @@ function make_d3_clustergram(network_data) {
     .attr("class", "col_label_text")
     .attr("transform", function(d, i) { return "translate(" + x_scale(i) + ") rotate(-90)"; })
 
-  x_offset_click = x_scale.rangeBand()/2 + 1
   col_label_click = col_label_obj
     // append new group for rect and label (not white lines)
     .append('g')
@@ -144,7 +151,9 @@ function make_d3_clustergram(network_data) {
   d3.select('#col_labels')
     .selectAll('.col_label_text')
     .append('line')
+    .attr('x1', 0)
     .attr('x2', -20*clustergram_height)
+    .attr('stroke-width', border_width+'px')
 
 
   // get the max abs nl_pval (find obj and get nl_pval)
@@ -160,8 +169,8 @@ function make_d3_clustergram(network_data) {
     .append('rect')
     // column is rotated - effectively width and height are switched
     .attr('width', function(d,i) { return bar_scale_col( d.nl_pval ); })
-    // rotate labels - reduce width if rotating: increase subtraction from 1 to 5
-    .attr('height', x_scale.rangeBand() - 6)
+    // rotate labels - reduce width if rotating
+    .attr('height', x_scale.rangeBand() - reduce_rect_width)
     .attr('fill', 'red')
     .attr('opacity', 0.5)
     .attr('transform', function(d, i) { return "translate(0,0)"; });
@@ -176,6 +185,7 @@ function make_d3_clustergram(network_data) {
     .append("text")
     .attr("x", 0)
     .attr("y", x_scale.rangeBand() / 2)
+    .attr('dx',2*border_width)
     // .attr("dy", ".32em")
     .attr("text-anchor", "start")
     .attr('full_name',function(d) { return d.name } )
@@ -190,11 +200,12 @@ function make_d3_clustergram(network_data) {
     .style('stroke-width',0)
     .attr('d', function(d) { 
         // x and y are flipped since its rotated 
-        start_x = 0;
-        final_x =  x_scale.rangeBand() - 6 ;
-        start_y = -(x_scale.rangeBand() - 6 + 1) ;
-        final_y =  -1;
-        output_string = 'M -1,0 L ' + start_y + ',' + start_x + ', L ' + final_y + ','+final_x+' Z';
+        origin_y = - border_width
+        start_x  = 0;
+        final_x  =  x_scale.rangeBand() - reduce_rect_width ;
+        start_y  = -(x_scale.rangeBand() - reduce_rect_width + border_width) ;
+        final_y  =  -border_width;
+        output_string = 'M '+origin_y+',0 L ' + start_y + ',' + start_x + ', L ' + final_y + ','+final_x+' Z';
         console.log(output_string)
         return output_string;
        })
