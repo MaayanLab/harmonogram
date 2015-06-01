@@ -51,21 +51,9 @@ $( "#searchForm" ).submit( function( event ) {
     // make d3 visualization
     make_d3_clustergram(network_data)
 
-    
-    // change the title of the enriched terms 
-    if (gmt_name == 'chea'){
-
-       d3.select('#col_title').text( 'Enriched ChEA Transcription Factors' )
-
-    }
-    else if (gmt_name == 'kea'){
-
-       d3.select('#col_title').text( 'Enriched Kinases' )
-    }
-    else if (gmt_name == 'tf_int'){
-      
-       d3.select('#col_title').text( 'Enriched Transcription Factors' )
-    }
+ 
+    // change the title of the terms 
+    d3.select('#col_title').text( 'Enriched ' + gmt_name.replace('_',' ') + ' Terms')
 
     // turn off the wait sign 
     $.unblockUI();
