@@ -32,21 +32,7 @@ function make_d3_clustergram(network_data) {
     matrix[link.source][link.target].group = 1;
   });
 
-  // Sort rows and columns 
-  orders = {
-    name:     d3.range(col_nodes.length).sort(function(a, b) { return d3.ascending( col_nodes[a].name, col_nodes[b].name); }),
-
-    rank_row: d3.range(col_nodes.length).sort(function(a, b) { return col_nodes[b].rank  - col_nodes[a].rank; }),
-    rank_col: d3.range(row_nodes.length).sort(function(a, b) { return row_nodes[b].rank  - row_nodes[a].rank; }),
-
-    clust_row: d3.range(col_nodes.length).sort(function(a, b) { return col_nodes[b].clust  - col_nodes[a].clust; }),
-    clust_col: d3.range(row_nodes.length).sort(function(a, b) { return row_nodes[b].clust  - row_nodes[a].clust; })
-    
-  };
   
-  // Assign the default sort order for the columns 
-  x_scale.domain(orders.clust_row);
-  y_scale.domain(orders.clust_col);
 
   // initailize svg_obj 
   svg_obj = d3.select("#svg_div")
@@ -206,7 +192,6 @@ function make_d3_clustergram(network_data) {
         start_y  = -(x_scale.rangeBand() - reduce_rect_width + border_width) ;
         final_y  =  -border_width;
         output_string = 'M '+origin_y+',0 L ' + start_y + ',' + start_x + ', L ' + final_y + ','+final_x+' Z';
-        console.log(output_string)
         return output_string;
        })
     .attr('fill','#eee')

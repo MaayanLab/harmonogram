@@ -166,3 +166,8 @@ To Do Clustergram visualization
 		http://amp.pharm.mssm.edu/Enrichr/geneSetLibrary?mode=meta
 
 	As of 5-29-2015, I can run the tool on all gene set libraries in Enrichr. 
+
+Fixing Visualization Bugs
+	With defaut gene list, I'm getting errors with 
+		KEA and Biocarta
+	that say I have a negative rect width. I'm also getting blue tiles, which shouldn't be happening. I think that this is probably happrning because the code is expecting 30 enriched terms - the error only happens when the number of enriched terms is less than 30. 
