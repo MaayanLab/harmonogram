@@ -38,5 +38,24 @@ Mac specific
 	# build 
 	sudo docker build -t maayanlab/clustergram_flask:latest .
 
+	# view images 
+	docker images 
+
 	# run
 	docker run -it --rm -p 8087:80 clustergram_flask:latest
+
+	# get ip boot2docker ip 
+
+	# remove image
+	docker rmi <image id>
+
+
+# example 
+	
+	docker build -t maayanlab/enrichrgram:latest .
+
+	docker run -it --rm -p 8087:80 maayanlab/enrichrgram:latest 
+
+	docker rmi <image id> 
+
+	push corn normal pw 

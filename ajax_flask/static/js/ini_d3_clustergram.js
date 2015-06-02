@@ -1,7 +1,7 @@
 // initialize dropdown 
 console.log('make jquery get request')
 
-d3.json('./static/enrichr_gmt_data/enrichr_gmts.json', function(data){
+d3.json('/static/enrichr_gmt_data/enrichr_gmts.json', function(data){
 
   gmt_data = data['libraries']
 

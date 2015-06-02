@@ -12,13 +12,13 @@ from logging.handlers import RotatingFileHandler
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/enrichrgram/")
 def index():
   print('Rendering index template')
   return render_template("index.html")
 
 # post request
-@app.route('/', methods=['GET','POST'])
+@app.route('/enrichrgram/', methods=['GET','POST'])
 def python_function():
   import flask 
   import make_enr_clust

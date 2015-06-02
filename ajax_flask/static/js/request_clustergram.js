@@ -21,9 +21,9 @@ $( "#searchForm" ).submit( function( event ) {
   num_terms = 30; 
 
   // manually set url
-  // url = '/clustergram_flask/'
-  // !!! temporarily change for local development 
-  url = '/'
+  url = '/enrichrgram/'
+  // // !!! temporarily change for local development 
+  // url = '/'
 
   // set up variable for the post request with gene list: inst_genes
   var posting = $.post( url, { genes: inst_genes, num_terms: num_terms, gmt_name: gmt_name } );
