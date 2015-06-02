@@ -145,29 +145,39 @@ To Do Clustergram visualization
 	Enrichr returns pval, z-score, and combined score. I'm not sure if the combined score is calculated with the regular or adjusted pval. It also seems that inputting the exaple list from Enrichr results in an error. 
 
 	Avi wants me to add 
-		0. figure out why some tiles are negative (KEA with defaule gene list)
 		1. Add a counter for the number of lists that have been processed
 			need to set up mongodb database
 		2. add multiple gmt files in the same enrichment, for example, ENCODE, ChEA, and Epigenomics Roadmap. Each should be in a different color but they should be mixed. 
 		3. you should be able to select which gmt files to include and allow a maximum of three
 		4. change the colors on the toggle switch
 		5. The user should have a way to see the pvalue and download the results 
-		6. functionalize the y offset on the rows 
+		6. Add example and clear buttons
+		7. 
+		-. functionalize the y offset on the rows and columns
+		-. figure out why some tiles are negative (KEA with defaule gene list)
 		-. the cluster option should be the defaule
 
-	Avi wants me to let him know when I have most of the changes implemented and show him a new version. 
+	6-1-2015
+		I have fixed most of hte bugs with the visualization. 
 
-	I should ask Matthew to get Enrichr to return the adjusted pvalues. 
+	5-31-2015: May Changes 
+		Avi wants me to let him know when I have most of the changes implemented and show him a new version. 
 
-	First, I'll finish getting the tool to get its enrichment results from the Enrihr API. 
+		I should ask Matthew to get Enrichr to return the adjusted pvalues. 
 
-	Obtain all of the gene set libraries 
+		First, I'll finish getting the tool to get its enrichment results from the Enrihr API. 
 
-		http://amp.pharm.mssm.edu/Enrichr/geneSetLibrary?mode=meta
+		Obtain all of the gene set libraries 
 
-	As of 5-29-2015, I can run the tool on all gene set libraries in Enrichr. 
+			http://amp.pharm.mssm.edu/Enrichr/geneSetLibrary?mode=meta
 
-Fixing Visualization Bugs
-	With defaut gene list, I'm getting errors with 
-		KEA and Biocarta
-	that say I have a negative rect width. I'm also getting blue tiles, which shouldn't be happening. I think that this is probably happrning because the code is expecting 30 enriched terms - the error only happens when the number of enriched terms is less than 30. 
+		As of 5-29-2015, I can run the tool on all gene set libraries in Enrichr. 
+
+		Fixing Visualization Bugs
+			With defaut gene list, I'm getting errors with 
+				KEA and Biocarta
+			that say I have a negative rect width. I'm also getting blue tiles, which shouldn't be happening. I think that this is probably happrning because the code is expecting 30 enriched terms - the error only happens when the number of enriched terms is less than 30. 
+
+
+
+
