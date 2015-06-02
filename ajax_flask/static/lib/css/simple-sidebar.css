@@ -40,7 +40,6 @@
 #page-content-wrapper {
     width: 100%;
     position: absolute;
-    padding: 15px;
 }
 
 #wrapper.toggled #page-content-wrapper {
@@ -93,7 +92,7 @@
     background: none;
 }
 
-@media(min-width:768px) {
+/*@media(min-width:768px) {*/
     #wrapper {
         padding-left: 275px;
     }
@@ -111,7 +110,6 @@
     }
 
     #page-content-wrapper {
-        /*padding: 20px;*/
         position: relative;
     }
 
@@ -119,4 +117,4 @@
         position: relative;
         margin-right: 0;
     }
-}
+/*}*/

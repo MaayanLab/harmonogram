@@ -52,10 +52,12 @@ body {
 }
 
 h1 {
-  font-size: 64px;
+  font-size: 50px;
   font-weight: 300;
   /*letter-spacing: -2px;*/
-  margin: .3em 0 .1em 0;
+  /*margin: .3em 0 .1em 0;*/
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
 h2 {
@@ -452,7 +454,7 @@ li{
   padding-left:30px;
   width:255px;
   text-align: left; 
-  /*background:h#BABABA;*/
+  /*background: #BABABA;*/
   border-radius: 0;
 }
 
@@ -490,10 +492,15 @@ li{
   width:50%;
   margin:0 auto;
   text-align: center;
+  padding-top: 5px;
   padding-bottom: 5px;
 }
 
 .initial_paragraph{
   font-size: 20px;
-  width:00px;
+  width:600px;
+}
+
+#main_container{
+  margin-left: 30px;
 }
