@@ -50,7 +50,7 @@ Mac specific
 	docker rmi <image id>
 
 
-# example 
+# example building docker 
 	
 	docker build -t maayanlab/enrichrgram:latest .
 
@@ -59,3 +59,14 @@ Mac specific
 	docker rmi <image id> 
 
 	push corn normal pw 
+
+# deploy to marathon
+	use postman (the chrome extension)
+	use the example template json Matthew posted on Confluence 
+	send the post request
+
+	(the template has now been saved to postman)
+
+	--- there is a problem with the name enrichrgram, it is being routed to enrichr
+
+
