@@ -19,12 +19,14 @@ app = Flask(__name__, static_url_path='')
 
 ENTRY_POINT = '/enrichrgram'
 
-SERVER_ROOT = os.path.dirname(os.getcwd()) + '/enrichrgram/enrichrgram/'
+# SERVER_ROOT = os.path.dirname(os.getcwd()) + '/enrichrgram/enrichrgram' ## original 
+SERVER_ROOT = '/app/enrichrgram'
 
-@app.route(ENTRY_POINT + '/<path:path>')
+@app.route(ENTRY_POINT + '/<path:path>') ## original 
 # @crossdomain(origin='*')
 def send_static(path):
 
+  print('path and SERVER_ROOT')
   print(path)
   print(SERVER_ROOT)
   return send_from_directory(SERVER_ROOT, path)

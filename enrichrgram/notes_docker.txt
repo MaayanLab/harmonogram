@@ -58,7 +58,13 @@ Mac specific
 
 	docker rmi <image id> 
 
-	push corn normal pw 
+	# view docker image 
+		docker ps # see running processes, containers
+		docker exec -it <docker_container_id> bash
+
+
+	docker push maayanlab/enrichrgram:latest
+		<login> corn normal pw 
 
 # deploy to marathon
 	use postman (the chrome extension)

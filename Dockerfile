@@ -33,10 +33,8 @@ RUN pip install poster
 RUN apt-get -y install python-numpy python-scipy python-matplotlib 
 
 # add code
-RUN mkdir      /app
-ADD enrichrgram /app/enrichrgram
-ADD wsgi.py    /app/wsgi.py
-ADD boot.sh    /app/boot.sh
+ADD . /app
+
 
 # Build the port.
 EXPOSE 80
