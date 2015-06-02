@@ -43,30 +43,28 @@
       <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
 
-          <li class="sidebar-brand">
-            <a href="#">
-              Run Enrichrgram
-            </a>
-          </li>
+          <div class="sidebar-brand">
+              Run Enrichment Analysis
+          </div>
 
-          <li>
-            <a href="#">Input Genes</a>
+          <div id='sidebar_labels'>Input Genes</div>
+          <div id='sidebar_input_genes'>
             <form action="{{ url_for('python_function') }}" id="searchForm">
               <textarea  name="genes" placeholder='input genes' id='gene_input_box'></textarea>
               <button type="submit" id='submit_genes'>Submit</button>
             </form>
-          </li>
+          </div>
 
-          <li>
-            <a href="#">Switch Ordering</a>
+          <div id='sidebar_labels'>Switch Ordering</div>
+          <div id='sidebar_order_switch'>
             <input type="checkbox" name="my-checkbox" data-on-text="Cluster" data-off-text="Rank" id='rank_switch' checked>
-          </li>
+          </div>
 
-          <li>          
+          <div>          
             <section id="gmt_menu" data-accordion-group>
-              <div id='title_nosology_list'>Choose Libraries</div>
+              <div id='title_gmt_menu'>Choose Libraries</div>
             </section>
-          </li>
+          </div>
 
         </ul>
       </div>
@@ -79,9 +77,13 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-12">
+
             <h1>Enrichrgram</h1>
-            <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-            <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+
+            <p class='initial_paragraph'>Enrichrgram performs enrichment analysis on your set of genes using Enrichr and displays a clustergram of the results. Choose up to three gene set libraries for enrichment analysis. </p>
+
+
+
             <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Enrichment Menu</a>
           </div>
         </div>
