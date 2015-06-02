@@ -52,12 +52,12 @@ body {
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 45px;
   font-weight: 300;
   /*letter-spacing: -2px;*/
   /*margin: .3em 0 .1em 0;*/
   margin-top: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 20px;
 }
 
 h2 {
@@ -383,26 +383,26 @@ li{
 }
 
 #col_title{
-	/*position: fixed;*/
-	top:80px;
-	left: 450px;
-  font-size: 16px;
+  font-size: 22px;
   display: none;
+  margin-left:140px;
 }
 
 #row_title{
-	/*position: fixed;*/
-	top: 240px;
-	left:210px;
-  font-size:16px;
+  font-size:22px;
   display: none;
 	transform:rotate(-90deg	);
+  float:left;
+  margin-left: -68px;
+  margin-top: 300px;
 }
 
 #svg_div{
   position:fixed;
-  margin-top:30px;
+  margin-top:5px;
+  margin-left: 5px;
   /*position:fixed;*/
+  float:left;
 }
 
 #main_svg{
@@ -504,6 +504,7 @@ li{
 #main_container{
   margin-left: 30px;
   width:800px;
+  height:1200px;
 }
 
 #toggle_menu_button{

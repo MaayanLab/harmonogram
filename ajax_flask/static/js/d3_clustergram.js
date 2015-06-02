@@ -46,7 +46,8 @@ function make_d3_clustergram(network_data) {
   svg_obj = d3.select("#svg_div")
       .append("svg")
       .attr('id', 'main_svg')
-      .attr("width",  svg_width  + margin.left + margin.right)
+      // .attr("width",  svg_width  + margin.left + margin.right)
+      .attr("width", '1000px')
       .attr("height", svg_height + margin.top  + margin.bottom)
       .attr('border',1)
       .call( zoom ) 
@@ -62,7 +63,7 @@ function make_d3_clustergram(network_data) {
     .append('rect')
     .attr('fill', 'white')
     .attr('width', row_label_width+'px')
-    .attr('height', '1000px')
+    .attr('height', '3000px')
     .attr('class','white_bars');
 
   // col white rect 
@@ -70,7 +71,7 @@ function make_d3_clustergram(network_data) {
     .append('rect')
     .attr('fill', 'white')
     .attr('height', col_label_width+'px')
-    .attr('width', '1000px')
+    .attr('width', '3000px')
     .attr('class','white_bars');
 
   // column group
