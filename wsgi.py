@@ -1,1 +1,1 @@
-from ajax_flask.app import app as application
+from enrichrgram.app import app as application

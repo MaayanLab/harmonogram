@@ -34,7 +34,7 @@ RUN apt-get -y install python-numpy python-scipy python-matplotlib
 
 # add code
 RUN mkdir      /app
-ADD ajax_flask /app/ajax_flask
+ADD enrichrgram /app/enrichrgram
 ADD wsgi.py    /app/wsgi.py
 ADD boot.sh    /app/boot.sh
 
