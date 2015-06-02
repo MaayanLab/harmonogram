@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <title>Enrichrgram</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="./static/lib/css/bootstrap.min.css" rel="stylesheet">
@@ -39,67 +39,65 @@
 
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#">
-                        Run Enrichment
-                    </a>
-                </li>
-                <li>
-                    <a href="#">Input Genes</a>
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
 
-                    <form action="{{ url_for('python_function') }}" id="searchForm">
-                      <textarea  name="genes" placeholder='input genes' id='gene_input_box'></textarea>
-                      <button type="submit" id='submit_genes'>Submit</button>
-                    </form>
-                    
-                </li>
-                <li>
-                    <a href="#">Switch Ordering</a>
-                    <input type="checkbox" name="my-checkbox" data-on-text="Cluster" data-off-text="Rank" id='rank_switch' checked>
-                </li>
+          <li class="sidebar-brand">
+            <a href="#">
+              Run Enrichrgram
+            </a>
+          </li>
 
-                <li>
-                  
-                    <section id="gmt_menu" data-accordion-group>
-                      <div id='title_nosology_list'>Choose Libraries</div>
-                    </section>
-                
-                </li>
-            </ul>
+          <li>
+            <a href="#">Input Genes</a>
+            <form action="{{ url_for('python_function') }}" id="searchForm">
+              <textarea  name="genes" placeholder='input genes' id='gene_input_box'></textarea>
+              <button type="submit" id='submit_genes'>Submit</button>
+            </form>
+          </li>
+
+          <li>
+            <a href="#">Switch Ordering</a>
+            <input type="checkbox" name="my-checkbox" data-on-text="Cluster" data-off-text="Rank" id='rank_switch' checked>
+          </li>
+
+          <li>          
+            <section id="gmt_menu" data-accordion-group>
+              <div id='title_nosology_list'>Choose Libraries</div>
+            </section>
+          </li>
+
+        </ul>
+      </div>
+      <!-- end sidebar-wrapper -->
+
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+
+      <!-- Initial Content --> 
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
+            <h1>Enrichrgram</h1>
+            <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
+            <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Enrichment Menu</a>
+          </div>
         </div>
-        <!-- /#sidebar-wrapper -->
+      </div>
 
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Simple Sidebar</h1>
-                        <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Enrichment Menu</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /#page-content-wrapper -->
-
-       <!-- required -->
-
-
+      <!-- visualization -->
       <div id='row_title'>Input Genes</div>
       <div id='col_title'>Enriched ChEA Transcription Factors</div>
       <div id='svg_div'></div>
+      <!-- end visualization -->
 
-      <!-- end required -->
+      </div>
+      <!-- /#page-content-wrapper -->
 
     </div>
     <!-- /#wrapper -->
-
-
 
 
   <!-- Vendor -->
