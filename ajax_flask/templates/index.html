@@ -81,7 +81,7 @@
               <h1>Enrichrgram</h1>
               <p class='initial_paragraph'>Enrichrgram performs enrichment analysis on your set of genes using Enrichr and displays a clustergram of the results. Choose up to three gene set libraries for enrichment analysis. </p>
 
-              <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Enrichment Menu</a>
+              <a id="toggle_menu_button" href="#menu-toggle" class="btn btn-default" >Toggle Enrichment Menu</a>
 
               <!-- visualization -->
               <div id='row_title'>Input Genes</div>
@@ -123,7 +123,7 @@
 
   <!-- Menu Toggle Script -->
   <script>
-  $("#menu-toggle").click(function(e) {
+  $("#toggle_menu_button").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
   });

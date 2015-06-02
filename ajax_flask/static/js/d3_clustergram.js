@@ -10,8 +10,16 @@ function make_d3_clustergram(network_data) {
   initialize_clustergram(network_data)
 
   // display col and row title 
-  d3.select('#row_title').style('display','block')
-  d3.select('#col_title').style('display','block')
+  d3.select('#row_title').style('display','block');
+  d3.select('#col_title').style('display','block');
+  d3.select('#toggle_menu_button').style('display','inline-block');
+
+  // remove initial paragraphs
+  d3.selectAll('.initial_paragraph').style('display','none');
+
+  // display toggle switch
+  d3.select('#toggle_menu_button').style('display','inline-block');
+
 
   // define the variable zoom, a d3 method 
   zoom = d3.behavior.zoom().scaleExtent([0.5,3]).on('zoom',zoomed);

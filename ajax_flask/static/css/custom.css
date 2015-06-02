@@ -383,7 +383,7 @@ li{
 }
 
 #col_title{
-	position: fixed;
+	/*position: fixed;*/
 	top:80px;
 	left: 450px;
   font-size: 16px;
@@ -391,7 +391,7 @@ li{
 }
 
 #row_title{
-	position: fixed;
+	/*position: fixed;*/
 	top: 240px;
 	left:210px;
   font-size:16px;
@@ -406,7 +406,7 @@ li{
 }
 
 #main_svg{
-	position:fixed;
+	/*position:fixed;*/
 	top:100px;
 	left:280px;
   font-size:8.0px;
@@ -503,4 +503,9 @@ li{
 
 #main_container{
   margin-left: 30px;
+  width:800px;
+}
+
+#toggle_menu_button{
+  display: none;
 }
