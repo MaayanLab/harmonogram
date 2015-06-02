@@ -136,37 +136,7 @@
 </script>
 
 
-<script>
-  var data = [
-        { "label": "set 1", "text": ["A","B"] },
-        { "label": "set 2", "text": ["Sugar Cookie"] },
-        { "label": "set 3", "text": ["text"] }
-        ];
 
-  d3.select("#nested_div").selectAll("div")
-      .data(data)
-    .enter().append("div")
-      .attr("id", function(d) { return d.label; })
-      .each(function(list,i) {
-
-        // console.log(d.text[0])
-
-        // select 
-        d3.select(this)
-          .selectAll('p')
-          .data(list)
-          .enter()
-          .append('p')
-          .text(list.text);
-
-        // d3.select(this).append("img")
-        //   .attr("src", d.img);
-
-      });
-
-  console.log('nested html ')
-
-</script>
 
 </body>
 
