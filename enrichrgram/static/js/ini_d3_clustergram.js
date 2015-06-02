@@ -2,6 +2,8 @@
 console.log('make jquery get request')
 
 // could be improved
+// docker_vs_local
+////////////////////
 d3.json('/enrichrgram/static/enrichr_gmt_data/enrichr_gmts.json', function(data){
 
   gmt_data = data['libraries']

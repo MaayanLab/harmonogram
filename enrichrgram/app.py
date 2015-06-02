@@ -19,8 +19,12 @@ app = Flask(__name__, static_url_path='')
 
 ENTRY_POINT = '/enrichrgram'
 
-# SERVER_ROOT = os.path.dirname(os.getcwd()) + '/enrichrgram/enrichrgram' ## original 
-SERVER_ROOT = '/app/enrichrgram'
+# switch for local and docker development 
+# docker_vs_local
+##########################################
+# for local development 
+SERVER_ROOT = os.path.dirname(os.getcwd()) + '/enrichrgram/enrichrgram' ## original 
+# SERVER_ROOT = '/app/enrichrgram'
 
 @app.route(ENTRY_POINT + '/<path:path>') ## original 
 # @crossdomain(origin='*')

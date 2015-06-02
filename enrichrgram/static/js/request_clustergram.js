@@ -20,6 +20,9 @@ $( "#searchForm" ).submit( function( event ) {
   // number of enriched terms 
   num_terms = 30; 
 
+
+  // docker_vs_local
+  /////////////////////////////////
   // manually set url
   url = '/enrichrgram/'
   // // !!! temporarily change for local development 

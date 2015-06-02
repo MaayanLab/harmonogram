@@ -76,3 +76,7 @@ Mac specific
 	--- there is a problem with the name enrichrgram, it is being routed to enrichr
 
 
+# how to update
+	do a docker push, then go to marathon elizabeth:8080 and restart app (button on the left)
+
+	it can also be accessed through elizabeth/enrichrgram
