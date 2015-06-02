@@ -398,9 +398,8 @@ li{
 }
 
 #svg_div{
-  position:fixed;
-  margin-top:5px;
-  margin-left: 5px;
+  margin-top:-335px;
+  margin-left: 0px;
   /*position:fixed;*/
   float:left;
 }

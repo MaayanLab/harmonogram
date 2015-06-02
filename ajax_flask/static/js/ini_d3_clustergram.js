@@ -132,7 +132,7 @@ function initialize_clustergram(network_data){
   clustergram_width  = overall_size;
   clustergram_height = overall_size*(row_nodes.length/col_nodes.length);
   svg_width = 800;
-  svg_height = 1500;
+  svg_height = 700;
   
   // scaling functions 
   // scale used to size rects 
