@@ -113,12 +113,7 @@ d3.json('/enrichrgram/static/enrichr_gmt_data/enrichr_gmts.json', function(data)
   });
   });
 
-
 })
-
-
-
-
 
 
 
@@ -202,8 +197,8 @@ function initialize_clustergram(network_data){
   // define label scale parameters: the more characters in the longest name, the larger the margin 
   min_num_char = 5;
   max_num_char = 40;
-  min_label_width = 40;
-  max_label_width = 200;
+  min_label_width = 50;
+  max_label_width = 210;
   label_scale = d3.scale.linear().domain([min_num_char,max_num_char]).range([min_label_width,max_label_width]).clamp('true');
 
   // set col_label_width and row_label_width
