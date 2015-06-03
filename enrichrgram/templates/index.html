@@ -38,10 +38,6 @@
 
 
 
-
-
-
-
   <div id="wrapper">
 
     <!-- Sidebar -->
@@ -85,14 +81,16 @@
       <div id='main_container'>
 
         <!-- this row is required --> 
-        <div class="row"> 
+        <div class="row-fluid" > 
 
           <div class="col-lg-12">
 
             <!-- initial screen -->
             <div id='initial_container'>
               <h1 id='website_title'> Enrichrgram
-                <a id="toggle_menu_button" href="#menu-toggle" class="btn btn-default" >Toggle Enrichment Menu</a>
+                <a id="toggle_menu_button" href="#menu-toggle" class="btn btn-default" >
+                  Toggle Enrichment Menu
+                </a>
                 <div id='sidebar_order_switch'style='display:none;'>
                   <input type="checkbox" name="my-checkbox" data-on-text="Cluster" data-off-text="Rank" id='rank_switch' checked>
                 </div>
@@ -100,9 +98,22 @@
               <p class='initial_paragraph'>Enrichrgram performs enrichment analysis on your set of genes using Enrichr and displays a clustergram of the results. Choose up to three gene set libraries for enrichment analysis. </p>
             </div>
 
-            <section id="gmt_menu" data-accordion-group>
-              <div id='title_gmt_menu'>Choose Libraries</div>
-            </section>
+            <div class='row-fluid'>
+
+              <!-- GMT menu -->              
+              <div class='span4' >
+                <!-- <section id="gmt_menu" data-accordion-group>
+                  <div id='title_gmt_menu'>Choose Libraries</div>
+                </section> -->
+                <h2>gmt menu</h2>
+              </div>
+
+              <!-- Selected GMTs --> 
+              <div class='span4'>
+                <h2>ExampleGMT</h2>
+              </div>
+
+            </div>
             <!-- end initial screen -->
 
             <!-- visualization -->
