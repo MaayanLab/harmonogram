@@ -399,7 +399,7 @@ li{
   display: none;
 	transform:rotate(-90deg	);
   float:left;
-  margin-left: -68px;
+  margin-left: -55px;
   margin-top: 300px;
 }
 
@@ -512,7 +512,7 @@ li{
 
 #main_container{
   position: relative;
-  margin-left: 10px;
+  margin-left: 20px;
   width:800px;
   height:1000px;
 }
