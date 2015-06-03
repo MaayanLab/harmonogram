@@ -458,11 +458,11 @@ li{
 
 .h_medium{
   font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-size:14px;
+  font-size:16px;
   padding-left:30px;
   width:400px;
   text-align: left; 
-  /*background: #BABABA;*/
+  background: #D0D0D0;
   border-radius: 0;
 }
 
@@ -532,3 +532,5 @@ li{
 #viz_container{
   position: relative;
 }
+
+

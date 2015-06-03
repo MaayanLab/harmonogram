@@ -13,12 +13,11 @@
     <title>Enrichrgram</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="static/lib/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/lib/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="static/lib/css/simple-sidebar.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="static/lib/css/bootstrap.min.css">
     <link rel="stylesheet" href="static/lib/css/keen-dashboards.css">
     <link rel="stylesheet" href="static/lib/css/bootstrap-switch.css">
     <link rel="stylesheet" href="static/lib/css/dc.css">
@@ -36,7 +35,6 @@
 </head>
 
 <body>
-
 
 
 
@@ -86,37 +84,40 @@
       <!-- Initial Content --> 
       <div id='main_container'>
 
-        <!-- <div class="row"> --> 
-        <div class="col-lg-12">
+        <!-- this row is required --> 
+        <div class="row"> 
 
-          <!-- initial screen -->
-          <div id='initial_container'>
-            <h1> Enrichrgram
-              <a id="toggle_menu_button" href="#menu-toggle" class="btn btn-default" >Toggle Enrichment Menu</a>
-              <div id='sidebar_order_switch'style='display:none;'>
-                <input type="checkbox" name="my-checkbox" data-on-text="Cluster" data-off-text="Rank" id='rank_switch' checked>
-              </div>
-            </h1>
-            <p class='initial_paragraph'>Enrichrgram performs enrichment analysis on your set of genes using Enrichr and displays a clustergram of the results. Choose up to three gene set libraries for enrichment analysis. </p>
-          </div>
+          <div class="col-lg-12">
 
-          <section id="gmt_menu" data-accordion-group>
-            <div id='title_gmt_menu'>Choose Libraries</div>
-          </section>
-          <!-- end initial screen -->
-
-          <!-- visualization -->
-          <div id='viz_container'>
-            <div id='col_title'>Enriched ChEA Transcription Factors</div>
-            <div id='clust_and_row_container'>
-              <div id='row_title'>Input Genes</div>
-              <div id='svg_div'></div>
+            <!-- initial screen -->
+            <div id='initial_container'>
+              <h1> Enrichrgram
+                <a id="toggle_menu_button" href="#menu-toggle" class="btn btn-default" >Toggle Enrichment Menu</a>
+                <div id='sidebar_order_switch'style='display:none;'>
+                  <input type="checkbox" name="my-checkbox" data-on-text="Cluster" data-off-text="Rank" id='rank_switch' checked>
+                </div>
+              </h1>
+              <p class='initial_paragraph'>Enrichrgram performs enrichment analysis on your set of genes using Enrichr and displays a clustergram of the results. Choose up to three gene set libraries for enrichment analysis. </p>
             </div>
-          </div>
-          <!-- end visualization -->
 
-        </div>
-        <!-- </div> --> <!-- end row -->
+            <section id="gmt_menu" data-accordion-group>
+              <div id='title_gmt_menu'>Choose Libraries</div>
+            </section>
+            <!-- end initial screen -->
+
+            <!-- visualization -->
+            <div id='viz_container'>
+              <div id='col_title'>Enriched ChEA Transcription Factors</div>
+              <div id='clust_and_row_container'>
+                <div id='row_title'>Input Genes</div>
+                <div id='svg_div'></div>
+              </div>
+            </div>
+            <!-- end visualization -->
+
+          </div>
+        </div> <!-- end row -->
+
       </div>
 
     </div>
@@ -153,6 +154,9 @@
       $("#wrapper").toggleClass("toggled");
 
   });
+
+
+
   </script>
 
 
