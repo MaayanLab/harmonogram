@@ -398,7 +398,7 @@ li{
 }
 
 #svg_div{
-  margin-top:-335px;
+  margin-top: 0px;
   margin-left: 0px;
   /*position:fixed;*/
   float:left;
@@ -406,8 +406,9 @@ li{
 
 #main_svg{
 	/*position:fixed;*/
-	top:100px;
-	left:280px;
+	/*top:100px;
+	left:280px;*/
+  margin-left: -47px;
   font-size:8.0px;
  }
 
@@ -508,4 +509,8 @@ li{
 
 #toggle_menu_button{
   display: none;
+}
+
+#clust_container{
+  position:relative;
 }

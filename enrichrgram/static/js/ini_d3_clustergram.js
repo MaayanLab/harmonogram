@@ -134,7 +134,7 @@ function initialize_clustergram(network_data){
   overall_size = 300 ;
   clustergram_width  = overall_size;
   clustergram_height = overall_size*(row_nodes.length/col_nodes.length);
-  svg_width = 800;
+  svg_width = 600;
   svg_height = 700;
   
   // scaling functions 
@@ -200,9 +200,9 @@ function initialize_clustergram(network_data){
   col_max_char = _.max(col_nodes, function(inst) {return inst.name.length;}).name.length;
 
   // define label scale parameters: the more characters in the longest name, the larger the margin 
-  min_num_char = 7;
-  max_num_char = 50;
-  min_label_width = 85;
+  min_num_char = 5;
+  max_num_char = 40;
+  min_label_width = 40;
   max_label_width = 200;
   label_scale = d3.scale.linear().domain([min_num_char,max_num_char]).range([min_label_width,max_label_width]).clamp('true');
 
@@ -211,7 +211,7 @@ function initialize_clustergram(network_data){
   col_label_width = label_scale(col_max_char) ;
 
   // Margins 
-  col_margin = { top:col_label_width - label_margin,  right:0, bottom:0, left:row_label_width };
+  col_margin = { top:col_label_width - label_margin, right:0, bottom:0, left:row_label_width };
   row_margin = { top:col_label_width, right:0, bottom:0, left:row_label_width - label_margin };
   margin     = { top:col_label_width, right:0, bottom:0, left:row_label_width };
 
