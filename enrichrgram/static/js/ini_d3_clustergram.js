@@ -117,7 +117,16 @@ d3.json('/enrichrgram/static/enrichr_gmt_data/enrichr_gmts.json', function(data)
   // initialize the transcription tab to be opened, wait one second
   setTimeout( function() {
     $('#Transcription_button').click();
-  }, 500)
+
+    setTimeout( function() {
+        // highlight transcription factors 
+        d3.select('#ChEA_button')
+        .transition()
+        .duration(500)
+        .style('background','#6699CC');
+      }, 500)
+
+  }, 700)
 
 })
 
@@ -126,7 +135,7 @@ function change_color_button(inst_button){
   // reset all buttons to original color
   d3.selectAll('.h_medium').style('background','#D0D0D0');
 
-  // set clicked button to blue 
+  // set clicked button to blue
   d3.select('#'+inst_button+'_button').style('background','#6699CC');
 
 }
