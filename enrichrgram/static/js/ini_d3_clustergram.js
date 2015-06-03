@@ -51,9 +51,8 @@ d3.json('/enrichrgram/static/enrichr_gmt_data/enrichr_gmts.json', function(data)
       all_categories.splice(index, 1);
   }
 
-
-
-  // construct collapsable menu from gmts 
+  // construct accordion menu from gmts 
+  // https://github.com/vctrfrnndz/jquery-accordion
   gmt_buttons = d3.select('#gmt_menu')
     .selectAll()
     .data(all_categories)
@@ -68,6 +67,7 @@ d3.json('/enrichrgram/static/enrichr_gmt_data/enrichr_gmts.json', function(data)
     .append('button')
     .attr('data-control','')
     .attr('class','h_top btn')
+    .attr('id',function(d){return d.replace(' ','_').replace('/','_')+'_button' })
     .html(function(d){return d})
 
   // fill in lower level 
@@ -92,6 +92,7 @@ d3.json('/enrichrgram/static/enrichr_gmt_data/enrichr_gmts.json', function(data)
     .attr('data-control','')
     .attr('class','h_medium btn')
     .attr('onclick', function(d,i){ return "gmt_name = " + "'" + d + "'" ; })
+    .attr('id',function(d){return d + '_button'})
     .html(function(d){return d.replace( /_/g, ' ')})
     
   }
@@ -103,15 +104,20 @@ d3.json('/enrichrgram/static/enrichr_gmt_data/enrichr_gmts.json', function(data)
   // });
 
   $(document).ready(function() {
-  $('#gmt_menu [data-accordion]').accordion({
-  transitionSpeed: 800, // Transition speed on miliseconds.
-  transitionEasing: 'ease', // CSS value for easing
-  controlElement: '[data-control]', // CSS selector for the element acting as a button inside accordions.
-  contentElement: '[data-content]', // CSS selector for the element containing hide/show content.
-  groupElement: '[data-accordion-group]', // CSS selector for a parent element containing a group of accordions.
-  singleOpen: true // Opens a single accordion a time. If false, multiple accordions can be open a time.
+    $('#gmt_menu [data-accordion]').accordion({
+      transitionSpeed: 800, // Transition speed on miliseconds.
+      transitionEasing: 'ease', // CSS value for easing
+      controlElement: '[data-control]', // CSS selector for the element acting as a button inside accordions.
+      contentElement: '[data-content]', // CSS selector for the element containing hide/show content.
+      groupElement: '[data-accordion-group]', // CSS selector for a parent element containing a group of accordions.
+      singleOpen: true // Opens a single accordion a time. If false, multiple accordions can be open a time.
+    });
   });
-  });
+
+  // initialize the transcription tab to be opened, wait one second
+  setTimeout( function() {
+    $('#Transcription_button').click();
+  }, 500)
 
 })
 
