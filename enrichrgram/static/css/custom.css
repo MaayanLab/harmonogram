@@ -508,6 +508,10 @@ li{
   height:1000px;
 }
 
+#initial_container{
+  position:relative;
+}
+
 #toggle_menu_button{
   display: none;
 }

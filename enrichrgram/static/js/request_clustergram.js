@@ -53,13 +53,15 @@ $( "#searchForm" ).submit( function( event ) {
 
     // make d3 visualization
     make_d3_clustergram(network_data)
-
  
     // change the title of the terms 
     d3.select('#col_title').text( 'Enriched ' + gmt_name.replace( /_/g, ' ') + ' Terms')
 
     // turn off the wait sign 
     $.unblockUI();
+
+    // // toggle close the sidebar
+    // d3.select('#wrapper').attr('class','toggled')
 
   });
 });

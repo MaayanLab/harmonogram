@@ -20,6 +20,8 @@ function make_d3_clustergram(network_data) {
   // display toggle switch
   d3.select('#toggle_menu_button').style('display','inline-block');
 
+  // remove gmt_menu
+  d3.select('#gmt_menu').style('display','none')
 
   // define the variable zoom, a d3 method 
   zoom = d3.behavior.zoom().scaleExtent([0.5,3]).on('zoom',zoomed);

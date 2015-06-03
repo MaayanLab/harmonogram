@@ -8,7 +8,7 @@
 
 #wrapper {
     padding-left: 0;
-    -webkit-transition: all 0.5s ease;
+    -webkit-transition: all 1.0s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
@@ -21,7 +21,7 @@
 #sidebar-wrapper {
     z-index: 1000;
     position: fixed;
-    left: 275px;
+    left: 200px;
     width: 0;
     height: 100%;
     margin-left: -275px;
