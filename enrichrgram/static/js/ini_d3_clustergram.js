@@ -131,7 +131,7 @@ function initialize_clustergram(network_data){
   inst_links = network_data.links; 
 
   // clustergram size 
-  overall_size = 500 ;
+  overall_size = 300 ;
   clustergram_width  = overall_size;
   clustergram_height = overall_size*(row_nodes.length/col_nodes.length);
   svg_width = 800;
@@ -163,10 +163,10 @@ function initialize_clustergram(network_data){
 
   // font size controls 
   // scale default font size: input domain is the number of nodes
-  min_node_num = 10;
+  min_node_num = 5;
   max_node_num = 100;
   max_fs = 15;
-  min_fs = 6;
+  min_fs = 4;
 
   // controls how much the font size is increased by zooming when the number of nodes is at its max
   // and they need to be zoomed into

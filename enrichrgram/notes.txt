@@ -139,7 +139,8 @@ To Do Clustergram visualization
 	Find simiar genes/gene search
 		This will function as half enrichr gene search, which gives the user access to all of the information from the gmts for a specific gene, and half lists2netowrks, which I believe fills in a gene list with similar genes. This would be a cool way for users to visually seethe information we have available. A user could for instance search for EGFR, find all the transcription factors that bind to the promoter region of EGFR and find other genes that are also bound by these transcription factor.
 
-5-28-2015 
+Enrichrgram To Do 
+------------------- 
 	Will set up the code to calculate enrichment through Enrichr. 
 
 	Enrichr returns pval, z-score, and combined score. I'm not sure if the combined score is calculated with the regular or adjusted pval. It also seems that inputting the exaple list from Enrichr results in an error. 
@@ -147,15 +148,22 @@ To Do Clustergram visualization
 	Avi wants me to add 
 		1. Add a counter for the number of lists that have been processed
 			need to set up mongodb database
-		2. add multiple gmt files in the same enrichment, for example, ENCODE, ChEA, and Epigenomics Roadmap. Each should be in a different color but they should be mixed. 
-		3. you should be able to select which gmt files to include and allow a maximum of three
+		2. add multiple gmt files in the same clustergram 
 		4. change the colors on the toggle switch
 		5. The user should have a way to see the pvalue and download the results 
 		6. Add example and clear buttons
-		7. 
+		7. add pop-up when clicking on a gene
+		8. add pop-up instructions or some kind of instrucitons 
+		9. manage space better - maybe show fewer terms on default
+		10. allow user to choose different numbers of enriched terms to show
+		11. allow user to view which libraries will be included in the visualization 
+		12. add interface for user to select multiple libraries and colors 
 		-. functionalize the y offset on the rows and columns
 		-. figure out why some tiles are negative (KEA with defaule gene list)
 		-. the cluster option should be the defaule
+
+	6-2-2015 
+
 
 	6-1-2015
 		I have fixed most of hte bugs with the visualization. 

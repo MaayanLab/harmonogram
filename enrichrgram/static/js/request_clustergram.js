@@ -18,7 +18,7 @@ $( "#searchForm" ).submit( function( event ) {
   var url = $form.attr( "action" );
 
   // number of enriched terms 
-  num_terms = 30; 
+  num_terms = 20; 
 
 
   // docker_vs_local

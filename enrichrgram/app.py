@@ -24,15 +24,17 @@ ENTRY_POINT = '/enrichrgram'
 ##########################################
 # for local development 
 SERVER_ROOT = os.path.dirname(os.getcwd()) + '/enrichrgram/enrichrgram' ## original 
+# for docker development
 # SERVER_ROOT = '/app/enrichrgram'
 
 @app.route(ENTRY_POINT + '/<path:path>') ## original 
 # @crossdomain(origin='*')
 def send_static(path):
 
-  print('path and SERVER_ROOT')
-  print(path)
-  print(SERVER_ROOT)
+  # print('path and SERVER_ROOT')
+  # print(path)
+  # print(SERVER_ROOT)
+  
   return send_from_directory(SERVER_ROOT, path)
 
 
