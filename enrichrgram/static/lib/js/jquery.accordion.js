@@ -8,7 +8,7 @@
 
     var pluginName = 'accordion',
         defaults = {
-            transitionSpeed: 300,
+            // transitionSpeed: 1000,
             transitionEasing: 'ease',
             controlElement: '[data-control]',
             contentElement: '[data-content]',

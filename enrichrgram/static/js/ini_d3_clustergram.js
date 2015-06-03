@@ -105,7 +105,7 @@ d3.json('/enrichrgram/static/enrichr_gmt_data/enrichr_gmts.json', function(data)
 
   $(document).ready(function() {
     $('#gmt_menu [data-accordion]').accordion({
-      transitionSpeed: 800, // Transition speed on miliseconds.
+      transitionSpeed: 1200, // Transition speed on miliseconds.
       transitionEasing: 'ease', // CSS value for easing
       controlElement: '[data-control]', // CSS selector for the element acting as a button inside accordions.
       contentElement: '[data-content]', // CSS selector for the element containing hide/show content.
