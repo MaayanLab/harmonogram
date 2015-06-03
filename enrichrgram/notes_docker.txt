@@ -80,3 +80,28 @@ Mac specific
 	do a docker push, then go to marathon elizabeth:8080 and restart app (button on the left)
 
 	it can also be accessed through elizabeth/enrichrgram
+
+
+# postman notes
+
+put request
+	maayanlab:sudoystemsbiology@elizabeth:8080/v2/apps/enrichrgram
+
+Content-Type application/json
+
+raw format json 
+
+{
+    "instances": 1,
+    "cpus": 0.5,
+    "mem": 256,
+    "container": {
+        "type": "DOCKER",
+        "docker": {
+            "image": "maayanlab/enrichrgram",
+            "forcePullImage":true,
+            "network": "BRIDGE",
+            "portMappings": [{"containerPort": 80, "hostPort": 0, "protocol": "tcp"}]
+        }
+    }
+}

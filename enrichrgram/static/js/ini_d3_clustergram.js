@@ -154,7 +154,7 @@ function initialize_clustergram(network_data){
   y_scale.domain(orders.clust_col);
 
   // define border width 
-  border_width = x_scale.rangeBand()/16.66
+  border_width = x_scale.rangeBand()/16.66;
 
   // font size controls 
   // scale default font size: input domain is the number of nodes
