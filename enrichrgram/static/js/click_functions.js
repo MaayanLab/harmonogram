@@ -30,9 +30,7 @@ function select_gmt_from_menu(inst_gmt){
     .attr('id','glyph_'+inst_gmt)
     .attr('width',  '24px')
     .attr('height', '24px')
-    .on('click',function(){
-      return console.log('clicking the x')
-    });
+    .on('click', clicking_glyph );
 
   // make glyph 
   //
@@ -96,7 +94,7 @@ function select_gmt_from_menu(inst_gmt){
     .append('div')
     .attr('class','remove_existing_gmt')
     .on('click',function(){
-      return console.log('clicking')
+      return console.log('clicking the x ')
     })
     .style('transform','rotate(45deg)')
     .html('+')
@@ -116,6 +114,23 @@ function select_gmt_from_menu(inst_gmt){
 
 };
 
+
+// highlight the current glyph 
+function clicking_glyph(){
+  // get inst_glyph name: cylph_ChEA
+  inst_glyph = d3.select(this).attr('id');
+ 
+  console.log('inside clicking glyph function' );
+  // clear all highlight rects
+
+  d3.selectAll('.highlight_gmt').attr('stroke','white')
+
+  // set the current glyph to black
+  d3.select('#'+inst_glyph)
+    .select('.highlight_gmt')
+    .attr('stroke','black');
+
+}
 
 // add new gmt 
 function plus_new_gmt(){
@@ -153,7 +168,8 @@ function plus_new_gmt(){
     .attr('class', 'glyph_squares')
     .attr('width',  '24px')
     .attr('height', '24px')
-    .on('click', function(d,i){ return "console.log('clicking on the glyph');" ; });
+    // .on('click', function(d,i){ return "console.log('clicking on the glyph');" ; });
+    .on('click', clicking_glyph );
 
   // make glyph 
   //
