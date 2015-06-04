@@ -99,9 +99,8 @@ function select_gmt_from_menu(inst_gmt){
   inst_group
     .append('div')
     .attr('class','remove_existing_gmt')
-    .on('click',function(){
-      return console.log('clicking the x ')
-    })
+    .attr('id','x_'+inst_gmt)
+    .on('click', remove_existing_gmt)
     .style('transform','rotate(45deg)')
     .html('+')
     .style('float','left')
@@ -133,55 +132,10 @@ function select_gmt_from_menu(inst_gmt){
 };
 
 
-// highlight the current glyph 
-function clicking_glyph(){
-  // get inst_glyph name: cylph_ChEA
-  inst_glyph = d3.select(this).attr('id');
- 
-  console.log('inside clicking glyph function' );
-  // clear all highlight rects
-
-  // remove highlight from all squares
-  d3.selectAll('.highlight_gmt')
-    .attr('stroke','white')
-
-  // set the current glyph to black
-  d3.select('#'+inst_glyph)
-    .select('.highlight_gmt')
-    .attr('stroke','black');
-
-  // change id of current_gmt to not_current_gmt
-  d3.select('#current_gmt').attr('id','not_current_gmt');
-
-
-  // get current gmt 
-  inst_gmt = inst_glyph.replace('glyph_','');
-
-  console.log(inst_gmt);
-
-  // set the current gmt to the current, find by class
-  d3.selectAll('.'+inst_gmt)
-    .attr('id','current_gmt');
-
-  // // set this to current
-  // inst_group = d3.select('#selected_gmts_group')
-  //   .append('div')
-  //   .attr('class','selected_gmts')
-  //   .attr('id','current_gmt');
-
-
-
-
-}
-
 // add new gmt 
 function plus_new_gmt(){
 
   console.log('adding new gmt');
-
-  // // remove plus sign
-  // d3.select('#add_new_gmt')
-  //   .remove();
 
   // change id of current_gmt to not_current_gmt
   d3.select('#current_gmt').attr('id','not_current_gmt');
@@ -269,9 +223,8 @@ function plus_new_gmt(){
   inst_group
     .append('div')
     .attr('class','remove_existing_gmt')
-    .on('click',function(){
-      return console.log('clicking the x')
-    })
+    .attr('id','x_unknown')
+    .on('click', remove_existing_gmt )
     .style('transform','rotate(45deg)')
     .html('+')
     .style('float','left')
@@ -306,10 +259,56 @@ function plus_new_gmt(){
 
 };
 
-// remove existing gmt
-function x_existing_gmt(inst_button){
-  console.log('remove the gmt');
+
+// highlight the current glyph 
+function clicking_glyph(){
+  // get inst_glyph name: cylph_ChEA
+  inst_glyph = d3.select(this).attr('id');
+ 
+  console.log('inside clicking glyph function' );
+  // clear all highlight rects
+
+  // remove highlight from all squares
+  d3.selectAll('.highlight_gmt')
+    .attr('stroke','white')
+
+  // set the current glyph to black
+  d3.select('#'+inst_glyph)
+    .select('.highlight_gmt')
+    .attr('stroke','black');
+
+  // change id of current_gmt to not_current_gmt
+  d3.select('#current_gmt').attr('id','not_current_gmt');
+
+
+  // get current gmt 
+  inst_gmt = inst_glyph.replace('glyph_','');
+
+  console.log(inst_gmt);
+
+  // set the current gmt to the current, find by class
+  d3.selectAll('.'+inst_gmt)
+    .attr('id','current_gmt');
+
 };
+
+// remove existing gmt
+function remove_existing_gmt(inst_button){
+  var inst_gmt = d3.select(this).attr('id').replace('x_','');
+
+  // remove the gmt line 
+  d3.selectAll('.'+inst_gmt)
+    .remove();
+
+  // add plus sign if there are unknown gmts
+  if (d3.selectAll('.unknown')[0].length == 0 ){
+      d3.select('#add_new_gmt')
+        .style('display','block');
+  };  
+
+  
+};
+
 
 // double click zoom reset
 function add_double_click() {
