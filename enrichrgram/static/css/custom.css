@@ -476,12 +476,19 @@ li{
 }
 
 .selected_gmts{
-  font-size: 40px;
+  font-size: 35px;
   font-weight: 300;
   margin-top: 10px;
   margin-bottom: 20px;
 }
 
+#add_new_gmt{
+  font-size: 35px;
+  font-weight: 300;
+  margin-top: 10px;
+  width:30px;
+  background: blue;
+}
 
 #gene_input_box{
   height:200px;
@@ -556,3 +563,16 @@ li{
   font-weight: 300;
 
 }
+
+
+/*.selected_gmts:before {
+    content: "";
+    position:relative;
+    /*left: -10px;*/
+    background-color:red;
+
+    display:inline-block;
+    width:20px;
+    height:20px;
+    border-radius:50%
+}*/

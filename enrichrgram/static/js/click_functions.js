@@ -1,3 +1,9 @@
+// add new gmt 
+function plus_new_gmt(inst_this){
+  console.log('inside plus_new_gmt');
+  console.log(inst_this);
+}
+
 // double click zoom reset
 function add_double_click() {
 

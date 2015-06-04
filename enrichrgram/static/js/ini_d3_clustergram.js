@@ -124,6 +124,8 @@ d3.json('/enrichrgram/static/enrichr_gmt_data/enrichr_gmts.json', function(data)
         .transition()
         .duration(500)
         .style('background','#6699CC');
+
+        // write 
       }, 500)
 
   }, 700)
