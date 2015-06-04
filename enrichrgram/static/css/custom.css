@@ -481,6 +481,7 @@ li{
   font-weight: 300;
   margin-top: 5px;
   margin-bottom: 5px;
+  padding-top: 5px;
   /*background: blue;*/
   opacity:0;
   width:700px;
@@ -491,12 +492,12 @@ li{
   font-weight: 300;
   /*margin-top: 10px;*/
   width:30px;
-  text-align: center;
+  /*text-align: center;*/
   line-height: 40px;
   vertical-align: middle;
   /*background: blue;*/
   opacity: 0;
-  margin-left: -5px;
+  margin-left: -20px;
 }
 
 .remove_existing_gmt{

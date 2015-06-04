@@ -89,9 +89,15 @@ function select_gmt_from_menu(inst_gmt){
     .style('transform','rotate(45deg)')
     .html('+')
     .style('float','left')
-    .style('opacity',0)
+    .style('opacity',function(){
+      inst_opacity = 1;
+      if (d3.select('#not_current_gmt').empty() == true){
+        inst_opacity = 0;
+      };
+      return inst_opacity;
+    })
 
-  //
+  // remove float left 
   inst_group
     .style('clear','both')
 
@@ -100,7 +106,13 @@ function select_gmt_from_menu(inst_gmt){
 
 
 // add new gmt 
-function plus_new_gmt(inst_button){
+function plus_new_gmt(){
+
+  console.log('adding new gmt')
+
+  // // remove plus sign
+  // d3.select('#add_new_gmt')
+  //   .remove();
 
   // change id of current_gmt to not_current_gmt
   d3.select('#current_gmt').attr('id','not_current_gmt');
@@ -183,7 +195,13 @@ function plus_new_gmt(inst_button){
     .style('transform','rotate(45deg)')
     .html('+')
     .style('float','left')
-    .style('opacity',1)
+    .style('opacity',function(){
+      inst_opacity = 1;
+      if (d3.select('#not_current_gmt').empty() == true){
+        inst_opacity = 0;
+      };
+      return inst_opacity;
+    })
 
   // remove float left so a new line can be appended below 
   inst_group
@@ -192,6 +210,15 @@ function plus_new_gmt(inst_button){
   // make all other x buttons visible 
   d3.selectAll('.remove_existing_gmt')
     .style('opacity',1)
+
+  // // add new plus sign
+  // new_plus = d3.select('#selected_gmts_group')
+  //   .append('div')
+  //   .on('click',"console.log('here')")
+  //   .on('click','x_existing_gmt(this);')
+  //   .attr('id','add_new_gmt')
+  //   .style('opacity',1)
+  //   .html('+');
 
 
 }
