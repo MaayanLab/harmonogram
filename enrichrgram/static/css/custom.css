@@ -29,42 +29,22 @@
 }
 
 
-#gene_input_box{
-	height:200px;
-	width: 75%;
-  margin: 0 auto;
-	position:relative;
-	display:block;
-  resize:none;
-}
 
-#title_input_gene_list{
-  width:99%;
-  margin: 0 auto;
-  color:white;
-  text-align: center;
-  font: small Arial, sans-serif;
-  font-size: 20px;
-  margin-top: 43px;
-  margin-bottom: 10px;
-}
 
 html {
   min-width: 1040px;
 }
 
-body {
-  position: relative;
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+/*body {*/
+  /*position: relative;*/
+  /*font-family: "Helvetica Neue", Helvetica, sans-serif;*/
   /*margin: 1em auto 2em auto;*/
   /*width: px;*/
-}
+/*}*/
 
 h1 {
   font-size: 45px;
   font-weight: 300;
-  /*letter-spacing: -2px;*/
-  /*margin: .3em 0 .1em 0;*/
   margin-top: 10px;
   margin-bottom: 20px;
 }
@@ -73,16 +53,14 @@ h2 {
   margin-top: 2em;
 }
 
-h1, h2 {
-  text-rendering: optimizeLegibility;
-}
+/*h1, h2 {*/
+  /*text-rendering: optimizeLegibility;*/
+/*}*/
 
-h2 a {
-  color: #ccc;
-  left: -20px;
-  /*position: absolute;*/
-  /*width: 740px;*/
-}
+/*h2 a {*/
+  /*color: #ccc;*/
+  /*left: -20px;*/
+/*}*/
 
 footer {
   font-size: small;
@@ -534,6 +512,40 @@ li{
   margin-top: 20px;
 }
 
-#selected_gmts{
-  float:leftd;
+#selected_gmts_group{
+  margin-top: 80px;
+}
+
+.selected_gmts{
+  font-size: 40px;
+  font-weight: 300;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+
+#gene_input_box{
+  height:200px;
+  width: 75%;
+  margin: 0 auto;
+  position:relative;
+  display:block;
+  resize:none;
+
+
+  font-size: 15px;
+  font-weight: 300;
+}
+
+#title_input_gene_list{
+  width:99%;
+  margin: 0 auto;
+  color:white;
+  text-align: center;
+  margin-top: 43px;
+  margin-bottom: 10px;
+
+
+  font-size: 25px;
+  font-weight: 300;
 }
