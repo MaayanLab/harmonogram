@@ -7,11 +7,7 @@ function select_gmt_from_menu(inst_gmt){
   // set clicked button to blue
   d3.select('#'+inst_gmt+'_button').style('background','#6699CC');
 
-  console.log(inst_gmt)
-
-
   // append new select gmt group: glyph, name, and remove x 
-  // inst_group = d3.select('#selected_gmts_group')
   inst_group = d3.select('#current_gmt')
     .selectAll('div')
     .remove()
@@ -25,7 +21,7 @@ function select_gmt_from_menu(inst_gmt){
   inst_group
     .transition()
     .duration(100)
-    .style('opacity','1')
+    .style('opacity','1');
 
   // append glyph svg
   glyph_svg = inst_group
@@ -105,9 +101,97 @@ function select_gmt_from_menu(inst_gmt){
 
 // add new gmt 
 function plus_new_gmt(inst_button){
-  console.log('inside plus_new_gmt');
-  console.log(inst_button);
-  // d3.select(inst_button).
+
+  // change id of current_gmt to not_current_gmt
+  d3.select('#current_gmt').attr('id','not_current_gmt');
+
+  // append new current_gmt
+  inst_group = d3.select('#selected_gmts_group')
+    .append('div')
+    .attr('class','selected_gmts')
+    .attr('id','current_gmt');
+
+  // make visible 
+  inst_group
+    .transition()
+    .duration(100)
+    .style('opacity','1');
+
+// append glyph svg
+  glyph_svg = inst_group
+    .append('div')
+    .attr('class', 'glyph_squares')
+    .append('svg')
+    .attr('id','glpyh_unknown')
+    .attr('width',  '24px')
+    .attr('height', '24px');
+
+  // make glyph 
+  //
+  // append background rect
+  glyph_svg
+    .append('rect')
+    .attr('fill','red')
+    .attr('height','24px')
+    .attr('width','24px');
+
+  // append lines 
+  glyph_svg
+    .append('line')
+    .attr('x1',0)
+    .attr('x2',24)
+    .attr('y1',12)
+    .attr('y2',12)
+    .attr('stroke-width','2px');
+  glyph_svg
+    .append('line')
+    .attr('x1',12)
+    .attr('x2',12)
+    .attr('y1',0)
+    .attr('y2',24)
+    .attr('stroke-width','2px');
+
+  // append border rect 
+  glyph_svg
+    .append('rect')
+    .attr('fill','none')
+    .attr('stroke','white')
+    .attr('stroke-width','6px')
+    .attr('height','24px')
+    .attr('width','24px');
+
+  // // append highlighting rect 
+  // glyph_svg
+  //   .append('rect')
+  //   .attr('fill','none')
+  //   .attr('stroke','black')
+  //   .attr('stroke-width','2px')
+  //   .attr('height','24px')
+  //   .attr('width','24px');
+
+  // append gmt name 
+  inst_group
+    .append('div')
+    .html('Select Library')
+    .style('float','left');
+
+  // append remove x 
+  inst_group
+    .append('div')
+    .attr('class','remove_existing_gmt')
+    .on('click','x_existing_gmt(this);')
+    .style('transform','rotate(45deg)')
+    .html('+')
+    .style('float','left')
+    .style('opacity',1)
+
+  // remove float left so a new line can be appended below 
+  inst_group
+    .style('clear','both')
+
+  // make all other x buttons visible 
+  d3.selectAll('.remove_existing_gmt')
+    .style('opacity',1)
 
 
 }
