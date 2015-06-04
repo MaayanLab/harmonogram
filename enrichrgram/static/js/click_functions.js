@@ -32,7 +32,7 @@ function select_gmt_from_menu(inst_gmt){
     .append('div')
     .attr('class', 'glyph_squares')
     .style('float','left')
-    .style('margin-right','7px')
+    .style('margin-right','12px')
     .style('margin-top','2px')
     .append('svg')
     .attr('id','glpyh_'+inst_gmt)
@@ -44,7 +44,7 @@ function select_gmt_from_menu(inst_gmt){
   // append rect 
   glyph_svg
     .append('rect')
-    .attr('fill','blue')
+    .attr('fill','red')
     .attr('height','20px')
     .attr('width','20px');
   // append lines 
@@ -63,9 +63,7 @@ function select_gmt_from_menu(inst_gmt){
     .attr('y2',20)
     .attr('stroke-width','2px');
 
-
-
-  // append name 
+  // append gmt name 
   inst_group
     .append('div')
     .html(inst_gmt.replace(/_/g,' '))
@@ -79,6 +77,7 @@ function select_gmt_from_menu(inst_gmt){
     .style('transform','rotate(45deg)')
     .html('+')
     .style('float','left')
+    .style('opacity',0)
 
   //
   inst_group

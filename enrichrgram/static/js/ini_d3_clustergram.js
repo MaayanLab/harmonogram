@@ -127,7 +127,11 @@ d3.json('/enrichrgram/static/enrichr_gmt_data/enrichr_gmts.json', function(data)
         .style('background','#6699CC');
 
         // show the chea gmt selection 
+        //
+        // // display manual gmt name 
         d3.select('.selected_gmts').transition().delay(200).style('opacity',1)
+
+        select_gmt_from_menu('ChEA')
 
         // show the add new gmt button 
         d3.select('#add_new_gmt').transition().delay(500).style('opacity',1);

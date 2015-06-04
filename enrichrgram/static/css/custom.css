@@ -496,6 +496,7 @@ li{
   vertical-align: middle;
   /*background: blue;*/
   opacity: 0;
+  margin-left: -5px;
 }
 
 .remove_existing_gmt{
@@ -507,7 +508,7 @@ li{
   line-height: 17px;
   vertical-align: middle;
   /*background: blue;*/
-  margin-left: 15px;
+  margin-left: 10px;
 }
 
 #gene_input_box{
