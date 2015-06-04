@@ -517,7 +517,6 @@ li{
   width:450px;
   text-align: left; 
   background: #333333;  
-  /*float: left;*/
 
   font-size: 20px;
   font-weight: 300;
@@ -525,25 +524,23 @@ li{
 }
 
 .h_top{
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-size:16px;
-  /*color:white;*/
-  font-weight: bold;
   padding-left:20px;
   width:450px;
   text-align: left; 
   background: #8C8C8C;
+  font-size: 15px;
+  font-weight: 300;
   border-radius: 0;
 }
 
 .h_medium{
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-size:16px;
   padding-left:30px;
   width:450px;
   text-align: left; 
   background: #D0D0D0;
   border-radius: 0;
+  font-size: 15px;
+  font-weight: 300;
 }
 
 #gmt_menu{
@@ -559,5 +556,5 @@ li{
 .buttons{
   font-size: 15px;
   font-weight: 300;
-  
+
 }
