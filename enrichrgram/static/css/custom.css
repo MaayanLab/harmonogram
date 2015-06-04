@@ -471,7 +471,8 @@ li{
 }
 
 #selected_gmts_group{
-  margin-top: 80px;
+  margin-top: 60px;
+  padding-left: 0px
 }
 
 .selected_gmts{
@@ -504,7 +505,7 @@ li{
   margin-bottom: 10px;
 
 
-  font-size: 25px;
+  font-size: 22px;
   font-weight: 300;
 }
 
@@ -514,44 +515,41 @@ li{
   padding-top:12px;
   padding-bottom:12px;
   padding-left:20px;
-  width:450px;
+  width:410px;
   text-align: left; 
   background: #333333;  
-
   font-size: 20px;
   font-weight: 300;
-
 }
 
 .h_top{
   padding-left:20px;
-  width:450px;
+  width:410px;
   text-align: left; 
   background: #8C8C8C;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 300;
   border-radius: 0;
 }
 
 .h_medium{
   padding-left:30px;
-  width:450px;
+  width:410px;
   text-align: left; 
   background: #D0D0D0;
   border-radius: 0;
   font-size: 15px;
   font-weight: 300;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 #gmt_menu{
   margin-top: 20px;
   margin-left: 0px;
-
-
   font-size: 15px;
   font-weight: 300;
 }
-
 
 .buttons{
   font-size: 15px;
