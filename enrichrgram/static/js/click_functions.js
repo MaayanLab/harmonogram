@@ -15,6 +15,9 @@ function select_gmt_from_menu(inst_gmt){
   // grab div 
   inst_group = d3.select('#current_gmt');
 
+  d3.select('#current_gmt')
+    .on('click',"console.log('here')")
+
   // make visible 
   inst_group
     .transition()
@@ -24,11 +27,14 @@ function select_gmt_from_menu(inst_gmt){
   // append glyph svg
   glyph_svg = inst_group
     .append('div')
-    .append('svg')
+      .append('svg')
     .attr('class', 'glyph_squares')
-    .attr('id','glpyh_'+inst_gmt)
+    .attr('id','glyph_'+inst_gmt)
     .attr('width',  '24px')
-    .attr('height', '24px');
+    .attr('height', '24px')
+    .on('click',function(){
+      return console.log('clicking')
+    });
 
   // make glyph 
   //
@@ -47,6 +53,7 @@ function select_gmt_from_menu(inst_gmt){
     .attr('y1',12)
     .attr('y2',12)
     .attr('stroke-width','2px');
+
   glyph_svg
     .append('line')
     .attr('x1',12)
@@ -100,31 +107,28 @@ function select_gmt_from_menu(inst_gmt){
         inst_opacity = 0;
       };
       return inst_opacity;
-    })
+    });
 
   // remove float left 
   inst_group
-    .style('clear','both')
+    .style('clear','both');
 
 
-}
+};
 
 
 // add new gmt 
 function plus_new_gmt(){
 
-  console.log('adding new gmt')
+  console.log('adding new gmt');
 
-  // // remove plus sign
-  // d3.select('#add_new_gmt')
-  //   .remove();
 
   // change id of current_gmt to not_current_gmt
   d3.select('#current_gmt').attr('id','not_current_gmt');
 
   // remove highlight from all squares
   d3.selectAll('.highlight_gmt')
-    .attr('stroke','white')
+    .attr('stroke','white');
 
   // append new current_gmt
   inst_group = d3.select('#selected_gmts_group')
@@ -142,10 +146,11 @@ function plus_new_gmt(){
   glyph_svg = inst_group
     .append('div')
     .append('svg')
+    .attr('id','glyph_unknown')
     .attr('class', 'glyph_squares')
-    .attr('id','glpyh_unknown')
     .attr('width',  '24px')
-    .attr('height', '24px');
+    .attr('height', '24px')
+    .attr('onclick', function(d,i){ return "console.log('clicking on the glyph');" ; });
 
   // make glyph 
   //
@@ -213,29 +218,29 @@ function plus_new_gmt(){
         inst_opacity = 0;
       };
       return inst_opacity;
-    })
+    });
 
   // remove float left so a new line can be appended below 
   inst_group
-    .style('clear','both')
+    .style('clear','both');
 
   // make all other x buttons visible 
   d3.selectAll('.remove_existing_gmt')
-    .style('opacity',1)
+    .style('opacity',1);
 
   // remove plus sign if there are three gmts 
   if (d3.selectAll('.selected_gmts')[0].length == 3){
     d3.select('#add_new_gmt')
       .style('display','none')
-  }
+  };
 
 
-}
+};
 
 // remove existing gmt
 function x_existing_gmt(inst_button){
-  console.log('remove the gmt')
-}
+  console.log('remove the gmt');
+};
 
 // double click zoom reset
 function add_double_click() {
@@ -267,7 +272,6 @@ function add_double_click() {
         // column is rotated - effectively width and height are switched
         .attr('width', function(d,i) { return bar_scale_col( d.nl_pval ); })
         .attr('transform', function(d, i) { return "translate(0,0)"; });
-
 
     });
 };
