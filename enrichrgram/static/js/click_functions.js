@@ -31,37 +31,53 @@ function select_gmt_from_menu(inst_gmt){
   glyph_svg = inst_group
     .append('div')
     .attr('class', 'glyph_squares')
-    .style('float','left')
-    .style('margin-right','12px')
-    .style('margin-top','2px')
     .append('svg')
     .attr('id','glpyh_'+inst_gmt)
-    .attr('width',  '20px')
-    .attr('height', '20px');
+    .attr('width',  '24px')
+    .attr('height', '24px');
 
   // make glyph 
   //
-  // append rect 
+  // append background rect
   glyph_svg
     .append('rect')
     .attr('fill','red')
-    .attr('height','20px')
-    .attr('width','20px');
+    .attr('height','24px')
+    .attr('width','24px');
+
   // append lines 
   glyph_svg
     .append('line')
     .attr('x1',0)
-    .attr('x2',20)
-    .attr('y1',10)
-    .attr('y2',10)
+    .attr('x2',24)
+    .attr('y1',12)
+    .attr('y2',12)
     .attr('stroke-width','2px');
   glyph_svg
     .append('line')
-    .attr('x1',10)
-    .attr('x2',10)
+    .attr('x1',12)
+    .attr('x2',12)
     .attr('y1',0)
-    .attr('y2',20)
+    .attr('y2',24)
     .attr('stroke-width','2px');
+
+  // append border rect 
+  glyph_svg
+    .append('rect')
+    .attr('fill','none')
+    .attr('stroke','white')
+    .attr('stroke-width','6px')
+    .attr('height','24px')
+    .attr('width','24px');
+
+  // // append highlighting rect 
+  // glyph_svg
+  //   .append('rect')
+  //   .attr('fill','none')
+  //   .attr('stroke','black')
+  //   .attr('stroke-width','2px')
+  //   .attr('height','24px')
+  //   .attr('width','24px');
 
   // append gmt name 
   inst_group
