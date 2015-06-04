@@ -15,6 +15,9 @@ function select_gmt_from_menu(inst_gmt){
   // grab div 
   inst_group = d3.select('#current_gmt');
 
+  // add the gmt name as a class
+  inst_group
+    .attr('class', inst_gmt + ' selected_gmts');
 
   // make visible 
   inst_group
@@ -22,10 +25,13 @@ function select_gmt_from_menu(inst_gmt){
     .duration(100)
     .style('opacity','1');
 
+  // update current library name
+  inst_group
+
   // append glyph svg
   glyph_svg = inst_group
     .append('div')
-      .append('svg')
+    .append('svg')
     .attr('class', 'glyph_squares')
     .attr('id','glyph_'+inst_gmt)
     .attr('width',  '24px')
@@ -123,12 +129,36 @@ function clicking_glyph(){
   console.log('inside clicking glyph function' );
   // clear all highlight rects
 
-  d3.selectAll('.highlight_gmt').attr('stroke','white')
+  // remove highlight from all squares
+  d3.selectAll('.highlight_gmt')
+    .attr('stroke','white')
 
   // set the current glyph to black
   d3.select('#'+inst_glyph)
     .select('.highlight_gmt')
     .attr('stroke','black');
+
+  // change id of current_gmt to not_current_gmt
+  d3.select('#current_gmt').attr('id','not_current_gmt');
+
+
+  // get current gmt 
+  inst_gmt = inst_glyph.replace('glyph_','');
+
+  console.log(inst_gmt);
+
+  // set the current gmt to the current, find by class
+  d3.selectAll('.'+inst_gmt)
+    .attr('id','current_gmt');
+
+  // // set this to current
+  // inst_group = d3.select('#selected_gmts_group')
+  //   .append('div')
+  //   .attr('class','selected_gmts')
+  //   .attr('id','current_gmt');
+
+
+
 
 }
 
