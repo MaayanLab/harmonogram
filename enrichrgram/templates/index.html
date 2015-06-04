@@ -99,14 +99,32 @@
                   </section>
                   <!-- <h2>gmt menu</h2> -->
                 </div>
-                <!-- Selected GMTs style='background:blue' --> 
+
+                <!-- Selected GMTs --> 
                 <div id='selected_gmts_group' class='col-xs-5'>
-                  <img src='static/fonts/4_squares.png' >
-                  <div class='selected_gmts'>ExampleGMT</div>
-                  <div class='selected_gmts'>ExampleGMT</div>
-                  <div id='add_new_gmt' onclick="plus_new_gmt(this);"> + </div>
-                </div>
-              </div>
+
+                  <div class='selected_gmts'>
+                    <div style="float:left;">
+                      ExampleGMT
+                    </div>
+                    <div  style="float:left;">
+                      <div class='remove_existing_gmt' onclick="x_existing_gmt(this);" style="transform: rotate(45deg);"> + </div>
+                    </div>
+                  </div>
+
+                  <div class='selected_gmts'>
+                      <div style="float:left;">
+                        ExampleGMT
+                      </div>
+                      <div  style="float:left;">
+                        <div class='remove_existing_gmt' onclick="x_existing_gmt(this);" style="transform: rotate(45deg);"> + </div>
+                      </div>
+                  </div>
+
+
+                    <div class='add_new_gmt' onclick="plus_new_gmt(this);"> + </div>
+                  </div>
+
 
 
             </div>

@@ -128,7 +128,7 @@ d3.json('/enrichrgram/static/enrichr_gmt_data/enrichr_gmts.json', function(data)
         // write 
       }, 500)
 
-  }, 700)
+  }, 900)
 
 })
 

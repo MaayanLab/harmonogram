@@ -478,16 +478,32 @@ li{
 .selected_gmts{
   font-size: 35px;
   font-weight: 300;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  /*background: blue;*/
 }
 
-#add_new_gmt{
+.add_new_gmt{
   font-size: 35px;
   font-weight: 300;
-  margin-top: 10px;
+  /*margin-top: 10px;*/
   width:30px;
-  background: blue;
+  text-align: center;
+  line-height: 40px;
+  vertical-align: middle;
+  /*background: blue;*/
+}
+
+.remove_existing_gmt{
+  font-size: 40px;
+  font-weight: 400;
+  /*margin-top: 10px;*/
+  width:30px;
+  text-align: center;
+  line-height: 50px;
+  vertical-align: middle;
+  /*background: blue;*/
+  margin-left: 20px;
 }
 
 #gene_input_box{
@@ -565,14 +581,3 @@ li{
 }
 
 
-/*.selected_gmts:before {
-    content: "";
-    position:relative;
-    /*left: -10px;*/
-    background-color:red;
-
-    display:inline-block;
-    width:20px;
-    height:20px;
-    border-radius:50%
-}*/
