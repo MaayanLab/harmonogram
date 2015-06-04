@@ -471,7 +471,7 @@ li{
 }
 
 #selected_gmts_group{
-  margin-top: 60px;
+  margin-top: 25px;
   margin-left: -20px;
   padding-left: 0px;
 }
@@ -485,6 +485,16 @@ li{
   /*background: blue;*/
   opacity:0;
   width:700px;
+}
+
+#title_selected_libraries{
+  font-size: 25px;
+  font-weight: 300;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-top: 0px;
+  /*background: blue;*/
+  /*opacity:0;*/
 }
 
 #add_new_gmt{
@@ -547,7 +557,7 @@ li{
   width:410px;
   text-align: left; 
   background: #333333;  
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 300;
 }
 

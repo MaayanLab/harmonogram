@@ -119,7 +119,11 @@ d3.json('/enrichrgram/static/enrichr_gmt_data/enrichr_gmts.json', function(data)
   setTimeout( function() {
     $('#Transcription_button').click();
 
+        // display title 
+        d3.select('#title_selected_libraries').transition().delay(0).style('opacity',1);
+
     setTimeout( function() {
+
         // highlight transcription factors 
         d3.select('#ChEA_button')
         .transition()
@@ -128,9 +132,10 @@ d3.json('/enrichrgram/static/enrichr_gmt_data/enrichr_gmts.json', function(data)
 
         // show the chea gmt selection 
         //
-        // // display manual gmt name 
-        d3.select('.selected_gmts').transition().delay(200).style('opacity',1)
+        // display manual gmt name 
+        d3.select('.selected_gmts').transition().delay(200).style('opacity',1);
 
+        // selet ChEA as the inital library 
         select_gmt_from_menu('ChEA')
 
         // show the add new gmt button 

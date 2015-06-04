@@ -107,6 +107,7 @@ function select_gmt_from_menu(inst_gmt){
     .style('float','left')
     .style('opacity',function(){
       inst_opacity = 1;
+      // if there are no other 
       if (d3.select('#not_current_gmt').empty() == true){
         inst_opacity = 0;
       };
@@ -117,6 +118,17 @@ function select_gmt_from_menu(inst_gmt){
   inst_group
     .style('clear','both');
 
+  // remove plus sign if there are unknown gmts
+  if (d3.selectAll('.unknown')[0].length == 0 ){
+      d3.select('#add_new_gmt')
+        .style('display','block');
+  };
+
+  // double check that there are not more than 3 gmts
+  if (d3.selectAll('.selected_gmts')[0].length == 3 ){
+      d3.select('#add_new_gmt')
+        .style('display','none');
+  };
 
 };
 
@@ -181,7 +193,7 @@ function plus_new_gmt(){
   // append new current_gmt
   inst_group = d3.select('#selected_gmts_group')
     .append('div')
-    .attr('class','selected_gmts')
+    .attr('class','selected_gmts unknown')
     .attr('id','current_gmt');
 
   // make visible 
@@ -280,9 +292,15 @@ function plus_new_gmt(){
     .style('opacity',1);
 
   // remove plus sign if there are three gmts 
-  if (d3.selectAll('.selected_gmts')[0].length == 3){
-    d3.select('#add_new_gmt')
-      .style('display','none')
+  if (d3.selectAll('.selected_gmts')[0].length == 3 ){
+      d3.select('#add_new_gmt')
+        .style('display','none');
+  };
+
+  // remove plus sign if there are unknown gmts
+  if (d3.selectAll('.unknown')[0].length > 0 ){
+      d3.select('#add_new_gmt')
+        .style('display','none');
   };
 
 
