@@ -15,8 +15,6 @@ function select_gmt_from_menu(inst_gmt){
   // grab div 
   inst_group = d3.select('#current_gmt');
 
-  d3.select('#current_gmt')
-    .on('click',"console.log('here')")
 
   // make visible 
   inst_group
@@ -33,7 +31,7 @@ function select_gmt_from_menu(inst_gmt){
     .attr('width',  '24px')
     .attr('height', '24px')
     .on('click',function(){
-      return console.log('clicking')
+      return console.log('clicking the x')
     });
 
   // make glyph 
@@ -97,7 +95,9 @@ function select_gmt_from_menu(inst_gmt){
   inst_group
     .append('div')
     .attr('class','remove_existing_gmt')
-    .on('click','x_existing_gmt(this);')
+    .on('click',function(){
+      return console.log('clicking')
+    })
     .style('transform','rotate(45deg)')
     .html('+')
     .style('float','left')
@@ -122,6 +122,9 @@ function plus_new_gmt(){
 
   console.log('adding new gmt');
 
+  // // remove plus sign
+  // d3.select('#add_new_gmt')
+  //   .remove();
 
   // change id of current_gmt to not_current_gmt
   d3.select('#current_gmt').attr('id','not_current_gmt');
@@ -150,7 +153,7 @@ function plus_new_gmt(){
     .attr('class', 'glyph_squares')
     .attr('width',  '24px')
     .attr('height', '24px')
-    .attr('onclick', function(d,i){ return "console.log('clicking on the glyph');" ; });
+    .on('click', function(d,i){ return "console.log('clicking on the glyph');" ; });
 
   // make glyph 
   //
@@ -208,7 +211,9 @@ function plus_new_gmt(){
   inst_group
     .append('div')
     .attr('class','remove_existing_gmt')
-    .on('click','x_existing_gmt(this);')
+    .on('click',function(){
+      return console.log('clicking the x')
+    })
     .style('transform','rotate(45deg)')
     .html('+')
     .style('float','left')
