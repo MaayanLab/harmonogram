@@ -40,11 +40,29 @@ function select_gmt_from_menu(inst_gmt){
     .attr('height', '20px');
 
   // make glyph 
+  //
+  // append rect 
   glyph_svg
     .append('rect')
     .attr('fill','blue')
     .attr('height','20px')
-    .attr('width','20px')
+    .attr('width','20px');
+  // append lines 
+  glyph_svg
+    .append('line')
+    .attr('x1',0)
+    .attr('x2',20)
+    .attr('y1',10)
+    .attr('y2',10)
+    .attr('stroke-width','2px');
+  glyph_svg
+    .append('line')
+    .attr('x1',10)
+    .attr('x2',10)
+    .attr('y1',0)
+    .attr('y2',20)
+    .attr('stroke-width','2px');
+
 
 
   // append name 
