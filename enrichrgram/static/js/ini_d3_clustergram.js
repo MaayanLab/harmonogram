@@ -91,7 +91,7 @@ d3.json('/enrichrgram/static/enrichr_gmt_data/enrichr_gmts.json', function(data)
     .append('button')
     .attr('data-control','')
     .attr('class','h_medium btn')
-    .attr('onclick', function(d,i){ return "gmt_name = " + "'" + d + "'; change_color_button('"+d+"')" ; })
+    .attr('onclick', function(d,i){ return "gmt_name = " + "'" + d + "'; select_gmt_from_menu('"+d+"')" ; })
     .attr('id',function(d){return d + '_button'})
     .html(function(d){return d.replace( /_/g, ' ')})
     
@@ -138,15 +138,7 @@ d3.json('/enrichrgram/static/enrichr_gmt_data/enrichr_gmts.json', function(data)
 
 })
 
-function change_color_button(inst_button){
 
-  // reset all buttons to original color
-  d3.selectAll('.h_medium').style('background','#D0D0D0');
-
-  // set clicked button to blue
-  d3.select('#'+inst_button+'_button').style('background','#6699CC');
-
-}
 
 // initialize clustergram: size, scales, etc. 
 function initialize_clustergram(network_data){

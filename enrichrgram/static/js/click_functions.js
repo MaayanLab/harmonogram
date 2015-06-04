@@ -1,3 +1,49 @@
+
+function select_gmt_from_menu(inst_gmt){
+
+  // reset all buttons to original color
+  d3.selectAll('.h_medium').style('background','#D0D0D0');
+
+  // set clicked button to blue
+  d3.select('#'+inst_gmt+'_button').style('background','#6699CC');
+
+  console.log(inst_gmt)
+
+
+  // append new select gmt group: glyph, name, and remove x 
+  // inst_group = d3.select('#selected_gmts_group')
+  inst_group = d3.select('#selected_gmts_group')
+    // selected_gmts div 
+    .append('div')
+    .attr('class','selected_gmts')
+
+  // make visible 
+  inst_group
+    .transition()
+    .duration(100)
+    .style('opacity','1')
+
+  // append glyph 
+  inst_group
+    .append('div')
+    .html('glyph')
+    .attr('id','glpyh_'+inst_gmt);
+
+  // append name 
+  inst_group
+    .append('div')
+    .html(inst_gmt);
+
+  // append remove x 
+  inst_group
+    .append('div')
+    .html('remove x ')
+
+
+
+}
+
+
 // add new gmt 
 function plus_new_gmt(inst_button){
   console.log('inside plus_new_gmt');
