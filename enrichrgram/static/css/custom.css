@@ -405,48 +405,6 @@ li{
   border-radius: : 0 !important ;
 }*/
 
-#title_gmt_menu{
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-size:16px;
-  color:white;
-  font-weight: bold;
-  padding-top:12px;
-  padding-bottom:12px;
-  padding-left:20px;
-  width:400px;
-  text-align: left; 
-  background: #333333;  
-  float: left;
-}
-
-.h_top{
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-size:16px;
-  /*color:white;*/
-  font-weight: bold;
-  padding-left:20px;
-  width:400px;
-  text-align: left; 
-  background: #8C8C8C;
-  border-radius: 0;
-}
-
-.h_medium{
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-size:16px;
-  padding-left:30px;
-  width:400px;
-  text-align: left; 
-  background: #D0D0D0;
-  border-radius: 0;
-}
-
-#gmt_menu{
-  margin-top: 20px;
-  margin-left: 0px;
-/*  width:50%;
-  margin: 0 auto;*/
-}
 
 
 .sidebar-nav > .sidebar-brand {
@@ -542,10 +500,58 @@ li{
   margin: 0 auto;
   color:white;
   text-align: center;
-  margin-top: 43px;
+  margin-top: 32px;
   margin-bottom: 10px;
 
 
   font-size: 25px;
   font-weight: 300;
 }
+
+
+#title_gmt_menu{
+  color:white;
+  padding-top:12px;
+  padding-bottom:12px;
+  padding-left:20px;
+  width:450px;
+  text-align: left; 
+  background: #333333;  
+  /*float: left;*/
+
+  font-size: 20px;
+  font-weight: 300;
+
+}
+
+.h_top{
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-size:16px;
+  /*color:white;*/
+  font-weight: bold;
+  padding-left:20px;
+  width:450px;
+  text-align: left; 
+  background: #8C8C8C;
+  border-radius: 0;
+}
+
+.h_medium{
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-size:16px;
+  padding-left:30px;
+  width:450px;
+  text-align: left; 
+  background: #D0D0D0;
+  border-radius: 0;
+}
+
+#gmt_menu{
+  margin-top: 20px;
+  margin-left: 0px;
+
+
+  font-size: 15px;
+  font-weight: 300;
+}
+
