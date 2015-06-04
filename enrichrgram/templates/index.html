@@ -36,8 +36,6 @@
 
 <body>
 
-
-
   <div id="wrapper">
 
     <!-- Sidebar -->
@@ -47,7 +45,6 @@
         <div id='title_input_gene_list'>
             Input Gene List
         </div>
-
 
         <div >
           <form role='form' action="{{ url_for('python_function') }}" id="searchForm">
@@ -63,16 +60,12 @@
                 <button type="button" class="btn btn-primary">Example</button>
               </div>
             </div>
-
             
           </form>
         </div>
-
-
-  
       </ul>
     </div>
-    <!-- end sidebar-wrapper -->
+    <!-- end sidebar -->
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
@@ -80,8 +73,8 @@
       <!-- Initial Content --> 
       <div id='main_container'>
 
-        <!-- this row is required --> 
-        <div class="row-fluid" > 
+        <!-- this row is required, -fluid causes problems --> 
+        <div class="row" > 
 
           <div class="col-lg-12">
 
@@ -96,22 +89,26 @@
                 </div>
               </h1>
               <p class='initial_paragraph'>Enrichrgram performs enrichment analysis on your set of genes using Enrichr and displays a clustergram of the results. Choose up to three gene set libraries for enrichment analysis. </p>
-            </div>
 
-            <div class='row-fluid'>
 
-              <!-- GMT menu -->              
-              <div class='span4' >
-                <!-- <section id="gmt_menu" data-accordion-group>
-                  <div id='title_gmt_menu'>Choose Libraries</div>
-                </section> -->
-                <h2>gmt menu</h2>
+              <div class='row'>
+                <!-- GMT menu -->              
+                <div class='col-sm-8 col-xs-8' >
+                  <section id="gmt_menu" data-accordion-group>
+                    <div id='title_gmt_menu'>Choose Libraries</div>
+                  </section>
+                  <!-- <h2>gmt menu</h2> -->
+                </div>
+                <!-- Selected GMTs style='background:blue' --> 
+                <div id='selected_gmts' class='col-sm-4 col-xs-4'>
+                  <div>ExampleGMT</div>
+                  <div>ExampleGMT</div>
+                  <div>ExampleGMT</div>
+                  <div>ExampleGMT</div>
+                  <div>ExampleGMT</div>
+                </div>
               </div>
 
-              <!-- Selected GMTs --> 
-              <div class='span4'>
-                <h2>ExampleGMT</h2>
-              </div>
 
             </div>
             <!-- end initial screen -->

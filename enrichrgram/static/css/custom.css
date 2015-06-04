@@ -438,6 +438,7 @@ li{
   width:400px;
   text-align: left; 
   background: #333333;  
+  float: left;
 }
 
 .h_top{
@@ -531,4 +532,8 @@ li{
 
 #website_title{
   margin-top: 20px;
+}
+
+#selected_gmts{
+  float:leftd;
 }
