@@ -12,7 +12,11 @@ function select_gmt_from_menu(inst_gmt){
 
   // append new select gmt group: glyph, name, and remove x 
   // inst_group = d3.select('#selected_gmts_group')
-  inst_group = d3.select('#selected_gmts_group')
+  inst_group = d3.select('#current_gmt')
+    .selectAll('div')
+    .remove()
+
+  inst_group = d3.select('#current_gmt')
     // selected_gmts div 
     .append('div')
     .attr('class','selected_gmts')
@@ -23,22 +27,44 @@ function select_gmt_from_menu(inst_gmt){
     .duration(100)
     .style('opacity','1')
 
-  // append glyph 
-  inst_group
+  // append glyph svg
+  glyph_svg = inst_group
     .append('div')
-    .html('glyph')
-    .attr('id','glpyh_'+inst_gmt);
+    .attr('class', 'glyph_squares')
+    .style('float','left')
+    .style('margin-right','7px')
+    .style('margin-top','2px')
+    .append('svg')
+    .attr('id','glpyh_'+inst_gmt)
+    .attr('width',  '20px')
+    .attr('height', '20px');
+
+  // make glyph 
+  glyph_svg
+    .append('rect')
+    .attr('fill','blue')
+    .attr('height','20px')
+    .attr('width','20px')
+
 
   // append name 
   inst_group
     .append('div')
-    .html(inst_gmt);
+    .html(inst_gmt.replace(/_/g,' '))
+    .style('float','left');
 
   // append remove x 
   inst_group
     .append('div')
-    .html('remove x ')
+    .attr('class','remove_existing_gmt')
+    .on('click','x_existing_gmt(this);')
+    .style('transform','rotate(45deg)')
+    .html('+')
+    .style('float','left')
 
+  //
+  inst_group
+    .style('clear','both')
 
 
 }

@@ -472,16 +472,18 @@ li{
 
 #selected_gmts_group{
   margin-top: 60px;
+  margin-left: -20px;
   padding-left: 0px;
 }
 
 .selected_gmts{
-  font-size: 35px;
+  font-size: 17px;
   font-weight: 300;
   margin-top: 5px;
   margin-bottom: 5px;
   /*background: blue;*/
   opacity:0;
+  width:700px;
 }
 
 #add_new_gmt{
@@ -497,15 +499,15 @@ li{
 }
 
 .remove_existing_gmt{
-  font-size: 40px;
+  font-size: 35px;
   font-weight: 400;
   /*margin-top: 10px;*/
   width:30px;
   text-align: center;
-  line-height: 50px;
+  line-height: 17px;
   vertical-align: middle;
   /*background: blue;*/
-  margin-left: 20px;
+  margin-left: 15px;
 }
 
 #gene_input_box{
