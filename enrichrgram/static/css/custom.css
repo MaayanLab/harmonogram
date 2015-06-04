@@ -472,7 +472,7 @@ li{
 
 #selected_gmts_group{
   margin-top: 60px;
-  padding-left: 0px
+  padding-left: 0px;
 }
 
 .selected_gmts{
@@ -481,9 +481,10 @@ li{
   margin-top: 5px;
   margin-bottom: 5px;
   /*background: blue;*/
+  opacity:0;
 }
 
-.add_new_gmt{
+#add_new_gmt{
   font-size: 35px;
   font-weight: 300;
   /*margin-top: 10px;*/
@@ -492,6 +493,7 @@ li{
   line-height: 40px;
   vertical-align: middle;
   /*background: blue;*/
+  opacity: 0;
 }
 
 .remove_existing_gmt{
@@ -553,6 +555,7 @@ li{
   font-size: 17px;
   font-weight: 300;
   border-radius: 0;
+  opacity: 0;
 }
 
 .h_medium{

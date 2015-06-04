@@ -173,6 +173,7 @@
             } else {
                 $content.css('max-height', $content.data('oHeight'));
 
+                // this is probably where I can control the close speed for siblings 
                 $content.animate(closedCSS, opts.transitionSpeed);
 
                 $accordion.removeClass('open');

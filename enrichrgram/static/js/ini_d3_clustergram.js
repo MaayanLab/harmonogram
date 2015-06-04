@@ -83,7 +83,7 @@ d3.json('/enrichrgram/static/enrichr_gmt_data/enrichr_gmts.json', function(data)
     .append('div')
     .attr('data-content','')
     
-    // append atricle
+    // append article
     .append('article')
     .attr('data-accordion','')
 
@@ -97,15 +97,16 @@ d3.json('/enrichrgram/static/enrichr_gmt_data/enrichr_gmts.json', function(data)
     
   }
 
+  // show the dropdown menu
+  d3.selectAll('.h_top')
+    .transition()
+    .duration(1000)
+    .style('opacity',1.0)
+
   // Initialize the collapsable menu after everything has been made by d3
-
-  // $(document).ready(function() {
-  // $('#gmt_menu [data-accordion]').accordion();
-  // });
-
   $(document).ready(function() {
     $('#gmt_menu [data-accordion]').accordion({
-      transitionSpeed: 1200, // Transition speed on miliseconds.
+      transitionSpeed: 1500, // Transition speed on miliseconds.
       transitionEasing: 'ease', // CSS value for easing
       controlElement: '[data-control]', // CSS selector for the element acting as a button inside accordions.
       contentElement: '[data-content]', // CSS selector for the element containing hide/show content.
@@ -122,13 +123,18 @@ d3.json('/enrichrgram/static/enrichr_gmt_data/enrichr_gmts.json', function(data)
         // highlight transcription factors 
         d3.select('#ChEA_button')
         .transition()
-        .duration(500)
+        .duration(200)
         .style('background','#6699CC');
 
-        // write 
-      }, 500)
+        // show the chea gmt selection 
+        d3.select('.selected_gmts').transition().delay(200).style('opacity',1)
 
-  }, 900)
+        // show the add new gmt button 
+        d3.select('#add_new_gmt').transition().delay(500).style('opacity',1);
+
+      }, 700)
+
+  }, 1000)
 
 })
 

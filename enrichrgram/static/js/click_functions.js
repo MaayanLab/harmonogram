@@ -3,6 +3,8 @@ function plus_new_gmt(inst_button){
   console.log('inside plus_new_gmt');
   console.log(inst_button);
   // d3.select(inst_button).
+
+
 }
 
 // remove existing gmt
