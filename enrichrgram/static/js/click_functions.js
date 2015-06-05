@@ -1,13 +1,15 @@
 
 function select_gmt_from_menu(inst_gmt){
 
-  console.log('selecting gmt from menu')
-
   // reset all buttons to original color
   d3.selectAll('.h_medium').style('background','#D0D0D0');
 
   // set clicked button to blue
   d3.select('#'+inst_gmt+'_button').style('background','#6699CC');
+
+  // only add gmt if the gmt is not already selected 
+  // check for a div with the gmt name as a class
+  if (d3.selectAll('.'+inst_gmt).empty() == true){
 
     d3.select('#current_gmt')
       .selectAll('div')
@@ -118,11 +120,14 @@ function select_gmt_from_menu(inst_gmt){
           .style('display','none');
     };
 
-  // show x remove_existing_gmt if there are multiple gmts
-  if (d3.selectAll('.selected_gmts')[0].length > 1 ){
-    d3.selectAll('.remove_existing_gmt')
-      .style('display','block');
-  }
+    // show x remove_existing_gmt if there are multiple gmts
+    if (d3.selectAll('.selected_gmts')[0].length > 1 ){
+      d3.selectAll('.remove_existing_gmt')
+        .style('display','block');
+    };
+
+  };
+
 };
 
 
