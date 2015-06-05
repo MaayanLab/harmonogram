@@ -1,134 +1,128 @@
 
 function select_gmt_from_menu(inst_gmt){
 
+  console.log('selecting gmt from menu')
+
   // reset all buttons to original color
   d3.selectAll('.h_medium').style('background','#D0D0D0');
 
   // set clicked button to blue
   d3.select('#'+inst_gmt+'_button').style('background','#6699CC');
 
-  // append new select gmt group: glyph, name, and remove x 
-  d3.select('#current_gmt')
-    .selectAll('div')
-    .remove();
+    d3.select('#current_gmt')
+      .selectAll('div')
+      .remove();
 
-  // grab div 
-  inst_group = d3.select('#current_gmt');
+    // grab div 
+    inst_group = d3.select('#current_gmt');
 
-  // add the gmt name as a class
-  inst_group
-    .attr('class', inst_gmt + ' selected_gmts');
+    // add the gmt name as a class
+    inst_group
+      .attr('class', inst_gmt + ' selected_gmts');
 
-  // make visible 
-  inst_group
-    .transition()
-    .duration(100)
-    .style('opacity','1');
+    // make visible 
+    inst_group
+      .transition()
+      .duration(100)
+      .style('opacity','1');
 
-  // update current library name
-  inst_group
+    // update current library name
+    inst_group
 
-  // append glyph svg
-  glyph_svg = inst_group
-    .append('div')
-    .append('svg')
-    .attr('class', 'glyph_squares')
-    .attr('id','glyph_'+inst_gmt)
-    .attr('width',  '24px')
-    .attr('height', '24px')
-    .on('click', clicking_glyph );
+    // append glyph svg
+    glyph_svg = inst_group
+      .append('div')
+      .append('svg')
+      .attr('class', 'glyph_squares')
+      .attr('id','glyph_'+inst_gmt)
+      .attr('width',  '24px')
+      .attr('height', '24px')
+      .on('click', clicking_glyph );
 
-  // make glyph 
-  //
-  // append background rect
-  glyph_svg
-    .append('rect')
-    .attr('fill','red')
-    .attr('height','24px')
-    .attr('width','24px');
+    // make glyph 
+    //
+    // append background rect
+    glyph_svg
+      .append('rect')
+      .attr('fill','red')
+      .attr('height','24px')
+      .attr('width','24px');
 
-  // append lines 
-  glyph_svg
-    .append('line')
-    .attr('x1',0)
-    .attr('x2',24)
-    .attr('y1',12)
-    .attr('y2',12)
-    .attr('stroke-width','2px');
+    // append lines 
+    glyph_svg
+      .append('line')
+      .attr('x1',0)
+      .attr('x2',24)
+      .attr('y1',12)
+      .attr('y2',12)
+      .attr('stroke-width','2px');
 
-  glyph_svg
-    .append('line')
-    .attr('x1',12)
-    .attr('x2',12)
-    .attr('y1',0)
-    .attr('y2',24)
-    .attr('stroke-width','2px');
+    glyph_svg
+      .append('line')
+      .attr('x1',12)
+      .attr('x2',12)
+      .attr('y1',0)
+      .attr('y2',24)
+      .attr('stroke-width','2px');
 
-  // append border rect 
-  glyph_svg
-    .append('rect')
-    .attr('fill','none')
-    .attr('stroke','white')
-    .attr('stroke-width','6px')
-    .attr('height','24px')
-    .attr('width','24px');
+    // append border rect 
+    glyph_svg
+      .append('rect')
+      .attr('fill','none')
+      .attr('stroke','white')
+      .attr('stroke-width','6px')
+      .attr('height','24px')
+      .attr('width','24px');
 
-  // append highlighting rect 
-  glyph_svg
-    .append('rect')
-    .attr('fill','none')
-    .attr('stroke-width','2px')
-    .attr('height','24px')
-    .attr('width','24px')
-    .attr('class','highlight_gmt')
-    .attr('stroke',function(){
-      inst_stroke = 'white';
-      if (d3.selectAll('.selected_gmts')[0].length > 1){
-        inst_stroke = 'black';
-      }
-      return inst_stroke;
-    });
+    // append highlighting rect 
+    glyph_svg
+      .append('rect')
+      .attr('fill','none')
+      .attr('stroke-width','2px')
+      .attr('height','24px')
+      .attr('width','24px')
+      .attr('class','highlight_gmt')
+      .attr('stroke','black');
 
-  // append gmt name 
-  inst_group
-    .append('div')
-    .html(inst_gmt.replace(/_/g,' '))
-    .style('float','left');
+    // append gmt name 
+    inst_group
+      .append('div')
+      .html(inst_gmt.replace(/_/g,' '))
+      .style('float','left');
 
-  // append remove x 
-  inst_group
-    .append('div')
-    .attr('class','remove_existing_gmt')
-    .attr('id','x_'+inst_gmt)
-    .on('click', remove_existing_gmt)
-    .style('transform','rotate(45deg)')
-    .html('+')
-    .style('float','left')
-    .style('opacity',function(){
-      inst_opacity = 1;
-      // if there are no other 
-      if (d3.select('#not_current_gmt').empty() == true){
-        inst_opacity = 0;
-      };
-      return inst_opacity;
-    });
+    // append remove x 
+    inst_group
+      .append('div')
+      .attr('class','remove_existing_gmt')
+      .attr('id','x_'+inst_gmt)
+      .on('click', remove_existing_gmt)
+      .style('transform','rotate(45deg)')
+      .html('+')
+      .style('float','left')
+      .style('display','none');
 
-  // remove float left 
-  inst_group
-    .style('clear','both');
 
-  // remove plus sign if there are unknown gmts
-  if (d3.selectAll('.unknown')[0].length == 0 ){
-      d3.select('#add_new_gmt')
-        .style('display','block');
-  };
+    // remove float left 
+    inst_group
+      .style('clear','both');
 
-  // double check that there are not more than 3 gmts
-  if (d3.selectAll('.selected_gmts')[0].length == 3 ){
-      d3.select('#add_new_gmt')
-        .style('display','none');
-  };
+    // add plus sign if there are no unknown gmts 
+    if (d3.selectAll('.unknown')[0].length == 0 ){
+        d3.select('#add_new_gmt')
+          .style('display','block');
+    };
 
+    // double check that there are not more than 3 gmts
+    if (d3.selectAll('.selected_gmts')[0].length == 3 ){
+        d3.select('#add_new_gmt')
+          .style('display','none');
+    };
+
+  // show x remove_existing_gmt if there are multiple gmts
+  if (d3.selectAll('.selected_gmts')[0].length > 1 ){
+    d3.selectAll('.remove_existing_gmt')
+      .style('display','block');
+  }
 };
 
 
@@ -228,21 +222,12 @@ function plus_new_gmt(){
     .style('transform','rotate(45deg)')
     .html('+')
     .style('float','left')
-    .style('opacity',function(){
-      inst_opacity = 1;
-      if (d3.select('#not_current_gmt').empty() == true){
-        inst_opacity = 0;
-      };
-      return inst_opacity;
-    });
+    .style('display','none');
 
   // remove float left so a new line can be appended below 
   inst_group
     .style('clear','both');
 
-  // make all other x buttons visible 
-  d3.selectAll('.remove_existing_gmt')
-    .style('opacity',1);
 
   // remove plus sign if there are three gmts 
   if (d3.selectAll('.selected_gmts')[0].length == 3 ){
@@ -255,6 +240,12 @@ function plus_new_gmt(){
       d3.select('#add_new_gmt')
         .style('display','none');
   };
+
+  // show x remove_existing_gmt if there are multiple gmts
+  if (d3.selectAll('.selected_gmts')[0].length > 1 ){
+    d3.selectAll('.remove_existing_gmt')
+      .style('display','block');
+  }
 
 
 };
@@ -306,6 +297,27 @@ function remove_existing_gmt(inst_button){
         .style('display','block');
   };  
 
+  // remove x if there is only one gmt available 
+  if (d3.selectAll('.selected_gmts')[0].length == 1 ){
+    d3.selectAll('.remove_existing_gmt')
+      .style('display','none');
+
+    // make last remaining gmt the current_gmt 
+    d3.select('#not_current_gmt')
+      .attr('id','current_gmt');
+
+  };
+
+  // if the current gmt was removed, then choose another
+  if (d3.select('#current_gmt').empty() == true){
+    d3.select('#not_current_gmt')
+      .attr('id','current_gmt');
+  }
+
+  // highlight current gmt
+  d3.select('#current_gmt')
+    .selectAll('.highlight_gmt')
+    .style('stroke','black');
   
 };
 
