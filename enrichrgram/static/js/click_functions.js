@@ -1,11 +1,38 @@
 
 function select_gmt_from_menu(inst_gmt){
 
+  // first remove previously current gmt from list of gmts in gmt_colors 
+  var remove_gmt = d3.select('#current_gmt').attr('class').replace('selected_gmts','').replace(' ','') ;
+  delete gmt_colors[remove_gmt];
+
+  // set up global variable for gmt that is being selected
+  inst_select_gmt = inst_gmt;
+
   // reset all buttons to original color
   d3.selectAll('.h_medium').style('background','#D0D0D0');
 
   // set clicked button to blue
   d3.select('#'+inst_gmt+'_button').style('background','#6699CC');
+
+  // if the gmt does not have an assigned color, then assign it the next global color
+  // if ( gmt_colors.hasOwnProperty(inst_gmt) == false ){
+  if ( inst_gmt in gmt_colors == false ){
+
+    // check for missing color 
+    if ( _.contains( _.values(gmt_colors), 'red') == false ) {
+      inst_color  = 'red';
+    }
+    else if ( _.contains( _.values(gmt_colors), 'blue') == false ) {
+      inst_color  = 'blue';
+    }
+    else if ( _.contains( _.values(gmt_colors), 'black') == false ) {
+      inst_color  = 'black';
+    };
+
+    // asign a new key value pair 
+    gmt_colors[inst_gmt] = inst_color;
+    console.log(gmt_colors)
+  };
 
   // only add gmt if the gmt is not already selected 
   // check for a div with the gmt name as a class
@@ -46,7 +73,17 @@ function select_gmt_from_menu(inst_gmt){
     // append background rect
     glyph_svg
       .append('rect')
-      .attr('fill',auto_choose_colors)
+      .attr('class','glyph_rect')
+      // .attr('fill',auto_choose_colors)
+      .attr('fill', function(){
+
+        // grab color from the dictionary 
+        inst_color = gmt_colors[inst_select_gmt];
+
+        console.log(inst_select_gmt)
+        console.log(inst_color)
+        return inst_color;
+      })
       .attr('height','24px')
       .attr('width','24px');
 
@@ -126,7 +163,25 @@ function select_gmt_from_menu(inst_gmt){
         .style('display','block');
     };
 
+    // // make gmt red if it is the only gmt 
+    // if (d3.selectAll('.selected_gmts')[0].length == 1){
+    //   d3.select('.'+inst_gmt).select('.glyph_rect').attr('fill','red');
+    // };
+
   };
+
+  // clean gmt_colors 
+  //
+  // get all gmts 
+  tmp_all_gmts = _.keys(gmt_colors);
+  // check each gmt 
+  for (i = 0; i < tmp_all_gmts; i ++){
+    if ( d3.selectAll('.'+ tmp_all_gmts[i]).empty() == true ){
+      // remove gmt from gmt_colors
+      delete gmt_colors[tmp_all_gmts[i]];
+    };
+  };
+
 
 };
 
@@ -201,7 +256,6 @@ function plus_new_gmt(){
     .attr('width','24px');
 
   // append highlighting rect: for new rect 
-
   glyph_svg
     .append('rect')
     .attr('fill','none')
@@ -324,21 +378,32 @@ function remove_existing_gmt(inst_button){
     .selectAll('.highlight_gmt')
     .style('stroke','black');
   
+  // remove key value pair from gmt_colors 
+  delete gmt_colors[inst_gmt];
 };
 
 // choose colors for glyphs
 function auto_choose_colors(){
-  inst_color = 'red';
+  // initialize color
+  inst_color = 'gray';
 
-  // if it is the second glyph set to blue 
-  if (d3.selectAll('.selected_gmts')[0].length == 2){
-    inst_color = 'blue';
-  }
+  console.log(' ')
+  console.log(gmt_colors)
+  console.log(' ')
 
-  // if it is third glyph set to black
-  if (d3.selectAll('.selected_gmts')[0].length == 3){
-    inst_color = 'black';
+  // check for missing color 
+  if ( _.contains( _.values(gmt_colors), 'red') == false ) {
+    inst_color  = 'red';
   }
+  else if ( _.contains( _.values(gmt_colors), 'blue') == false ) {
+    inst_color  = 'blue';
+  }
+  else if ( _.contains( _.values(gmt_colors), 'black') == false ) {
+    inst_color  = 'black';
+  };
+
+  // define a global next color
+  global_next_color = inst_color;
 
   return inst_color;
 }
