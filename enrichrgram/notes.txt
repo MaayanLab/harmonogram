@@ -154,16 +154,17 @@ Enrichrgram To Do
 		6. Add example and clear buttons
 		7. add pop-up when clicking on a gene
 		8. add pop-up instructions or some kind of instrucitons 
-		9. manage space better - maybe show fewer terms on default
-		10. allow user to choose different numbers of enriched terms to show
-		11. allow user to view which libraries will be included in the visualization 
-		12. add interface for user to select multiple libraries and colors 
+		9. allow user to choose different numbers of enriched terms to show
+		10. send enrichment json to the front end so that it can be reused by the user and downloaded
+		-. manage space better - maybe show fewer terms on default
+		-. allow user to view which libraries will be included in the visualization 
+		-. add interface for user to select multiple libraries and colors 
 		-. functionalize the y offset on the rows and columns
 		-. figure out why some tiles are negative (KEA with defaule gene list)
 		-. the cluster option should be the defaule
 
-	6-2-2015 
-
+	6-5-2015 
+		I have a much improved front end. It allows users to choose up to 3 different gmts from a collapsable menu of 3 gmts. I just need to adjust javascript request function and python functions to make several requests, merge together the enrichment jsons, and visualize them with different colors. This should only take a few hours- hopefully. In terms of getting Enrichr to be able to make a link, I need to have enrichr send me the gene list and the enrichment json. I also want to save the enrichment json in case I want to reuse it later on the client side. I also need to have enrichr return the enrichment json in addition to the visualization json so that I can keep it around for later use and make it available for download by the user. 
 
 	6-1-2015
 		I have fixed most of hte bugs with the visualization. 
