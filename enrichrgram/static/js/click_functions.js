@@ -46,7 +46,7 @@ function select_gmt_from_menu(inst_gmt){
     // append background rect
     glyph_svg
       .append('rect')
-      .attr('fill','red')
+      .attr('fill',auto_choose_colors)
       .attr('height','24px')
       .attr('width','24px');
 
@@ -171,7 +171,7 @@ function plus_new_gmt(){
   // append background rect
   glyph_svg
     .append('rect')
-    .attr('fill','red')
+    .attr('fill',auto_choose_colors)
     .attr('height','24px')
     .attr('width','24px');
 
@@ -326,6 +326,22 @@ function remove_existing_gmt(inst_button){
   
 };
 
+// choose colors for glyphs
+function auto_choose_colors(){
+  inst_color = 'red';
+
+  // if it is the second glyph set to blue 
+  if (d3.selectAll('.selected_gmts')[0].length == 2){
+    inst_color = 'blue';
+  }
+
+  // if it is third glyph set to black
+  if (d3.selectAll('.selected_gmts')[0].length == 3){
+    inst_color = 'black';
+  }
+
+  return inst_color;
+}
 
 // double click zoom reset
 function add_double_click() {
