@@ -21,7 +21,11 @@ function make_d3_clustergram(network_data) {
   d3.select('#toggle_menu_button').style('display','inline-block');
 
   // remove gmt_menu
-  d3.select('#gmt_menu').style('display','none')
+  d3.select('#gmt_menu').style('display','none');
+  d3.select('#add_new_gmt').style('display','none');
+
+  // remove display 
+  d3.select('#selected_gmts_group').remove();
 
   // define the variable zoom, a d3 method 
   zoom = d3.behavior.zoom().scaleExtent([0.5,3]).on('zoom',zoomed);
@@ -224,7 +228,7 @@ function make_d3_clustergram(network_data) {
     .attr('dy', '.32em')
     .attr('text-anchor','end')
     .style('font-size',default_fs+'px')
-    .text(function(d, i) { return d.name; } ); 
+    .text(function(d, i) { return d.name; } )
 
   // run add double click zoom function 
   add_double_click(); 

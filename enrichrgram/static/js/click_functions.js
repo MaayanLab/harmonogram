@@ -411,11 +411,14 @@ function auto_choose_colors(){
 // double click zoom reset
 function add_double_click() {
 
+
   // add double click zoom reset
   // 
   d3.select('#main_svg')
     .on('dblclick', function() { 
 
+      console.log('double clicking')
+      
       // reset adj zoom 
       d3.select('#clust_group')
         .attr("transform", "translate(" + (margin.left) + "," + (margin.top) + ")");

@@ -51,6 +51,8 @@ $( "#searchForm" ).submit( function( event ) {
     // wait message 
     d3.select('.blockMsg').select('h1').text('Waiting for matrix to load...');
 
+    // 
+
     // make d3 visualization
     make_d3_clustergram(network_data)
  
