@@ -63,8 +63,9 @@ h2 {
 /*}*/
 
 footer {
-  font-size: small;
-  margin-top: 8em;
+  margin-left: 200px;
+  text-align: center;
+  background-color: #f5f5f5;
 }
 
 header aside {
@@ -72,7 +73,7 @@ header aside {
 }
 
 header aside,
-footer aside {
+aside {
   color: #636363;
   text-align: right;
 }

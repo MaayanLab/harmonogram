@@ -24,7 +24,7 @@ $( "#searchForm" ).submit( function( event ) {
   /////////////////////////////////
   // manually set url (local)
   url = '/enrichrgram/'
-  // // !!! temporarily change for local development (docker)
+  // // !!! (docker)
   // url = '/'
 
   // set up variable for the post request with gene list: inst_genes
