@@ -12,13 +12,13 @@
 }
 
 #rank_switch{
-	position:relative;
-	/*top:100px;*/
-	display: block;
+  position:relative;
+  /*top:100px;*/
+  display: block;
 }
 
 .bootstrap-switch{
-	margin-left: 0px;
+  margin-left: 0px;
 }
 
 #searchForm{
@@ -355,13 +355,13 @@ li{
 
 
 #choose_protein{
-	margin-top:10px;
+  margin-top:10px;
   width:50%;
   float:left;
 }
 #choose_zscore{
-	margin-top:10px;
-	margin-left:5px;
+  margin-top:10px;
+  margin-left:5px;
   width:45%;
 }
 
@@ -374,7 +374,7 @@ li{
 #row_title{
   font-size:22px;
   display: none;
-	transform:rotate(-90deg	);
+  transform:rotate(-90deg );
   float:left;
   margin-left: -55px;
   margin-top: 300px;
@@ -388,19 +388,19 @@ li{
 }
 
 #main_svg{
-	/*position:fixed;*/
-	/*top:100px;
-	left:280px;*/
+  /*position:fixed;*/
+  /*top:100px;
+  left:280px;*/
   margin-left: -47px;
   font-size:8.0px;
  }
 
 #input_col{
-	width:100px;
+  width:100px;
 }
 
 #viz_col{
-	width:800px;
+  width:800px;
 }
 
 
@@ -441,11 +441,6 @@ li{
   padding-bottom: 5px;
 }
 
-.initial_paragraph{
-  font-size: 20px;
-  width:590px;
-}
-
 #main_container{
   position: relative;
   margin-left: 30px;
@@ -479,10 +474,10 @@ because the sidebar will be closed*/
   border-width: 3px;
   display: none;
   border-color: #f5f5f5;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
-#clustergram_instructions{
+#clust_instruct_container{
   display: none;
   padding-left: 10px;
   border-left: 0px;
@@ -567,11 +562,41 @@ because the sidebar will be closed*/
   text-align: center;
   margin-top: 32px;
   margin-bottom: 10px;
-
-
   font-size: 22px;
   font-weight: 300;
 }
+
+/*title for instructions*/
+#title_viz_instruct_text{
+  width:99%;
+  margin: 0 auto;
+  color:#333;
+  text-align: left;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 22px;
+  font-weight: 300;
+}
+
+/* the instructions for the visualization should
+look like the input gene list text title*/
+.viz_instruct_text{
+  width:99%;
+  margin: 0 auto;
+  color:#333;
+  text-align: left;
+  margin-top:10px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.initial_paragraph{
+  font-size: 20px;
+  width:590px;
+  font-weight: 300;
+}
+
 
 
 #title_gmt_menu{

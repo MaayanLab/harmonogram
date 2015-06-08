@@ -23,9 +23,9 @@ function make_d3_clustergram(network_data) {
   // display toggle switch
   d3.select('#toggle_menu_button').style('display','inline-block');
 
-  // display clustergram_container and clustergram_instructions
+  // display clustergram_container and clust_instruct_container
   d3.select('#clustergram_container').style('display','block');
-  d3.select('#clustergram_instructions').style('display','block');
+  d3.select('#clust_instruct_container').style('display','block');
 
   // remove main website title to make more vertical room
   d3.select('#website_title').style('display','none');
