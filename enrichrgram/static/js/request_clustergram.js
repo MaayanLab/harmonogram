@@ -20,16 +20,15 @@ $( "#searchForm" ).submit( function( event ) {
   // number of enriched terms 
   num_terms = 20; 
 
-
   // docker_vs_local
   /////////////////////////////////
-  // manually set url
+  // manually set url (local)
   url = '/enrichrgram/'
-  // // !!! temporarily change for local development 
+  // // !!! temporarily change for local development (docker)
   // url = '/'
 
   // set up variable for the post request with gene list: inst_genes
-  var posting = $.post( url, { genes: inst_genes, num_terms: num_terms, gmt_name: gmt_name } );
+  var posting = $.post( url, { genes: inst_genes, num_terms: num_terms, gmt_colors:JSON.stringify(gmt_colors) } );
  
   console.log('making post request')
 
@@ -50,8 +49,6 @@ $( "#searchForm" ).submit( function( event ) {
 
     // wait message 
     d3.select('.blockMsg').select('h1').text('Waiting for matrix to load...');
-
-    // 
 
     // make d3 visualization
     make_d3_clustergram(network_data)

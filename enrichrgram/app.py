@@ -22,10 +22,11 @@ ENTRY_POINT = '/enrichrgram'
 # switch for local and docker development 
 # docker_vs_local
 ##########################################
-# for local development 
-SERVER_ROOT = os.path.dirname(os.getcwd()) + '/enrichrgram/enrichrgram' ## original 
+# # for local development 
+# SERVER_ROOT = os.path.dirname(os.getcwd()) + '/enrichrgram/enrichrgram' ## original 
+
 # for docker development
-# SERVER_ROOT = '/app/enrichrgram'
+SERVER_ROOT = '/app/enrichrgram'
 
 @app.route(ENTRY_POINT + '/<path:path>') ## original 
 # @crossdomain(origin='*')
@@ -55,6 +56,9 @@ def python_function():
 
   error = None 
 
+  # get gmt_colors
+  gmt_colors = json.loads(request.form['gmt_colors'])
+
   # get the number of enriched terms 
   num_terms = int(request.form['num_terms'])
 
@@ -67,11 +71,8 @@ def python_function():
   # obtain unique genes 
   inst_genes = list(set(inst_genes))
 
-  # get the gmt name
-  gmt_name = request.form['gmt_name']
-
   # calc enrichment and cluster 
-  network = make_enr_clust.main(gmt_name, inst_genes, num_terms, 'jaccard')
+  network = make_enr_clust.main(gmt_colors, inst_genes, num_terms, 'jaccard')
 
   # jsonify a list of dicts 
   return flask.jsonify( network )

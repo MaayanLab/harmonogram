@@ -1,6 +1,12 @@
 // initialize dropdown 
 console.log('make jquery get request')
 
+// initialize global dictionary to associate gmts with colors
+gmt_colors = {};
+gmt_colors.ChEA = 'red';
+
+
+
 // could be improved
 // docker_vs_local
 ////////////////////
@@ -134,11 +140,6 @@ d3.json('/enrichrgram/static/enrichr_gmt_data/enrichr_gmts.json', function(data)
         //
         // display manual gmt name 
         d3.select('.selected_gmts').transition().delay(200).style('opacity',1);
-
-        // initialize global dictionary to associate gmts with colors
-        gmt_colors = {};
-        gmt_colors.ChEA = 'red';
-        // global_next_color = 'blue';
 
         // selet ChEA as the inital library 
         select_gmt_from_menu('ChEA')

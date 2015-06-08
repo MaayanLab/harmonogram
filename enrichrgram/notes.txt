@@ -122,6 +122,8 @@ To Do Clustergram visualization
 	9. highlight transcription factors that are in the input list. 
 	10. add pop-up instructions 
 	3. reduce the width of the separating bars 
+	11. fix double click zoom bug when there is more than one svg 
+
 
 	-. add dynamically adjusting top column that will adjust to the length of the enriched terms 
 	-. change scale functions to work with a variable number of enriched terms 

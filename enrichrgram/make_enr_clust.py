@@ -1,10 +1,15 @@
-def main( gmt_name, inst_genes, num_terms, dist_type):
+def main( gmt_colors, inst_genes, num_terms, dist_type):
 
 	print('in main function of make_enr_clust')
-    
+  
+	# get list of gmts
+	gmt_names = gmt_colors.keys()
+
+	print('\ngmt colors '+ gmt_names[0] + '\n')
+
 	# get results from enrichr 
 	# 
-	response_dict = enrichr_result(inst_genes, '', gmt_name)
+	response_dict = enrichr_result(inst_genes, '', gmt_names[0])
 
 	# p-value, adjusted pvalue, z-score, combined score, genes 
 	# 1: Term 
