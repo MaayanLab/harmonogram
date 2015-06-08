@@ -654,10 +654,16 @@ look like the input gene list text title*/
   margin-top: 0px;
 }
 
+#submit_genes_button{
+  width:141px;
+  margin-bottom: 10px;
+}
+
 /*clear button*/
 #clear_input_button{
-  opacity: 0.85;
-  width:153px;
-  margin-top: 10px;
-  /*background-color: #8E2323;*/
+  opacity: 0.80;
+}
+
+.form-group{
+  margin-bottom: 10px;
 }
