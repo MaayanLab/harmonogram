@@ -14,11 +14,27 @@ function make_d3_clustergram(network_data) {
   d3.select('#col_title').style('display','block');
   d3.select('#toggle_menu_button').style('display','inline-block');
 
+  // toggle sidebar to make more space for visualization
+  d3.select('#wrapper').attr('class','toggled');
+
   // remove initial paragraphs
   d3.selectAll('.initial_paragraph').style('display','none');
 
   // display toggle switch
   d3.select('#toggle_menu_button').style('display','inline-block');
+
+  // display clustergram_container and clustergram_instructions
+  d3.select('#clustergram_container').style('display','block');
+  d3.select('#clustergram_instructions').style('display','block');
+
+  // remove main website title to make more vertical room
+  d3.select('#website_title').style('display','none');
+
+  // shift the footer left
+  d3.select('#footer_div')
+    // .transition()
+    // .duration(250)
+    .style('margin-left','0px');
 
   // remove gmt_menu
   d3.select('#gmt_menu').style('display','none');
