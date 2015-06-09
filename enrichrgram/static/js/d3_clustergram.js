@@ -19,7 +19,7 @@ function make_d3_clustergram(network_data) {
   d3.select('#website_title').style('display','none');
   d3.selectAll('.initial_paragraph').style('display','none');
   d3.select('#gmt_menu').style('display','none');
-  d3.select('#add_new_gmt').style('display','none');
+  // d3.select('#add_new_gmt').style('display','none');
 
   // display clustergram_container and clust_instruct_container
   d3.select('#clustergram_container').style('display','block');
@@ -31,8 +31,8 @@ function make_d3_clustergram(network_data) {
     // .duration(250)
     .style('margin-left','0px');
 
-  // d3.select('#selected_gmts_group').remove();
-  d3.select('#selected_gmts_group').style('display','none');
+  // remove gmt labels 
+  d3.select('#container_gmt_labels').style('display','none');
 
   // define the variable zoom, a d3 method 
   zoom = d3.behavior.zoom().scaleExtent([0.5,10]).on('zoom',zoomed);
@@ -141,7 +141,7 @@ function make_d3_clustergram(network_data) {
   // horizontal line
   row_obj.append('line')
     .attr('x2', 20*clustergram_width)
-    .attr('stroke-width', border_width+'px')
+    .style('stroke-width', border_width+'px')
 
   // select all columns 
   col_label_obj = d3.select('#col_labels')
@@ -167,7 +167,7 @@ function make_d3_clustergram(network_data) {
     .append('line')
     .attr('x1', 0)
     .attr('x2', -20*clustergram_height)
-    .attr('stroke-width', border_width+'px')
+    .style('stroke-width', border_width+'px')
 
 
   // get the max abs nl_pval (find obj and get nl_pval)
@@ -215,7 +215,6 @@ function make_d3_clustergram(network_data) {
   // add triangle under rotated labels
   col_label_click
     .append('path')
-    // .style('stroke','black')
     .style('stroke-width',0)
     .attr('d', function(d) { 
         // x and y are flipped since its rotated 

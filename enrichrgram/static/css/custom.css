@@ -206,7 +206,7 @@ blockquote:after {
 }
 
 line {
-  stroke: #fff; 
+  stroke: white; 
   /*#fff;*/
 }
 

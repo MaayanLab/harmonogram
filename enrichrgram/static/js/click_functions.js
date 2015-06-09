@@ -48,14 +48,8 @@ function select_gmt_from_menu(inst_gmt){
     inst_group
       .attr('class', inst_gmt + ' selected_gmts');
 
-    ////////////////////////////////////////////
-    // defined current_gmt and set to current_gmt
-    ////////////////////////////////////////////
-
-    make_gmt_labels()
-
-    ///////////////////
-
+    // gmt labels 
+    make_gmt_labels(inst_group);
 
   };
 
@@ -88,7 +82,7 @@ function plus_new_gmt(){
 
   // remove highlight from all squares
   d3.selectAll('.highlight_gmt')
-    .attr('stroke','white');
+    .style('stroke','white');
 
   // append new current_gmt
   inst_group = d3.select('#selected_gmts_group')
@@ -96,13 +90,8 @@ function plus_new_gmt(){
     .attr('class','selected_gmts unknown')
     .attr('id','current_gmt');
 
-  ////////////////////////////////////////////
-  // defined current_gmt and set to current gmt 
-  ////////////////////////////////////////////
-
-  make_gmt_labels()  
-
-  ///////////////////
+  // gmt labels 
+  make_gmt_labels(inst_group) ; 
 
 
 };
@@ -118,12 +107,12 @@ function clicking_glyph(){
 
   // remove highlight from all squares
   d3.selectAll('.highlight_gmt')
-    .attr('stroke','white')
+    .style('stroke','white')
 
   // set the current glyph to black
   d3.select('#'+inst_glyph)
     .select('.highlight_gmt')
-    .attr('stroke','black');
+    .style('stroke','black');
 
   // change id of current_gmt to not_current_gmt
   d3.select('#current_gmt').attr('id','not_current_gmt');
@@ -438,11 +427,11 @@ function rerun_enrichrgram(){
   d3.select('#gmt_menu').style('display','block')
     .style('opacity',0).transition().duration(200).style('opacity',1);
 
-  d3.select('#selected_gmts_group').style('display','block')
+  d3.select('#container_gmt_labels').style('display','block')
     .style('opacity',0).transition().duration(200).style('opacity',1);
 
-  d3.select('#add_new_gmt').style('display','block')
-    .style('opacity',0).transition().duration(200).style('opacity',1);
+  // d3.select('#add_new_gmt').style('display','block')
+  //   .style('opacity',0).transition().duration(200).style('opacity',1);
 
 
   // show return to previous enrichrgram button
@@ -473,8 +462,7 @@ function return_prev_enrichrgram(){
   d3.select('#website_title').style('display','none');
   d3.selectAll('.initial_paragraph').style('display','none');
   d3.select('#gmt_menu').style('display','none');
-  d3.select('#selected_gmts_group').style('display','none');
-  d3.select('#add_new_gmt').style('display','none');
+  d3.select('#container_gmt_labels').style('display','none');
   
   // shift the footer left since sidebar is not shown
   d3.select('#footer_div')
@@ -485,7 +473,7 @@ function return_prev_enrichrgram(){
 };
 
 
-function make_gmt_labels(){
+function make_gmt_labels(inst_group){
 // make visible 
   inst_group
     .transition()
@@ -517,7 +505,7 @@ function make_gmt_labels(){
     .attr('x2',24)
     .attr('y1',12)
     .attr('y2',12)
-    .attr('stroke-width','2px');
+    .style('stroke-width','2px');
 
   glyph_svg
     .append('line')
@@ -525,14 +513,14 @@ function make_gmt_labels(){
     .attr('x2',12)
     .attr('y1',0)
     .attr('y2',24)
-    .attr('stroke-width','2px');
+    .style('stroke-width','2px');
 
   // append border rect 
   glyph_svg
     .append('rect')
     .attr('fill','none')
-    .attr('stroke','white')
-    .attr('stroke-width','6px')
+    .style('stroke','white')
+    .style('stroke-width','6px')
     .attr('height','24px')
     .attr('width','24px');
 
@@ -540,11 +528,11 @@ function make_gmt_labels(){
   glyph_svg
     .append('rect')
     .attr('fill','none')
-    .attr('stroke-width','2px')
+    .style('stroke-width','2px')
     .attr('height','24px')
     .attr('width','24px')
     .attr('class','highlight_gmt')
-    .attr('stroke','black');
+    .style('stroke','black');
 
   // append gmt name 
   inst_group
@@ -584,12 +572,6 @@ function make_gmt_labels(){
   inst_group
     .style('clear','both');
 
-  // remove plus sign if there are three gmts 
-  if (d3.selectAll('.selected_gmts')[0].length == 3 ){
-      d3.select('#add_new_gmt')
-        .style('display','none');
-  };
-
   // add plus sign if there are no unknown gmts 
   if (d3.selectAll('.unknown')[0].length == 0 ){
       d3.select('#add_new_gmt')
@@ -598,6 +580,12 @@ function make_gmt_labels(){
 
   // remove plus sign if there are unknown gmts
   if (d3.selectAll('.unknown')[0].length > 0 ){
+      d3.select('#add_new_gmt')
+        .style('display','none');
+  };
+
+  // remove plus sign if there are three gmts 
+  if (d3.selectAll('.selected_gmts')[0].length == 3 ){
       d3.select('#add_new_gmt')
         .style('display','none');
   };
