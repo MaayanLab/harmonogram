@@ -37,6 +37,13 @@ def main( gmt_colors, inst_genes, num_terms, dist_type):
 def make_enrichment_clustergram(enr, dist_type):
 	import d3_clustergram
 
+	# make a dictionary of enr_terms and colors 
+	terms_colors = {}
+	for inst_enr in enr:
+		terms_colors[inst_enr['name']] = inst_enr['color']
+
+	# print(terms_colors)
+
 	# convert enr to nodes, data_mat 
 	nodes, data_mat = d3_clustergram.convert_enr_to_nodes_mat( enr )
 
@@ -44,7 +51,7 @@ def make_enrichment_clustergram(enr, dist_type):
 	clust_order = d3_clustergram.cluster_row_and_column( nodes, data_mat, dist_type, enr )
 
 	# generate d3_clust json 
-	d3_json = d3_clustergram.d3_clust_single_value( nodes, clust_order, data_mat )
+	d3_json = d3_clustergram.d3_clust_single_value( nodes, clust_order, data_mat, terms_colors )
 
 	return d3_json
 

@@ -1,6 +1,6 @@
 # d3_clustergram.py has functions that will generate a d3 clustergram 
 
-def d3_clust_single_value(nodes, clust_order, mat):
+def d3_clust_single_value(nodes, clust_order, mat, terms_colors):
 	import json
 	import d3_clustergram
 
@@ -14,7 +14,8 @@ def d3_clust_single_value(nodes, clust_order, mat):
 		inst_dict['clust'] = clust_order['clust']['row'].index(i)
 		inst_dict['rank'] = clust_order['rank']['row'][i]
 		inst_dict['nl_pval'] = clust_order['nl_pval']['row'][i]
-		# add to d3_json 
+
+		# append to row_nodes 
 		d3_json['row_nodes'].append(inst_dict)
 
 	# append col dicts to array 
@@ -26,7 +27,9 @@ def d3_clust_single_value(nodes, clust_order, mat):
 		inst_dict['pval'] = clust_order['pval']['col'][i]
 		inst_dict['nl_pval'] = clust_order['nl_pval']['col'][i]
 		inst_dict['pval_bh'] = clust_order['pval_bh']['col'][i]
-		inst_dict['color'] = 'blue'
+		inst_dict['color'] = terms_colors[nodes['col'][i]]
+
+		# print(nodes['col'][i])
 
 		# add to d3_json 
 		d3_json['col_nodes'].append(inst_dict)
@@ -39,9 +42,13 @@ def d3_clust_single_value(nodes, clust_order, mat):
 	# links - generate edge list 
 	for i in range(len(nodes['row'])):
 		for j in range(len(nodes['col'])):
+
+			# initialize dict 
 			inst_dict = {}
+			# set source and target 
 			inst_dict['source'] = i
 			inst_dict['target'] = j
+
 			# calculate the inst_value, a combination of col and row attributes
 			# scale value by largest 
 			row_value = clust_order['nl_pval']['row'][i] / max_row_value
@@ -49,17 +56,17 @@ def d3_clust_single_value(nodes, clust_order, mat):
 
 			# take the mean of the two values times the binary mat[i,j]
 			inst_value = ( row_value + col_value )/ 2 * mat[i,j] 
+
+			# save the inst_dict['value']
 			inst_dict['value'] = inst_value 
 
-			# need to look up the color
-			print(nodes['col'][j])
+			# # need to look up the color
+			# print(nodes['col'][j])
 
 			# add the color 
-			inst_dict['color'] = 'blue'
+			inst_dict['color'] = terms_colors[nodes['col'][j]]
 
-			# inst_dict['dn'] = mat[i,j]
-			# inst_dict['merge'] = mat[i,j]
-
+			# append to links 
 			d3_json['links'].append( inst_dict )
 
 	return d3_json

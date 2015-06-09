@@ -183,7 +183,7 @@ function make_d3_clustergram(network_data) {
     .append('rect')
     // column is rotated - effectively width and height are switched
     .attr('width', function(d,i) { 
-      console.log(d);
+      // console.log(d);
       return bar_scale_col( d.nl_pval ); 
     })
     // rotate labels - reduce width if rotating
