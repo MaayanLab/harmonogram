@@ -5,6 +5,8 @@ def main( gmt_colors, inst_genes, num_terms, dist_type):
 	# get list of gmts
 	gmt_names = gmt_colors.keys()
 
+	print(gmt_colors)
+
 	print('\ngmt colors '+ gmt_names[0] + '\n')
 
 	# make the post request with the input genes 
@@ -15,12 +17,12 @@ def main( gmt_colors, inst_genes, num_terms, dist_type):
 	enr = []
 
 	# loop through gmts 
-	for inst_gmt in gmt_names:
+	for inst_gmt in gmt_colors:
 
-		# get results from enrichr 
-		inst_enr = enrichr_get_request(inst_gmt, num_terms, userListId )
+		# get results from enrichr
+		# return a list of dictionaries 
+		inst_enr = enrichr_get_request(inst_gmt, num_terms, userListId, gmt_colors[inst_gmt] )
 
-		# instantiate list 
 		if len(enr) == 0:
 			enr = inst_enr 
 		else:
@@ -77,10 +79,12 @@ def enrichr_post_request( input_genes, meta=''):
 
 # make the get request to enrichr using the requests library 
 # this is done after submitting post request with the input gene list 
-def enrichr_get_request( gmt, num_terms, userListId ):
+def enrichr_get_request( gmt, num_terms, userListId, inst_color ):
   # get metadata 
 	import requests
 	import json
+
+	print('inst_color '+ inst_color)
 
 	# define the get url 
 	get_url = 'http://amp.pharm.mssm.edu/Enrichr/enrich'
@@ -104,13 +108,13 @@ def enrichr_get_request( gmt, num_terms, userListId ):
 	response_list = resp_json[only_key]
 
 	# transfer the response_list to the enr_dict 
-	enr = transfer_to_enr_dict( response_list, num_terms)
+	enr = transfer_to_enr_dict( response_list, num_terms, inst_color )
 
 	# return enrichment json and userListId
 	return enr 
 
 # transfer the response_list to a list of dictionaries 
-def transfer_to_enr_dict(response_list, num_terms):
+def transfer_to_enr_dict(response_list, num_terms, inst_color):
 
 	# reduce the number of enriched terms if necessary
 	if len(response_list) < num_terms:
@@ -149,6 +153,8 @@ def transfer_to_enr_dict(response_list, num_terms):
 		inst_dict['int_genes'] = inst_enr[5]
 		# adjusted pval
 		inst_dict['pval_bh'] = inst_enr[6]
+		# add the color 
+		inst_dict['color'] = inst_color
 
 		# append dict
 		enr.append(inst_dict)
