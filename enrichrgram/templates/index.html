@@ -83,9 +83,6 @@
             <!-- initial screen -->
             <div id='initial_container'>
               <h1 id='website_title'> Enrichrgram
-                <a id="toggle_menu_button" href="#menu-toggle" class="btn btn-default" >
-                  Toggle Enrichment Menu
-                </a>
               </h1>
               <p class='initial_paragraph'>Enrichrgram performs enrichment analysis on your set of genes using Enrichr and displays a clustergram of the results. Choose up to three gene set libraries for enrichment analysis. </p>
 
@@ -133,7 +130,7 @@
                   <div class='viz_instruct_text'> Enrichrgram shows your input gene list as rows and enriched terms as columns with bars that indicate the enrichment value (combined score). Enriched terms and input genes are clustered based on Jaccard similarity. The opacity of a tile is determined by the enrichment value of the term and the terms associated with a gene. See help for more information.</div>
                   <div class='viz_instruct_text'> Zoom using your mouse and toggle the ordering of the clustergram using the ordering switch or by clicking on a row/column to re-order the columns/rows based on the selected term. </div>
 
-                  <button id='modify_enrichrgram_button' class='btn btn-danger buttons' >Re-run Enrichrgram</button>
+                  <button id='modify_enrichrgram_button' class='btn btn-danger buttons' onClick='rerun_enrichrgram();'>Re-run Enrichrgram</button>
 
                   <div class='viz_instruct_text'>Ordering</div>
 
@@ -228,16 +225,6 @@
   <script src='static/js/click_functions.js'></script>
   <script src='static/js/toggle_switch.js'></script>
 
-  <!-- Menu Toggle Script -->
-  <script>
-  $("#toggle_menu_button").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-
-  });
-
-
-  </script>
 
 
 </body>

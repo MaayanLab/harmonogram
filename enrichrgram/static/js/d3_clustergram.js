@@ -4,7 +4,6 @@ function make_d3_clustergram(network_data) {
 
   // remove old map
   d3.select("#main_svg").remove();
-  d3.select('#kinase_substrates').remove();
 
   // initialize clustergram variables 
   initialize_clustergram(network_data)
@@ -12,23 +11,19 @@ function make_d3_clustergram(network_data) {
   // display col and row title 
   d3.select('#row_title').style('display','block');
   d3.select('#col_title').style('display','block');
-  d3.select('#toggle_menu_button').style('display','inline-block');
 
   // toggle sidebar to make more space for visualization
   d3.select('#wrapper').attr('class','toggled');
 
-  // remove initial paragraphs
+  // remove initial components
+  d3.select('#website_title').style('display','none');
   d3.selectAll('.initial_paragraph').style('display','none');
-
-  // display toggle switch
-  d3.select('#toggle_menu_button').style('display','inline-block');
+  d3.select('#gmt_menu').style('display','none');
+  d3.select('#add_new_gmt').style('display','none');
 
   // display clustergram_container and clust_instruct_container
   d3.select('#clustergram_container').style('display','block');
   d3.select('#clust_instruct_container').style('display','block');
-
-  // remove main website title to make more vertical room
-  d3.select('#website_title').style('display','none');
 
   // shift the footer left
   d3.select('#footer_div')
@@ -36,12 +31,8 @@ function make_d3_clustergram(network_data) {
     // .duration(250)
     .style('margin-left','0px');
 
-  // remove gmt_menu
-  d3.select('#gmt_menu').style('display','none');
-  d3.select('#add_new_gmt').style('display','none');
-
-  // remove display 
-  d3.select('#selected_gmts_group').remove();
+  // d3.select('#selected_gmts_group').remove();
+  d3.select('#selected_gmts_group').style('display','none');
 
   // define the variable zoom, a d3 method 
   zoom = d3.behavior.zoom().scaleExtent([0.5,3]).on('zoom',zoomed);
@@ -77,7 +68,8 @@ function make_d3_clustergram(network_data) {
       .attr("transform", "translate(" + (margin.left) + "," + (margin.top) + ")");
 
   // disable double-click zoom: double click should reset zoom level 
-  d3.select("svg").on("dblclick.zoom", null);    
+  // do this for all svg elements 
+  d3.selectAll("svg").on("dblclick.zoom", null);    
 
   // row white rect 
   d3.select('#main_svg')
@@ -318,4 +310,34 @@ function reorder_clust_rank(order_type) {
     .attr("transform", function(d, i) { 
       return "translate(" + x_scale(i) + ")rotate(-90)"; 
     });
+};
+
+
+// re-run enrichrgram 
+function rerun_enrichrgram(){
+  console.log('re-running enrichrgram');
+
+  // toggle sidebar to make more space for visualization
+  d3.select('#wrapper').attr('class','');
+
+  // remove clustergram components 
+  d3.select('#clustergram_container').style('display','none');
+  d3.select('#clust_instruct_container').style('display','none');
+
+  // show initial components 
+  d3.select('#website_title').style('display','block')
+    .style('opacity',0).transition().duration(200).style('opacity',1);
+
+  d3.selectAll('.initial_paragraph').style('display','block')
+    .style('opacity',0).transition().duration(200).style('opacity',1);
+
+  d3.select('#gmt_menu').style('display','block')
+    .style('opacity',0).transition().duration(200).style('opacity',1);
+
+  d3.select('#selected_gmts_group').style('display','block')
+    .style('opacity',0).transition().duration(200).style('opacity',1);
+
+  d3.select('#add_new_gmt').style('display','block')
+    .style('opacity',0).transition().duration(200).style('opacity',1);
+
 };

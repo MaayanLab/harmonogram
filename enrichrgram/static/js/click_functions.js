@@ -411,7 +411,6 @@ function auto_choose_colors(){
 // double click zoom reset
 function add_double_click() {
 
-
   // add double click zoom reset
   // 
   d3.select('#main_svg')

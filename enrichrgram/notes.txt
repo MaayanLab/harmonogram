@@ -111,20 +111,18 @@ Mac specific docker notes
 	I'm starting to work on this again. In the meantime I was working on Cardaic mutation data from Bruce stuff for kit, KEA2, kit etc. I want to use this visualization for multiple projects. It could be useful for KEA2, Nosology X2K, and Kit's project (which is similar to Nosology X2K). 
 
 To Do Clustergram visualization
-	3. add all other gmts 
-**5. add enrichment for multiple gmts at once
-
+**1. add enrichment for multiple gmts at once
 	0. only return/highlight significantly enriched 
-	1. set up code so that it is only run if there are input genes (need to check if inputs are genes)
-	2. set up example button to have an example list of genes 
+
 	??. set up up/dn gene lists - this has some cool possibilities for coloring/opacity 
-	??. find similar genes: show similar genes based on different attributes that can be selected from a multiple checkbox region 
-	9. highlight transcription factors that are in the input list. 
-	10. add pop-up instructions 
-	3. reduce the width of the separating bars 
-	11. fix double click zoom bug when there is more than one svg 
+	??. highlight transcription factors that are in the input list. 
 
-
+	-. reduce the width of the separating bars 
+	-. add pop-up instructions 
+	-. set up example button to have an example list of genes 
+	-. set up code so that it is only run if there are input genes (need to check if inputs are genes)
+	-. add all other gmts 
+	-. fix double click zoom bug when there is more than one svg 
 	-. add dynamically adjusting top column that will adjust to the length of the enriched terms 
 	-. change scale functions to work with a variable number of enriched terms 
 	-. rescale enrichment bar with zoom 
@@ -153,11 +151,11 @@ Enrichrgram To Do
 		2. add multiple gmt files in the same clustergram 
 		4. change the colors on the toggle switch
 		5. The user should have a way to see the pvalue and download the results 
-		6. Add example and clear buttons
 		7. add pop-up when clicking on a gene
-		8. add pop-up instructions or some kind of instrucitons 
 		9. allow user to choose different numbers of enriched terms to show
 		10. send enrichment json to the front end so that it can be reused by the user and downloaded
+		-. add pop-up instructions or some kind of instrucitons 
+		-. Add example and clear buttons
 		-. manage space better - maybe show fewer terms on default
 		-. allow user to view which libraries will be included in the visualization 
 		-. add interface for user to select multiple libraries and colors 

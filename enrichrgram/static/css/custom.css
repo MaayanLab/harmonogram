@@ -333,10 +333,6 @@ li{
 }
 
 
-#kinase_substrates{
-  margin-top:10px;
-}
-
 .cell_instructions{
   margin:15px; 
 }
@@ -456,10 +452,6 @@ li{
 
 #initial_container{
   position:relative;
-}
-
-#toggle_menu_button{
-  display: none;
 }
 
 #clust_and_row_container{
