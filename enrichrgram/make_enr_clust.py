@@ -88,8 +88,9 @@ def enrichr_result(genes, meta='', gmt=''):
 
 	# wait for request 
 	resp = urllib2.urlopen(request)
-	# print(resp.read())
-	time.sleep(2)
+	
+	# # print(resp.read())
+	# time.sleep(2)
 
 	# alternate wait for response
 	# try:

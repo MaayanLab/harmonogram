@@ -156,6 +156,7 @@ Enrichrgram To Do
 		3. show pvalue and have results available for download 
 		4. adjust number of enriched terms 
 		5. send enrichment json to the front end so that it can be reused by the user and downloaded
+		6. Add description of libraries 
 
 		??. add pop-up when clicking on a gene
 		-. change the colors on the toggle switch
