@@ -5,12 +5,12 @@ def main():
 	input_genes = ["CD2BP2", "SLBP", "FOXK2", "STMN2", "SMAD4", "EIF6", "SF1", "CTNND2", "DBN1", "IQGAP2", "P2RX6", "ANKRD6", "C9ORF40", "ARHGEF7", "GOLGA2", "PPME1", "FAM129A", "YES1", "GLI4", "1600027N09RIK", "PTS", "PATL1", "ORAI1", "SPATS2L", "DCX", "HK2", "CSPG4", "AMBRA1", "SENP3", "THOP1", "DSG2", "PER1", "ACLY", "NR1H4", "PTPN7", "BRD2", "TAX1BP1", "RGS14", "SLC40A1", "CNN3", "PLSCR1", "PIP5K1B", "GRB14", "CTR9", "ARHGAP15", "TOM1L2", "ZNF148", "TBC1D12", "BAIAP2", "TOP2A"]
 
 	# run request function 
-	enr, userListId = make_request(input_genes, '', 'ChEA' )
+	enr, userListId = enrichr_request(input_genes, '', 'ChEA' )
 
 	print(enr[0])
 	print(userListId)
 
-def make_request( input_genes, meta='', gmt='' ):
+def enrichr_request( input_genes, meta='', gmt='' ):
 
   # get metadata 
 	import requests

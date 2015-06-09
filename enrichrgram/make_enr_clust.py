@@ -9,7 +9,10 @@ def main( gmt_colors, inst_genes, num_terms, dist_type):
 
 	# get results from enrichr 
 	# 
-	response_dict = enrichr_result(inst_genes, '', gmt_names[0])
+	# response_list = enrichr_result(inst_genes, '', gmt_names[0])
+	response_list, userListId = enrichr_request(inst_genes, '', gmt_names[0])
+
+	print(userListId)
 
 	# p-value, adjusted pvalue, z-score, combined score, genes 
 	# 1: Term 
@@ -19,11 +22,11 @@ def main( gmt_colors, inst_genes, num_terms, dist_type):
 	# 5: Genes
 	# 6: pval_bh
 
-	# transfer response_dict to enr structure 
+	# transfer response_list to enr structure 
 	#
 	# initialize enr
 	enr = []
-	for inst_enr in response_dict:
+	for inst_enr in response_list:
 		# initialize dict 
 		inst_dict = {}
 
@@ -67,6 +70,54 @@ def make_enrichment_clustergram(enr, num_terms, dist_type):
 
 	return d3_json
 
+
+def enrichr_request( input_genes, meta='', gmt='' ):
+
+  # get metadata 
+	import requests
+	import json
+
+	# stringify list 
+	input_genes = '\n'.join(input_genes)
+
+	# define post url 
+	post_url = 'http://amp.pharm.mssm.edu/Enrichr/addList'
+
+	# define parameters 
+	params = {'list':input_genes, 'description':''}
+
+	# make request: post the gene list
+	post_response = requests.post( post_url, files=params)
+
+	# load json 
+	inst_dict = json.loads( post_response.text )
+	userListId = str(inst_dict['userListId'])
+
+	# wait for response 
+	print(userListId)
+
+	# define the get url 
+	get_url = 'http://amp.pharm.mssm.edu/Enrichr/enrich'
+
+	# get parameters 
+	params = {'backgroundType':gmt,'userListId':userListId}
+
+	# make the get request to get the enrichr results 
+	get_response = requests.get( get_url, params=params )
+
+	# load as dictionary 
+	resp_json = json.loads( get_response.text )
+
+	# get the key 
+	only_key = resp_json.keys()[0]
+
+	enr = resp_json[only_key]
+
+	# return enrichment json and userListId
+	return enr, userListId
+
+
+
 def enrichr_result(genes, meta='', gmt=''):
 	import cookielib, poster, urllib2, json
 	import time
@@ -88,7 +139,7 @@ def enrichr_result(genes, meta='', gmt=''):
 
 	# wait for request 
 	resp = urllib2.urlopen(request)
-	
+
 	# # print(resp.read())
 	# time.sleep(2)
 
@@ -101,5 +152,5 @@ def enrichr_result(genes, meta='', gmt=''):
 
 	x = urllib2.urlopen("http://" + baseurl + "/Enrichr/enrich?backgroundType=" + gmt)
 	response = x.read()
-	response_dict = json.loads(response)
-	return response_dict[gmt]
+	response_list = json.loads(response)
+	return response_list[gmt]
