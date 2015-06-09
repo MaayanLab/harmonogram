@@ -6,63 +6,73 @@ gmt_name = 'ChEA'
 
 // request clustergram 
 $( "#searchForm" ).submit( function( event ) {
- 
+
   // stop form from working normally 
   event.preventDefault();
  
-  // get data from forms 
-  var $form = $( this );
-  
-  // get gene names from textarea 
-  var inst_genes = $form.find( "textarea[name='genes']" ).val();
-  var url = $form.attr( "action" );
+  // only make request if there are genes 
+  if ( $('#gene_input_box').val() == ''){
+    $('#modal_no_input').modal()
+  }
+  // make request 
+  else {
 
-  // number of enriched terms 
-  num_terms = 20; 
+    // get data from forms 
+    var $form = $( this );
+    
+    // get gene names from textarea 
+    var inst_genes = $form.find( "textarea[name='genes']" ).val();
+    var url = $form.attr( "action" );
 
-  // docker_vs_local
-  /////////////////////////////////
-  // manually set url (local)
-  url = '/enrichrgram/'
-  // // !!! (docker)
-  // url = '/'
+    // number of enriched terms 
+    num_terms = 20; 
 
-  // set up variable for the post request with gene list: inst_genes
-  var posting = $.post( url, { genes: inst_genes, num_terms: num_terms, gmt_colors:JSON.stringify(gmt_colors) } );
- 
-  console.log('making post request')
+    // docker_vs_local
+    /////////////////////////////////
+    // manually set url (local)
+    url = '/enrichrgram/'
+    // // !!! (docker)
+    // url = '/'
 
-  // set up wait message before request is made 
-  $.blockUI({ css: { 
-          border: 'none', 
-          padding: '15px', 
-          backgroundColor: '#000', 
-          '-webkit-border-radius': '10px', 
-          '-moz-border-radius': '10px', 
-          opacity: .8, 
-          color: '#fff' 
-      } });
+    // set up variable for the post request with gene list: inst_genes
+    var posting = $.post( url, { genes: inst_genes, num_terms: num_terms, gmt_colors:JSON.stringify(gmt_colors) } );
+   
+    console.log('making post request')
 
-  // when results are returned from flask 
-  // generate the d3 visualization 
-  posting.done( function( network_data ) { 
+    // set up wait message before request is made 
+    $.blockUI({ css: { 
+            border: 'none', 
+            padding: '15px', 
+            backgroundColor: '#000', 
+            '-webkit-border-radius': '10px', 
+            '-moz-border-radius': '10px', 
+            opacity: .8, 
+            color: '#fff' 
+        } });
 
-    // wait message 
-    d3.select('.blockMsg').select('h1').text('Waiting for matrix to load...');
+    // when results are returned from flask 
+    // generate the d3 visualization 
+    posting.done( function( network_data ) { 
 
-    // make d3 visualization
-    make_d3_clustergram(network_data)
- 
-    // change the title of the terms 
-    d3.select('#col_title').text( 'Enriched ' + gmt_name.replace( /_/g, ' ') + ' Terms')
+      // wait message 
+      d3.select('.blockMsg').select('h1').text('Waiting for matrix to load...');
 
-    // turn off the wait sign 
-    $.unblockUI();
+      // make d3 visualization
+      make_d3_clustergram(network_data)
+   
+      // change the title of the terms 
+      d3.select('#col_title').text( 'Enriched ' + gmt_name.replace( /_/g, ' ') + ' Terms')
 
-    // // toggle close the sidebar
-    // d3.select('#wrapper').attr('class','toggled')
+      // turn off the wait sign 
+      $.unblockUI();
 
-  });
+      // // toggle close the sidebar
+      // d3.select('#wrapper').attr('class','toggled')
+
+    });
+
+  }; // end make requst
+
 });
 
 
