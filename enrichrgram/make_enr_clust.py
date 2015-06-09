@@ -7,14 +7,18 @@ def main( gmt_colors, inst_genes, num_terms, dist_type):
 
 	print('\ngmt colors '+ gmt_names[0] + '\n')
 
+	# make the post request with the input genes 
+	# and get the userListId that will be used later for referencing the list 
+	userListId = enrichr_post_request(inst_genes, '')
+
 	# initialize enr
 	enr = []
 
 	# loop through gmts 
 	for inst_gmt in gmt_names:
-		
+
 		# get results from enrichr 
-		inst_enr, userListId = enrichr_request(inst_genes, num_terms, '', inst_gmt )
+		inst_enr = enrichr_get_request(inst_gmt, num_terms, userListId )
 
 		# instantiate list 
 		if len(enr) == 0:
@@ -42,8 +46,9 @@ def make_enrichment_clustergram(enr, dist_type):
 
 	return d3_json
 
-# make the request to enrichr using the requests library 
-def enrichr_request( input_genes, num_terms, meta='', gmt=''):
+# make the get request to enrichr using the requests library 
+# this is done before making the get request with the gmt name 
+def enrichr_post_request( input_genes, meta=''):
   # get metadata 
 	import requests
 	import json
@@ -67,6 +72,16 @@ def enrichr_request( input_genes, num_terms, meta='', gmt=''):
 	# wait for response 
 	print(userListId)
 
+	# return the userListId that is needed to reference the list later 
+	return userListId
+
+# make the get request to enrichr using the requests library 
+# this is done after submitting post request with the input gene list 
+def enrichr_get_request( gmt, num_terms, userListId ):
+  # get metadata 
+	import requests
+	import json
+
 	# define the get url 
 	get_url = 'http://amp.pharm.mssm.edu/Enrichr/enrich'
 
@@ -75,6 +90,8 @@ def enrichr_request( input_genes, num_terms, meta='', gmt=''):
 
 	# make the get request to get the enrichr results 
 	get_response = requests.get( get_url, params=params )
+
+	# check that the response is 200 (Okay)
 	print(get_response)
 
 	# load as dictionary 
@@ -90,7 +107,7 @@ def enrichr_request( input_genes, num_terms, meta='', gmt=''):
 	enr = transfer_to_enr_dict( response_list, num_terms)
 
 	# return enrichment json and userListId
-	return enr, userListId
+	return enr 
 
 # transfer the response_list to a list of dictionaries 
 def transfer_to_enr_dict(response_list, num_terms):
