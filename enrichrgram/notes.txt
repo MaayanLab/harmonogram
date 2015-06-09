@@ -146,12 +146,17 @@ Enrichrgram To Do
 	Enrichr returns pval, z-score, and combined score. I'm not sure if the combined score is calculated with the regular or adjusted pval. It also seems that inputting the exaple list from Enrichr results in an error. 
 
 	Avi wants me to add 
-		1. Add a counter for the number of lists that have been processed
+		0. fix status of request bug 
+		1. add multiple gmt files in the same clustergram 
+		1.1 allow website to be linkable 
+		2. Add a counter for the number of lists that have been processed
 			need to set up mongodb database
-		2. add multiple gmt files in the same clustergram 
-		5. The user should have a way to see the pvalue and download the results 
-		9. allow user to choose different numbers of enriched terms to show
-		10. send enrichment json to the front end so that it can be reused by the user and downloaded
+		2.1 restrict zoom and make zoom more functional 
+		2.2 return enrihment json as object so that it can be saved by the user on the front end and speed up enrichment analysis runs 
+		3. show pvalue and have results available for download 
+		4. adjust number of enriched terms 
+		5. send enrichment json to the front end so that it can be reused by the user and downloaded
+
 		??. add pop-up when clicking on a gene
 		-. change the colors on the toggle switch
 		-. add pop-up instructions or some kind of instrucitons 
@@ -162,6 +167,9 @@ Enrichrgram To Do
 		-. functionalize the y offset on the rows and columns
 		-. figure out why some tiles are negative (KEA with defaule gene list)
 		-. the cluster option should be the defaule
+
+	6-9-2015
+		Over the last few days I have improved the gmt picker and added instructions to the visualization. I am close to getting the multiple gmts working. I first want to get the request status working. Currently I'm simply waiting 2 seconds. 
 
 	6-5-2015 
 		I have a much improved front end. It allows users to choose up to 3 different gmts from a collapsable menu of 3 gmts. I just need to adjust javascript request function and python functions to make several requests, merge together the enrichment jsons, and visualize them with different colors. This should only take a few hours- hopefully. In terms of getting Enrichr to be able to make a link, I need to have enrichr send me the gene list and the enrichment json. I also want to save the enrichment json in case I want to reuse it later on the client side. I also need to have enrichr return the enrichment json in addition to the visualization json so that I can keep it around for later use and make it available for download by the user. 
