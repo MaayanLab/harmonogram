@@ -52,5 +52,43 @@ def enrichr_request( input_genes, meta='', gmt='' ):
 	# return enrichment json and userListId
 	return enr, userListId
 
-# run main
-main()
+def enrichr_result(genes, meta='', gmt=''):
+	import cookielib, poster, urllib2, json
+	import time
+
+	global baseurl
+	baseurl = 'amp.pharm.mssm.edu'
+	# baseurl = 'matthews-mbp:8080'
+
+	"""return the enrichment results for a specific gene-set library on Enrichr"""
+	cj = cookielib.CookieJar()
+	opener = poster.streaminghttp.register_openers()
+	opener.add_handler(urllib2.HTTPCookieProcessor(cookielib.CookieJar()))
+	genesStr = '\n'.join(genes)
+
+	params = {'list':genesStr,'description':meta,'inputMethod':'enrichr_cluster'}
+	datagen, headers = poster.encode.multipart_encode(params)
+	url = "http://" + baseurl + "/Enrichr/enrich"
+	request = urllib2.Request(url, datagen, headers)
+
+	# wait for request 
+	resp = urllib2.urlopen(request)
+
+	# # print(resp.read())
+	# time.sleep(2)
+
+	# alternate wait for response
+	# try:
+	# 	resp = urllib2.urlopen(request)
+	# 	print(resp.read())
+	# except IOError as e:
+	# 	pass
+
+	x = urllib2.urlopen("http://" + baseurl + "/Enrichr/enrich?backgroundType=" + gmt)
+	response = x.read()
+	response_list = json.loads(response)
+	return response_list[gmt]
+
+
+# # run main
+# main()

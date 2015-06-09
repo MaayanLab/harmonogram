@@ -430,7 +430,7 @@ def convert_enr_dict_to_array(enr, pval_cutoff):
 	return nodes, data_mat
 
 # convert enr array into gene rows and term columns 
-def convert_enr_to_nodes_mat(enr, num_terms):
+def convert_enr_to_nodes_mat(enr):
 	import scipy
 	import find_dict_in_list
 	import numpy as np
@@ -438,12 +438,9 @@ def convert_enr_to_nodes_mat(enr, num_terms):
 	# enr - data structure 
 		# name, pval, pval_bon, pva_bh, int_genes 
 
-	# # the cols are the enriched terms 
-	# all_col = [d['name'] for d in enr]
-
 	# gather all enriched terms 
 	all_col = []
-	for i in range(num_terms):
+	for i in range(len(enr)):
 		all_col.append(enr[i]['name'])
 
 	# the rows are the input genes 
@@ -452,7 +449,7 @@ def convert_enr_to_nodes_mat(enr, num_terms):
 	# gather terms significantly enriched terms 
 	############################################# 
 	# loop through the enriched terms 
-	for i in range(num_terms):
+	for i in range(len(enr)):
 
 		# load inst_enr dict from the list of dicts, enr
 		inst_enr = enr[i]
