@@ -72,33 +72,43 @@ def make_request():
 	# stringify list 
 	input_genes = '\n'.join(input_genes)
 
-	# define url 
-	baseurl = 'amp.pharm.mssm.edu'
-	url = "http://" + baseurl + "/Enrichr/addList"
+	# define post url 
+	post_url = 'http://amp.pharm.mssm.edu/Enrichr/addList'
 
 	# define parameters 
-	params = {'list':input_genes , 'description':''}
-
-	# print('url ' + url)
-	# print('params' + str(params))
+	params = {'list':input_genes, 'description':''}
 
 	# make request: post the gene list
-	post_response = requests.post(url, files=params)
+	post_response = requests.post( post_url, files=params)
 
+	# load json 
 	inst_dict = json.loads( post_response.text )
+	userListId = str(inst_dict['userListId'])
+
+	print(post_response.text)
 
 	print('userListId')
 	print( inst_dict['userListId'] )
 	print('\n')
 
-	# make the get request to get the enrichr results 
-	get_response = requests.get(url+'?backgroundType=ChEA&'+'userListId='+str(inst_dict['userListId']))
 
-	# load the json 
+	get_url = 'http://amp.pharm.mssm.edu/Enrichr/enrich'
+
+
+	# get parameters 
+	params = {'backgroundType':'Chea','userListId':userListId}
+
+	# make the get request to get the enrichr results 
+	get_response = requests.get( get_url, params=params )
+
 	print('get response')
 	print(get_response)
-
 	print(get_response.text)
+
+	# # load the json 
+	# print('get response')
+	# print(get_response)
+	# print(get_response.json)
 
 	# print(enr)
 
