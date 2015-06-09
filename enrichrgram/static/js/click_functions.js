@@ -612,3 +612,25 @@ function reorder_click_col(d,i){
       return "translate(" + x_scale(i) + ")rotate(-90)"; 
     });
 };
+
+
+// return to previous enrichrgram 
+function return_prev_enrichrgram(){
+
+  console.log('return to previous enrichrgram')
+
+  // toggle sidebar to make more space for visualization
+  d3.select('#wrapper').attr('class','toggled');
+
+  // remove clustergram components 
+  d3.select('#clustergram_container').style('display','block');
+  d3.select('#clust_instruct_container').style('display','block');
+
+  // show initial components 
+  d3.select('#website_title').style('display','none');
+  d3.selectAll('.initial_paragraph').style('display','none');
+  d3.select('#gmt_menu').style('display','none');
+  d3.select('#selected_gmts_group').style('display','none');
+  d3.select('#add_new_gmt').style('display','none');
+  
+};

@@ -321,7 +321,6 @@ function reorder_clust_rank(order_type) {
 
 // re-run enrichrgram 
 function rerun_enrichrgram(){
-  console.log('re-running enrichrgram');
 
   // toggle sidebar to make more space for visualization
   d3.select('#wrapper').attr('class','');
@@ -346,4 +345,9 @@ function rerun_enrichrgram(){
   d3.select('#add_new_gmt').style('display','block')
     .style('opacity',0).transition().duration(200).style('opacity',1);
 
+
+  // show return to previous enrichrgram button
+  d3.select('#return_prev_enrichrgram').style('display','block')
+
 };
+

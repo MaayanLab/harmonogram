@@ -660,6 +660,13 @@ look like the input gene list text title*/
   opacity: 0.90;
 }
 
+/*return to previous enrichrgram button*/
+#return_prev_button{
+  width: 140px;
+  margin-top: 40px;
+  opacity: 0.9;
+}
+
 /*modify enrichrgram*/
 #modify_enrichrgram_button{
   opacity: 1.0;

@@ -149,11 +149,11 @@ Enrichrgram To Do
 		1. Add a counter for the number of lists that have been processed
 			need to set up mongodb database
 		2. add multiple gmt files in the same clustergram 
-		4. change the colors on the toggle switch
 		5. The user should have a way to see the pvalue and download the results 
-		7. add pop-up when clicking on a gene
 		9. allow user to choose different numbers of enriched terms to show
 		10. send enrichment json to the front end so that it can be reused by the user and downloaded
+		??. add pop-up when clicking on a gene
+		-. change the colors on the toggle switch
 		-. add pop-up instructions or some kind of instrucitons 
 		-. Add example and clear buttons
 		-. manage space better - maybe show fewer terms on default
