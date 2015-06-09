@@ -35,7 +35,7 @@ function make_d3_clustergram(network_data) {
   d3.select('#selected_gmts_group').style('display','none');
 
   // define the variable zoom, a d3 method 
-  zoom = d3.behavior.zoom().scaleExtent([0.5,3]).on('zoom',zoomed);
+  zoom = d3.behavior.zoom().scaleExtent([0.5,10]).on('zoom',zoomed);
 
   // initialize variables 
   matrix = [] ;
