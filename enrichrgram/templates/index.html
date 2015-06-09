@@ -57,8 +57,8 @@
             <div class='text-center'>
               <button id='submit_genes_button' type="submit" class='btn btn-primary buttons' >Submit</button>
               <div class="btn-group">
-                <button type="button" class='btn btn-primary buttons'>Example</button>
-                <button id='clear_input_button' type="button" class='btn btn-danger buttons'>Clear</button>
+                <button type="button" class='btn btn-primary buttons' onClick="$('#gene_input_box').val(example_gene_list_50.join('\n'));">Example</button>
+                <button id='clear_input_button' type="button" class='btn btn-danger buttons' onClick="$('#gene_input_box').val('');" >Clear</button>
               </div>
               
             </div>
@@ -132,7 +132,7 @@
                 <div id='clust_instruct_container' class='col-xs-3'>
                   <h1>Enrichrgram</h1>
                   <div id='title_viz_instruct_text'>Instructions:</div>
-                  <div class='viz_instruct_text'> The clustergram shows your input gene list as rows and enriched terms as columns with bars that indicate the 'combined score' enrichment value. Enriched terms and input genes are clustered based on Jaccard similarity. The opacity of the tiles is determined by the enrichment combined score of the term and the terms assoiated with each input gene. </div>
+                  <div class='viz_instruct_text'> The clustergram shows your input gene list as rows and enriched terms as columns with bars that indicate the 'combined score' enrichment value. Enriched terms and input genes are clustered based on Jaccard similarity. The opacity of the tiles is determined by the enrichment combined score of the enriched term (column) and all the terms associated with each input gene. </div>
                   <div class='viz_instruct_text'> Zoom in or out to view small or large structures in the clustergram. Toggle the ordering of the clustergram between 'ranked' and 'clustered' or click on a row/column to re-order the columns/rows based on the selected term. </div>
                   <div class='viz_instruct_text'>Re-run Enrichrgram</div>
                   <div class='viz_instruct_text'>toggle</div>
