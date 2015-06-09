@@ -76,6 +76,7 @@ def enrichr_request( input_genes, meta='', gmt='' ):
   # get metadata 
 	import requests
 	import json
+	import time
 
 	# stringify list 
 	input_genes = '\n'.join(input_genes)
@@ -104,6 +105,10 @@ def enrichr_request( input_genes, meta='', gmt='' ):
 
 	# make the get request to get the enrichr results 
 	get_response = requests.get( get_url, params=params )
+	print(get_response)
+
+	# time.sleep(10)
+
 
 	# load as dictionary 
 	resp_json = json.loads( get_response.text )
