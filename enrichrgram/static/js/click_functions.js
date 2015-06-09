@@ -31,7 +31,6 @@ function select_gmt_from_menu(inst_gmt){
 
     // asign a new key value pair 
     gmt_colors[inst_gmt] = inst_color;
-    console.log(gmt_colors)
   };
 
   // only add gmt if the gmt is not already selected 
@@ -49,14 +48,15 @@ function select_gmt_from_menu(inst_gmt){
     inst_group
       .attr('class', inst_gmt + ' selected_gmts');
 
+    ////////////////////////////////////////////
+    // defined current_gmt and set to current_gmt
+    ////////////////////////////////////////////
+
     // make visible 
     inst_group
       .transition()
       .duration(100)
       .style('opacity','1');
-
-    // update current library name
-    inst_group
 
     // append glyph svg
     glyph_svg = inst_group
@@ -74,16 +74,16 @@ function select_gmt_from_menu(inst_gmt){
     glyph_svg
       .append('rect')
       .attr('class','glyph_rect')
-      // .attr('fill',auto_choose_colors)
-      .attr('fill', function(){
 
-        // grab color from the dictionary 
-        inst_color = gmt_colors[inst_select_gmt];
+      .attr('fill',auto_choose_colors)
+      
+      // .attr('fill', function(){
+      //   console.log('in select gmt ' + inst_select_gmt )
+      //   // grab color from the dictionary 
+      //   inst_color = gmt_colors[inst_select_gmt];
+      //   return inst_color;
+      // })
 
-        console.log(inst_select_gmt)
-        console.log(inst_color)
-        return inst_color;
-      })
       .attr('height','24px')
       .attr('width','24px');
 
@@ -163,11 +163,6 @@ function select_gmt_from_menu(inst_gmt){
         .style('display','block');
     };
 
-    // // make gmt red if it is the only gmt 
-    // if (d3.selectAll('.selected_gmts')[0].length == 1){
-    //   d3.select('.'+inst_gmt).select('.glyph_rect').attr('fill','red');
-    // };
-
   };
 
   // clean gmt_colors 
@@ -189,6 +184,8 @@ function select_gmt_from_menu(inst_gmt){
 // add new gmt 
 function plus_new_gmt(){
 
+  inst_select_gmt = 'unknown'
+
   console.log('adding new gmt');
 
   // change id of current_gmt to not_current_gmt
@@ -204,13 +201,17 @@ function plus_new_gmt(){
     .attr('class','selected_gmts unknown')
     .attr('id','current_gmt');
 
+  ////////////////////////////////////////////
+  // defined current_gmt and set to current gmt 
+  ////////////////////////////////////////////
+
   // make visible 
   inst_group
     .transition()
     .duration(100)
     .style('opacity','1');
 
-// append glyph svg
+  // append glyph svg
   glyph_svg = inst_group
     .append('div')
     .append('svg')
@@ -218,7 +219,6 @@ function plus_new_gmt(){
     .attr('class', 'glyph_squares')
     .attr('width',  '24px')
     .attr('height', '24px')
-    // .on('click', function(d,i){ return "console.log('clicking on the glyph');" ; });
     .on('click', clicking_glyph );
 
   // make glyph 
@@ -226,7 +226,7 @@ function plus_new_gmt(){
   // append background rect
   glyph_svg
     .append('rect')
-    .attr('fill',auto_choose_colors)
+    .attr('fill', auto_choose_colors )
     .attr('height','24px')
     .attr('width','24px');
 
@@ -384,29 +384,36 @@ function remove_existing_gmt(inst_button){
 
 // choose colors for glyphs
 function auto_choose_colors(){
-  // initialize color
-  inst_color = 'gray';
 
-  console.log(' ')
-  console.log(gmt_colors)
-  console.log(' ')
+  console.log('in auto_choose_colors ' + inst_select_gmt )
 
-  // check for missing color 
-  if ( _.contains( _.values(gmt_colors), 'red') == false ) {
-    inst_color  = 'red';
+  // if adding a new gmt 
+  if (inst_select_gmt == 'unknown'){
+
+    // check for missing color 
+    if ( _.contains( _.values(gmt_colors), 'red') == false ) {
+      inst_color  = 'red';
+    }
+    else if ( _.contains( _.values(gmt_colors), 'blue') == false ) {
+      inst_color  = 'blue';
+    }
+    else if ( _.contains( _.values(gmt_colors), 'black') == false ) {
+      inst_color  = 'black';
+    };
+
+    // define a global next color
+    global_next_color = inst_color;
+
   }
-  else if ( _.contains( _.values(gmt_colors), 'blue') == false ) {
-    inst_color  = 'blue';
-  }
-  else if ( _.contains( _.values(gmt_colors), 'black') == false ) {
-    inst_color  = 'black';
+  else{
+
+    // grab color from the dictionary 
+    inst_color = gmt_colors[inst_select_gmt];
+
   };
 
-  // define a global next color
-  global_next_color = inst_color;
-
   return inst_color;
-}
+};
 
 // double click zoom reset
 function add_double_click() {

@@ -61,7 +61,8 @@ $( "#searchForm" ).submit( function( event ) {
       make_d3_clustergram(network_data)
    
       // change the title of the terms 
-      d3.select('#col_title').text( 'Enriched ' + gmt_name.replace( /_/g, ' ') + ' Terms')
+      // d3.select('#col_title').text( 'Enriched ' + gmt_name.replace( /_/g, ' ') + ' Terms')
+      d3.select('#col_title').text( 'Enriched Terms')
 
       // turn off the wait sign 
       $.unblockUI();
