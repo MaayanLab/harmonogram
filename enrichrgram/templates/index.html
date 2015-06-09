@@ -86,9 +86,6 @@
                 <a id="toggle_menu_button" href="#menu-toggle" class="btn btn-default" >
                   Toggle Enrichment Menu
                 </a>
-                <div id='sidebar_order_switch'style='display:none;'>
-                  <input type="checkbox" name="my-checkbox" data-on-text="Cluster" data-off-text="Rank" id='rank_switch' checked>
-                </div>
               </h1>
               <p class='initial_paragraph'>Enrichrgram performs enrichment analysis on your set of genes using Enrichr and displays a clustergram of the results. Choose up to three gene set libraries for enrichment analysis. </p>
 
@@ -131,11 +128,25 @@
               <div class='row'>
                 <div id='clust_instruct_container' class='col-xs-3'>
                   <h1>Enrichrgram</h1>
+
                   <div id='title_viz_instruct_text'>Instructions:</div>
-                  <div class='viz_instruct_text'> The clustergram shows your input gene list as rows and enriched terms as columns with bars that indicate the 'combined score' enrichment value. Enriched terms and input genes are clustered based on Jaccard similarity. The opacity of the tiles is determined by the enrichment combined score of the enriched term (column) and all the terms associated with each input gene. </div>
-                  <div class='viz_instruct_text'> Zoom in or out to view small or large structures in the clustergram. Toggle the ordering of the clustergram between 'ranked' and 'clustered' or click on a row/column to re-order the columns/rows based on the selected term. </div>
-                  <div class='viz_instruct_text'>Re-run Enrichrgram</div>
-                  <div class='viz_instruct_text'>toggle</div>
+                  <div class='viz_instruct_text'> Enrichrgram shows your input gene list as rows and enriched terms as columns with bars that indicate the enrichment value (combined score). Enriched terms and input genes are clustered based on Jaccard similarity. The opacity of a tile is determined by the enrichment value of the term and the terms associated with a gene. See help for more information.</div>
+                  <div class='viz_instruct_text'> Zoom using your mouse and toggle the ordering of the clustergram using the ordering switch or by clicking on a row/column to re-order the columns/rows based on the selected term. </div>
+
+                  <button id='modify_enrichrgram_button' class='btn btn-danger buttons' >Re-run Enrichrgram</button>
+
+                  <div class='viz_instruct_text'>Ordering</div>
+
+                  <div class="btn-group" data-toggle="buttons" >
+                    <label class="btn btn-primary active" onclick="reorder_clust_rank('clust');">
+                      <input type="radio" name="options" id="option1" autocomplete="off" checked > Cluster
+                    </label>
+                    <label class="btn btn-primary" onclick="reorder_clust_rank('rank');">
+                      <input type="radio" name="options" id="option3" autocomplete="off" > Rank
+                    </label>
+                  </div>
+
+
                   <div class='viz_instruct_text'><a href="">Export data to table</a></div>
                   <div class='viz_instruct_text'>Save SVG</div>
                 </div>

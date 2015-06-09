@@ -665,7 +665,12 @@ look like the input gene list text title*/
 
 /*clear button*/
 #clear_input_button{
-  opacity: 0.80;
+  opacity: 0.90;
+}
+
+/*modify enrichrgram*/
+#modify_enrichrgram_button{
+  opacity: 1.0;
 }
 
 .form-group{
