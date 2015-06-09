@@ -319,35 +319,7 @@ function reorder_clust_rank(order_type) {
 };
 
 
-// re-run enrichrgram 
-function rerun_enrichrgram(){
-
-  // toggle sidebar to make more space for visualization
-  d3.select('#wrapper').attr('class','');
-
-  // remove clustergram components 
-  d3.select('#clustergram_container').style('display','none');
-  d3.select('#clust_instruct_container').style('display','none');
-
-  // show initial components 
-  d3.select('#website_title').style('display','block')
-    .style('opacity',0).transition().duration(200).style('opacity',1);
-
-  d3.selectAll('.initial_paragraph').style('display','block')
-    .style('opacity',0).transition().duration(200).style('opacity',1);
-
-  d3.select('#gmt_menu').style('display','block')
-    .style('opacity',0).transition().duration(200).style('opacity',1);
-
-  d3.select('#selected_gmts_group').style('display','block')
-    .style('opacity',0).transition().duration(200).style('opacity',1);
-
-  d3.select('#add_new_gmt').style('display','block')
-    .style('opacity',0).transition().duration(200).style('opacity',1);
 
 
-  // show return to previous enrichrgram button
-  d3.select('#return_prev_enrichrgram').style('display','block')
 
-};
 

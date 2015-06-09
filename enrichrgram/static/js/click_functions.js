@@ -613,6 +613,44 @@ function reorder_click_col(d,i){
     });
 };
 
+// re-run enrichrgram 
+function rerun_enrichrgram(){
+
+  // toggle sidebar to make more space for visualization
+  d3.select('#wrapper').attr('class','');
+
+  // remove clustergram components 
+  d3.select('#clustergram_container').style('display','none');
+  d3.select('#clust_instruct_container').style('display','none');
+
+  // show initial components 
+  d3.select('#website_title').style('display','block')
+    .style('opacity',0).transition().duration(200).style('opacity',1);
+
+  d3.selectAll('.initial_paragraph').style('display','block')
+    .style('opacity',0).transition().duration(200).style('opacity',1);
+
+  d3.select('#gmt_menu').style('display','block')
+    .style('opacity',0).transition().duration(200).style('opacity',1);
+
+  d3.select('#selected_gmts_group').style('display','block')
+    .style('opacity',0).transition().duration(200).style('opacity',1);
+
+  d3.select('#add_new_gmt').style('display','block')
+    .style('opacity',0).transition().duration(200).style('opacity',1);
+
+
+  // show return to previous enrichrgram button
+  d3.select('#return_prev_enrichrgram').style('display','block')
+
+  // shift the footer right since sidebar is back
+  d3.select('#footer_div')
+    .transition()
+    .duration(200)
+    .style('margin-left','200px');
+};
+
+
 
 // return to previous enrichrgram 
 function return_prev_enrichrgram(){
@@ -633,4 +671,10 @@ function return_prev_enrichrgram(){
   d3.select('#selected_gmts_group').style('display','none');
   d3.select('#add_new_gmt').style('display','none');
   
+  // shift the footer left since sidebar is not shown
+  d3.select('#footer_div')
+    .transition()
+    .duration(200)
+    .style('margin-left','0px');
+
 };
