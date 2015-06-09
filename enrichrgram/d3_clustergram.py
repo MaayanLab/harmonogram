@@ -26,6 +26,8 @@ def d3_clust_single_value(nodes, clust_order, mat):
 		inst_dict['pval'] = clust_order['pval']['col'][i]
 		inst_dict['nl_pval'] = clust_order['nl_pval']['col'][i]
 		inst_dict['pval_bh'] = clust_order['pval_bh']['col'][i]
+		inst_dict['color'] = 'blue'
+
 		# add to d3_json 
 		d3_json['col_nodes'].append(inst_dict)
 
@@ -49,6 +51,11 @@ def d3_clust_single_value(nodes, clust_order, mat):
 			inst_value = ( row_value + col_value )/ 2 * mat[i,j] 
 			inst_dict['value'] = inst_value 
 
+			# need to look up the color
+			print(nodes['col'][j])
+
+			# add the color 
+			inst_dict['color'] = 'blue'
 
 			# inst_dict['dn'] = mat[i,j]
 			# inst_dict['merge'] = mat[i,j]

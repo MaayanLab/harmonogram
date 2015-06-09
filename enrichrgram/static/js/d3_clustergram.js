@@ -47,10 +47,16 @@ function make_d3_clustergram(network_data) {
 
   // Add information to the matrix
   network_data.links.forEach( function(link) {
+
+    // console.log(link.color)
+
     // transfer link information to the new adj matrix
     matrix[link.source][link.target].value += link.value;
     // transfer group information to the adj matrix 
     matrix[link.source][link.target].group = 1;
+    // transfer color 
+    matrix[link.source][link.target].color = link.color;
+
   });
 
   
@@ -177,11 +183,14 @@ function make_d3_clustergram(network_data) {
     .append('rect')
     // column is rotated - effectively width and height are switched
     .attr('width', function(d,i) { 
+      console.log(d);
       return bar_scale_col( d.nl_pval ); 
     })
     // rotate labels - reduce width if rotating
     .attr('height', x_scale.rangeBand() - reduce_rect_width)
-    .attr('fill', 'red')
+    .attr('fill', function(d){
+      return d.color;
+    })
     .attr('opacity', 0.5)
     .attr('transform', function(d, i) { return "translate(0,0)"; });
 
@@ -269,7 +278,9 @@ function row_function(row_data) {
     }) 
     // switch the color based on up/dn enrichment 
     .style('fill', function(d) { 
-      return d.value > 0 ? '#FF0000' : '#1C86EE' ;
+      // console.log(d)
+      // return d.value > 0 ? '#FF0000' : '#1C86EE' ;
+      return d.color;
     } )
     .on("mouseover", function(p) {
       d3.selectAll(".row_label_text text").classed("active", function(d, i) { return i == p.pos_y; });
