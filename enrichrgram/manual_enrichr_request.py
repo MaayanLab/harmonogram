@@ -74,7 +74,7 @@ def make_request():
 
 	# define url 
 	baseurl = 'amp.pharm.mssm.edu'
-	url = "http://" + baseurl + "/Enrichr/enrich"
+	url = "http://" + baseurl + "/Enrichr/addList"
 
 	# define parameters 
 	params = {'list':input_genes , 'description':''}
@@ -83,12 +83,24 @@ def make_request():
 	# print('params' + str(params))
 
 	# make request: post the gene list
-	enr = requests.post(url, files=params)
+	post_response = requests.post(url, files=params)
 
-	print( enr )
+	inst_dict = json.loads( post_response.text )
 
-	
+	print('userListId')
+	print( inst_dict['userListId'] )
+	print('\n')
 
+	# make the get request to get the enrichr results 
+	get_response = requests.get(url+'?backgroundType=ChEA&'+'userListId='+str(inst_dict['userListId']))
+
+	# load the json 
+	print('get response')
+	print(get_response)
+
+	print(get_response.text)
+
+	# print(enr)
 
 
 	# # save json to dict 
