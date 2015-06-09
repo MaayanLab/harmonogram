@@ -240,6 +240,12 @@ function make_d3_clustergram(network_data) {
 
   // run add double click zoom function 
   add_double_click(); 
+
+  // reset the toggle switch 
+  // d3.select('#clust_button').attr('class','btn btn-primary active');
+  // d3.select('#rank_button').attr('class','btn btn-primary');
+  // simulate click
+  $('#clust_button').click();
 };
 
 // row function 
