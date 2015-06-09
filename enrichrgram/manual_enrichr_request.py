@@ -101,9 +101,14 @@ def make_request():
 	# make the get request to get the enrichr results 
 	get_response = requests.get( get_url, params=params )
 
-	print('get response')
-	print(get_response)
-	print(get_response.text)
+	# print('get response')
+	# print(get_response)
+	# print(get_response.text)
+
+	# load as dictionary 
+	enr = json.loads( get_response.text )
+
+	print(enr['Chea'])
 
 	# # load the json 
 	# print('get response')
