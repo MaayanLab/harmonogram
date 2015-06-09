@@ -52,116 +52,10 @@ function select_gmt_from_menu(inst_gmt){
     // defined current_gmt and set to current_gmt
     ////////////////////////////////////////////
 
-    // make visible 
-    inst_group
-      .transition()
-      .duration(100)
-      .style('opacity','1');
+    make_gmt_labels()
 
-    // append glyph svg
-    glyph_svg = inst_group
-      .append('div')
-      .append('svg')
-      .attr('class', 'glyph_squares')
-      .attr('id','glyph_'+inst_gmt)
-      .attr('width',  '24px')
-      .attr('height', '24px')
-      .on('click', clicking_glyph );
+    ///////////////////
 
-    // make glyph 
-    //
-    // append background rect
-    glyph_svg
-      .append('rect')
-      .attr('class','glyph_rect')
-
-      .attr('fill',auto_choose_colors)
-      
-      // .attr('fill', function(){
-      //   console.log('in select gmt ' + inst_select_gmt )
-      //   // grab color from the dictionary 
-      //   inst_color = gmt_colors[inst_select_gmt];
-      //   return inst_color;
-      // })
-
-      .attr('height','24px')
-      .attr('width','24px');
-
-    // append lines 
-    glyph_svg
-      .append('line')
-      .attr('x1',0)
-      .attr('x2',24)
-      .attr('y1',12)
-      .attr('y2',12)
-      .attr('stroke-width','2px');
-
-    glyph_svg
-      .append('line')
-      .attr('x1',12)
-      .attr('x2',12)
-      .attr('y1',0)
-      .attr('y2',24)
-      .attr('stroke-width','2px');
-
-    // append border rect 
-    glyph_svg
-      .append('rect')
-      .attr('fill','none')
-      .attr('stroke','white')
-      .attr('stroke-width','6px')
-      .attr('height','24px')
-      .attr('width','24px');
-
-    // append highlighting rect 
-    glyph_svg
-      .append('rect')
-      .attr('fill','none')
-      .attr('stroke-width','2px')
-      .attr('height','24px')
-      .attr('width','24px')
-      .attr('class','highlight_gmt')
-      .attr('stroke','black');
-
-    // append gmt name 
-    inst_group
-      .append('div')
-      .html(inst_gmt.replace(/_/g,' '))
-      .style('float','left');
-
-    // append remove x 
-    inst_group
-      .append('div')
-      .attr('class','remove_existing_gmt')
-      .attr('id','x_'+inst_gmt)
-      .on('click', remove_existing_gmt)
-      .style('transform','rotate(45deg)')
-      .html('+')
-      .style('float','left')
-      .style('display','none');
-
-
-    // remove float left 
-    inst_group
-      .style('clear','both');
-
-    // add plus sign if there are no unknown gmts 
-    if (d3.selectAll('.unknown')[0].length == 0 ){
-        d3.select('#add_new_gmt')
-          .style('display','block');
-    };
-
-    // double check that there are not more than 3 gmts
-    if (d3.selectAll('.selected_gmts')[0].length == 3 ){
-        d3.select('#add_new_gmt')
-          .style('display','none');
-    };
-
-    // show x remove_existing_gmt if there are multiple gmts
-    if (d3.selectAll('.selected_gmts')[0].length > 1 ){
-      d3.selectAll('.remove_existing_gmt')
-        .style('display','block');
-    };
 
   };
 
@@ -184,6 +78,7 @@ function select_gmt_from_menu(inst_gmt){
 // add new gmt 
 function plus_new_gmt(){
 
+  // set the inst_select_gmt
   inst_select_gmt = 'unknown'
 
   console.log('adding new gmt');
@@ -205,106 +100,9 @@ function plus_new_gmt(){
   // defined current_gmt and set to current gmt 
   ////////////////////////////////////////////
 
-  // make visible 
-  inst_group
-    .transition()
-    .duration(100)
-    .style('opacity','1');
+  make_gmt_labels()  
 
-  // append glyph svg
-  glyph_svg = inst_group
-    .append('div')
-    .append('svg')
-    .attr('id','glyph_unknown')
-    .attr('class', 'glyph_squares')
-    .attr('width',  '24px')
-    .attr('height', '24px')
-    .on('click', clicking_glyph );
-
-  // make glyph 
-  //
-  // append background rect
-  glyph_svg
-    .append('rect')
-    .attr('fill', auto_choose_colors )
-    .attr('height','24px')
-    .attr('width','24px');
-
-  // append lines 
-  glyph_svg
-    .append('line')
-    .attr('x1',0)
-    .attr('x2',24)
-    .attr('y1',12)
-    .attr('y2',12)
-    .attr('stroke-width','2px');
-  glyph_svg
-    .append('line')
-    .attr('x1',12)
-    .attr('x2',12)
-    .attr('y1',0)
-    .attr('y2',24)
-    .attr('stroke-width','2px');
-
-  // append border rect 
-  glyph_svg
-    .append('rect')
-    .attr('fill','none')
-    .attr('stroke','white')
-    .attr('stroke-width','6px')
-    .attr('height','24px')
-    .attr('width','24px');
-
-  // append highlighting rect: for new rect 
-  glyph_svg
-    .append('rect')
-    .attr('fill','none')
-    .attr('stroke','black')
-    .attr('stroke-width','2px')
-    .attr('height','24px')
-    .attr('width','24px')
-    .attr('class','highlight_gmt');
-
-  // append gmt name 
-  inst_group
-    .append('div')
-    .html('Select Library')
-    .style('color','red')
-    .style('float','left');
-
-  // append remove x 
-  inst_group
-    .append('div')
-    .attr('class','remove_existing_gmt')
-    .attr('id','x_unknown')
-    .on('click', remove_existing_gmt )
-    .style('transform','rotate(45deg)')
-    .html('+')
-    .style('float','left')
-    .style('display','none');
-
-  // remove float left so a new line can be appended below 
-  inst_group
-    .style('clear','both');
-
-
-  // remove plus sign if there are three gmts 
-  if (d3.selectAll('.selected_gmts')[0].length == 3 ){
-      d3.select('#add_new_gmt')
-        .style('display','none');
-  };
-
-  // remove plus sign if there are unknown gmts
-  if (d3.selectAll('.unknown')[0].length > 0 ){
-      d3.select('#add_new_gmt')
-        .style('display','none');
-  };
-
-  // show x remove_existing_gmt if there are multiple gmts
-  if (d3.selectAll('.selected_gmts')[0].length > 1 ){
-    d3.selectAll('.remove_existing_gmt')
-      .style('display','block');
-  }
+  ///////////////////
 
 
 };
@@ -684,4 +482,129 @@ function return_prev_enrichrgram(){
     .duration(200)
     .style('margin-left','0px');
 
+};
+
+
+function make_gmt_labels(){
+// make visible 
+  inst_group
+    .transition()
+    .duration(100)
+    .style('opacity','1');
+
+  // append glyph svg
+  glyph_svg = inst_group
+    .append('div')
+    .append('svg')
+    .attr('id','glyph_'+inst_select_gmt)
+    .attr('class', 'glyph_squares')
+    .attr('width',  '24px')
+    .attr('height', '24px')
+    .on('click', clicking_glyph );
+
+  // make glyph 
+  // append background rect
+  glyph_svg
+    .append('rect')
+    .attr('fill', auto_choose_colors )
+    .attr('height','24px')
+    .attr('width','24px');
+
+  // append lines 
+  glyph_svg
+    .append('line')
+    .attr('x1',0)
+    .attr('x2',24)
+    .attr('y1',12)
+    .attr('y2',12)
+    .attr('stroke-width','2px');
+
+  glyph_svg
+    .append('line')
+    .attr('x1',12)
+    .attr('x2',12)
+    .attr('y1',0)
+    .attr('y2',24)
+    .attr('stroke-width','2px');
+
+  // append border rect 
+  glyph_svg
+    .append('rect')
+    .attr('fill','none')
+    .attr('stroke','white')
+    .attr('stroke-width','6px')
+    .attr('height','24px')
+    .attr('width','24px');
+
+  // append highlighting rect: for new rect 
+  glyph_svg
+    .append('rect')
+    .attr('fill','none')
+    .attr('stroke-width','2px')
+    .attr('height','24px')
+    .attr('width','24px')
+    .attr('class','highlight_gmt')
+    .attr('stroke','black');
+
+  // append gmt name 
+  inst_group
+    .append('div')
+    .html( function(){
+      if (inst_select_gmt == 'unknown'){
+        inst_text = 'Select Library'
+      }
+      else {
+        inst_text = inst_select_gmt.replace(/_/g,' ') ;
+      }
+      return inst_text;
+    })
+    .style('color',function(){
+      if ( inst_select_gmt == 'unknown' ){
+        inst_color = 'red';
+      }
+      else{
+        inst_color = 'black';
+      };
+      return inst_color;
+    })
+    .style('float','left');
+
+  // append remove x 
+  inst_group
+    .append('div')
+    .attr('class','remove_existing_gmt')
+    .attr('id','x_'+inst_select_gmt)
+    .on('click', remove_existing_gmt )
+    .style('transform','rotate(45deg)')
+    .html('+')
+    .style('float','left')
+    .style('display','none');
+
+  // remove float left so a new line can be appended below 
+  inst_group
+    .style('clear','both');
+
+  // remove plus sign if there are three gmts 
+  if (d3.selectAll('.selected_gmts')[0].length == 3 ){
+      d3.select('#add_new_gmt')
+        .style('display','none');
+  };
+
+  // add plus sign if there are no unknown gmts 
+  if (d3.selectAll('.unknown')[0].length == 0 ){
+      d3.select('#add_new_gmt')
+        .style('display','block');
+  };
+
+  // remove plus sign if there are unknown gmts
+  if (d3.selectAll('.unknown')[0].length > 0 ){
+      d3.select('#add_new_gmt')
+        .style('display','none');
+  };
+
+  // show x remove_existing_gmt if there are multiple gmts
+  if (d3.selectAll('.selected_gmts')[0].length > 1 ){
+    d3.selectAll('.remove_existing_gmt')
+      .style('display','block');
+  };
 };
