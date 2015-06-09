@@ -7,12 +7,20 @@ def main( gmt_colors, inst_genes, num_terms, dist_type):
 
 	print('\ngmt colors '+ gmt_names[0] + '\n')
 
-	# get results from enrichr 
-	# 
-	enr, userListId = enrichr_request(inst_genes, num_terms, '', gmt_names[0])
+	# initialize enr
+	enr = []
 
-	print(type(enr))
-	print(enr[0])
+	# loop through gmts 
+	for inst_gmt in gmt_names:
+		
+		# get results from enrichr 
+		inst_enr, userListId = enrichr_request(inst_genes, num_terms, '', inst_gmt )
+
+		# instantiate list 
+		if len(enr) == 0:
+			enr = inst_enr 
+		else:
+			enr.extend(inst_enr)
 
 	# make clustergram 
 	d3_json = make_enrichment_clustergram(enr, dist_type)
