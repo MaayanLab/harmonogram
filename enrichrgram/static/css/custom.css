@@ -570,15 +570,18 @@ because the sidebar will be closed*/
   color:#333;
   text-align: left;
   margin-top: 5px;
+  padding-top:5px;
   margin-bottom: 5px;
   font-size: 22px;
   font-weight: 300;
+  /*clear float left*/
+  clear:both;
 }
 
 /*add margins around viz gmt labels*/
 #viz_gmt_labels{
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 0px;
+  margin-bottom: 20px;
 }
 
 /*reduce the size of the text in the viz label*/
