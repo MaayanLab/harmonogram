@@ -170,29 +170,29 @@ function make_d3_clustergram(network_data) {
     .style('stroke-width', border_width+'px')
 
 
-  // get the max abs nl_pval (find obj and get nl_pval)
-  enr_max = _.max( col_nodes, function(d) { return Math.abs(d.nl_pval) } ).nl_pval ; 
+  // // get the max abs nl_pval (find obj and get nl_pval)
+  // enr_max = _.max( col_nodes, function(d) { return Math.abs(d.nl_pval) } ).nl_pval ; 
 
-  // the enrichment bar should be 3/4ths of the height of the column labels 
-  bar_scale_col = d3.scale.linear()
-    .domain([0, enr_max])
-    .range([0, col_label_width * 0.90 ]); 
+  // // the enrichment bar should be 3/4ths of the height of the column labels 
+  // bar_scale_col = d3.scale.linear()
+  //   .domain([0, enr_max])
+  //   .range([0, col_label_width * 0.90 ]); 
 
-  // append enrichment bars  
-  col_label_click
-    .append('rect')
-    // column is rotated - effectively width and height are switched
-    .attr('width', function(d,i) { 
-      // console.log(d);
-      return bar_scale_col( d.nl_pval ); 
-    })
-    // rotate labels - reduce width if rotating
-    .attr('height', x_scale.rangeBand() - reduce_rect_width)
-    .attr('fill', function(d){
-      return d.color;
-    })
-    .attr('opacity', 0.5)
-    .attr('transform', function(d, i) { return "translate(0,0)"; });
+  // // append enrichment bars  
+  // col_label_click
+  //   .append('rect')
+  //   // column is rotated - effectively width and height are switched
+  //   .attr('width', function(d,i) { 
+  //     // console.log(d);
+  //     return bar_scale_col( d.nl_pval ); 
+  //   })
+  //   // rotate labels - reduce width if rotating
+  //   .attr('height', x_scale.rangeBand() - reduce_rect_width)
+  //   .attr('fill', function(d){
+  //     return d.color;
+  //   })
+  //   .attr('opacity', 0.5)
+  //   .attr('transform', function(d, i) { return "translate(0,0)"; });
 
   // for hover effect 
   col_label_click
@@ -260,84 +260,87 @@ function make_d3_clustergram(network_data) {
     .selectAll('div')
     .remove();
 
-  // add gmt key in visualization 
-  for (inst_key in gmt_colors){ 
-    console.log(inst_key)
+  // // add gmt labels to visualization 
+  // ////////////////////////////////////
 
-    // append div to viz_gmt_labels 
-    var tmp_group = d3.select('#viz_gmt_labels')
-      .append('div');
+  // // add gmt key in visualization 
+  // for (inst_key in gmt_colors){ 
+  //   console.log(inst_key)
 
-    // append glyph to svg 
-    var glyph_svg = tmp_group
-      .append('div')
-      .append('svg')
-      // .attr('id','glyph_'+inst_select_gmt)
-      .attr('class', 'glyph_squares')
-      .attr('width',  '24px')
-      .attr('height', '24px');
+  //   // append div to viz_gmt_labels 
+  //   var tmp_group = d3.select('#viz_gmt_labels')
+  //     .append('div');
 
-    // make glyph 
-    // append background rect
-    glyph_svg
-      .append('rect')
-      .attr('fill', function(){
-        return gmt_colors[inst_key]
-      } )
-      .attr('height','24px')
-      .attr('width','24px');
+  //   // append glyph to svg 
+  //   var glyph_svg = tmp_group
+  //     .append('div')
+  //     .append('svg')
+  //     // .attr('id','glyph_'+inst_select_gmt)
+  //     .attr('class', 'glyph_squares')
+  //     .attr('width',  '24px')
+  //     .attr('height', '24px');
 
-    // append lines 
-    glyph_svg
-      .append('line')
-      .attr('x1',0)
-      .attr('x2',24)
-      .attr('y1',12)
-      .attr('y2',12)
-      .style('stroke-width','2px');
+  //   // make glyph 
+  //   // append background rect
+  //   glyph_svg
+  //     .append('rect')
+  //     .attr('fill', function(){
+  //       return gmt_colors[inst_key]
+  //     } )
+  //     .attr('height','24px')
+  //     .attr('width','24px');
 
-    glyph_svg
-      .append('line')
-      .attr('x1',12)
-      .attr('x2',12)
-      .attr('y1',0)
-      .attr('y2',24)
-      .style('stroke-width','2px');
+  //   // append lines 
+  //   glyph_svg
+  //     .append('line')
+  //     .attr('x1',0)
+  //     .attr('x2',24)
+  //     .attr('y1',12)
+  //     .attr('y2',12)
+  //     .style('stroke-width','2px');
 
-    // append border rect 
-    glyph_svg
-      .append('rect')
-      .attr('fill','none')
-      .style('stroke','white')
-      .style('stroke-width','6px')
-      .attr('height','24px')
-      .attr('width','24px');
+  //   glyph_svg
+  //     .append('line')
+  //     .attr('x1',12)
+  //     .attr('x2',12)
+  //     .attr('y1',0)
+  //     .attr('y2',24)
+  //     .style('stroke-width','2px');
 
-    // append highlighting rect: for new rect 
-    glyph_svg
-      .append('rect')
-      .attr('fill','none')
-      .style('stroke-width','2px')
-      .attr('height','24px')
-      .attr('width','24px')
-      .attr('class','highlight_gmt')
-      .style('stroke','white');
+  //   // append border rect 
+  //   glyph_svg
+  //     .append('rect')
+  //     .attr('fill','none')
+  //     .style('stroke','white')
+  //     .style('stroke-width','6px')
+  //     .attr('height','24px')
+  //     .attr('width','24px');
 
-    // append gmt name 
-    tmp_group
-      .append('div')
-      .attr('class','viz_gmt_label_text')
-      .html( function(){
-        return inst_key.replace(/_/g,' ');
-      })
-      .style('color', 'black')
-      .style('float','left');
+  //   // append highlighting rect: for new rect 
+  //   glyph_svg
+  //     .append('rect')
+  //     .attr('fill','none')
+  //     .style('stroke-width','2px')
+  //     .attr('height','24px')
+  //     .attr('width','24px')
+  //     .attr('class','highlight_gmt')
+  //     .style('stroke','white');
 
-    // remove float left so a new line can be appended below 
-    tmp_group
-      .style('clear','both');
+  //   // append gmt name 
+  //   tmp_group
+  //     .append('div')
+  //     .attr('class','viz_gmt_label_text')
+  //     .html( function(){
+  //       return inst_key.replace(/_/g,' ');
+  //     })
+  //     .style('color', 'black')
+  //     .style('float','left');
 
-  };
+  //   // remove float left so a new line can be appended below 
+  //   tmp_group
+  //     .style('clear','both');
+
+  // };
 
 };
 

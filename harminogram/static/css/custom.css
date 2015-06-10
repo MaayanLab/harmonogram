@@ -395,7 +395,9 @@ li{
   /*position:fixed;*/
   /*top:100px;
   left:280px;*/
-  margin-left: -47px;
+  /*need to reduce this from -47px
+  not sure why*/
+  margin-left: 0px;
   font-size:8.0px;
  }
 
