@@ -82,7 +82,6 @@ def cluster_row_and_column( nodes, data_mat, dist_type, enr ):
 	num_row = len(nodes['row'])
 	num_col = len(nodes['col'])
 
-
 	# # check pvalues 
 	# for inst_term in nodes['col']:
 	# 	# find dict in list 
