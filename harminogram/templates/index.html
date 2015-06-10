@@ -36,7 +36,7 @@
 
 <body>
 
-  <div id="wrapper">
+  <div id="wrapper" class='toggled'>
 
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
@@ -129,35 +129,35 @@
 
               <div class='row'>
                 <div id='clust_instruct_container' class='col-xs-3'>
-                  <h1>Enrichrgram</h1>
+                  <h1 id='viz_website_title'>Harminogram</h1>
 
                   <div id='viz_gmt_labels'></div>
 
-                  <div id='title_viz_instruct_text'>Instructions:</div>
-                  <div class='viz_instruct_text'> Enrichrgram shows your input gene list as rows and enriched terms as columns with bars that indicate the enrichment value (combined score). Enriched terms and input genes are clustered based on Jaccard similarity. The opacity of a tile is determined by the enrichment value of the term and the terms associated with a gene. See help for more information.</div>
-                  <div class='viz_instruct_text'> Zoom using your mouse and toggle the ordering of the clustergram using the ordering switch or by clicking on a row/column to re-order the columns/rows based on the selected term. </div>
+                  <div id='title_viz_instruct_text'>About:</div>
+                  <div class='viz_instruct_text'> The clustergram visualizes gene appearance in various resources. Genes are shown as rows and resources as columns. </div>
+                  <!-- <div class='viz_instruct_text'>  </div> -->
 
-                  <button id='modify_enrichrgram_button' class='btn btn-danger buttons' onClick='rerun_enrichrgram();'>Re-run Enrichrgram</button>
+                  <!-- <button id='modify_enrichrgram_button' class='btn btn-danger buttons' onClick='rerun_enrichrgram();'>Re-run Enrichrgram</button> -->
 
-                  <div class='viz_instruct_text'>Ordering</div>
+                  <!-- <div class='viz_instruct_text'>Ordering</div> -->
 
-                  <div class="btn-group" data-toggle="buttons" >
+                  <!-- <div class="btn-group" data-toggle="buttons" >
                     <label class="btn btn-primary active" onclick="reorder_clust_rank('clust');">
                       <input type="radio" name="options" id="clust_button" autocomplete="off" checked > Cluster
                     </label>
                     <label class="btn btn-primary" onclick="reorder_clust_rank('rank');">
                       <input type="radio" name="options" id="rank_button" autocomplete="off" > Rank
                     </label>
-                  </div>
+                  </div> -->
 
 
-                  <div class='viz_instruct_text'><a href="">Export data to table</a></div>
-                  <div class='viz_instruct_text'>Save SVG</div>
+                  <!-- <div class='viz_instruct_text'><a href="">Export data to table</a></div> -->
+                  <!-- <div class='viz_instruct_text'>Save SVG</div> -->
                 </div>
                 <div id='clustergram_container' class='col-xs-9'>
-                  <div id='col_title'>Enriched ChEA Transcription Factors</div>
+                  <div id='col_title'>Resources</div>
                   <div id='clust_and_row_container'>
-                    <div id='row_title'>Input Genes</div>
+                    <div id='row_title'>Genes</div>
                     <div id='svg_div'></div>
                   </div>
                 </div>

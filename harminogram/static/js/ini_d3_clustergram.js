@@ -1,6 +1,44 @@
 // initialize dropdown 
 console.log('make jquery get request')
 
+
+/////////////////////////////////////////////////////////////
+// initialize the website in clustergram view 
+/////////////////////////////////////////////////////////////
+
+// // initialize clustergram variables 
+// initialize_clustergram(network_data)
+
+// // display col and row title 
+// d3.select('#row_title').style('display','block');
+// d3.select('#col_title').style('display','block');
+
+// // toggle sidebar to make more space for visualization
+// d3.select('#wrapper').attr('class','toggled');
+
+// // remove initial components
+// d3.select('#website_title').style('display','none');
+// d3.selectAll('.initial_paragraph').style('display','none');
+// d3.select('#gmt_menu').style('display','none');
+// d3.select('#add_new_gmt').style('display','none');
+
+// // display clustergram_container and clust_instruct_container
+// d3.select('#clustergram_container').style('display','block');
+// d3.select('#clust_instruct_container').style('display','block');
+
+// // shift the footer left
+// d3.select('#footer_div')
+//   // .transition()
+//   // .duration(250)
+//   .style('margin-left','0px');
+
+// // remove gmt labels 
+// d3.select('#container_gmt_labels').style('display','none');
+
+/////////////////////////////////////////////////////////////
+
+
+
 // initialize global dictionary to associate gmts with colors
 gmt_colors = {};
 gmt_colors.ChEA = 'red';

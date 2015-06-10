@@ -367,17 +367,19 @@ li{
 
 #col_title{
   font-size: 20px;
-  display: none;
+  display: block;
   margin-left:140px;
   font-weight: 300;
 }
 
 #row_title{
   font-size:20px;
-  display: none;
+  display: block;
   transform:rotate(-90deg );
   float:left;
-  margin-left: -55px;
+  /*this is sensitive to the length of the 
+  row title*/
+  margin-left: -30px;
   margin-top: 300px;
   font-weight: 300;
 }
@@ -468,15 +470,18 @@ because the sidebar will be closed*/
 }
 
 #clustergram_container{
+  display: block;
   border-style: solid;
   border-width: 3px;
-  display: none;
   border-color: #f5f5f5;
   margin-top: 10px;
+  /*set height here so that it will 
+  look normal with out clustergram*/
+  height: 950px;
 }
 
 #clust_instruct_container{
-  display: none;
+  display: block;
   padding-left: 10px;
   border-left: 0px;
   /*border-style: solid;*/
@@ -486,6 +491,7 @@ because the sidebar will be closed*/
 
 #website_title{
   margin-top: 20px;
+  display: none;
 }
 
 #selected_gmts_group{
@@ -578,6 +584,11 @@ because the sidebar will be closed*/
   clear:both;
 }
 
+/*homepage container for gmt labels in homepage*/
+#container_gmt_labels{
+  display: none;
+}
+
 /*add margins around viz gmt labels*/
 #viz_gmt_labels{
   margin-top: 0px;
@@ -606,11 +617,13 @@ look like the input gene list text title*/
   font-size: 20px;
   width:590px;
   font-weight: 300;
+  display: none;
 }
 
 
 
 #title_gmt_menu{
+  display: none;
   color:white;
   padding-top:12px;
   padding-bottom:12px;
@@ -646,6 +659,7 @@ look like the input gene list text title*/
 }
 
 #gmt_menu{
+  display: none;
   margin-top: 20px;
   margin-left: 0px;
   font-size: 15px;
@@ -688,4 +702,14 @@ look like the input gene list text title*/
 
 .form-group{
   margin-bottom: 10px;
+}
+
+/*footer - shift it with the sidebar*/
+#footer_div{
+  margin-left: 0px;
+}
+
+/*title for the visualization*/
+#viz_website_title{
+  font-size: 40px;
 }
