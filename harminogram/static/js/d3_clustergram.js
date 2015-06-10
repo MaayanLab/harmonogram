@@ -117,6 +117,7 @@ function make_d3_clustergram(network_data) {
   d3.select('#clust_group')
     .append("rect")
     .attr("class", "background")
+    .attr('id','grey_background')
     .attr("width", clustergram_width)
     .attr("height", clustergram_height);
 
