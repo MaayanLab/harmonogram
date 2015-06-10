@@ -8,21 +8,19 @@ import json
 
 def main(filenames):
 
-	# loop through the files 
 	for filename in filenames:
 
-		# initialize the rows list 
 		rows = []
 
 		with open(filename + '.txt', 'r') as f:
 
 			line = f.readline()
-			print(line)
 
 			entries = line.rstrip().split('\t')
 
 			rows.append({'label':'header', 'entries':entries[3:]})
 
+			line = f.readline()
 			line = f.readline()
 
 			for line in f:
