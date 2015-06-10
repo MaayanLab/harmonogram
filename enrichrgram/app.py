@@ -23,11 +23,11 @@ ENTRY_POINT = '/enrichrgram'
 # docker_vs_local
 ##########################################
 
-# # for local development 
-# SERVER_ROOT = os.path.dirname(os.getcwd()) + '/enrichrgram/enrichrgram' ## original 
+# for local development 
+SERVER_ROOT = os.path.dirname(os.getcwd()) + '/enrichrgram/enrichrgram' ## original 
 
-# for docker development
-SERVER_ROOT = '/app/enrichrgram'
+# # for docker development
+# SERVER_ROOT = '/app/enrichrgram'
 
 
 @app.route(ENTRY_POINT + '/<path:path>') ## original 
