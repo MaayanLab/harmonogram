@@ -50,26 +50,33 @@ Mac specific
 	docker rmi <image id>
 
 
-# example building docker 
+# example building docker: enrichrgram example  
 	
+	# build the image (delete old ones using rmi)
+	# e.g. docker rmi <image id> 
 	docker build -t maayanlab/enrichrgram:latest .
 
+	# run it and make sure it works locally
+	# problems usually arise with directories 
 	docker run -it --rm -p 8087:80 maayanlab/enrichrgram:latest 
 
-	docker rmi <image id> 
-
 	# view docker image 
+	# and go into container 
 		docker ps # see running processes, containers
 		docker exec -it <docker_container_id> bash
 
-
+	# push to maayanlab dockerhub
+	# marathon will take the latest image 
 	docker push maayanlab/enrichrgram:latest
 		<login> corn normal pw 
 
-# deploy to marathon
+	# deploy to marathon (only needs to be done once)
 	use postman (the chrome extension)
 	use the example template json Matthew posted on Confluence 
 	send the post request
+
+	# restart app in elizabeth marathon
+	go to the gui for marathon and restart enrichrgram 
 
 	(the template has now been saved to postman)
 
