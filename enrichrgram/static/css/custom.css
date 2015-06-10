@@ -575,6 +575,17 @@ because the sidebar will be closed*/
   font-weight: 300;
 }
 
+/*add margins around viz gmt labels*/
+#viz_gmt_labels{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/*reduce the size of the text in the viz label*/
+.viz_gmt_label_text{
+  /*font-size: 12px;*/
+}
+
 /* the instructions for the visualization should
 look like the input gene list text title*/
 .viz_instruct_text{

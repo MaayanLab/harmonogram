@@ -42,7 +42,7 @@ function select_gmt_from_menu(inst_gmt){
       .remove();
 
     // grab div 
-    inst_group = d3.select('#current_gmt');
+    var inst_group = d3.select('#current_gmt');
 
     // add the gmt name as a class
     inst_group
@@ -85,7 +85,7 @@ function plus_new_gmt(){
     .style('stroke','white');
 
   // append new current_gmt
-  inst_group = d3.select('#selected_gmts_group')
+  var inst_group = d3.select('#selected_gmts_group')
     .append('div')
     .attr('class','selected_gmts unknown')
     .attr('id','current_gmt');
@@ -472,9 +472,9 @@ function return_prev_enrichrgram(){
 
 };
 
-
+// make the gmt labels in the homepage 
 function make_gmt_labels(inst_group){
-// make visible 
+  // make visible 
   inst_group
     .transition()
     .duration(100)
