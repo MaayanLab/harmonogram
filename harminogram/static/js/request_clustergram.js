@@ -30,7 +30,7 @@ $( "#searchForm" ).submit( function( event ) {
     // docker_vs_local
     /////////////////////////////////
     // manually set url (local - works for local and docker)
-    url = '/enrichrgram/'
+    url = '/harminogram/'
     // // !!! (docker - does not work)
     // url = '/'
 

@@ -10,7 +10,7 @@ example_gene_list_50 = ["CD2BP2", "SLBP", "FOXK2", "STMN2", "SMAD4", "EIF6", "SF
 
 // could be improved
 ////////////////////
-d3.json('/enrichrgram/static/enrichr_gmt_data/enrichr_gmts.json', function(data){
+d3.json('/harminogram/static/enrichr_gmt_data/enrichr_gmts.json', function(data){
 
   gmt_data = data['libraries']
 

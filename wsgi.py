@@ -1,1 +1,1 @@
-from enrichrgram.app import app as application
+from harminogram.app import app as application
