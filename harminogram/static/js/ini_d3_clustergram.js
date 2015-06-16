@@ -203,15 +203,13 @@ function initialize_clustergram(network_data){
 
   // clustergram size 
   overall_size = 300 ;
-  clustergram_width  = overall_size;
-  clustergram_height = overall_size*(row_nodes.length/col_nodes.length);
-  svg_width = 600;
-  svg_height = 700;
+  svg_width = 500;
+  svg_height = 800;
   
   // scaling functions 
   // scale used to size rects 
-  x_scale = d3.scale.ordinal().rangeBands([0, clustergram_width]) ;
-  y_scale = d3.scale.ordinal().rangeBands([0, clustergram_height]); 
+  x_scale = d3.scale.ordinal().rangeBands([0, svg_width]) ;
+  y_scale = d3.scale.ordinal().rangeBands([0, svg_height]); 
 
   // Sort rows and columns 
   orders = {

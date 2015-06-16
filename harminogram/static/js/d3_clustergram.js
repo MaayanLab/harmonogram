@@ -67,7 +67,7 @@ function make_d3_clustergram(network_data) {
   svg_obj = d3.select("#svg_div")
       .append("svg")
       .attr('id', 'main_svg')
-      .attr("width",  svg_width  + margin.left + margin.right)
+      .attr("width",  svg_width  + margin.left + margin.right + 100)
       .attr("height", svg_height + margin.top  + margin.bottom)
       .attr('border',1)
       .call( zoom ) 
@@ -120,8 +120,8 @@ function make_d3_clustergram(network_data) {
     .append("rect")
     .attr("class", "background")
     .attr('id','grey_background')
-    .attr("width", clustergram_width)
-    .attr("height", clustergram_height);
+    .attr("width", svg_width)
+    .attr("height", svg_height);
 
   // Make Expression Rows   
   // use matrix for the data join, which contains a two dimensional 
@@ -143,7 +143,7 @@ function make_d3_clustergram(network_data) {
 
   // horizontal line
   row_obj.append('line')
-    .attr('x2', 20*clustergram_width)
+    .attr('x2', 20*svg_width)
     .style('stroke-width', border_width+'px')
 
   // select all columns 
@@ -169,7 +169,7 @@ function make_d3_clustergram(network_data) {
     .selectAll('.col_label_text')
     .append('line')
     .attr('x1', 0)
-    .attr('x2', -20*clustergram_height)
+    .attr('x2', -20*svg_height)
     .style('stroke-width', border_width+'px')
 
 
@@ -220,24 +220,27 @@ function make_d3_clustergram(network_data) {
   // append row label text 
   row_label_obj.append('text')
     .attr('y', x_scale.rangeBand() / 2)
-    .attr('dy', '.32em')
+    // !! can be improved 
+    // .attr('dy', x_scale.rangeBand()/16)
     .attr('text-anchor','end')
     .style('font-size',default_fs+'px')
     .text(function(d, i) { return d.name; } )
 
+  // hide spillover from right
+  // !! needs to be improved  
+  d3.select('#main_svg')
+    .append('rect')
+    .attr('fill', 'white')
+    .attr('width', '200px')
+    .attr('height', '3000px')
+    .attr('transform', function() { 
+      tmp_left = margin.left + svg_width;
+      return 'translate('+tmp_left+','+margin.top+')'
+    })
+    .attr('class','white_bars');
+
   // run add double click zoom function 
   add_double_click(); 
-
-  // reset the toggle switch 
-  // d3.select('#clust_button').attr('class','btn btn-primary active');
-  // d3.select('#rank_button').attr('class','btn btn-primary');
-  // simulate click
-  $('#clust_button').click();
-
-  // remove previous labels 
-  d3.select('#viz_gmt_labels')
-    .selectAll('div')
-    .remove();
 
   // initialize translate vector to compensate for label margins 
   zoom.translate([ + margin.left, + margin.top]);

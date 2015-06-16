@@ -241,29 +241,24 @@ function add_double_click() {
 // define zoomed function 
 function zoomed() {
 
-  console.log(d3.event.translate)
-
   // transfer to x and y translate
   trans_x = d3.event.translate[0] - margin.left;
   trans_y = d3.event.translate[1] - margin.top;
 
-  // reset zoom translate
-
-  console.log(trans_x)
-  console.log(trans_y)
+  // zoom into clustergram 
+  //////////////////////////////
+  // if height is less than width, zoom vertically only 
 
   // matrix
   svg_obj.attr("transform", "translate(" + [ trans_x + margin.left, trans_y + margin.top ] + ") scale(" + d3.event.scale + ")");
 
   // column labels - only translate in one dimension, also zoom  
   d3.select('#col_labels')
-  .attr("transform", "translate(" + [col_margin.left + trans_x, col_margin.top + (d3.event.scale-1)*0.0] 
-    + ") scale(" + d3.event.scale + ")");
+  .attr("transform", "translate(" + [col_margin.left + trans_x, col_margin.top ] + ") scale(" + d3.event.scale + ")");
   
   // row labels - only translate in one dimension, also zoom 
   d3.select('#row_labels')
-  .attr("transform", "translate(" + [row_margin.left + (d3.event.scale-1)*0.0 , row_margin.top+ trans_y ] 
-    + ") scale(" + d3.event.scale + ")");
+  .attr("transform", "translate(" + [row_margin.left  , row_margin.top+ trans_y ] + ") scale(" + d3.event.scale + ")");
 
   // reduce font-size to compensate for zoom 
   // calculate the recuction of the font size 
