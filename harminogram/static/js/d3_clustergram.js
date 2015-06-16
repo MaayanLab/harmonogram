@@ -144,7 +144,7 @@ function make_d3_clustergram(network_data) {
   // horizontal line
   row_obj.append('line')
     .attr('x2', 20*svg_width)
-    .style('stroke-width', border_width+'px')
+    .style('stroke-width', border_width/zoom_switch+'px')
 
   // try to add vertical lines
   vert_lines = svg_obj
