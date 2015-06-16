@@ -214,13 +214,13 @@ function add_double_click() {
       
       // reset adj zoom 
       d3.select('#clust_group')
-        .attr("transform", "translate(" + (margin.left) + "," + (margin.top) + ")");
+        .attr("transform", "translate(0,0)");
       // reset column label zoom 
       d3.select('#col_labels')
         .attr("transform", "translate(" + col_margin.left + "," + col_margin.top + ")");
       // reset row label zoom 
       d3.select('#row_labels')
-        .attr("transform", "translate(" + row_margin.left + "," + row_margin.top + ")");
+        .attr("transform", "translate(" + row_margin.left + ",0)");
       // use Qiaonan method to reset zoom 
       zoom.scale(1).translate([0,0]);
 
@@ -246,8 +246,7 @@ function zoomed() {
   trans_y = d3.event.translate[1]
 
   // matrix
-  svg_obj.attr("transform", "translate(" + [ trans_x + margin.left, trans_y + margin.top ] 
-    + ") scale(" + d3.event.scale + ")");
+  svg_obj.attr("transform", "translate(0,0) scale(" + d3.event.scale + ")");
 
   // column labels - only translate in one dimension, also zoom  
   d3.select('#col_labels')

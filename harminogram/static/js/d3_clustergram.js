@@ -61,10 +61,6 @@ function make_d3_clustergram(network_data) {
   // ////////////////////////////
 
 
-  // disable double-click zoom: double click should reset zoom level 
-  // do this for all svg elements 
-  d3.selectAll("svg").on("dblclick.zoom", null);    
-
   ///////////////////////////
   // column labels 
   ///////////////////////////
@@ -77,13 +73,13 @@ function make_d3_clustergram(network_data) {
     .attr('height', margin.top )
     .call(zoom)
 
-  // white background col labels 
-  col_label_svg
-    .append('rect')
-    .attr('fill', 'white')
-    .attr('width', row_label_width+'px')
-    .attr('height', '3000px')
-    .attr('class','white_bars');
+  // // white background col labels 
+  // col_label_svg
+  //   .append('rect')
+  //   .attr('fill', 'white')
+  //   .attr('width', row_label_width+'px')
+  //   .attr('height', '3000px')
+  //   .attr('class','white_bars');
 
   // column group
   col_label_svg
@@ -212,16 +208,16 @@ function make_d3_clustergram(network_data) {
       .call( zoom ) 
       .append("g")
       .attr('id', 'clust_group')
-      .attr("transform", "translate(" + (margin.left) + "," + (margin.top) + ")");
+      // .attr("transform", "translate(" + (margin.left) + "," + (margin.top) + ")");
 
 
-  // white background row labels 
-  d3.select('#main_svg')
-    .append('rect')
-    .attr('fill', 'white')
-    .attr('height', col_label_width+'px')
-    .attr('width', '3000px')
-    .attr('class','white_bars');
+  // // white background row labels 
+  // d3.select('#main_svg')
+  //   .append('rect')
+  //   .attr('fill', 'white')
+  //   .attr('height', col_label_width+'px')
+  //   .attr('width', '3000px')
+  //   .attr('class','white_bars');
 
   // Add the background - one large rect 
   d3.select('#clust_group')
@@ -254,6 +250,10 @@ function make_d3_clustergram(network_data) {
   ////////////////////////////////
   // zoom 
   ////////////////////////////////
+
+  // disable double-click zoom: double click should reset zoom level 
+  // do this for all svg elements 
+  d3.selectAll("svg").on("dblclick.zoom", null);    
 
   // run add double click zoom function 
   add_double_click(); 
