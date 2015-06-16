@@ -7,3 +7,5 @@ Harminogram notes 6-10-2015
 		d3.clustergram.convert_enr_to_nodes_mat( enr )
 
 	I could either store the data in an enrichment-like structure or write slightly modified functions to avoid using an enrichment-like data structure. 
+
+	I am able to 

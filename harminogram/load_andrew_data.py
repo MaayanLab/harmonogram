@@ -1,20 +1,56 @@
 # this will load Andrew's data 
 def main():
-
 	# load andrew data 
 	load_andrew_data()
 
+	# genrate d3 json 
+	generate_d3_json()
+
+def generate_d3_json():
+	import json_scripts
+	import d3_clustergram
+	import numpy as np 
+
+	print('loading json in generate_d3_json')
+	# load saved json of andrew data 
+	data_json = json_scripts.load_to_dict('andrew_data/cumul_probs.json')
+
+	# get nodes and data_mat 
+	nodes = data_json['nodes']
+	data_mat = np.asarray(data_json['data_mat'])
+
+	print('calculating clustering orders')
+
 	# cluster the matrix, return clust_order
-	
+	clust_order = d3_clustergram.cluster_row_and_column( nodes, data_mat, 'euclidean' )
+
+	# # mock clustering
+	# ############################
+	# print('mock clustering')
+	# clust_order = {}
+	# # mock cluster 
+	# clust_order['clust'] = {}
+	# clust_order['clust']['row'] = range(len(nodes['row']))
+	# clust_order['clust']['col'] = range(len(nodes['col']))
+	# # mock rank 
+	# clust_order['rank'] = {}
+	# clust_order['rank']['row'] = range(len(nodes['row']))
+	# clust_order['rank']['col'] = range(len(nodes['col']))
+
+	print('generating d3 json')
 
 	# generate d3_clust json: return json 
+	d3_json = d3_clustergram.d3_clust_single_value(nodes, clust_order, data_mat )
+
+	print('saving to disk')
+
+	# save visualization json 
+	json_scripts.save_to_json(d3_json,'static/networks/network_cumul_probs.json','no_indent')
 
 
-
-
+# load andrew json and convert to scipy array 
 def load_andrew_data():
 	import json_scripts 
-	import d3_clustergram 
 	import scipy
 	import numpy as np 
 
@@ -35,15 +71,17 @@ def load_andrew_data():
 	nodes['row'] = []
 	nodes['col'] = []
 
+	num_rows = 100
+
 	# initialize data matrix 
-	data_mat = scipy.zeros([ 10, len(matrix[0]['entries']) ])
+	data_mat = scipy.zeros([ num_rows, len(matrix[0]['entries']) ])
 
 	# print(type(matrix))
 	# print(len(matrix))
 	# print('\n')
 
 	# loop through the list 
-	for i in range(10):
+	for i in range(num_rows):
 
 		# get the inst row of the matrix 
 		inst_row = matrix[i]
@@ -88,8 +126,6 @@ def load_andrew_data():
 
 	# save to json 
 	json_scripts.save_to_json(inst_dict,'andrew_data/cumul_probs.json','no_indent')
-
-
 	
 	
 # make clustergram

@@ -1,6 +1,6 @@
 # d3_clustergram.py has functions that will generate a d3 clustergram 
 
-def d3_clust_single_value(nodes, clust_order, mat, terms_colors):
+def d3_clust_single_value(nodes, clust_order, data_mat):
 	import json
 	import d3_clustergram
 
@@ -13,7 +13,6 @@ def d3_clust_single_value(nodes, clust_order, mat, terms_colors):
 		inst_dict['name'] = nodes['row'][i]
 		inst_dict['clust'] = clust_order['clust']['row'].index(i)
 		inst_dict['rank'] = clust_order['rank']['row'][i]
-		inst_dict['nl_pval'] = clust_order['nl_pval']['row'][i]
 
 		# append to row_nodes 
 		d3_json['row_nodes'].append(inst_dict)
@@ -24,55 +23,41 @@ def d3_clust_single_value(nodes, clust_order, mat, terms_colors):
 		inst_dict['name'] = nodes['col'][i]
 		inst_dict['clust'] = clust_order['clust']['col'].index(i)
 		inst_dict['rank'] = clust_order['rank']['col'][i]
-		inst_dict['pval'] = clust_order['pval']['col'][i]
-		inst_dict['nl_pval'] = clust_order['nl_pval']['col'][i]
-		inst_dict['pval_bh'] = clust_order['pval_bh']['col'][i]
-		inst_dict['color'] = terms_colors[nodes['col'][i]]
-
-		# print(nodes['col'][i])
 
 		# add to d3_json 
 		d3_json['col_nodes'].append(inst_dict)
 
-	# get max and min col and row value for scaling 
-	# the row nl_pval is just the sum of enriched terms the gene appears in 
-	max_row_value = max(clust_order['nl_pval']['row'])
-	max_col_value = max(clust_order['nl_pval']['col'])
-
 	# links - generate edge list 
+	###############################
+	# simply transfer the data from mat 
 	for i in range(len(nodes['row'])):
 		for j in range(len(nodes['col'])):
 
-			# initialize dict 
-			inst_dict = {}
-			# set source and target 
-			inst_dict['source'] = i
-			inst_dict['target'] = j
+			# only gather links that are non-zero 
+			if data_mat[i,j] > 0: 
 
-			# calculate the inst_value, a combination of col and row attributes
-			# scale value by largest 
-			row_value = clust_order['nl_pval']['row'][i] / max_row_value
-			col_value = clust_order['nl_pval']['col'][j] / max_col_value
+				# create link dict
+				####################
 
-			# take the mean of the two values times the binary mat[i,j]
-			inst_value = ( row_value + col_value )/ 2 * mat[i,j] 
+				# initialize dict 
+				inst_dict = {}
+				# set source and target 
+				inst_dict['source'] = i
+				inst_dict['target'] = j
 
-			# save the inst_dict['value']
-			inst_dict['value'] = inst_value 
+				# get the value from the original matrix 
+				inst_value = data_mat[i,j] 
 
-			# # need to look up the color
-			# print(nodes['col'][j])
+				# save the inst_dict['value']
+				inst_dict['value'] = inst_value 
 
-			# add the color 
-			inst_dict['color'] = terms_colors[nodes['col'][j]]
-
-			# append to links 
-			d3_json['links'].append( inst_dict )
+				# append to links 
+				d3_json['links'].append( inst_dict )
 
 	return d3_json
 
-# cluster rows and columns 
-def cluster_row_and_column( nodes, data_mat, dist_type, enr ):
+# cluster rows and columns
+def cluster_row_and_column( nodes, data_mat, dist_type ):
 	import find_dict_in_list
 	import scipy
 	import scipy.cluster.hierarchy as hier
@@ -82,10 +67,9 @@ def cluster_row_and_column( nodes, data_mat, dist_type, enr ):
 	num_row = len(nodes['row'])
 	num_col = len(nodes['col'])
 
-	# # check pvalues 
-	# for inst_term in nodes['col']:
-	# 	# find dict in list 
-	# 	inst_dict = find_dict_in_list.main( enr, 'name', inst_term ) 
+	########################
+	# cluster 
+	########################
 
 	# Generate Row and Column Distance Matrices 
 	############################################
@@ -118,9 +102,6 @@ def cluster_row_and_column( nodes, data_mat, dist_type, enr ):
 	clust_order = {}
 	clust_order['clust'] = {}
 	clust_order['rank'] = {}
-	clust_order['pval'] = {}
-	clust_order['pval_bh'] = {}
-	clust_order['nl_pval'] = {}
 
 	# Cluster Rows
 	###############
@@ -141,51 +122,13 @@ def cluster_row_and_column( nodes, data_mat, dist_type, enr ):
 	# get ordering
 	clust_order['clust']['col'] = Z['leaves']
 
-	# rank terms by pval
-	#####################
-	# since the enriched terms are already ordered by their pval
-	# I will just reverse their order so that the terms with the 
-	# lowest pvalues appear at the left 
-	tmp_col_order = []
-	# initialize the nl_pval data
-	clust_order['nl_pval']['row'] = []
-	clust_order['nl_pval']['col'] = []
+	########################
+	# rank 
+	########################
 
-	clust_order['pval']['col'] = []
-	clust_order['pval_bh']['col'] = []
-	clust_order['pval_bh']['row'] = []
-
-	# add nl_pval
-	for i in range(len(nodes['col'])):
-		# get the ordering in reverse
-		tmp_col_order.append( len(nodes['col']) - i )
-		# get enrichment dict 
-		inst_dict = find_dict_in_list.main( enr, 'name', nodes['col'][i])
-		# gather pval 
-		clust_order['pval']['col'].append( inst_dict['pval'] )
-		# gather pval_bh 
-		# clust_order['pval_bh']['col'].append( inst_dict['pval_bh'] )
-		# use combined score instead 
-		# 
-		clust_order['pval_bh']['col'].append( inst_dict['combined_score'] )
-
-		# # gather nl_pval 
-		# clust_order['nl_pval']['col'].append( -np.log2(inst_dict['pval_bh']) )
-
-		# use combined score instead 
-		# the combined score can be negative if the zscore is positive 
-		if inst_dict['combined_score'] < 0:
-			clust_order['nl_pval']['col'].append( 0 )
-		else: 
-			clust_order['nl_pval']['col'].append( inst_dict['combined_score'] )
-
-	# print( clust_order['nl_pval']['col'] )
-
-	# save rank order 
-	clust_order['rank']['col'] = tmp_col_order
-
-	# rank genes by number 
-	#######################
+	# rank rows by number 
+	#######################################################
+	# rank rows by numer 
 	# loop through genes 
 	sum_term = []
 	for i in range(len(nodes['row'])):
@@ -199,15 +142,10 @@ def cluster_row_and_column( nodes, data_mat, dist_type, enr ):
 		# sum the number of terms that the gene is found in 
 		inst_dict['num_term'] = np.sum(data_mat[i,:]) 
 
-		# save the number of terms associated with each gene
-		# data_mat is a binary matrix with 1 for gene in term and 0 for gene not in term  
-		# take the dot product of the nl_pvalues and the binary matrix to get a weighted score for 
-		# each row. The more highly enriched terms a gene is in the darker the tile 
-		clust_order['nl_pval']['row'].append( np.dot( data_mat[i,:], clust_order['nl_pval']['col'] ) )
-
 		# add this to the list of dicts
 		sum_term.append(inst_dict)
 
+	# sort the dictionary by the number of terms 
 	sum_term = sorted(sum_term, key=itemgetter('num_term'), reverse=False)
 	
 	# get list of sorted genes 
@@ -223,7 +161,41 @@ def cluster_row_and_column( nodes, data_mat, dist_type, enr ):
 	# save the sorted indexes 
 	clust_order['rank']['row'] = sort_index
 
+	# rank cols by number 
+	#######################################################
+	# loop through cols 
+	sum_term = []
+	for i in range(len(nodes['col'])):
+		
+		# initialize dict 
+		inst_dict = {}
 
+		# get the name of the gene 
+		inst_dict['name'] = nodes['col'][i] 
+
+		# sum the number of terms that the gene is found in 
+		inst_dict['num_term'] = np.sum(data_mat[:,i]) 
+
+		# add this to the list of dicts
+		sum_term.append(inst_dict)
+
+	# sort the dictionary by the number of terms 
+	sum_term = sorted(sum_term, key=itemgetter('num_term'), reverse=False)
+	
+	# get list of sorted genes 
+	tmp_sort_genes = []
+	for inst_dict in sum_term:
+		tmp_sort_genes.append(inst_dict['name']) 
+
+	# get the sorted index 
+	sort_index = []
+	for inst_gene in nodes['col']:
+		sort_index.append( tmp_sort_genes.index(inst_gene) )
+
+	# save the sorted indexes 
+	clust_order['rank']['col'] = sort_index	
+
+	# return clustering orders: clust and rank 
 	return clust_order
 
 # calculate the distance between two vectors if they share at least n overlapping points 

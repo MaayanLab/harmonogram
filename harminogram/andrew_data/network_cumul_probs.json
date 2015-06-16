@@ -1,0 +1,523 @@
+{
+  "row_nodes": [
+    {
+      "rank": 0, 
+      "name": "VUR6", 
+      "clust": 0
+    }, 
+    {
+      "rank": 1, 
+      "name": "VUR7", 
+      "clust": 7
+    }, 
+    {
+      "rank": 2, 
+      "name": "AA1", 
+      "clust": 8
+    }, 
+    {
+      "rank": 3, 
+      "name": "AA2", 
+      "clust": 6
+    }, 
+    {
+      "rank": 4, 
+      "name": "ALPQTL1", 
+      "clust": 5
+    }, 
+    {
+      "rank": 5, 
+      "name": "ANIB11", 
+      "clust": 4
+    }, 
+    {
+      "rank": 6, 
+      "name": "APMR3", 
+      "clust": 3
+    }, 
+    {
+      "rank": 7, 
+      "name": "BMIQ15", 
+      "clust": 2
+    }, 
+    {
+      "rank": 8, 
+      "name": "BMND14", 
+      "clust": 1
+    }
+  ], 
+  "col_nodes": [
+    {
+      "rank": 0, 
+      "name": "ligand_iuphar_20140923", 
+      "clust": 84
+    }, 
+    {
+      "rank": 1, 
+      "name": "ligand_iuphar_chemical_20140923", 
+      "clust": 85
+    }, 
+    {
+      "rank": 2, 
+      "name": "drug_drugbank_20150416", 
+      "clust": 83
+    }, 
+    {
+      "rank": 3, 
+      "name": "ligand_iuphar_protein_20140923", 
+      "clust": 82
+    }, 
+    {
+      "rank": 4, 
+      "name": "tissuesample_brainatlas_humandevelopmentrnaseq_20150413", 
+      "clust": 81
+    }, 
+    {
+      "rank": 5, 
+      "name": "tissuesample_hpa_mrna_20150309", 
+      "clust": 80
+    }, 
+    {
+      "rank": 6, 
+      "name": "tissue_hpa_mrna_20150309", 
+      "clust": 79
+    }, 
+    {
+      "rank": 7, 
+      "name": "tissuesample_gtex_20150311", 
+      "clust": 78
+    }, 
+    {
+      "rank": 8, 
+      "name": "cellline_hpa_mrna_20150309", 
+      "clust": 77
+    }, 
+    {
+      "rank": 9, 
+      "name": "gene_biogrid_20150415", 
+      "clust": 76
+    }, 
+    {
+      "rank": 10, 
+      "name": "gene_intact_20150409", 
+      "clust": 75
+    }, 
+    {
+      "rank": 11, 
+      "name": "gene_intactviapc_allphysical_20150416", 
+      "clust": 74
+    }, 
+    {
+      "rank": 12, 
+      "name": "gene_pc_allphysical_20150416", 
+      "clust": 73
+    }, 
+    {
+      "rank": 13, 
+      "name": "gene_pcppiallphysical20150113", 
+      "clust": 72
+    }, 
+    {
+      "rank": 14, 
+      "name": "tf_cheanomerge", 
+      "clust": 71
+    }, 
+    {
+      "rank": 15, 
+      "name": "tf_encode20150122", 
+      "clust": 70
+    }, 
+    {
+      "rank": 16, 
+      "name": "cellline_heiser", 
+      "clust": 69
+    }, 
+    {
+      "rank": 17, 
+      "name": "tissue_jensentissuecurated_20150202", 
+      "clust": 68
+    }, 
+    {
+      "rank": 18, 
+      "name": "tissue_jensentissueexpts_20150202", 
+      "clust": 67
+    }, 
+    {
+      "rank": 19, 
+      "name": "disease_ctd_20150415", 
+      "clust": 66
+    }, 
+    {
+      "rank": 20, 
+      "name": "disease_jensendiseasetextmining_20150202", 
+      "clust": 65
+    }, 
+    {
+      "rank": 21, 
+      "name": "tissue_jensentissuetextmining_20150202", 
+      "clust": 64
+    }, 
+    {
+      "rank": 22, 
+      "name": "compartment_jensencompartmenttextmining_20150202", 
+      "clust": 63
+    }, 
+    {
+      "rank": 23, 
+      "name": "compartment_jensencompartmentcurated_20150202", 
+      "clust": 62
+    }, 
+    {
+      "rank": 24, 
+      "name": "cc_gocc_20150331", 
+      "clust": 61
+    }, 
+    {
+      "rank": 25, 
+      "name": "bp_gobp_20150331", 
+      "clust": 60
+    }, 
+    {
+      "rank": 26, 
+      "name": "mf_gomf_20150331", 
+      "clust": 59
+    }, 
+    {
+      "rank": 27, 
+      "name": "cellline_klijn_mut_20150415", 
+      "clust": 58
+    }, 
+    {
+      "rank": 28, 
+      "name": "cellline_cosmicmut", 
+      "clust": 57
+    }, 
+    {
+      "rank": 29, 
+      "name": "domain_interpro_20150324", 
+      "clust": 56
+    }, 
+    {
+      "rank": 30, 
+      "name": "mirna_mirtarbaseviapc_20150416", 
+      "clust": 55
+    }, 
+    {
+      "rank": 31, 
+      "name": "mirna_mirtarbase_20150415", 
+      "clust": 54
+    }, 
+    {
+      "rank": 32, 
+      "name": "gene_hprdviapc_allphysical_20150416", 
+      "clust": 53
+    }, 
+    {
+      "rank": 33, 
+      "name": "cellline_gdsc", 
+      "clust": 52
+    }, 
+    {
+      "rank": 34, 
+      "name": "tissuesample_brainatlas_humandevelopmentarray_20150413", 
+      "clust": 51
+    }, 
+    {
+      "rank": 35, 
+      "name": "cellline_ccle", 
+      "clust": 50
+    }, 
+    {
+      "rank": 36, 
+      "name": "tissue_brainatlas_humanadultarray_20150413", 
+      "clust": 49
+    }, 
+    {
+      "rank": 37, 
+      "name": "tissue_brainatlas_humanprenatalarray_20150413", 
+      "clust": 48
+    }, 
+    {
+      "rank": 38, 
+      "name": "tissue_hpa_proteinihc_20150304", 
+      "clust": 47
+    }, 
+    {
+      "rank": 39, 
+      "name": "tissue_brainatlas_20150124", 
+      "clust": 46
+    }, 
+    {
+      "rank": 40, 
+      "name": "cellline_klijn_cnv_20150415", 
+      "clust": 45
+    }, 
+    {
+      "rank": 41, 
+      "name": "cellline_cclecnv", 
+      "clust": 44
+    }, 
+    {
+      "rank": 42, 
+      "name": "tf_motifmap20150109", 
+      "clust": 43
+    }, 
+    {
+      "rank": 43, 
+      "name": "cellline_cosmiccnvnew", 
+      "clust": 42
+    }, 
+    {
+      "rank": 44, 
+      "name": "tissue_gtex_20150311", 
+      "clust": 41
+    }, 
+    {
+      "rank": 45, 
+      "name": "cellline_klijn_rnaseq_20150415", 
+      "clust": 40
+    }, 
+    {
+      "rank": 46, 
+      "name": "tf_transfacviapc_20150416", 
+      "clust": 39
+    }, 
+    {
+      "rank": 47, 
+      "name": "chemical_ctd_dnaprot_20150415", 
+      "clust": 38
+    }, 
+    {
+      "rank": 48, 
+      "name": "disease_hugenavigator_20150415", 
+      "clust": 37
+    }, 
+    {
+      "rank": 49, 
+      "name": "disease_gad_20150415", 
+      "clust": 36
+    }, 
+    {
+      "rank": 50, 
+      "name": "disease_gad_highlevel_20150415", 
+      "clust": 35
+    }, 
+    {
+      "rank": 51, 
+      "name": "phenotype_mgimpo20150209", 
+      "clust": 34
+    }, 
+    {
+      "rank": 52, 
+      "name": "ip_nursa", 
+      "clust": 33
+    }, 
+    {
+      "rank": 53, 
+      "name": "gene_reactomeviapc_allphysical_20150416", 
+      "clust": 32
+    }, 
+    {
+      "rank": 54, 
+      "name": "pathway_reactome20141217", 
+      "clust": 31
+    }, 
+    {
+      "rank": 55, 
+      "name": "pathway_combinedpathways20141217", 
+      "clust": 30
+    }, 
+    {
+      "rank": 56, 
+      "name": "pathway_wikipathways20141217", 
+      "clust": 29
+    }, 
+    {
+      "rank": 57, 
+      "name": "pathway_kegg20110818", 
+      "clust": 28
+    }, 
+    {
+      "rank": 58, 
+      "name": "bestsnp_gtex_20150312", 
+      "clust": 27
+    }, 
+    {
+      "rank": 59, 
+      "name": "phenotype_gwasdb_20140908", 
+      "clust": 26
+    }, 
+    {
+      "rank": 60, 
+      "name": "disease_gwasdb_20140908", 
+      "clust": 25
+    }, 
+    {
+      "rank": 61, 
+      "name": "trait_dbgap_20150415", 
+      "clust": 24
+    }, 
+    {
+      "rank": 62, 
+      "name": "phenotype_gwascatalog_20150326", 
+      "clust": 23
+    }, 
+    {
+      "rank": 63, 
+      "name": "disease_jensendiseaseexpts_20150202", 
+      "clust": 22
+    }, 
+    {
+      "rank": 64, 
+      "name": "compartment_jensencompartmentexpts_20150202", 
+      "clust": 21
+    }, 
+    {
+      "rank": 65, 
+      "name": "gene_bindviapc_allphysical_20150416", 
+      "clust": 20
+    }, 
+    {
+      "rank": 66, 
+      "name": "gene_dipviapc_allphysical_20150416", 
+      "clust": 19
+    }, 
+    {
+      "rank": 67, 
+      "name": "gene_corumviapc_allphysical_20150416", 
+      "clust": 18
+    }, 
+    {
+      "rank": 68, 
+      "name": "complex_corum_20150416", 
+      "clust": 17
+    }, 
+    {
+      "rank": 69, 
+      "name": "cellline_achilles_20150124", 
+      "clust": 16
+    }, 
+    {
+      "rank": 70, 
+      "name": "tissue_proteomicsdb_20150129", 
+      "clust": 15
+    }, 
+    {
+      "rank": 71, 
+      "name": "phenotype_clinvar_pathogenic_20150415", 
+      "clust": 14
+    }, 
+    {
+      "rank": 85, 
+      "name": "disease_omim20150115", 
+      "clust": 0
+    }, 
+    {
+      "rank": 72, 
+      "name": "disease_jensendiseasecurated_20150202", 
+      "clust": 13
+    }, 
+    {
+      "rank": 73, 
+      "name": "gene_pantherviapc_allphysical_20150416", 
+      "clust": 12
+    }, 
+    {
+      "rank": 74, 
+      "name": "pathway_panther20141217", 
+      "clust": 11
+    }, 
+    {
+      "rank": 75, 
+      "name": "pathway_ncinat20141217", 
+      "clust": 10
+    }, 
+    {
+      "rank": 76, 
+      "name": "pathway_biocarta20141217", 
+      "clust": 9
+    }, 
+    {
+      "rank": 77, 
+      "name": "pathway_humancyc20141217", 
+      "clust": 8
+    }, 
+    {
+      "rank": 78, 
+      "name": "chemical_kinomescan_inhibfrac_20150120", 
+      "clust": 7
+    }, 
+    {
+      "rank": 79, 
+      "name": "substrate_kea_20120719", 
+      "clust": 6
+    }, 
+    {
+      "rank": 80, 
+      "name": "chemical-cellline_kinativ_20150120", 
+      "clust": 5
+    }, 
+    {
+      "rank": 81, 
+      "name": "cellline_cclemut", 
+      "clust": 4
+    }, 
+    {
+      "rank": 82, 
+      "name": "gene_humancycviapc_allphysical_20150416", 
+      "clust": 3
+    }, 
+    {
+      "rank": 83, 
+      "name": "gene_reconxviapc_allphysical_20150416", 
+      "clust": 2
+    }, 
+    {
+      "rank": 84, 
+      "name": "gene_keggviapc_allphysical_20150416", 
+      "clust": 1
+    }
+  ], 
+  "links": [
+    {
+      "source": 1, 
+      "target": 72, 
+      "value": 0.448212
+    }, 
+    {
+      "source": 2, 
+      "target": 72, 
+      "value": 0.448212
+    }, 
+    {
+      "source": 3, 
+      "target": 72, 
+      "value": 0.448212
+    }, 
+    {
+      "source": 4, 
+      "target": 72, 
+      "value": 0.448212
+    }, 
+    {
+      "source": 5, 
+      "target": 72, 
+      "value": 0.448212
+    }, 
+    {
+      "source": 6, 
+      "target": 72, 
+      "value": 0.448212
+    }, 
+    {
+      "source": 7, 
+      "target": 72, 
+      "value": 0.448212
+    }, 
+    {
+      "source": 8, 
+      "target": 72, 
+      "value": 0.448212
+    }
+  ]
+}
