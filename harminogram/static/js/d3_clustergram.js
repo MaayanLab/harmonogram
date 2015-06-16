@@ -144,6 +144,18 @@ function make_d3_clustergram(network_data) {
        })
     .attr('fill','#eee')
 
+  //////////////////////////
+  // Cover excess labels 
+  //////////////////////////
+
+  // White Rects to cover the excess labels 
+  d3.select('#col_label_svg')
+    .append('rect')
+    .attr('fill', 'white')
+    .attr('width',  row_label_width+'px')
+    .attr('height', col_label_width+'px')
+    .attr('id','top_left_white');
+
 
   ///////////////////////////
   // row labels 
@@ -181,18 +193,6 @@ function make_d3_clustergram(network_data) {
     .style('font-size',default_fs+'px')
     .text(function(d, i) { return d.name; } )
 
-
-  // //////////////////////////
-  // // Cover excess labels 
-  // //////////////////////////
-
-  // // White Rects to cover the excess labels 
-  // d3.select('#main_svg')
-  //   .append('rect')
-  //   .attr('fill', 'white')
-  //   .attr('width',  row_label_width+'px')
-  //   .attr('height', col_label_width+'px')
-  //   .attr('id','top_left_white');
 
   /////////////////
   // Clustergram 
@@ -234,6 +234,10 @@ function make_d3_clustergram(network_data) {
     .attr('x2', 20*clustergram_width)
     .style('stroke-width', border_width+'px')
 
+
+  // remove float left from svg_obj
+  svg_obj
+    .style('clear','both');
 
 
 
