@@ -37,7 +37,7 @@ function make_d3_clustergram(network_data) {
   // define the variable zoom, a d3 method 
   max_zoom_out = 0.1
   max_zoom_in = 10
-  zoom = d3.behavior.zoom().scaleExtent([max_zoom_out,max_zoom_in]).on('zoom',zoomed);
+  zoom = d3.behavior.zoom().scaleExtent([1,10*zoom_switch]).on('zoom',zoomed);
 
   // initialize variables 
   matrix = [] ;
@@ -250,7 +250,7 @@ function make_d3_clustergram(network_data) {
   add_double_click(); 
 
   // initialize translate vector to compensate for label margins 
-  zoom.translate([ + margin.left, + margin.top]);
+  zoom.translate([ margin.left, margin.top]);
   
 };
 

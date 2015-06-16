@@ -204,7 +204,7 @@ function initialize_clustergram(network_data){
   // clustergram size 
   overall_size = 300 ;
   svg_width = 500;
-  svg_height = 800;
+  svg_height = 500;
   
   // define the zoom switch value
   // switch from 1 to 2d zoom 

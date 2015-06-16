@@ -251,20 +251,82 @@ function zoomed() {
   // zoom vertically
   if (d3.event.scale < zoom_switch) {
 
-    // reset x translate
-    zoom.translate([0,trans_y]);
+    // reset x translate: margins have to be added always
+    zoom.translate([margin.left, margin.top+trans_y]);
 
     // zoom in y direction only - translate in y only
     ///////////////////////////////////////////////////
-    if (d3.event.translate[1] <= 0){
+    if (d3.event.translate[1] - margin.top <= 0){
       // allow panning in the negative direction
-      svg_obj.attr('transform','translate(' + [0, trans_y ] + ') scale(1,' + d3.event.scale + ')');
+      svg_obj.attr('transform','translate(' + [ margin.left, margin.top + trans_y ] + ') scale(1,' + d3.event.scale + ')');
 
       // row labels - only translate in one dimension, also zoom 
-      d3.select('row_labels')
+      d3.select('#row_labels')
         .attr('transform','translate(' + [row_margin.left, trans_y ] + ') scale(' + d3.event.scale + ')');
 
     }
+    else{
+
+      // do not translate 
+      // reset translate vector 
+      zoom.translate([margin.left, margin.top]);
+      // apply transform
+      svg_obj.attr('transform','translate(' + [ margin.left, margin.top ] + ') scale(1,' + d3.event.scale + ')');
+    }
+  }
+  // zoom in both directions 
+  else{
+    console.log('2d zooming')
+
+    // available panning room
+    // multiple extra room (zoom - 1) by the width
+    pan_room = (d3.event.scale/zoom_switch - 1) * svg_width ;
+
+    // row labels - only translate in one dimension, also zoom
+    d3.select('#row_labels')
+      .attr('transform', 'translate(' + [row_margin.left, trans_y] + ') scale(' + d3.event.scale + ')');
+
+    // pan rules 
+    ///////////////////////
+    // no panning in the positive direction 
+    if (d3.event.translate[0] - margin.left > 0){
+
+      // reset the translate vector - keeping the old y_trans
+      zoom.translate([margin.left, margin.top + trans_y]);
+
+      // only translate in the y direction, zoom in both directions
+      svg_obj.attr('transform','translate(' + [ margin.left, margin.top + trans_y ] + ') scale('+d3.event.scale/zoom_switch+',' + d3.event.scale + ')');
+
+      // column labels - only translate in one dimension, also zoom 
+      d3.select('#col_labels')
+        .attr('transform','translate(' + [col_margin.left, col_margin.top] + ') scale(' + d3.event.scale/zoom_switch + ')');
+
+    }
+    // allow panning in the negative direction 
+    else if (d3.event.translate[0] - margin.left <= -pan_room){
+
+      // reset the translate vector 
+      zoom.translate([margin.left - pan_room, margin.top + trans_y]);
+
+      // translate canvas
+      svg_obj.attr('transform','translate(' + [ margin.left - pan_room, margin.top + trans_y ] + ') scale('+d3.event.scale/zoom_switch+',' + d3.event.scale + ')');
+
+      // column labels - only translate in one dimension, also zoom 
+      d3.select('#col_labels')
+        .attr('transform','translate(' + [col_margin.left, col_margin.top] + ') scale(' + d3.event.scale/zoom_switch + ')');
+
+    }
+    // allow two dimensional panning 
+    else{
+      // unrestricted
+      svg_obj.attr('transform','translate(' + [ margin.left + trans_x, margin.top + trans_y ] + ') scale('+d3.event.scale/zoom_switch+',' + d3.event.scale + ')');
+
+      // column labels - only translate in one dimension, also zoom 
+      d3.select('#col_labels')
+        .attr('transform','translate(' + [col_margin.left, col_margin.top] + ') scale(' + d3.event.scale/zoom_switch + ')');
+
+    }
+
   }
 
 
@@ -280,22 +342,22 @@ function zoomed() {
   // d3.select('#row_labels')
   // .attr("transform", "translate(" + [row_margin.left  , row_margin.top+ trans_y ] + ") scale(" + d3.event.scale + ")");
 
-  // // reduce font-size to compensate for zoom 
-  // // calculate the recuction of the font size 
-  // reduce_font_size = d3.scale.linear().domain([0,1]).range([1,d3.event.scale]).clamp('true');
-  // // scale down the font to compensate for zooming 
-  // fin_font = default_fs/(reduce_font_size(reduce_font_size_factor)); 
-  // // add back the 'px' to the font size 
-  // fin_font = fin_font + 'px';
-  // // change the font size of the labels 
-  // d3.selectAll('.row_label_text').select('text').style('font-size', fin_font);
-  // d3.selectAll('.col_label_text').select('text').style('font-size', fin_font);
+  // reduce font-size to compensate for zoom 
+  // calculate the recuction of the font size 
+  reduce_font_size = d3.scale.linear().domain([0,1]).range([1,d3.event.scale]).clamp('true');
+  // scale down the font to compensate for zooming 
+  fin_font = default_fs/(reduce_font_size(reduce_font_size_factor)); 
+  // add back the 'px' to the font size 
+  fin_font = fin_font + 'px';
+  // change the font size of the labels 
+  d3.selectAll('.row_label_text').select('text').style('font-size', fin_font);
+  d3.selectAll('.col_label_text').select('text').style('font-size', fin_font);
 
-  // // reduce the height of the enrichment bars based on the zoom applied 
-  // // recalculate the height and divide by the zooming scale 
-  // col_label_obj.select('rect')
-  //   // column is rotated - effectively width and height are switched
-  //   .attr('width', function(d,i) { return bar_scale_col( d.nl_pval ) / d3.event.scale ; });
+  // reduce the height of the enrichment bars based on the zoom applied 
+  // recalculate the height and divide by the zooming scale 
+  col_label_obj.select('rect')
+    // column is rotated - effectively width and height are switched
+    .attr('width', function(d,i) { return bar_scale_col( d.nl_pval ) / d3.event.scale ; });
 
 };
 
