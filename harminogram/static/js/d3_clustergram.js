@@ -210,15 +210,6 @@ function make_d3_clustergram(network_data) {
       .attr('id', 'clust_group')
       // .attr("transform", "translate(" + (margin.left) + "," + (margin.top) + ")");
 
-
-  // // white background row labels 
-  // d3.select('#main_svg')
-  //   .append('rect')
-  //   .attr('fill', 'white')
-  //   .attr('height', col_label_width+'px')
-  //   .attr('width', '3000px')
-  //   .attr('class','white_bars');
-
   // Add the background - one large rect 
   d3.select('#clust_group')
     .append("rect")

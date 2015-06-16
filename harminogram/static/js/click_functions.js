@@ -246,7 +246,7 @@ function zoomed() {
   trans_y = d3.event.translate[1]
 
   // matrix
-  svg_obj.attr("transform", "translate(0,0) scale(" + d3.event.scale + ")");
+  svg_obj.attr("transform", "translate(" + [ trans_x, trans_y ] + ") scale(" + d3.event.scale + ")");
 
   // column labels - only translate in one dimension, also zoom  
   d3.select('#col_labels')
