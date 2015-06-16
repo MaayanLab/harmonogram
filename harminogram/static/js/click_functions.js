@@ -222,7 +222,7 @@ function add_double_click() {
       d3.select('#row_labels')
         .attr("transform", "translate(" + row_margin.left + "," + row_margin.top + ")");
       // use Qiaonan method to reset zoom 
-      zoom.scale(1).translate([0,0]);
+      zoom.scale(1).translate([margin.left, margin.top]);
 
       // reset the font size because double click zoom is not disabled
       d3.selectAll('.row_label_text').select('text').style('font-size', default_fs+'px');
@@ -241,13 +241,19 @@ function add_double_click() {
 // define zoomed function 
 function zoomed() {
 
+  console.log(d3.event.translate)
+
   // transfer to x and y translate
-  trans_x = d3.event.translate[0]
-  trans_y = d3.event.translate[1]
+  trans_x = d3.event.translate[0] - margin.left;
+  trans_y = d3.event.translate[1] - margin.top;
+
+  // reset zoom translate
+
+  console.log(trans_x)
+  console.log(trans_y)
 
   // matrix
-  svg_obj.attr("transform", "translate(" + [ trans_x + margin.left, trans_y + margin.top ] 
-    + ") scale(" + d3.event.scale + ")");
+  svg_obj.attr("transform", "translate(" + [ trans_x + margin.left, trans_y + margin.top ] + ") scale(" + d3.event.scale + ")");
 
   // column labels - only translate in one dimension, also zoom  
   d3.select('#col_labels')

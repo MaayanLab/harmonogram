@@ -263,88 +263,9 @@ function make_d3_clustergram(network_data) {
     .selectAll('div')
     .remove();
 
-  // // add gmt labels to visualization 
-  // ////////////////////////////////////
-
-  // // add gmt key in visualization 
-  // for (inst_key in gmt_colors){ 
-  //   console.log(inst_key)
-
-  //   // append div to viz_gmt_labels 
-  //   var tmp_group = d3.select('#viz_gmt_labels')
-  //     .append('div');
-
-  //   // append glyph to svg 
-  //   var glyph_svg = tmp_group
-  //     .append('div')
-  //     .append('svg')
-  //     // .attr('id','glyph_'+inst_select_gmt)
-  //     .attr('class', 'glyph_squares')
-  //     .attr('width',  '24px')
-  //     .attr('height', '24px');
-
-  //   // make glyph 
-  //   // append background rect
-  //   glyph_svg
-  //     .append('rect')
-  //     .attr('fill', function(){
-  //       return gmt_colors[inst_key]
-  //     } )
-  //     .attr('height','24px')
-  //     .attr('width','24px');
-
-  //   // append lines 
-  //   glyph_svg
-  //     .append('line')
-  //     .attr('x1',0)
-  //     .attr('x2',24)
-  //     .attr('y1',12)
-  //     .attr('y2',12)
-  //     .style('stroke-width','2px');
-
-  //   glyph_svg
-  //     .append('line')
-  //     .attr('x1',12)
-  //     .attr('x2',12)
-  //     .attr('y1',0)
-  //     .attr('y2',24)
-  //     .style('stroke-width','2px');
-
-  //   // append border rect 
-  //   glyph_svg
-  //     .append('rect')
-  //     .attr('fill','none')
-  //     .style('stroke','white')
-  //     .style('stroke-width','6px')
-  //     .attr('height','24px')
-  //     .attr('width','24px');
-
-  //   // append highlighting rect: for new rect 
-  //   glyph_svg
-  //     .append('rect')
-  //     .attr('fill','none')
-  //     .style('stroke-width','2px')
-  //     .attr('height','24px')
-  //     .attr('width','24px')
-  //     .attr('class','highlight_gmt')
-  //     .style('stroke','white');
-
-  //   // append gmt name 
-  //   tmp_group
-  //     .append('div')
-  //     .attr('class','viz_gmt_label_text')
-  //     .html( function(){
-  //       return inst_key.replace(/_/g,' ');
-  //     })
-  //     .style('color', 'black')
-  //     .style('float','left');
-
-  //   // remove float left so a new line can be appended below 
-  //   tmp_group
-  //     .style('clear','both');
-
-  // };
-
+  // initialize translate vector to compensate for label margins 
+  zoom.translate([ + margin.left, + margin.top]);
+  
 };
 
 // row function 
