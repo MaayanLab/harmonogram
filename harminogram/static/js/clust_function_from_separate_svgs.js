@@ -2,42 +2,38 @@
 // make the svg exp map (one value per tile)
 function make_d3_clustergram(network_data) {
 
-  // remove old map
-  d3.select("#main_svg").remove();
+
+  // ///////////////////////////////
+  // // remove old visualization 
+  // ///////////////////////////////
+
+  // // remove old clustergram
+  // d3.select("#main_svg").remove();
+
+
+  ///////////////////////////////
+  // initialize variables 
+  ///////////////////////////////
 
   // initialize clustergram variables 
   initialize_clustergram(network_data)
 
-  // display col and row title 
-  d3.select('#row_title').style('display','block');
-  d3.select('#col_title').style('display','block');
-
-  // toggle sidebar to make more space for visualization
-  d3.select('#wrapper').attr('class','toggled');
-
-  // remove initial components
-  d3.select('#website_title').style('display','none');
-  d3.selectAll('.initial_paragraph').style('display','none');
-  d3.select('#gmt_menu').style('display','none');
-  // d3.select('#add_new_gmt').style('display','none');
-
-  // display clustergram_container and clust_instruct_container
-  d3.select('#clustergram_container').style('display','block');
-  d3.select('#clust_instruct_container').style('display','block');
-
-  // shift the footer left
-  d3.select('#footer_div')
-    // .transition()
-    // .duration(250)
-    .style('margin-left','0px');
-
-  // remove gmt labels 
-  d3.select('#container_gmt_labels').style('display','none');
-
   // define the variable zoom, a d3 method 
   max_zoom_out = 0.1
   max_zoom_in = 10
-  zoom = d3.behavior.zoom().scaleExtent([max_zoom_out,max_zoom_in]).on('zoom',zoomed);
+  zoom = d3.behavior.zoom().scaleExtent([1,10*zoom_switch]).on('zoom',zoomed);
+
+  // // define border width 
+  // border_width = x_scale.rangeBand()/16.66
+  // offset click group column label 
+  x_offset_click = x_scale.rangeBand()/2 + border_width
+  // reduce width of rotated rects
+  reduce_rect_width = x_scale.rangeBand()* 0.36 
+
+
+  ///////////////////////
+  // initialize matrix 
+  ///////////////////////
 
   // initialize variables 
   matrix = [] ;
@@ -50,8 +46,6 @@ function make_d3_clustergram(network_data) {
   // Add information to the matrix
   network_data.links.forEach( function(link) {
 
-    // console.log(link.color)
-
     // transfer link information to the new adj matrix
     matrix[link.source][link.target].value += link.value;
     // transfer group information to the adj matrix 
@@ -61,106 +55,30 @@ function make_d3_clustergram(network_data) {
 
   });
 
-  
 
-  // initailize svg_obj 
-  svg_obj = d3.select("#svg_div")
-      .append("svg")
-      .attr('id', 'main_svg')
-      .attr("width",  svg_width  + margin.left + margin.right + 100)
-      .attr("height", svg_height + margin.top  + margin.bottom)
-      .attr('border',1)
-      .call( zoom ) 
-      .append("g")
-      .attr('id', 'clust_group')
-      .attr("transform", "translate(" + (margin.left) + "," + (margin.top) + ")");
+  ////////////////////////////
+  // make visualization 
+  ////////////////////////////
 
-  // disable double-click zoom: double click should reset zoom level 
-  // do this for all svg elements 
-  d3.selectAll("svg").on("dblclick.zoom", null);    
 
-  // row white rect 
-  d3.select('#main_svg')
-    .append('rect')
-    .attr('fill', 'white')
-    .attr('width', row_label_width+'px')
-    .attr('height', '3000px')
-    .attr('class','white_bars');
+  ///////////////////////////
+  // column labels 
+  ///////////////////////////
 
-  // col white rect 
-  d3.select('#main_svg')
-    .append('rect')
-    .attr('fill', 'white')
-    .attr('height', col_label_width+'px')
-    .attr('width', '3000px')
-    .attr('class','white_bars');
+  // initialize column label group 
+  col_label_svg = d3.select('#svg_div')
+    .append('svg')
+    .attr('id','col_label_svg') 
+    // need to improve this
+    .attr('width',  clustergram_width + margin.left + margin.right )
+    .attr('height', margin.top )
+    .call(zoom)
 
   // column group
-  d3.select('#main_svg')
+  col_label_svg
     .append("g")
     .attr('id', 'col_labels')
     .attr("transform", "translate(" + col_margin.left + "," + col_margin.top + ")");
-
-  // row group 
-  d3.select('#main_svg')
-    .append("g")
-    .attr('id', 'row_labels')
-    .attr("transform", "translate(" + row_margin.left + "," + row_margin.top + ")")
-
-  // White Rects to cover the excess labels 
-  d3.select('#main_svg')
-    .append('rect')
-    .attr('fill', 'white')
-    .attr('width',  row_label_width+'px')
-    .attr('height', col_label_width+'px')
-    .attr('id','top_left_white');
-
-  // Add the background - one large rect 
-  d3.select('#clust_group')
-    .append("rect")
-    .attr("class", "background")
-    .attr('id','grey_background')
-    .attr("width", svg_width)
-    .attr("height", svg_height);
-
-  // Make Expression Rows   
-  // use matrix for the data join, which contains a two dimensional 
-  // array of objects, each row of this matrix will be passed into the row function 
-  var row_obj =  svg_obj.selectAll(".row")
-    .data(matrix)
-    .enter()
-    .append("g")
-    .attr("class", "row")
-    .attr("transform", function(d, i) { return "translate(0," + y_scale(i) + ")"; })
-    .each( row_function );
-
-  // // define border width 
-  // border_width = x_scale.rangeBand()/16.66
-  // offset click group column label 
-  x_offset_click = x_scale.rangeBand()/2 + border_width
-  // reduce width of rotated rects
-  reduce_rect_width = x_scale.rangeBand()* 0.36 
-
-  // horizontal line
-  row_obj.append('line')
-    .attr('x2', 20*svg_width)
-    .style('stroke-width', border_width+'px')
-
-  // try to add vertical lines
-  vert_lines = svg_obj
-    .selectAll('.vert_lines')
-    .data(col_nodes)
-    .enter()
-    .append('g')
-    .attr('class','vert_lines')
-    .attr('transform', function(d,i){ return 'translate(' + x_scale(i) + ') rotate(-90)'; })
-
-  // add separating vertical lines
-  vert_lines
-    .append('line')
-    .attr('x1',0)
-    .attr('x2',-20*svg_height)
-    .style('stroke-width', border_width+'px')
 
   // select all columns 
   col_label_obj = d3.select('#col_labels')
@@ -179,13 +97,19 @@ function make_d3_clustergram(network_data) {
     .attr('transform', 'translate('+x_scale.rangeBand()/2+','+ x_offset_click +') rotate(45)')
     .on('click', reorder_click_col );
 
+  // add separating vertical line, below the labels 
+  d3.select('#col_labels')
+    .selectAll('.col_label_text')
+    .append('line')
+    .attr('x1', 0)
+    .attr('x2', -20*clustergram_height)
+    .style('stroke-width', border_width+'px')
 
   // for hover effect 
   col_label_click
     .append('title')
     .text(function(d,i){ return d.pval_bh});
 
-  // col_label_obj
   col_label_click
     .append("text")
     .attr("x", 0)
@@ -196,7 +120,6 @@ function make_d3_clustergram(network_data) {
     .attr('full_name',function(d) { return d.name } )
     .style('font-size',default_fs+'px')
     .text(function(d, i) { return d.name; });
-
 
   // add triangle under rotated labels
   col_label_click
@@ -214,6 +137,37 @@ function make_d3_clustergram(network_data) {
        })
     .attr('fill','#eee')
 
+  //////////////////////////
+  // Cover excess labels 
+  //////////////////////////
+
+  // White Rects to cover the excess labels 
+  d3.select('#col_label_svg')
+    .append('rect')
+    .attr('fill', 'white')
+    .attr('width',  row_label_width+'px')
+    .attr('height', col_label_width+'px')
+    .attr('id','top_left_white');
+
+
+  ///////////////////////////
+  // row labels 
+  ///////////////////////////
+
+  // make row label svg
+  row_label_svg = d3.select('#svg_div')
+    .append('svg')
+    .attr('id','row_label_svg')
+    .attr('width', margin.left + margin.right)
+    .attr('height', clustergram_height)
+    .call(zoom)
+
+  // row group 
+  row_label_svg
+    .append("g")
+    .attr('id', 'row_labels')
+    .attr("transform", "translate(" + row_margin.left + ",0)")
+
   // generate and position the row labels
   var row_label_obj = d3.select('#row_labels')
     .selectAll('.row_label_text')
@@ -227,31 +181,95 @@ function make_d3_clustergram(network_data) {
   // append row label text 
   row_label_obj.append('text')
     .attr('y', x_scale.rangeBand() / 2)
-    // !! can be improved 
-    // .attr('dy', x_scale.rangeBand()/16)
+    .attr('dy', '.32em')
     .attr('text-anchor','end')
     .style('font-size',default_fs+'px')
     .text(function(d, i) { return d.name; } )
 
-  // hide spillover from right
-  // !! needs to be improved  
-  d3.select('#main_svg')
-    .append('rect')
-    .attr('fill', 'white')
-    .attr('width', '200px')
-    .attr('height', '3000px')
-    .attr('transform', function() { 
-      tmp_left = margin.left + svg_width;
-      return 'translate('+tmp_left+','+margin.top+')'
-    })
-    .attr('class','white_bars');
+ 
+
+  /////////////////
+  // clustergram 
+  /////////////////
+
+  // initailize svg_obj 
+  svg_obj = d3.select("#svg_div")
+      .append("svg")
+      .attr('id', 'main_svg')
+      .attr("width",  clustergram_width )
+      .attr("height", clustergram_height)
+      .attr('border',1)
+      .call( zoom ) 
+      .append("g")
+      .attr('id', 'clust_group')
+      // .attr("transform", "translate(" + (margin.left) + "," + (margin.top) + ")");
+
+  // Add the background - one large rect 
+  d3.select('#clust_group')
+    .append("rect")
+    .attr("class", "background")
+    .attr('id','grey_background')
+    .attr("width", clustergram_width)
+    .attr("height", clustergram_height);
+
+  // Make Expression Rows   
+  // use matrix for the data join, which contains a two dimensional 
+  // array of objects, each row of this matrix will be passed into the row function 
+  var row_obj =  svg_obj.selectAll(".row")
+    .data(matrix)
+    .enter()
+    .append("g")
+    .attr("class", "row")
+    .attr("transform", function(d, i) { return "translate(0," + y_scale(i) + ")"; })
+    .each( row_function );
+
+  // horizontal line
+  row_obj.append('line')
+    .attr('x2', 20*clustergram_width)
+    // scale down the width of the horizontal lines 
+    .style('stroke-width', border_width/zoom_switch+'px')
+
+   // try to add vertical lines 
+  vert_lines = svg_obj
+    .selectAll(".vert_lines")
+    .data(col_nodes)
+    .enter()
+    .append("g")
+    .attr("class", "vert_lines")
+    .attr("transform", function(d, i) { return "translate(" + x_scale(i) + ") rotate(-90)"; })
+
+  // add separating vertical line, below the labels 
+  vert_lines
+    // .selectAll('.vert_lines')
+    .append('line')
+    .attr('x1', 0)
+    .attr('x2', -20*clustergram_height)
+    .style('stroke-width', border_width+'px');
+    // .style('stroke','black');
+
+  // remove float left from svg_obj
+  svg_obj
+    .style('clear','both');
+
+
+  ////////////////////////////////
+  // zoom 
+  ////////////////////////////////
+
+  // disable double-click zoom: double click should reset zoom level 
+  // do this for all svg elements 
+  d3.selectAll("svg").on("dblclick.zoom", null);    
 
   // run add double click zoom function 
   add_double_click(); 
 
-  // initialize translate vector to compensate for label margins 
-  zoom.translate([ + margin.left, + margin.top]);
-  
+  // reset the toggle switch 
+  // d3.select('#clust_button').attr('class','btn btn-primary active');
+  // d3.select('#rank_button').attr('class','btn btn-primary');
+  // simulate click
+  $('#clust_button').click();
+
+ 
 };
 
 // row function 
