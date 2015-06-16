@@ -2,6 +2,11 @@
 // make the svg exp map (one value per tile)
 function make_d3_clustergram(network_data) {
 
+
+  ///////////////////////////////
+  // remove old visualization 
+  ///////////////////////////////
+
   // remove old map
   d3.select("#main_svg").remove();
 
@@ -34,10 +39,27 @@ function make_d3_clustergram(network_data) {
   // remove gmt labels 
   d3.select('#container_gmt_labels').style('display','none');
 
+
+  ///////////////////////////////
+  // initialize variables 
+  ///////////////////////////////
+
   // define the variable zoom, a d3 method 
   max_zoom_out = 0.1
   max_zoom_in = 10
   zoom = d3.behavior.zoom().scaleExtent([max_zoom_out,max_zoom_in]).on('zoom',zoomed);
+
+  // // define border width 
+  // border_width = x_scale.rangeBand()/16.66
+  // offset click group column label 
+  x_offset_click = x_scale.rangeBand()/2 + border_width
+  // reduce width of rotated rects
+  reduce_rect_width = x_scale.rangeBand()* 0.36 
+
+
+  ///////////////////////
+  // initialize matrix 
+  ///////////////////////
 
   // initialize variables 
   matrix = [] ;
@@ -61,7 +83,11 @@ function make_d3_clustergram(network_data) {
 
   });
 
-  
+
+
+  ////////////////////////////
+  // make visualization 
+  ////////////////////////////
 
   // initailize svg_obj 
   svg_obj = d3.select("#svg_div")
@@ -79,7 +105,11 @@ function make_d3_clustergram(network_data) {
   // do this for all svg elements 
   d3.selectAll("svg").on("dblclick.zoom", null);    
 
-  // row white rect 
+  ///////////////////////////
+  // column labels 
+  ///////////////////////////
+
+  // white background col labels 
   d3.select('#main_svg')
     .append('rect')
     .attr('fill', 'white')
@@ -87,64 +117,11 @@ function make_d3_clustergram(network_data) {
     .attr('height', '3000px')
     .attr('class','white_bars');
 
-  // col white rect 
-  d3.select('#main_svg')
-    .append('rect')
-    .attr('fill', 'white')
-    .attr('height', col_label_width+'px')
-    .attr('width', '3000px')
-    .attr('class','white_bars');
-
   // column group
   d3.select('#main_svg')
     .append("g")
     .attr('id', 'col_labels')
     .attr("transform", "translate(" + col_margin.left + "," + col_margin.top + ")");
-
-  // row group 
-  d3.select('#main_svg')
-    .append("g")
-    .attr('id', 'row_labels')
-    .attr("transform", "translate(" + row_margin.left + "," + row_margin.top + ")")
-
-  // White Rects to cover the excess labels 
-  d3.select('#main_svg')
-    .append('rect')
-    .attr('fill', 'white')
-    .attr('width',  row_label_width+'px')
-    .attr('height', col_label_width+'px')
-    .attr('id','top_left_white');
-
-  // Add the background - one large rect 
-  d3.select('#clust_group')
-    .append("rect")
-    .attr("class", "background")
-    .attr('id','grey_background')
-    .attr("width", clustergram_width)
-    .attr("height", clustergram_height);
-
-  // Make Expression Rows   
-  // use matrix for the data join, which contains a two dimensional 
-  // array of objects, each row of this matrix will be passed into the row function 
-  var row_obj =  svg_obj.selectAll(".row")
-    .data(matrix)
-    .enter()
-    .append("g")
-    .attr("class", "row")
-    .attr("transform", function(d, i) { return "translate(0," + y_scale(i) + ")"; })
-    .each( row_function );
-
-  // // define border width 
-  // border_width = x_scale.rangeBand()/16.66
-  // offset click group column label 
-  x_offset_click = x_scale.rangeBand()/2 + border_width
-  // reduce width of rotated rects
-  reduce_rect_width = x_scale.rangeBand()* 0.36 
-
-  // horizontal line
-  row_obj.append('line')
-    .attr('x2', 20*clustergram_width)
-    .style('stroke-width', border_width+'px')
 
   // select all columns 
   col_label_obj = d3.select('#col_labels')
@@ -172,31 +149,6 @@ function make_d3_clustergram(network_data) {
     .attr('x2', -20*clustergram_height)
     .style('stroke-width', border_width+'px')
 
-
-  // // get the max abs nl_pval (find obj and get nl_pval)
-  // enr_max = _.max( col_nodes, function(d) { return Math.abs(d.nl_pval) } ).nl_pval ; 
-
-  // // the enrichment bar should be 3/4ths of the height of the column labels 
-  // bar_scale_col = d3.scale.linear()
-  //   .domain([0, enr_max])
-  //   .range([0, col_label_width * 0.90 ]); 
-
-  // // append enrichment bars  
-  // col_label_click
-  //   .append('rect')
-  //   // column is rotated - effectively width and height are switched
-  //   .attr('width', function(d,i) { 
-  //     // console.log(d);
-  //     return bar_scale_col( d.nl_pval ); 
-  //   })
-  //   // rotate labels - reduce width if rotating
-  //   .attr('height', x_scale.rangeBand() - reduce_rect_width)
-  //   .attr('fill', function(d){
-  //     return d.color;
-  //   })
-  //   .attr('opacity', 0.5)
-  //   .attr('transform', function(d, i) { return "translate(0,0)"; });
-
   // for hover effect 
   col_label_click
     .append('title')
@@ -214,7 +166,6 @@ function make_d3_clustergram(network_data) {
     .style('font-size',default_fs+'px')
     .text(function(d, i) { return d.name; });
 
-
   // add triangle under rotated labels
   col_label_click
     .append('path')
@@ -230,6 +181,17 @@ function make_d3_clustergram(network_data) {
         return output_string;
        })
     .attr('fill','#eee')
+
+
+  ///////////////////////////
+  // row labels 
+  ///////////////////////////
+
+  // row group 
+  d3.select('#main_svg')
+    .append("g")
+    .attr('id', 'row_labels')
+    .attr("transform", "translate(" + row_margin.left + "," + row_margin.top + ")")
 
   // generate and position the row labels
   var row_label_obj = d3.select('#row_labels')
@@ -249,6 +211,60 @@ function make_d3_clustergram(network_data) {
     .style('font-size',default_fs+'px')
     .text(function(d, i) { return d.name; } )
 
+
+  //////////////////////////
+  // Cover excess labels 
+  //////////////////////////
+
+  // White Rects to cover the excess labels 
+  d3.select('#main_svg')
+    .append('rect')
+    .attr('fill', 'white')
+    .attr('width',  row_label_width+'px')
+    .attr('height', col_label_width+'px')
+    .attr('id','top_left_white');
+
+  ///////////////////
+  // Clustergram 
+  ///////////////////
+
+  // // white background row labels 
+  // d3.select('#main_svg')
+  //   .append('rect')
+  //   .attr('fill', 'white')
+  //   .attr('height', col_label_width+'px')
+  //   .attr('width', '3000px')
+  //   .attr('class','white_bars');
+
+  // // Add the background - one large rect 
+  // d3.select('#clust_group')
+  //   .append("rect")
+  //   .attr("class", "background")
+  //   .attr('id','grey_background')
+  //   .attr("width", clustergram_width)
+  //   .attr("height", clustergram_height);
+
+  // // Make Expression Rows   
+  // // use matrix for the data join, which contains a two dimensional 
+  // // array of objects, each row of this matrix will be passed into the row function 
+  // var row_obj =  svg_obj.selectAll(".row")
+  //   .data(matrix)
+  //   .enter()
+  //   .append("g")
+  //   .attr("class", "row")
+  //   .attr("transform", function(d, i) { return "translate(0," + y_scale(i) + ")"; })
+  //   .each( row_function );
+
+  // // horizontal line
+  // row_obj.append('line')
+  //   .attr('x2', 20*clustergram_width)
+  //   .style('stroke-width', border_width+'px')
+
+
+  ////////////////////////////////
+  // zoom 
+  ////////////////////////////////
+
   // run add double click zoom function 
   add_double_click(); 
 
@@ -258,93 +274,7 @@ function make_d3_clustergram(network_data) {
   // simulate click
   $('#clust_button').click();
 
-  // remove previous labels 
-  d3.select('#viz_gmt_labels')
-    .selectAll('div')
-    .remove();
-
-  // // add gmt labels to visualization 
-  // ////////////////////////////////////
-
-  // // add gmt key in visualization 
-  // for (inst_key in gmt_colors){ 
-  //   console.log(inst_key)
-
-  //   // append div to viz_gmt_labels 
-  //   var tmp_group = d3.select('#viz_gmt_labels')
-  //     .append('div');
-
-  //   // append glyph to svg 
-  //   var glyph_svg = tmp_group
-  //     .append('div')
-  //     .append('svg')
-  //     // .attr('id','glyph_'+inst_select_gmt)
-  //     .attr('class', 'glyph_squares')
-  //     .attr('width',  '24px')
-  //     .attr('height', '24px');
-
-  //   // make glyph 
-  //   // append background rect
-  //   glyph_svg
-  //     .append('rect')
-  //     .attr('fill', function(){
-  //       return gmt_colors[inst_key]
-  //     } )
-  //     .attr('height','24px')
-  //     .attr('width','24px');
-
-  //   // append lines 
-  //   glyph_svg
-  //     .append('line')
-  //     .attr('x1',0)
-  //     .attr('x2',24)
-  //     .attr('y1',12)
-  //     .attr('y2',12)
-  //     .style('stroke-width','2px');
-
-  //   glyph_svg
-  //     .append('line')
-  //     .attr('x1',12)
-  //     .attr('x2',12)
-  //     .attr('y1',0)
-  //     .attr('y2',24)
-  //     .style('stroke-width','2px');
-
-  //   // append border rect 
-  //   glyph_svg
-  //     .append('rect')
-  //     .attr('fill','none')
-  //     .style('stroke','white')
-  //     .style('stroke-width','6px')
-  //     .attr('height','24px')
-  //     .attr('width','24px');
-
-  //   // append highlighting rect: for new rect 
-  //   glyph_svg
-  //     .append('rect')
-  //     .attr('fill','none')
-  //     .style('stroke-width','2px')
-  //     .attr('height','24px')
-  //     .attr('width','24px')
-  //     .attr('class','highlight_gmt')
-  //     .style('stroke','white');
-
-  //   // append gmt name 
-  //   tmp_group
-  //     .append('div')
-  //     .attr('class','viz_gmt_label_text')
-  //     .html( function(){
-  //       return inst_key.replace(/_/g,' ');
-  //     })
-  //     .style('color', 'black')
-  //     .style('float','left');
-
-  //   // remove float left so a new line can be appended below 
-  //   tmp_group
-  //     .style('clear','both');
-
-  // };
-
+ 
 };
 
 // row function 
