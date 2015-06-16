@@ -1,3 +1,8 @@
+Harminogram 6-16-2015
+	I'm going to work on modularizing the visualization code so that I can swap in a canvas for svg and improve the zooming of the original svg visualization. 
+
+	
+
 Harminogram notes 6-10-2015
 
 	I'm loading Andrew's data from his json format into a friendlier json format. I need to then use d3_clustergram.py to generate the visualization json.
@@ -8,4 +13,5 @@ Harminogram notes 6-10-2015
 
 	I could either store the data in an enrichment-like structure or write slightly modified functions to avoid using an enrichment-like data structure. 
 
-	I am able to 
+	I'm outputting toy data to visualize. 
+

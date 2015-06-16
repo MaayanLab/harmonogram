@@ -71,7 +71,7 @@ def load_andrew_data():
 	nodes['row'] = []
 	nodes['col'] = []
 
-	num_rows = 100
+	num_rows = 1000
 
 	# initialize data matrix 
 	data_mat = scipy.zeros([ num_rows, len(matrix[0]['entries']) ])
