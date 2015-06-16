@@ -399,7 +399,16 @@ li{
   not sure why*/
   margin-left: 0px;
   font-size:8.0px;
+  float:left;
  }
+
+#col_label_svg{
+  float: left;
+}
+
+#row_label_svg{
+  float: left;
+}
 
 #input_col{
   width:100px;

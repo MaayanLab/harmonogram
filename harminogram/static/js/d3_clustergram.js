@@ -60,60 +60,10 @@ function make_d3_clustergram(network_data) {
   // // make visualization 
   // ////////////////////////////
 
-  // // initailize svg_obj 
-  // svg_obj = d3.select("#svg_div")
-  //     .append("svg")
-  //     .attr('id', 'main_svg')
-  //     .attr("width",  svg_width  + margin.left + margin.right)
-  //     .attr("height", svg_height + margin.top  + margin.bottom)
-  //     .attr('border',1)
-  //     .call( zoom ) 
-  //     .append("g")
-  //     .attr('id', 'clust_group')
-  //     .attr("transform", "translate(" + (margin.left) + "," + (margin.top) + ")");
-
-
 
   // disable double-click zoom: double click should reset zoom level 
   // do this for all svg elements 
   d3.selectAll("svg").on("dblclick.zoom", null);    
-
-  // /////////////////
-  // // Clustergram 
-  // /////////////////
-
-  // // white background row labels 
-  // d3.select('#main_svg')
-  //   .append('rect')
-  //   .attr('fill', 'white')
-  //   .attr('height', col_label_width+'px')
-  //   .attr('width', '3000px')
-  //   .attr('class','white_bars');
-
-  // // Add the background - one large rect 
-  // d3.select('#clust_group')
-  //   .append("rect")
-  //   .attr("class", "background")
-  //   .attr('id','grey_background')
-  //   .attr("width", clustergram_width)
-  //   .attr("height", clustergram_height);
-
-  // // Make Expression Rows   
-  // // use matrix for the data join, which contains a two dimensional 
-  // // array of objects, each row of this matrix will be passed into the row function 
-  // var row_obj =  svg_obj.selectAll(".row")
-  //   .data(matrix)
-  //   .enter()
-  //   .append("g")
-  //   .attr("class", "row")
-  //   .attr("transform", function(d, i) { return "translate(0," + y_scale(i) + ")"; })
-  //   .each( row_function );
-
-  // // horizontal line
-  // row_obj.append('line')
-  //   .attr('x2', 20*clustergram_width)
-  //   .style('stroke-width', border_width+'px')
-
 
   ///////////////////////////
   // column labels 
@@ -247,6 +197,58 @@ function make_d3_clustergram(network_data) {
   //   .attr('width',  row_label_width+'px')
   //   .attr('height', col_label_width+'px')
   //   .attr('id','top_left_white');
+
+  /////////////////
+  // Clustergram 
+  /////////////////
+
+  // initailize svg_obj 
+  svg_obj = d3.select("#svg_div")
+      .append("svg")
+      .attr('id', 'main_svg')
+      .attr("width",  svg_width )
+      .attr("height", svg_height)
+      .attr('border',1)
+      .call( zoom ) 
+      .append("g")
+      .attr('id', 'clust_group')
+      .attr("transform", "translate(" + (margin.left) + "," + (margin.top) + ")");
+
+
+  // white background row labels 
+  d3.select('#main_svg')
+    .append('rect')
+    .attr('fill', 'white')
+    .attr('height', col_label_width+'px')
+    .attr('width', '3000px')
+    .attr('class','white_bars');
+
+  // Add the background - one large rect 
+  d3.select('#clust_group')
+    .append("rect")
+    .attr("class", "background")
+    .attr('id','grey_background')
+    .attr("width", clustergram_width)
+    .attr("height", clustergram_height);
+
+  // Make Expression Rows   
+  // use matrix for the data join, which contains a two dimensional 
+  // array of objects, each row of this matrix will be passed into the row function 
+  var row_obj =  svg_obj.selectAll(".row")
+    .data(matrix)
+    .enter()
+    .append("g")
+    .attr("class", "row")
+    .attr("transform", function(d, i) { return "translate(0," + y_scale(i) + ")"; })
+    .each( row_function );
+
+  // horizontal line
+  row_obj.append('line')
+    .attr('x2', 20*clustergram_width)
+    .style('stroke-width', border_width+'px')
+
+
+
 
 
   ////////////////////////////////
