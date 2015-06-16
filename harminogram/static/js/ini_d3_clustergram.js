@@ -206,6 +206,10 @@ function initialize_clustergram(network_data){
   svg_width = 500;
   svg_height = 800;
   
+  // define the zoom switch value
+  // switch from 1 to 2d zoom 
+  zoom_switch = (svg_width/col_nodes.length)/(svg_height/row_nodes.length);
+
   // scaling functions 
   // scale used to size rects 
   x_scale = d3.scale.ordinal().rangeBands([0, svg_width]) ;
