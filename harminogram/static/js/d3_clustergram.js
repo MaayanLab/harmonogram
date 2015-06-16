@@ -173,30 +173,6 @@ function make_d3_clustergram(network_data) {
     .style('stroke-width', border_width+'px')
 
 
-  // // get the max abs nl_pval (find obj and get nl_pval)
-  // enr_max = _.max( col_nodes, function(d) { return Math.abs(d.nl_pval) } ).nl_pval ; 
-
-  // // the enrichment bar should be 3/4ths of the height of the column labels 
-  // bar_scale_col = d3.scale.linear()
-  //   .domain([0, enr_max])
-  //   .range([0, col_label_width * 0.90 ]); 
-
-  // // append enrichment bars  
-  // col_label_click
-  //   .append('rect')
-  //   // column is rotated - effectively width and height are switched
-  //   .attr('width', function(d,i) { 
-  //     // console.log(d);
-  //     return bar_scale_col( d.nl_pval ); 
-  //   })
-  //   // rotate labels - reduce width if rotating
-  //   .attr('height', x_scale.rangeBand() - reduce_rect_width)
-  //   .attr('fill', function(d){
-  //     return d.color;
-  //   })
-  //   .attr('opacity', 0.5)
-  //   .attr('transform', function(d, i) { return "translate(0,0)"; });
-
   // for hover effect 
   col_label_click
     .append('title')
