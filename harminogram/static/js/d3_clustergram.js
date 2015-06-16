@@ -73,14 +73,6 @@ function make_d3_clustergram(network_data) {
     .attr('height', margin.top )
     .call(zoom)
 
-  // // white background col labels 
-  // col_label_svg
-  //   .append('rect')
-  //   .attr('fill', 'white')
-  //   .attr('width', row_label_width+'px')
-  //   .attr('height', '3000px')
-  //   .attr('class','white_bars');
-
   // column group
   col_label_svg
     .append("g")
@@ -193,9 +185,10 @@ function make_d3_clustergram(network_data) {
     .style('font-size',default_fs+'px')
     .text(function(d, i) { return d.name; } )
 
+ 
 
   /////////////////
-  // Clustergram 
+  // clustergram 
   /////////////////
 
   // initailize svg_obj 
@@ -234,12 +227,27 @@ function make_d3_clustergram(network_data) {
     .attr('x2', 20*clustergram_width)
     .style('stroke-width', border_width+'px')
 
+   // try to add vertical lines 
+  vert_lines = svg_obj
+    .selectAll(".vert_lines")
+    .data(col_nodes)
+    .enter()
+    .append("g")
+    .attr("class", "vert_lines")
+    .attr("transform", function(d, i) { return "translate(" + x_scale(i) + ") rotate(-90)"; })
+
+  // add separating vertical line, below the labels 
+  vert_lines
+    // .selectAll('.vert_lines')
+    .append('line')
+    .attr('x1', 0)
+    .attr('x2', -20*clustergram_height)
+    .style('stroke-width', border_width+'px');
+    // .style('stroke','black');
 
   // remove float left from svg_obj
   svg_obj
     .style('clear','both');
-
-
 
 
   ////////////////////////////////
