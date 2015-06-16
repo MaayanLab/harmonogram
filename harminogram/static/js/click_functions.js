@@ -262,7 +262,7 @@ function zoomed() {
 
       // row labels - only translate in one dimension, also zoom 
       d3.select('#row_labels')
-        .attr('transform','translate(' + [row_margin.left, trans_y ] + ') scale(' + d3.event.scale + ')');
+        .attr('transform','translate(' + [row_margin.left, trans_y + margin.top] + ') scale(' + d3.event.scale + ')');
 
     }
     else{
@@ -284,7 +284,7 @@ function zoomed() {
 
     // row labels - only translate in one dimension, also zoom
     d3.select('#row_labels')
-      .attr('transform', 'translate(' + [row_margin.left, trans_y] + ') scale(' + d3.event.scale + ')');
+      .attr('transform', 'translate(' + [row_margin.left, trans_y + margin.top] + ') scale(' + d3.event.scale + ')');
 
     // pan rules 
     ///////////////////////
