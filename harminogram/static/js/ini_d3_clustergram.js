@@ -202,8 +202,8 @@ function initialize_clustergram(network_data){
   inst_links = network_data.links; 
 
   // clustergram size 
-  svg_width = 700;
-  svg_height = 500;
+  svg_width = 800;
+  svg_height = 800;
   
   // define the zoom switch value
   // switch from 1 to 2d zoom 
