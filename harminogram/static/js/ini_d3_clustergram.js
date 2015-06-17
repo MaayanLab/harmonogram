@@ -195,35 +195,8 @@ d3.json('/harminogram/static/enrichr_gmt_data/enrichr_gmts.json', function(data)
 // initialize clustergram: size, scales, etc. 
 function initialize_clustergram(network_data){
   
-  // initalize clutergram container 
-  // 
-  // get screen width 
-  screen_width  = Number(d3.select('#wrapper').style('width').replace('px',''));
-  // get screen height
-  screen_height = Number(d3.select('#wrapper').style('height').replace('px',''));
-
-  // adjust screen width for left margin 
-  screen_width_adj = screen_width -300;
-
-  // adjust the width of the main container
-  d3.select('#main_container').style('width',screen_width_adj+'px')
-
-  // adjust container with border
-  // define width and height of clustergram container 
-  width_clust_container = screen_width - 300;
-  height_clust_container = screen_height - 50;
-  // set clustergram_container
-  d3.select('#clustergram_container').style('width', width_clust_container+'px')
-  d3.select('#clustergram_container').style('height', height_clust_container+'px')
-
-  // set height of clust_and_row_container
-  d3.select('#clust_and_row_container').style('width',width_clust_container+'px')
-  d3.select('#clust_and_row_container').style('height',height_clust_container+'px')
-
-  // clustergram size 
-  // !! this can be improved 
-  svg_width = screen_width_adj - 250 ;
-  svg_height = height_clust_container - 150;
+  // initialize visualization size
+  set_visualization_size();
   
   // move network_data information into global variables 
   col_nodes  = network_data.col_nodes ;
@@ -361,3 +334,81 @@ function initialize_clustergram(network_data){
 
   };
 };
+
+function set_visualization_size(){
+  console.log('resizing')
+
+  // from http://stackoverflow.com/questions/16265123/resize-svg-when-window-is-resized-in-d3-js
+  x_window = window.innerWidth ;
+  y_window = window.innerHeight ;
+
+  // set wrapper width and height
+  d3.select('#wrapper').style('width', x_window);
+  d3.select('#wrapper').style('height',y_window);
+
+  // initalize clutergram container 
+  // 
+  // get screen width 
+  screen_width  = Number(d3.select('#wrapper').style('width').replace('px',''));
+  // get screen height
+  screen_height = Number(d3.select('#wrapper').style('height').replace('px',''));
+
+  console.log(screen_width)
+  console.log(screen_height)
+
+  // adjust screen width for left margin 
+  screen_width_adj = screen_width -300;
+
+  // adjust the width of the main container
+  d3.select('#main_container').style('width',screen_width_adj+'px')
+
+  // adjust container with border
+  // define width and height of clustergram container 
+  width_clust_container = screen_width - 300;
+  height_clust_container = screen_height - 50;
+  // set clustergram_container
+  d3.select('#clustergram_container').style('width', width_clust_container+'px')
+  d3.select('#clustergram_container').style('height', height_clust_container+'px')
+
+  // set height of clust_and_row_container
+  d3.select('#clust_and_row_container').style('width',width_clust_container+'px')
+  d3.select('#clust_and_row_container').style('height',height_clust_container+'px')
+
+  // clustergram size 
+  // !! this can be improved 
+  svg_width = screen_width_adj - 250 ;
+  svg_height = height_clust_container - 150;
+};
+
+// recalculate the size of the visualization
+// and remake the clustergram 
+function reset_visualization_size(){
+
+  // recalculate the size 
+  set_visualization_size();
+
+  // remake the visualization 
+  d3.json('/harminogram/static/networks/example_network.json', function(network_data){
+
+    // pass the network data to d3_clustergram 
+    make_d3_clustergram(network_data)
+  });
+}
+
+// set var doit 
+var doit;
+
+
+// function with timeout
+function timeout_resize(){
+
+  // clear timeout
+  clearTimeout(doit);
+
+  doit = setTimeout( reset_visualization_size, 500)  ;
+
+
+};
+
+// resize window 
+d3.select(window).on('resize', timeout_resize); 
