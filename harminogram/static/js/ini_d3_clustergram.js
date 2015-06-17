@@ -1,5 +1,4 @@
 // initialize dropdown 
-console.log('make jquery get request')
 
 
 /////////////////////////////////////////////////////////////
@@ -196,15 +195,41 @@ d3.json('/harminogram/static/enrichr_gmt_data/enrichr_gmts.json', function(data)
 // initialize clustergram: size, scales, etc. 
 function initialize_clustergram(network_data){
   
+  // initalize clutergram container 
+  // 
+  // get screen width 
+  screen_width  = Number(d3.select('#wrapper').style('width').replace('px',''));
+  // get screen height
+  screen_height = Number(d3.select('#wrapper').style('height').replace('px',''));
+
+  // adjust screen width for left margin 
+  screen_width_adj = screen_width -300;
+
+  // adjust the width of the main container
+  d3.select('#main_container').style('width',screen_width_adj+'px')
+
+  // adjust container with border
+  // define width and height of clustergram container 
+  width_clust_container = screen_width - 300;
+  height_clust_container = screen_height - 50;
+  // set clustergram_container
+  d3.select('#clustergram_container').style('width', width_clust_container+'px')
+  d3.select('#clustergram_container').style('height', height_clust_container+'px')
+
+  // set height of clust_and_row_container
+  d3.select('#clust_and_row_container').style('width',width_clust_container+'px')
+  d3.select('#clust_and_row_container').style('height',height_clust_container+'px')
+
+  // clustergram size 
+  // !! this can be improved 
+  svg_width = screen_width_adj - 250 ;
+  svg_height = height_clust_container - 150;
+  
   // move network_data information into global variables 
   col_nodes  = network_data.col_nodes ;
   row_nodes  = network_data.row_nodes ;
   inst_links = network_data.links; 
 
-  // clustergram size 
-  svg_width = 800;
-  svg_height = 800;
-  
   // define the zoom switch value
   // switch from 1 to 2d zoom 
   zoom_switch = (svg_width/col_nodes.length)/(svg_height/row_nodes.length);
