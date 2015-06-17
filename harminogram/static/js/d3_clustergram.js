@@ -247,6 +247,19 @@ function make_d3_clustergram(network_data) {
     })
     .attr('class','white_bars');
 
+  // hide spillover from slanted column labels
+  d3.select('#main_svg')
+    .append('rect')
+    .attr('fill','white')
+    .attr('width','150px')
+    .attr('height','200px')
+    .attr('transform', function(){
+      tmp_left = margin.left + svg_width + 141;
+      tmp_top = -80;
+      return 'translate('+tmp_left+','+tmp_top+') rotate(45)' 
+    })
+    .attr('class','white_bars')
+
   // run add double click zoom function 
   add_double_click(); 
 
