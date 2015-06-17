@@ -226,7 +226,8 @@ function make_d3_clustergram(network_data) {
 
   // append row label text 
   row_label_obj.append('text')
-    .attr('y', x_scale.rangeBand() / 2)
+    // !! this will be fixed once I have separate x and y scales 
+    .attr('y', x_scale.rangeBand() / 4)
     // !! can be improved 
     // .attr('dy', x_scale.rangeBand()/16)
     .attr('text-anchor','end')
