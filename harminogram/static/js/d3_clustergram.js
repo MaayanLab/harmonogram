@@ -194,7 +194,7 @@ function make_d3_clustergram(network_data) {
     // .attr("dy", ".32em")
     .attr("text-anchor", "start")
     .attr('full_name',function(d) { return d.name } )
-    .style('font-size',default_fs+'px')
+    .style('font-size',default_fs_col+'px')
     .text(function(d, i) { return d.name; });
 
 
@@ -231,7 +231,7 @@ function make_d3_clustergram(network_data) {
     // !! can be improved 
     // .attr('dy', x_scale.rangeBand()/16)
     .attr('text-anchor','end')
-    .style('font-size',default_fs+'px')
+    .style('font-size',default_fs_row+'px')
     .text(function(d, i) { return d.name; } )
 
   // hide spillover from right
