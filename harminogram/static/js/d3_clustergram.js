@@ -227,12 +227,13 @@ function make_d3_clustergram(network_data) {
   // append row label text 
   row_label_obj.append('text')
     // !! this will be fixed once I have separate x and y scales 
-    .attr('y', x_scale.rangeBand() / 4)
     // !! can be improved 
-    // .attr('dy', x_scale.rangeBand()/16)
+    .attr('y', y_scale.rangeBand()/2 )
+    .attr('dy', y_scale.rangeBand()/4)
     .attr('text-anchor','end')
     .style('font-size',default_fs_row+'px')
     .text(function(d, i) { return d.name; } )
+
 
   // hide spillover from right
   // !! needs to be improved  
@@ -247,25 +248,54 @@ function make_d3_clustergram(network_data) {
     })
     .attr('class','white_bars');
 
-  // hide spillover from slanted column labels
+  // // hide spillover from slanted column labels
+  // d3.select('#main_svg')
+  //   .append('rect')
+  //   .attr('fill','red')
+  //   .attr('width','150px')
+  //   .attr('height','200px')
+  //   .attr('transform', function(){
+  //     tmp_left = margin.left + svg_width ;
+  //     tmp_top = col_label_width ; //-margin.top;
+  //     return 'translate('+tmp_left+','+tmp_top+')' 
+  //   })
+  //   .attr('class','white_bars')
+
+  // hide spillover from slanged column labels
   d3.select('#main_svg')
-    .append('rect')
+    .append('path')
+    .style('stroke-width','0')
+    .attr('d', function(d) { 
+        // x and y are flipped since its rotated 
+        origin_y = - border_width
+
+        start_x  = 0;
+        final_x  = 20;// x_scale.rangeBand() - reduce_rect_width ;
+
+        start_y  = 0//-(x_scale.rangeBand() - reduce_rect_width + border_width) ;
+        final_y  = 20// -border_width;
+
+        output_string = 'M 0,0 L 500,-500, L 500,0 Z';
+        return output_string;
+       })
     .attr('fill','white')
-    .attr('width','150px')
-    .attr('height','200px')
+    .attr('id','slant_traingle')
     .attr('transform', function(){
-      tmp_left = margin.left + svg_width + 141;
-      tmp_top = -80;
-      return 'translate('+tmp_left+','+tmp_top+') rotate(45)' 
+      tmp_left = (margin.left + svg_width );
+      tmp_top = col_label_width ; 
+      return 'translate('+tmp_left+','+tmp_top+')' 
     })
-    .attr('class','white_bars')
 
   // run add double click zoom function 
   add_double_click(); 
 
   // initialize translate vector to compensate for label margins 
   zoom.translate([ margin.left, margin.top]);
-  
+
+
+
+
+
 };
 
 // row function 

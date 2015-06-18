@@ -275,6 +275,7 @@ function zoomed() {
     }
     else{
 
+
       // do not translate 
       // reset translate vector 
       zoom.translate([margin.left, margin.top]);
@@ -372,18 +373,6 @@ function zoomed() {
   }
 
 
-
-  // // matrix
-  // svg_obj.attr("transform", "translate(" + [ trans_x + margin.left, trans_y + margin.top ] + ") scale(" + d3.event.scale + ")");
-
-  // // column labels - only translate in one dimension, also zoom  
-  // d3.select('#col_labels')
-  // .attr("transform", "translate(" + [col_margin.left + trans_x, col_margin.top ] + ") scale(" + d3.event.scale + ")");
-  
-  // // row labels - only translate in one dimension, also zoom 
-  // d3.select('#row_labels')
-  // .attr("transform", "translate(" + [row_margin.left  , row_margin.top+ trans_y ] + ") scale(" + d3.event.scale + ")");
-
   // reduce font-size to compensate for zoom 
   // calculate the recuction of the font size 
   reduce_font_size = d3.scale.linear().domain([0,1]).range([1,d3.event.scale]).clamp('true');
@@ -394,7 +383,8 @@ function zoomed() {
   // change the font size of the labels 
   d3.selectAll('.row_label_text').select('text').style('font-size', fin_font);
 
-  
+
+
 
 };
 

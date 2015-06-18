@@ -195,18 +195,14 @@ d3.json('/harminogram/static/enrichr_gmt_data/enrichr_gmts.json', function(data)
 // initialize clustergram: size, scales, etc. 
 function initialize_clustergram(network_data){
   
-  // initialize visualization size
-  set_visualization_size();
-  
   // move network_data information into global variables 
   col_nodes  = network_data.col_nodes ;
   row_nodes  = network_data.row_nodes ;
   inst_links = network_data.links; 
 
-  // define the zoom switch value
-  // switch from 1 to 2d zoom 
-  zoom_switch = (svg_width/col_nodes.length)/(svg_height/row_nodes.length);
-
+  // initialize visualization size
+  set_visualization_size();
+  
   // scaling functions 
   // scale used to size rects 
   x_scale = d3.scale.ordinal().rangeBands([0, svg_width]) ;
@@ -234,15 +230,15 @@ function initialize_clustergram(network_data){
   // font size controls 
   // scale default font size: input domain is the number of nodes
   min_node_num = 5;
-  max_node_num = 100;
-  max_fs = 22;
-  min_fs = 5;
+  max_node_num = 800;
+  min_fs = 0.5;
+  max_fs = 20;
 
   // controls how much the font size is increased by zooming when the number of nodes is at its max
   // and they need to be zoomed into
   // 1: do not increase font size while zooming
   // 0: increase font size while zooming
-  max_fs_zoom = 0.35; 
+  max_fs_zoom = 0.0; 
   // output range is the font size 
   scale_font_size = d3.scale.log().domain([min_node_num,max_node_num]).range([max_fs,min_fs]).clamp('true');
   // define the scaling for the reduce font size factor 
@@ -258,6 +254,12 @@ function initialize_clustergram(network_data){
   // calculate the reduce font-size factor: 0 for no reduction in font size and 1 for full reduction of font size
   reduce_font_size_factor_row = scale_reduce_font_size_factor(row_nodes.length);
   reduce_font_size_factor_col = scale_reduce_font_size_factor(col_nodes.length);
+
+  // set up the real zoom (2d zoom) as a function of the number of col_nodes
+  // since these are the nodes that are zoomed into in 2d zooming 
+  real_zoom_scale = d3.scale.linear().domain([min_node_num,max_node_num]).range([2,7]).clamp('true');
+  // calculate the zoom factor - the more nodes the more zooming allowed
+  real_zoom = real_zoom_scale(col_nodes.length);
 
   // label width
   label_width = 100;
@@ -280,7 +282,7 @@ function initialize_clustergram(network_data){
 
   // set col_label_width and row_label_width
   row_label_width = label_scale(row_max_char) ;
-  col_label_width = label_scale(col_max_char) ;
+  col_label_width = 1.25*label_scale(col_max_char) ;
 
   // Margins 
   col_margin = { top:col_label_width - label_margin, right:0, bottom:0, left:row_label_width };
@@ -356,6 +358,8 @@ function set_visualization_size(){
   console.log(screen_width)
   console.log(screen_height)
 
+  // do not allow width to be less than height 
+
   // adjust screen width for left margin 
   screen_width_adj = screen_width -300;
 
@@ -365,7 +369,18 @@ function set_visualization_size(){
   // adjust container with border
   // define width and height of clustergram container 
   width_clust_container = screen_width - 300;
-  height_clust_container = screen_height - 50;
+  height_clust_container = screen_height - 150;
+
+  // set zoom factor 
+  zoom_factor = (width_clust_container/col_nodes.length)/(height_clust_container/row_nodes.length)
+
+  // ensure that width of rects is not less than height 
+  if (zoom_factor < 1){
+    // scale the height 
+    height_clust_container = width_clust_container*(row_nodes.length/col_nodes.length);
+  };
+
+
   // set clustergram_container
   d3.select('#clustergram_container').style('width', width_clust_container+'px')
   d3.select('#clustergram_container').style('height', height_clust_container+'px')
@@ -377,7 +392,15 @@ function set_visualization_size(){
   // clustergram size 
   // !! this can be improved 
   svg_width = screen_width_adj - 250 ;
-  svg_height = height_clust_container - 150;
+  svg_height = height_clust_container - 300;
+
+
+  // define the zoom switch value
+  // switch from 1 to 2d zoom 
+  zoom_switch = (svg_width/col_nodes.length)/(svg_height/row_nodes.length);
+
+
+
 };
 
 // recalculate the size of the visualization
@@ -387,12 +410,11 @@ function reset_visualization_size(){
   // recalculate the size 
   set_visualization_size();
 
-  // remake the visualization 
-  d3.json('/harminogram/static/networks/example_network.json', function(network_data){
 
-    // pass the network data to d3_clustergram 
-    make_d3_clustergram(network_data)
-  });
+
+  // pass the network data to d3_clustergram 
+  make_d3_clustergram(global_network_data)
+
 }
 
 // set var doit 
