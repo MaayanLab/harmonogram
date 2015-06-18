@@ -241,51 +241,65 @@ function add_double_click() {
 // define zoomed function 
 function zoomed() {
 
-  // transfer to x and y translate
+  // gather transformation components 
+  /////////////////////////////////////
+  // gather zoom components 
+  zoom_x = d3.event.scale;
+  zoom_y = d3.event.scale;
+
+  // gather translate vector components 
   trans_x = d3.event.translate[0] - margin.left;
   trans_y = d3.event.translate[1] - margin.top;
 
-  // reset column labels 
-  ///////////////////////////
-  // reset column label zoom 
-  d3.select('#col_labels')
-    .attr("transform", "translate(" + col_margin.left + "," + col_margin.top + ")");
-  // reset font size 
-  d3.selectAll('.col_label_text').select('text').style('font-size', default_fs_col+'px');
+  // // reset column labels 
+  // // reset column label zoom 
+  // d3.select('#col_labels')
+  //   .attr("transform", "translate(" + col_margin.left + "," + col_margin.top + ")");
+  // // reset font size 
+  // d3.selectAll('.col_label_text').select('text').style('font-size', default_fs_col+'px');
 
-  // zoom into clustergram 
-  //////////////////////////////
-  // if height is less than width, zoom vertically only 
-  // zoom vertically
+
+  // Apply transformation restrictions 
+  /////////////////////////////////////
+
+  // zoom in y direction only - translate in y only
+  ///////////////////////////////////////////////////
   if (d3.event.scale < zoom_switch) {
 
-    // reset x translate: margins have to be added always
+    // reset translate vector: margins always have to be added
     zoom.translate([margin.left, margin.top+trans_y]);
 
-    // zoom in y direction only - translate in y only
-    ///////////////////////////////////////////////////
-    if (d3.event.translate[1] - margin.top <= 0){
+    // I'll need to define a y pan room 
+    //////////////////////////////////////
+
+    // translate in y if translate vector is negative 
+    if (trans_y <= 0){
       // allow panning in the negative direction
       svg_obj.attr('transform','translate(' + [ margin.left, margin.top + trans_y ] + ') scale(1,' + d3.event.scale + ')');
+
+      // set transformation parameters 
+      // set trans_x to zero
+      trans_x = 0; 
+      // set zoom_x to 1
+      zoom_x = 1;
 
       // row labels - only translate in one dimension, also zoom 
       d3.select('#row_labels')
         .attr('transform','translate(' + [row_margin.left, trans_y + margin.top] + ') scale(' + d3.event.scale + ')');
-
     }
+    // do not translate if translate in y direction is positive 
     else{
-
-
-      // do not translate 
       // reset translate vector 
       zoom.translate([margin.left, margin.top]);
       // apply transform
       svg_obj.attr('transform','translate(' + [ margin.left, margin.top ] + ') scale(1,' + d3.event.scale + ')');
     }
   }
+
   // zoom in both directions 
+  //////////////////////////////
+  // scale is greater than zoom_switch 
   else{
-    console.log('2d zooming')
 
     // available panning room
     // multiple extra room (zoom - 1) by the width
@@ -298,7 +312,7 @@ function zoomed() {
     // pan rules 
     ///////////////////////
     // no panning in the positive direction 
-    if (d3.event.translate[0] - margin.left > 0){
+    if (trans_x > 0){
 
       // reset the translate vector - keeping the old y_trans
       zoom.translate([margin.left, margin.top + trans_y]);
@@ -322,7 +336,7 @@ function zoomed() {
 
     }
     // allow panning in the negative direction 
-    else if (d3.event.translate[0] - margin.left <= -pan_room){
+    else if (trans_x <= -pan_room){
 
       // reset the translate vector 
       zoom.translate([margin.left - pan_room, margin.top + trans_y]);
@@ -371,6 +385,13 @@ function zoomed() {
     }
 
   }
+
+  // apply transformation 
+  /////////////////////////
+  svg_obj.attr('transform','translate(' + [ margin.left + trans_x, margin.top + trans_y ] + ') scale('+ zoom_x +',' + zoom_y + ')');
+
+  // reset translate vector - add back margins to trans_x and trans_y  
+  zoom.translate([ trans_x +  margin.left, trans_y + margin.top]);
 
 
   // reduce font-size to compensate for zoom 
