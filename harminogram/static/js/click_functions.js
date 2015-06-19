@@ -266,33 +266,45 @@ function zoomed() {
   ///////////////////////////////////////////////////
   if (d3.event.scale < zoom_switch) {
 
-    // reset translate vector: margins always have to be added
-    zoom.translate([margin.left, margin.top+trans_y]);
+    // // reset translate vector: margins always have to be added
+    // zoom.translate([margin.left, margin.top+trans_y]);
 
     // I'll need to define a y pan room 
     //////////////////////////////////////
 
     // translate in y if translate vector is negative 
     if (trans_y <= 0){
-      // allow panning in the negative direction
-      svg_obj.attr('transform','translate(' + [ margin.left, margin.top + trans_y ] + ') scale(1,' + d3.event.scale + ')');
 
-      // set transformation parameters 
-      // set trans_x to zero
+      // // allow panning in the negative direction
+      // svg_obj.attr('transform','translate(' + [ margin.left, margin.top + trans_y ] + ') scale(1,' + d3.event.scale + ')');
+      // // row labels - only translate in one dimension, also zoom 
+      // d3.select('#row_labels')
+      //   .attr('transform','translate(' + [row_margin.left, trans_y + margin.top] + ') scale(' + d3.event.scale + ')');
+
+      // restrict transformation parameters 
+      //////////////////////////////////////
+      // no panning in x direction 
       trans_x = 0; 
-      // set zoom_x to 1
+      // no zooming in x direction 
       zoom_x = 1;
 
-      // row labels - only translate in one dimension, also zoom 
-      d3.select('#row_labels')
-        .attr('transform','translate(' + [row_margin.left, trans_y + margin.top] + ') scale(' + d3.event.scale + ')');
     }
     // do not translate if translate in y direction is positive 
     else{
-      // reset translate vector 
-      zoom.translate([margin.left, margin.top]);
-      // apply transform
-      svg_obj.attr('transform','translate(' + [ margin.left, margin.top ] + ') scale(1,' + d3.event.scale + ')');
+
+      // // reset translate vector 
+      // zoom.translate([margin.left, margin.top]);
+      // // apply transform
+      // svg_obj.attr('transform','translate(' + [ margin.left, margin.top ] + ') scale(1,' + d3.event.scale + ')');
+
+      // restrict transformation parameters 
+      //////////////////////////////////////
+      // no panning in either direction 
+      trans_x = 0; 
+      trans_y = 0; 
+      // no zooming in x direction 
+      zoom_x = 1;
+
     }
   }
 
@@ -301,38 +313,47 @@ function zoomed() {
   // scale is greater than zoom_switch 
   else{
 
-    // available panning room
+    // available panning room in the x direction 
     // multiple extra room (zoom - 1) by the width
     pan_room = (d3.event.scale/zoom_switch - 1) * svg_width ;
 
-    // row labels - only translate in one dimension, also zoom
-    d3.select('#row_labels')
-      .attr('transform', 'translate(' + [row_margin.left, trans_y + margin.top] + ') scale(' + d3.event.scale + ')');
+    // // row labels - only translate in one dimension, also zoom
+    // d3.select('#row_labels')
+    //   .attr('transform', 'translate(' + [row_margin.left, trans_y + margin.top] + ') scale(' + d3.event.scale + ')');
 
     // pan rules 
     ///////////////////////
     // no panning in the positive direction 
     if (trans_x > 0){
 
-      // reset the translate vector - keeping the old y_trans
-      zoom.translate([margin.left, margin.top + trans_y]);
+      // // reset the translate vector - keeping the old y_trans
+      // zoom.translate([margin.left, margin.top + trans_y]);
 
-      // only translate in the y direction, zoom in both directions
-      svg_obj.attr('transform','translate(' + [ margin.left, margin.top + trans_y ] + ') scale('+d3.event.scale/zoom_switch+',' + d3.event.scale + ')');
+      // // only translate in the y direction, zoom in both directions
+      // svg_obj.attr('transform','translate(' + [ margin.left, margin.top + trans_y ] + ') scale('+d3.event.scale/zoom_switch+',' + d3.event.scale + ')');
 
-      // column labels - only translate in one dimension, also zoom 
-      d3.select('#col_labels')
-        .attr('transform','translate(' + [col_margin.left, col_margin.top] + ') scale(' + d3.event.scale/zoom_switch + ')');
+      // // column labels - only translate in one dimension, also zoom 
+      // d3.select('#col_labels')
+      //   .attr('transform','translate(' + [col_margin.left, col_margin.top] + ') scale(' + d3.event.scale/zoom_switch + ')');
 
-      // reduce font-size to compensate for zoom 
-      // calculate the recuction of the font size 
-      reduce_font_size = d3.scale.linear().domain([0,1]).range([1,d3.event.scale/zoom_switch]).clamp('true');
-      // scale down the font to compensate for zooming 
-      fin_font = default_fs_col/(reduce_font_size(reduce_font_size_factor_col)); 
-      // add back the 'px' to the font size 
-      fin_font = fin_font + 'px';
-      // change the font size of the labels 
-      d3.selectAll('.col_label_text').select('text').style('font-size', fin_font);
+      // // reduce font-size to compensate for zoom 
+      // // calculate the recuction of the font size 
+      // reduce_font_size = d3.scale.linear().domain([0,1]).range([1,d3.event.scale/zoom_switch]).clamp('true');
+      // // scale down the font to compensate for zooming 
+      // fin_font = default_fs_col/(reduce_font_size(reduce_font_size_factor_col)); 
+      // // add back the 'px' to the font size 
+      // fin_font = fin_font + 'px';
+      // // change the font size of the labels 
+      // d3.selectAll('.col_label_text').select('text').style('font-size', fin_font);
+
+
+      // restrict transformation parameters 
+      //////////////////////////////////////
+      // no panning in the x direction 
+      trans_x = 0; 
+      // set zoom_x to 1
+      zoom_x = d3.event.scale/zoom_switch;
+
 
     }
     // allow panning in the negative direction 
@@ -386,9 +407,15 @@ function zoomed() {
 
   }
 
-  // apply transformation 
-  /////////////////////////
+  // apply transformation and reset translate vector 
+  // the zoom vector (zoom.scale) never gets reset 
+  ///////////////////////////////////////////////////
+  // translate clustergram 
   svg_obj.attr('transform','translate(' + [ margin.left + trans_x, margin.top + trans_y ] + ') scale('+ zoom_x +',' + zoom_y + ')');
+
+  // translate row labels 
+  d3.select('#row_labels')
+    .attr('transform','translate(' + [row_margin.left + trans_x, margin.top + trans_y] + ') scale(' + zoom_x + ')');
 
   // reset translate vector - add back margins to trans_x and trans_y  
   zoom.translate([ trans_x +  margin.left, trans_y + margin.top]);
