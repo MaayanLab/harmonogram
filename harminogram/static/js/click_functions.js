@@ -359,49 +359,59 @@ function zoomed() {
     // allow panning in the negative direction 
     else if (trans_x <= -pan_room){
 
-      // reset the translate vector 
-      zoom.translate([margin.left - pan_room, margin.top + trans_y]);
+      // // reset the translate vector 
+      // zoom.translate([margin.left - pan_room, margin.top + trans_y]);
 
-      // translate canvas
-      svg_obj.attr('transform','translate(' + [ margin.left - pan_room, margin.top + trans_y ] + ') scale('+d3.event.scale/zoom_switch+',' + d3.event.scale + ')');
+      // // translate canvas
+      // svg_obj.attr('transform','translate(' + [ margin.left - pan_room, margin.top + trans_y ] + ') scale('+d3.event.scale/zoom_switch+',' + d3.event.scale + ')');
 
-      // column labels - only translate in one dimension, also zoom 
-      d3.select('#col_labels')
-        .attr('transform','translate(' + [col_margin.left - pan_room, col_margin.top] + ') scale(' + d3.event.scale/zoom_switch + ')');
+      // // column labels - only translate in one dimension, also zoom 
+      // d3.select('#col_labels')
+      //   .attr('transform','translate(' + [col_margin.left - pan_room, col_margin.top] + ') scale(' + d3.event.scale/zoom_switch + ')');
 
-      // reduce font-size to compensate for zoom 
-      // calculate the recuction of the font size 
-      reduce_font_size = d3.scale.linear().domain([0,1]).range([1,d3.event.scale/zoom_switch]).clamp('true');
-      // scale down the font to compensate for zooming 
-      fin_font = default_fs_col/(reduce_font_size(reduce_font_size_factor_col)); 
-      // add back the 'px' to the font size 
-      fin_font = fin_font + 'px';
-      // change the font size of the labels 
-      d3.selectAll('.col_label_text').select('text').style('font-size', fin_font);
+      // // reduce font-size to compensate for zoom 
+      // // calculate the recuction of the font size 
+      // reduce_font_size = d3.scale.linear().domain([0,1]).range([1,d3.event.scale/zoom_switch]).clamp('true');
+      // // scale down the font to compensate for zooming 
+      // fin_font = default_fs_col/(reduce_font_size(reduce_font_size_factor_col)); 
+      // // add back the 'px' to the font size 
+      // fin_font = fin_font + 'px';
+      // // change the font size of the labels 
+      // d3.selectAll('.col_label_text').select('text').style('font-size', fin_font);
 
+      // restrict transformation parameters 
+      //////////////////////////////////////
+      // no panning in the x direction 
+      trans_x = -pan_room; 
+      // set zoom_x to 1
+      zoom_x = d3.event.scale/zoom_switch;
 
     }
     // allow two dimensional panning 
     else{
-      // unrestricted
-      svg_obj.attr('transform','translate(' + [ margin.left + trans_x, margin.top + trans_y ] + ') scale('+d3.event.scale/zoom_switch+',' + d3.event.scale + ')');
+      // // unrestricted
+      // svg_obj.attr('transform','translate(' + [ margin.left + trans_x, margin.top + trans_y ] + ') scale('+d3.event.scale/zoom_switch+',' + d3.event.scale + ')');
 
-      // column labels - only translate in one dimension, also zoom 
-      d3.select('#col_labels')
-        // !! not sure why I don't need to use margin.left here like I did with rows, but it works, I might have taken
-        // this margin into consideration already in the col labels. Or maybe because I never reset. 
-        .attr('transform','translate(' + [col_margin.left + trans_x , col_margin.top] + ') scale(' + d3.event.scale/zoom_switch + ')');
+      // // column labels - only translate in one dimension, also zoom 
+      // d3.select('#col_labels')
+      //   // !! not sure why I don't need to use margin.left here like I did with rows, but it works, I might have taken
+      //   // this margin into consideration already in the col labels. Or maybe because I never reset. 
+      //   .attr('transform','translate(' + [col_margin.left + trans_x , col_margin.top] + ') scale(' + d3.event.scale/zoom_switch + ')');
 
-      // reduce font-size to compensate for zoom 
-      // calculate the recuction of the font size 
-      reduce_font_size = d3.scale.linear().domain([0,1]).range([1,d3.event.scale/zoom_switch]).clamp('true');
-      // scale down the font to compensate for zooming 
-      fin_font = default_fs_col/(reduce_font_size(reduce_font_size_factor_col)); 
-      // add back the 'px' to the font size 
-      fin_font = fin_font + 'px';
-      // change the font size of the labels 
-      d3.selectAll('.col_label_text').select('text').style('font-size', fin_font);
+      // // reduce font-size to compensate for zoom 
+      // // calculate the recuction of the font size 
+      // reduce_font_size = d3.scale.linear().domain([0,1]).range([1,d3.event.scale/zoom_switch]).clamp('true');
+      // // scale down the font to compensate for zooming 
+      // fin_font = default_fs_col/(reduce_font_size(reduce_font_size_factor_col)); 
+      // // add back the 'px' to the font size 
+      // fin_font = fin_font + 'px';
+      // // change the font size of the labels 
+      // d3.selectAll('.col_label_text').select('text').style('font-size', fin_font);
 
+      // restrict transformation parameters 
+        //////////////////////////////////////
+      // set zoom_x to 1
+      zoom_x = d3.event.scale/zoom_switch;
 
     }
 
@@ -415,7 +425,11 @@ function zoomed() {
 
   // translate row labels 
   d3.select('#row_labels')
-    .attr('transform','translate(' + [row_margin.left + trans_x, margin.top + trans_y] + ') scale(' + zoom_x + ')');
+    .attr('transform','translate(' + [row_margin.left , margin.top + trans_y] + ') scale(' + zoom_y + ')');
+
+  // column labels - only translate in one dimension, also zoom 
+  d3.select('#col_labels')
+    .attr('transform','translate(' + [col_margin.left + trans_x , col_margin.top] + ') scale(' + zoom_x + ')');
 
   // reset translate vector - add back margins to trans_x and trans_y  
   zoom.translate([ trans_x +  margin.left, trans_y + margin.top]);
