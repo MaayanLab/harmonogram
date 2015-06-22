@@ -244,7 +244,9 @@ function make_d3_clustergram(network_data) {
     .attr('height', '3000px')
     .attr('transform', function() { 
       tmp_left = margin.left + svg_width;
-      return 'translate('+tmp_left+','+margin.top+')'
+      // taking into consideration label margin
+      tmp_top = margin.top - 5;
+      return 'translate('+tmp_left+','+tmp_top+')'
     })
     .attr('class','white_bars');
 
