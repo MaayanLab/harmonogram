@@ -275,6 +275,7 @@ function zoomed() {
 
   // x - rules 
   ///////////////////////////////////////////////////
+  
   // zoom in y direction only - translate in y only
   if (d3.event.scale < zoom_switch) {
 

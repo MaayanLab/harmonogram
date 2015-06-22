@@ -203,29 +203,7 @@ function initialize_clustergram(network_data){
   // initialize visualization size
   set_visualization_size();
   
-  // scaling functions 
-  // scale used to size rects 
-  x_scale = d3.scale.ordinal().rangeBands([0, svg_width]) ;
-  y_scale = d3.scale.ordinal().rangeBands([0, svg_height]); 
-
-  // Sort rows and columns 
-  orders = {
-    name:     d3.range(col_nodes.length).sort(function(a, b) { return d3.ascending( col_nodes[a].name, col_nodes[b].name); }),
-
-    rank_row: d3.range(col_nodes.length).sort(function(a, b) { return col_nodes[b].rank  - col_nodes[a].rank; }),
-    rank_col: d3.range(row_nodes.length).sort(function(a, b) { return row_nodes[b].rank  - row_nodes[a].rank; }),
-
-    clust_row: d3.range(col_nodes.length).sort(function(a, b) { return col_nodes[b].clust  - col_nodes[a].clust; }),
-    clust_col: d3.range(row_nodes.length).sort(function(a, b) { return row_nodes[b].clust  - row_nodes[a].clust; })
-    
-  };
   
-  // Assign the default sort order for the columns 
-  x_scale.domain(orders.clust_row);
-  y_scale.domain(orders.clust_col);
-
-  // define border width 
-  border_width = x_scale.rangeBand()/16.66;
 
   // font size controls 
   // scale default font size: input domain is the number of nodes
@@ -261,33 +239,7 @@ function initialize_clustergram(network_data){
   // calculate the zoom factor - the more nodes the more zooming allowed
   real_zoom = real_zoom_scale(col_nodes.length);
 
-  // label width
-  label_width = 100;
-  // distance between labels and clustergram
-  label_margin = 2*border_width;
-
-  // this is the final rect 
-  small_white_rect = label_width;
-
-  // find the label with the most characters and use it to adjust the row and col margins 
-  row_max_char = _.max(row_nodes, function(inst) {return inst.name.length;}).name.length;
-  col_max_char = _.max(col_nodes, function(inst) {return inst.name.length;}).name.length;
-
-  // define label scale parameters: the more characters in the longest name, the larger the margin 
-  min_num_char = 5;
-  max_num_char = 40;
-  min_label_width = 50;
-  max_label_width = 210;
-  label_scale = d3.scale.linear().domain([min_num_char,max_num_char]).range([min_label_width,max_label_width]).clamp('true');
-
-  // set col_label_width and row_label_width
-  row_label_width = label_scale(row_max_char) ;
-  col_label_width = 1.25*label_scale(col_max_char) ;
-
-  // Margins 
-  col_margin = { top:col_label_width - label_margin, right:0, bottom:0, left:row_label_width };
-  row_margin = { top:col_label_width, right:0, bottom:0, left:row_label_width - label_margin };
-  margin     = { top:col_label_width, right:0, bottom:0, left:row_label_width };
+  
 
   // set opacity scale 
   // Expression Only 
@@ -340,6 +292,37 @@ function initialize_clustergram(network_data){
 function set_visualization_size(){
   console.log('resizing')
 
+  // define offsets for permanent row and col margins 
+  row_offset = 240;
+  col_offset = 10;
+
+  // define offset for svg
+  svg_x_offset = 220;
+  svg_y_offset = 110;
+
+  // find the label with the most characters and use it to adjust the row and col margins 
+  row_max_char = _.max(row_nodes, function(inst) {return inst.name.length;}).name.length;
+  col_max_char = _.max(col_nodes, function(inst) {return inst.name.length;}).name.length;
+
+  // define label scale parameters: the more characters in the longest name, the larger the margin 
+  min_num_char = 5;
+  max_num_char = 40;
+  min_label_width = 50;
+  max_label_width = 210;
+  label_scale = d3.scale.linear().domain([min_num_char,max_num_char]).range([min_label_width,max_label_width]).clamp('true');
+
+  // set col_label_width and row_label_width
+  row_label_width = label_scale(row_max_char) ;
+  col_label_width =  label_scale(col_max_char) ;
+
+  // Margins 
+  // col_margin = { top:col_label_width - label_margin, right:0, bottom:0, left:row_label_width };!!
+  col_margin = { top:col_label_width , right:0, bottom:0, left:row_label_width };
+  // row_margin = { top:col_label_width, right:0, bottom:0, left:row_label_width - label_margin };!!
+  row_margin = { top:col_label_width, right:0, bottom:0, left:row_label_width };
+  margin     = { top:col_label_width, right:0, bottom:0, left:row_label_width };
+  offset = { top:col_label_width+col_offset, right:0, bottom:0, left:row_label_width+row_offset };
+
   // from http://stackoverflow.com/questions/16265123/resize-svg-when-window-is-resized-in-d3-js
   x_window = window.innerWidth ;
   y_window = window.innerHeight ;
@@ -349,7 +332,7 @@ function set_visualization_size(){
   d3.select('#wrapper').style('height',y_window);
 
   // initalize clutergram container 
-  // 
+  // `
   // get screen width 
   screen_width  = Number(d3.select('#wrapper').style('width').replace('px',''));
   // get screen height
@@ -358,23 +341,19 @@ function set_visualization_size(){
   console.log(screen_width)
   console.log(screen_height)
 
-  // do not allow width to be less than height 
-
-  // adjust screen width for left margin 
-  screen_width_adj = screen_width -300;
-
-  // adjust the width of the main container
-  d3.select('#main_container').style('width',screen_width_adj+'px')
-
   // adjust container with border
   // define width and height of clustergram container 
-  width_clust_container = screen_width - 300;
-  height_clust_container = screen_height - 150;
+  width_clust_container = screen_width - offset.left;
+  height_clust_container = screen_height - offset.top;
+
+  // adjust the width of the main container
+  d3.select('#main_container').style('width', width_clust_container+'px')
 
   // set zoom factor 
   zoom_factor = (width_clust_container/col_nodes.length)/(height_clust_container/row_nodes.length)
 
   // ensure that width of rects is not less than height 
+  // !! needs to be fixed, need more symmetry in the panning/zoom rules 
   if (zoom_factor < 1){
     // scale the height 
     height_clust_container = width_clust_container*(row_nodes.length/col_nodes.length);
@@ -391,9 +370,40 @@ function set_visualization_size(){
 
   // clustergram size 
   // !! this can be improved 
-  svg_width = screen_width_adj - 250 ;
-  svg_height = height_clust_container - 300;
+  svg_width  = width_clust_container - svg_x_offset  ;
+  svg_height = height_clust_container - svg_y_offset;
 
+  // scaling functions 
+  // scale used to size rects 
+  x_scale = d3.scale.ordinal().rangeBands([0, svg_width]) ;
+  y_scale = d3.scale.ordinal().rangeBands([0, svg_height]); 
+
+  // Sort rows and columns 
+  orders = {
+    name:     d3.range(col_nodes.length).sort(function(a, b) { return d3.ascending( col_nodes[a].name, col_nodes[b].name); }),
+
+    rank_row: d3.range(col_nodes.length).sort(function(a, b) { return col_nodes[b].rank  - col_nodes[a].rank; }),
+    rank_col: d3.range(row_nodes.length).sort(function(a, b) { return row_nodes[b].rank  - row_nodes[a].rank; }),
+
+    clust_row: d3.range(col_nodes.length).sort(function(a, b) { return col_nodes[b].clust  - col_nodes[a].clust; }),
+    clust_col: d3.range(row_nodes.length).sort(function(a, b) { return row_nodes[b].clust  - row_nodes[a].clust; })
+    
+  };
+  
+  // Assign the default sort order for the columns 
+  x_scale.domain(orders.clust_row);
+  y_scale.domain(orders.clust_col);
+
+  // define border width 
+  border_width = x_scale.rangeBand()/16.66;
+
+  // label width
+  label_width = 100;
+  // distance between labels and clustergram
+  label_margin = 2*border_width;
+
+  // this is the final rect 
+  small_white_rect = label_width;
 
   // define the zoom switch value
   // switch from 1 to 2d zoom 

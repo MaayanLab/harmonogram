@@ -379,7 +379,7 @@ li{
   float:left;
   /*this is sensitive to the length of the 
   row title*/
-  margin-left: -25px;
+  margin-left: -15px;
   margin-top: 300px;
   font-weight: 300;
 }
