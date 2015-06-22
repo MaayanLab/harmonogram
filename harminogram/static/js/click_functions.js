@@ -251,71 +251,62 @@ function zoomed() {
   trans_x = d3.event.translate[0] - margin.left;
   trans_y = d3.event.translate[1] - margin.top;
 
-  // Apply transformation restrictions 
-  /////////////////////////////////////
 
-  // zoom in y direction only - translate in y only
+  // y - rules 
   ///////////////////////////////////////////////////
+
+  // available panning room in the y direction 
+  // multiple extra room (zoom - 1) by the width
+  // always defined in the same way 
+  pan_room_y = (d3.event.scale - 1) * svg_height ;
+
+  // do not translate if translate in y direction is positive 
+  if (trans_y >= 0 ) {
+    // restrict transformation parameters 
+    // no panning in either direction 
+    trans_y = 0; 
+  }
+  // restrict y pan to pan_room_y if necessary 
+  else if (trans_y <= -pan_room_y) {
+    // restrict transformation parameters 
+    // no panning in x direction 
+    trans_y = -pan_room_y; 
+  };
+
+  // x - rules 
+  ///////////////////////////////////////////////////
+  // zoom in y direction only - translate in y only
   if (d3.event.scale < zoom_switch) {
 
-    // I'll need to define a y pan room 
-    //////////////////////////////////////
+    // no x translate or zoom 
+    trans_x = 0;
+    zoom_x = 1;
 
-    // translate in y if translate vector is negative 
-    if (trans_y <= 0){
-
-      // restrict transformation parameters 
-      //////////////////////////////////////
-      // no panning in x direction 
-      trans_x = 0; 
-      // no zooming in x direction 
-      zoom_x = 1;
-
-    }
-    // do not translate if translate in y direction is positive 
-    else{
-
-      // restrict transformation parameters 
-      //////////////////////////////////////
-      // no panning in either direction 
-      trans_x = 0; 
-      trans_y = 0; 
-      // no zooming in x direction 
-      zoom_x = 1;
-
-    }
   }
-
   // zoom in both directions 
-  //////////////////////////////
   // scale is greater than zoom_switch 
   else{
 
     // available panning room in the x direction 
     // multiple extra room (zoom - 1) by the width
-    pan_room = (d3.event.scale/zoom_switch - 1) * svg_width ;
+    pan_room_x = (d3.event.scale/zoom_switch - 1) * svg_width ;
 
-    // pan rules 
-    ///////////////////////
     // no panning in the positive direction 
     if (trans_x > 0){
 
       // restrict transformation parameters 
-      //////////////////////////////////////
       // no panning in the x direction 
       trans_x = 0; 
       // set zoom_x to 1
       zoom_x = d3.event.scale/zoom_switch;
 
-
     }
-    // allow panning in the negative direction 
-    else if (trans_x <= -pan_room){
+    // restrict panning to pan_room_x 
+    else if (trans_x <= -pan_room_x){
 
       // restrict transformation parameters 
-      //////////////////////////////////////
       // no panning in the x direction 
-      trans_x = -pan_room; 
+      trans_x = -pan_room_x; 
       // set zoom_x to 1
       zoom_x = d3.event.scale/zoom_switch;
 
@@ -324,7 +315,6 @@ function zoomed() {
     else{
 
       // restrict transformation parameters 
-      //////////////////////////////////////
       // set zoom_x to 1
       zoom_x = d3.event.scale/zoom_switch;
 
