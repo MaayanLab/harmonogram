@@ -733,3 +733,8 @@ look like the input gene list text title*/
 #viz_website_title{
   font-size: 40px;
 }
+
+#class_buttons{
+  margin-left: 20px;
+  margin-top:10px;
+}
