@@ -6,8 +6,11 @@ def main():
 	# # load resource classes
 	# load_resource_classes()
 
-	# check resource classes
-	check_resource_classes()
+	# load resource mapping names 
+	load_resource_real_names()
+
+	# # check resource classes
+	# check_resource_classes()
 
 	# # genrate d3 json 
 	# generate_d3_json()
@@ -103,6 +106,34 @@ def generate_d3_json():
 
 		# save visualization json 
 		json_scripts.save_to_json(d3_json,'static/networks/'+inst_class+'_cumul_probs.json','no_indent')
+
+def load_resource_real_names():
+	import json_scripts
+	print('loading resource real names')
+
+	# open text file
+	filename = 'andrew_data/resource_mapping_names.txt'
+	f = open(filename,'r')
+	lines = f.readlines()
+	f.close()
+
+	# make a dictionar of real resource names 
+	rn = {}
+
+	# loop through the lines
+	for inst_line in lines:
+
+		# clean the line
+		inst_line = inst_line.strip().split('\t')
+
+		# if there is a real name, keep the resource 
+		if len(inst_line) == 2:
+			
+			# add the resource and real name to dict 
+			rn[inst_line[0]] = inst_line[1]
+
+	# save dictionary to json 
+	json_scripts.save_to_json(rn,'resource_real_names.json','indent')
 
 def load_resource_classes():
 	import json_scripts

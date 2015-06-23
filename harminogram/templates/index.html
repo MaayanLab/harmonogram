@@ -136,6 +136,29 @@
                   <div id='title_viz_instruct_text'>About:</div>
                   <div class='viz_instruct_text'> The clustergram visualizes gene appearance in various resources. Genes are shown as rows and resources as columns. </div>
 
+                  <!-- choose protein class  -->
+                  <div class="btn-group-vertical" data-toggle="buttons" >
+
+                    <label class="btn btn-primary active" onclick="reorder_clust_rank('clust');">
+                      <input type="radio" name="options" id="clust_button" autocomplete="off" checked > Kinases
+                    </label>
+
+                    <label class="btn btn-primary" onclick="reorder_clust_rank('rank');">
+                      <input type="radio" name="options" id="rank_button" autocomplete="off" > Phosphatases
+                    </label>
+
+
+                    <label class="btn btn-primary" onclick="reorder_clust_rank('rank');">
+                      <input type="radio" name="options" id="rank_button" autocomplete="off" > GPCRs
+                    </label>
+
+
+                    <label class="btn btn-primary" onclick="reorder_clust_rank('rank');">
+                      <input type="radio" name="options" id="rank_button" autocomplete="off" > Ion Channels
+                    </label>
+
+                  </div>
+
                   <!-- <div class='viz_instruct_text'>  </div> -->
 
                   <!-- <button id='modify_enrichrgram_button' class='btn btn-danger buttons' onClick='rerun_enrichrgram();'>Re-run Enrichrgram</button> -->

@@ -1,0 +1,86 @@
+bestsnp_gtex_20150312	GTEx eQTL
+bp_gobp_20150331	GO Biological Process Annotations
+cc_gocc_20150331	GO Cellular Component Annotations
+cellline_achilles_20150124	Achilles Cell Line Gene Essentiality Profiles
+cellline_ccle	CCLE Cell Line Gene Expression Profiles
+cellline_cclecnv	CCLE Cell Line Gene CNV Profiles
+cellline_cclemut	CCLE Cell Line Gene Mutation Profiles
+cellline_cosmiccnvnew	COSMIC Cell Line Gene CNV Profiles
+cellline_cosmicmut	COSMIC Cell Line Gene Mutation Profiles
+cellline_gdsc	GDSC Cell Line Gene Expression Profiles
+cellline_heiser	Heiser Cell Line Gene Expression Profiles
+cellline_hpa_mrna_20150309	HPA Cell Line Gene Expression Profiles
+cellline_klijn_cnv_20150415	Klijn Cell Line Gene CNV Profiles
+cellline_klijn_mut_20150415	Klijn Cell Line Gene Mutation Profiles
+cellline_klijn_rnaseq_20150415	Klijn Cell Line Gene Expression Profiles
+chemical_ctd_dnaprot_20150415	CTD Gene-Chemical Interactions
+chemical_kinomescan_inhibfrac_20150120	KinomeScan Kinase Inhibitor Targets
+chemical-cellline_kinativ_20150120	Kinativ Kinase Inhibitor Bioactivity Profiles
+compartment_jensencompartmentcurated_20150202	COMPARTMENTS Curated Protein Localization Evidence Scores
+compartment_jensencompartmentexpts_20150202	COMPARTMENTS Experimental Protein Localization Evidence Scores
+compartment_jensencompartmenttextmining_20150202	COMPARTMENTS Text-mining Protein Localization Evidence Scores
+complex_corum_20150416	CORUM Protein Complexes
+disease_ctd_20150415	CTD Gene-Disease Associations
+disease_gad_20150415	GAD Gene-Disease Associations
+disease_gad_highlevel_20150415	GAD High Level Gene-Disease Associations
+disease_gwasdb_20140908	GWASdb SNP-Disease Associations
+disease_hugenavigator_20150415	HuGE Navigator Gene-Phenotype Associations
+disease_jensendiseasecurated_20150202	DISEASES Curated Gene-Disease Assocation Evidence Scores
+disease_jensendiseaseexpts_20150202	DISEASES Experimental Gene-Disease Assocation Evidence Scores
+disease_jensendiseasetextmining_20150202	DISEASES Text-mining Gene-Disease Assocation Evidence Scores
+disease_omim20150115	OMIM Gene-Disease Associations
+domain_interpro_20150324	UniProt Protein Domain Annotations
+drug_drugbank_20150416	DrugBank Drug Targets
+gene_bindviapc_allphysical_20150416	BIND Biomolecular Interactions
+gene_biogrid_20150415	BioGRID Protein-Protein Interactions
+gene_corumviapc_allphysical_20150416	
+gene_dipviapc_allphysical_20150416	DIP Protein-Protein Interactions
+gene_hprdviapc_allphysical_20150416	HPRD Protein-Protein Interactions
+gene_humancycviapc_allphysical_20150416	HumanCyc Biomolecular Interactions
+gene_intact_20150409	IntAct Biomolecular Interactions
+gene_intactviapc_allphysical_20150416	
+gene_keggviapc_allphysical_20150416	KEGG Biomolecular Interactions
+gene_pantherviapc_allphysical_20150416	PANTHER Biomolecular Interactions
+gene_pc_allphysical_20150416	PC Protein-Protein Interactions
+gene_pcppiallphysical20150113	
+gene_reactomeviapc_allphysical_20150416	Reactome Biomolecular Interactions
+gene_reconxviapc_allphysical_20150416	Recon X Biomolecular Interactions
+ip_nursa	NURSA Protein Complexes
+ligand_iuphar_20140923	
+ligand_iuphar_chemical_20140923	Guide to Pharmacology Chemical Ligands of Receptors
+ligand_iuphar_protein_20140923	Guide to Pharmacology Protein Ligands of Receptors
+mf_gomf_20150331	GO Molecular Function Annotations
+mirna_mirtarbase_20150415	MiRTarBase microRNA Targets
+mirna_mirtarbaseviapc_20150416	
+pathway_biocarta20141217	Biocarta Pathways
+pathway_combinedpathways20141217	Combined Pathways
+pathway_humancyc20141217	HumanCyc Pathways
+pathway_kegg20110818	KEGG Pathways
+pathway_ncinat20141217	PID Pathways
+pathway_panther20141217	PANTHER Pathways
+pathway_reactome20141217	Reactome Pathways
+pathway_wikipathways20141217	Wikipathways Pathways
+phenotype_clinvar_pathogenic_20150415	ClinVar SNP-Phenotype Associations
+phenotype_gwascatalog_20150326	GWAS Catalog SNP-Phenotype Associations
+phenotype_gwasdb_20140908	GWASdb SNP-Phenotype Associations
+phenotype_mgimpo20150209	MPO Gene-Phenotype Associations
+substrate_kea_20120719	KEA Substrates of Kinases
+tf_cheanomerge	CHEA Transcription Factor Binding Site Profiles
+tf_encode20150122	ENCODE Transcription Factor Binding Site Profiles
+tf_motifmap20150109	MotifMap Transcription Factor Targets
+tf_transfacviapc_20150416	TRANSFAC Curated Transcription Factor Targets
+tissue_brainatlas_20150124	Allen Brain Atlas Adult Mouse Brain Tissue Gene Expression Profiles
+tissue_brainatlas_humanadultarray_20150413	Allen Brain Atlas Adult Human Brain Tissue Gene Expression Profiles
+tissue_brainatlas_humanprenatalarray_20150413	Allen Brain Atlas Prenatal Human Brain Tissue Gene Expression Profiles
+tissue_gtex_20150311	GTEx Tissue Gene Expression Profiles
+tissue_hpa_mrna_20150309	HPA Tissue Gene Expression Profiles
+tissue_hpa_proteinihc_20150304	HPA Tissue Protein Expression Profiles
+tissue_jensentissuecurated_20150202	TISSUES Curated Tissue Protein Expression Evidence Scores
+tissue_jensentissueexpts_20150202	TISSUES Experimental Tissue Protein Expression Evidence Scores
+tissue_jensentissuetextmining_20150202	TISSUES Text-mining Tissue Protein Expression Evidence Scores
+tissue_proteomicsdb_20150129	ProteomicsDB Cell and Tissue Protein Expression Profiles
+tissuesample_brainatlas_humandevelopmentarray_20150413	Allen Brain Atlas Developing Human Brain Tissue Gene Expression Profiles by Microarray
+tissuesample_brainatlas_humandevelopmentrnaseq_20150413	Allen Brain Atlas Developing Human Brain Tissue Gene Expression Profiles by RNA-seq
+tissuesample_gtex_20150311	GTEx Tissue Sample Gene Expression Profiles
+tissuesample_hpa_mrna_20150309	HPA Tissue Sample Gene Expression Profiles
+trait_dbgap_20150415	dbGAP Gene-Trait Associations
