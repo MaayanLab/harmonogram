@@ -9,19 +9,9 @@ def main():
 	# # load resource mapping names 
 	# load_resource_real_names()
 
-	# # check resource classes
-	# check_resource_classes()
-
 	# genrate d3 json 
 	generate_d3_json()
 
-def check_resource_classes():
-	import json_scripts
-
-	# load resource classes 
-	rc = json_scripts.load_to_dict('resource_classes_harminogram.json')
-
-	print(len(rc.keys()))
 
 def generate_d3_json():
 	import json_scripts
@@ -66,7 +56,7 @@ def generate_d3_json():
 			# check if in class list 
 			if inst_gs in gc[inst_class]:
 
-				print(inst_gs)
+				# print(inst_gs)
 
 				# append gene symbol name to row 
 				class_nodes['row'].append(inst_gs)
@@ -102,6 +92,17 @@ def generate_d3_json():
 
 		# generate d3_clust json: return json 
 		d3_json = d3_clustergram.d3_clust_single_value(class_nodes, clust_order, class_mat )
+
+		# add extra information (data_group) to d3_json - add resource class to d3_json['col_nodes']
+		###############################################################################################
+		# loop through col_nodes
+		for inst_col in d3_json['col_nodes']:
+
+			# get the inst_res
+			inst_res = inst_col['name']
+
+			# add the resource-class - data_group
+			inst_col['data_group'] = rc[ inst_res ]['data_group'].replace(' ','_')
 
 		print('saving to disk')
 
@@ -158,14 +159,17 @@ def load_resource_classes():
 		# get key names from first row 
 		if i != 0:
 
-			# get resource name
-			inst_name = inst_line[0]
+			# I need dataset name, not resource name 
+			################
+
+			# get resource name - no spaces 
+			inst_name = inst_line[1].replace(' ','_')
 
 			# initialize dictionary 
 			rc[inst_name] = {}
 
-			# dataset name
-			rc[inst_name]['dataset_name'] = inst_line[1]
+			# # dataset name
+			# rc[inst_name]['dataset_name'] = inst_line[1]
 
 			# description 
 			rc[inst_name]['description'] = inst_line[2]
@@ -188,27 +192,6 @@ def load_resource_classes():
 	# save resource classes 
 	json_scripts.save_to_json(rc,'resource_classes_harminogram.json','indent')
 
-# make clustergram
-def make_enrichment_clustergram(enr, dist_type):
-	import d3_clustergram
-
-	# make a dictionary of enr_terms and colors 
-	terms_colors = {}
-	for inst_enr in enr:
-		terms_colors[inst_enr['name']] = inst_enr['color']
-
-	# print(terms_colors)
-
-	# convert enr to nodes, data_mat 
-	nodes, data_mat = d3_clustergram.convert_enr_to_nodes_mat( enr )
-
-	# cluster rows and columns 
-	clust_order = d3_clustergram.cluster_row_and_column( nodes, data_mat, dist_type, enr )
-
-	# generate d3_clust json 
-	d3_json = d3_clustergram.d3_clust_single_value( nodes, clust_order, data_mat, terms_colors )
-
-	return d3_json
 
 # load andrew json and convert to scipy array 
 def load_andrew_data():
