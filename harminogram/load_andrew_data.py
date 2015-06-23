@@ -1,7 +1,7 @@
 # this will load Andrew's data 
 def main():
-	# load andrew data 
-	load_andrew_data()
+	# # load andrew data 
+	# load_andrew_data()
 
 	# genrate d3 json 
 	generate_d3_json()
@@ -9,6 +9,7 @@ def main():
 def generate_d3_json():
 	import json_scripts
 	import d3_clustergram
+	import scipy
 	import numpy as np 
 
 	print('loading json in generate_d3_json')
@@ -21,31 +22,67 @@ def generate_d3_json():
 
 	print('calculating clustering orders')
 
-	# visualize kinases 
-	
+	# visualize one class at a time 
+	################################# 
+	gc = json_scripts.load_to_dict('gene_classes_harminogram.json')
+	# class_mat = scipy.zeros([len(gc['KIN']),len(nodes['col'])])
+	class_mat = np.array([])
 
-	# # actual clustering 
-	# ########################
-	# # cluster the matrix, return clust_order
-	# clust_order = d3_clustergram.cluster_row_and_column( nodes, data_mat, 'euclidean' )
+	print(len(class_mat))
 
-	# mock clustering
-	############################
-	print('mock clustering')
-	clust_order = {}
-	# mock cluster 
-	clust_order['clust'] = {}
-	clust_order['clust']['row'] = range(len(nodes['row']))
-	clust_order['clust']['col'] = range(len(nodes['col']))
-	# mock rank 
-	clust_order['rank'] = {}
-	clust_order['rank']['row'] = range(len(nodes['row']))
-	clust_order['rank']['col'] = range(len(nodes['col']))
+	# initialize class_nodes for export 
+	class_nodes = {}
+	class_nodes['col'] = nodes['col']
+	class_nodes['row'] = []
+
+	# loop through the rows and check if they are kinases
+	for i in range(len(nodes['row'])):
+
+		# get the index 
+		inst_gs = nodes['row'][i]
+
+		# check if in gc['KIN']
+		if inst_gs in gc['KIN']:
+
+			print(inst_gs)
+
+			# append kinase name to row 
+			class_nodes['row'].append(inst_gs)
+
+			# initialize class_mat if necesary 
+			if len(class_mat) == 0:
+				class_mat = data_mat[i,:]
+			else:
+
+				# fill in class_mat
+				class_mat = np.vstack( (class_mat, data_mat[i,:] ))  
+
+	# check
+	print(class_mat.shape)
+
+
+	# actual clustering 
+	########################
+	# cluster the matrix, return clust_order
+	clust_order = d3_clustergram.cluster_row_and_column( class_nodes, class_mat, 'euclidean' )
+
+	# # mock clustering
+	# ############################
+	# print('mock clustering')
+	# clust_order = {}
+	# # mock cluster 
+	# clust_order['clust'] = {}
+	# clust_order['clust']['row'] = range(len(class_nodes['row']))
+	# clust_order['clust']['col'] = range(len(class_nodes['col']))
+	# # mock rank 
+	# clust_order['rank'] = {}
+	# clust_order['rank']['row'] = range(len(class_nodes['row']))
+	# clust_order['rank']['col'] = range(len(class_nodes['col']))
 
 	print('generating d3 json')
 
 	# generate d3_clust json: return json 
-	d3_json = d3_clustergram.d3_clust_single_value(nodes, clust_order, data_mat )
+	d3_json = d3_clustergram.d3_clust_single_value(class_nodes, clust_order, class_mat )
 
 	print('saving to disk')
 
@@ -76,7 +113,7 @@ def load_andrew_data():
 	nodes['row'] = []
 	nodes['col'] = []
 
-	num_rows = 2000
+	num_rows = len(matrix)
 
 	# initialize data matrix 
 	data_mat = scipy.zeros([ num_rows, len(matrix[0]['entries']) ])
