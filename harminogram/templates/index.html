@@ -226,10 +226,24 @@
   <script src="static/lib/js/keen.min.js"></script>
   <script src="static/lib/js/underscore-min.js"></script>
   <script src='static/lib/js/blockUI.js'></script>
+
+  <script>
+  console.log('blocking UI')
+  // set up wait message before request is made 
+  $.blockUI({ css: { 
+          border: 'none', 
+          padding: '15px', 
+          backgroundColor: '#000', 
+          '-webkit-border-radius': '10px', 
+          '-moz-border-radius': '10px', 
+          opacity: 1.0, 
+          color: '#fff' 
+      } }); 
+  </script>
+
   <!-- Clustergram Scripts -->
   <script src='static/js/d3_clustergram.js'></script>
   <script src='static/js/load_local_network.js'></script>
-
 
 
 </body>

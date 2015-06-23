@@ -21,21 +21,23 @@ def generate_d3_json():
 
 	print('calculating clustering orders')
 
-	# cluster the matrix, return clust_order
-	clust_order = d3_clustergram.cluster_row_and_column( nodes, data_mat, 'euclidean' )
+	# # actual clustering 
+	# ########################
+	# # cluster the matrix, return clust_order
+	# clust_order = d3_clustergram.cluster_row_and_column( nodes, data_mat, 'euclidean' )
 
-	# # mock clustering
-	# ############################
-	# print('mock clustering')
-	# clust_order = {}
-	# # mock cluster 
-	# clust_order['clust'] = {}
-	# clust_order['clust']['row'] = range(len(nodes['row']))
-	# clust_order['clust']['col'] = range(len(nodes['col']))
-	# # mock rank 
-	# clust_order['rank'] = {}
-	# clust_order['rank']['row'] = range(len(nodes['row']))
-	# clust_order['rank']['col'] = range(len(nodes['col']))
+	# mock clustering
+	############################
+	print('mock clustering')
+	clust_order = {}
+	# mock cluster 
+	clust_order['clust'] = {}
+	clust_order['clust']['row'] = range(len(nodes['row']))
+	clust_order['clust']['col'] = range(len(nodes['col']))
+	# mock rank 
+	clust_order['rank'] = {}
+	clust_order['rank']['row'] = range(len(nodes['row']))
+	clust_order['rank']['col'] = range(len(nodes['col']))
 
 	print('generating d3 json')
 
@@ -71,7 +73,7 @@ def load_andrew_data():
 	nodes['row'] = []
 	nodes['col'] = []
 
-	num_rows = 1000
+	num_rows = 2000
 
 	# initialize data matrix 
 	data_mat = scipy.zeros([ num_rows, len(matrix[0]['entries']) ])

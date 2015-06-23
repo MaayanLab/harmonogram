@@ -197,7 +197,7 @@
 			constrainTabKey: true,
 
 			// fadeIn time in millis; set to 0 to disable fadeIn on block
-			fadeIn:  200,
+			fadeIn:  0,
 
 			// fadeOut time in millis; set to 0 to disable fadeOut on unblock
 			fadeOut:  400,
@@ -219,7 +219,7 @@
 			// no longer needed in 2012
 			// applyPlatformOpacityRules: true,
 
-			// callback method invoked when fadeIn has completed and blocking message is visible
+			// callback method invoked when 
 			onBlock: null,
 
 			// callback method invoked when unblocking has completed; the callback is

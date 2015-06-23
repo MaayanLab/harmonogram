@@ -388,7 +388,7 @@ function initialize_clustergram(network_data){
   // font size controls 
   // scale default font size: input domain is the number of nodes
   min_node_num = 30;
-  max_node_num = 800;
+  max_node_num = 2000;
   min_fs = 0.5;
   // reduce or increase the font size based on the total screen width 
   max_fs = 15 * scale_fs_screen(screen_width);
