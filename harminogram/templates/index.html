@@ -140,39 +140,39 @@
                   <div class="btn-group-vertical" data-toggle="buttons" >
 
                     <!-- <label class="btn btn-primary active" onclick="reorder_clust_rank('clust');"> -->
-                    <label class="btn btn-primary active" >
+                    <label class="btn btn-primary active" onclick="load_class_clustergram('KIN');">
                       <input type="radio" name="options" id="clust_button" autocomplete="off" checked > Kinases
                     </label>
 
-                    <label class="btn btn-primary" >
+                    <label class="btn btn-primary" onclick="load_class_clustergram('PP');" >
                       <input type="radio" name="options" id="rank_button" autocomplete="off" > Phosphatases
                     </label>
 
-                    <label class="btn btn-primary" >
+                    <label class="btn btn-primary" onclick="load_class_clustergram('GPCR');" >
                       <input type="radio" name="options" id="rank_button" autocomplete="off" > GPCRs
                     </label>
 
-                    <label class="btn btn-primary" >
+                    <label class="btn btn-primary" onclick="load_class_clustergram('IC');" >
                       <input type="radio" name="options" id="rank_button" autocomplete="off" > Ion Channels
                     </label>
 
-                    <label class="btn btn-primary" >
+                    <label class="btn btn-primary" onclick="load_class_clustergram('TF');" >
                       <input type="radio" name="options" id="rank_button" autocomplete="off" > Transcription Factors
                     </label>
 
-                    <label class="btn btn-primary" >
+                    <label class="btn btn-primary" onclick="load_class_clustergram('ACT');" >
                       <input type="radio" name="options" id="rank_button" autocomplete="off" > Acetyltransferases
                     </label>
 
-                    <label class="btn btn-primary" >
+                    <label class="btn btn-primary" onclick="load_class_clustergram('DACT');" >
                       <input type="radio" name="options" id="rank_button" autocomplete="off" > Deacetylases
                     </label>
 
-                    <label class="btn btn-primary" >
+                    <label class="btn btn-primary" onclick="load_class_clustergram('MET');" >
                       <input type="radio" name="options" id="rank_button" autocomplete="off" > Methyltransferases
                     </label>
 
-                    <label class="btn btn-primary" >
+                    <label class="btn btn-primary" onclick="load_class_clustergram('DMET');" >
                       <input type="radio" name="options" id="rank_button" autocomplete="off" > Demethylases
                     </label>
 
@@ -268,9 +268,18 @@
   <script src="static/lib/js/keen.min.js"></script>
   <script src="static/lib/js/underscore-min.js"></script>
   <script src='static/lib/js/blockUI.js'></script>
+  <!-- Clustergram Scripts -->
+  <script src='static/js/d3_clustergram.js'></script>
+  <script src='static/js/load_local_network.js'></script>
 
   <script>
-  console.log('blocking UI')
+  
+  // initialize protein class 
+  var inst_prot_class = 'KIN';
+  // save global variable 
+  glob_prot_class = inst_prot_class;
+  
+  // make first clustergram 
   // set up wait message before request is made 
   $.blockUI({ css: { 
           border: 'none', 
@@ -278,15 +287,26 @@
           backgroundColor: '#000', 
           '-webkit-border-radius': '10px', 
           '-moz-border-radius': '10px', 
-          opacity: 1.0, 
+          opacity: .8, 
           color: '#fff' 
-      } }); 
+      } });
+
+  // use d3 to load a json 
+  d3.json('/harminogram/static/networks/'+inst_prot_class+'_cumul_probs.json', function(network_data){
+
+    // make global copy of network_data 
+    global_network_data = network_data;
+
+    // pass the network data to d3_clustergram 
+    make_d3_clustergram(network_data);
+
+    // turn off the wait sign 
+    $.unblockUI();
+
+  });
+
+
   </script>
-
-  <!-- Clustergram Scripts -->
-  <script src='static/js/d3_clustergram.js'></script>
-  <script src='static/js/load_local_network.js'></script>
-
 
 </body>
 
