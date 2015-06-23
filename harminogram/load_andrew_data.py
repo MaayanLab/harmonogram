@@ -80,23 +80,23 @@ def generate_d3_json():
 					class_mat = np.vstack( (class_mat, data_mat[i,:] ))  
 
 
-		# actual clustering 
-		########################
-		# cluster the matrix, return clust_order
-		clust_order = d3_clustergram.cluster_row_and_column( class_nodes, class_mat, 'euclidean' )
+		# # actual clustering 
+		# ########################
+		# # cluster the matrix, return clust_order
+		# clust_order = d3_clustergram.cluster_row_and_column( class_nodes, class_mat, 'euclidean' )
 
-		# # mock clustering
-		# ############################
-		# print('mock clustering')
-		# clust_order = {}
-		# # mock cluster 
-		# clust_order['clust'] = {}
-		# clust_order['clust']['row'] = range(len(class_nodes['row']))
-		# clust_order['clust']['col'] = range(len(class_nodes['col']))
-		# # mock rank 
-		# clust_order['rank'] = {}
-		# clust_order['rank']['row'] = range(len(class_nodes['row']))
-		# clust_order['rank']['col'] = range(len(class_nodes['col']))
+		# mock clustering
+		############################
+		print('mock clustering')
+		clust_order = {}
+		# mock cluster 
+		clust_order['clust'] = {}
+		clust_order['clust']['row'] = range(len(class_nodes['row']))
+		clust_order['clust']['col'] = range(len(class_nodes['col']))
+		# mock rank 
+		clust_order['rank'] = {}
+		clust_order['rank']['row'] = range(len(class_nodes['row']))
+		clust_order['rank']['col'] = range(len(class_nodes['col']))
 
 		print('generating d3 json')
 

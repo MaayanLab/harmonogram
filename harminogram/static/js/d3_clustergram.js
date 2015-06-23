@@ -422,7 +422,12 @@ function initialize_clustergram(network_data){
   // since these are the nodes that are zoomed into in 2d zooming 
   real_zoom_scale = d3.scale.linear().domain([min_node_num,max_node_num]).range([2,7]).clamp('true');
   // calculate the zoom factor - the more nodes the more zooming allowed
-  real_zoom = real_zoom_scale(col_nodes.length);
+  if (row_nodes.length > col_nodes.length){
+    real_zoom = real_zoom_scale(row_nodes.length);
+  }
+  else{
+    real_zoom = real_zoom_scale(col_nodes.length);
+  }
 
   // set opacity scale 
   max_link = _.max( inst_links, function(d){ return Math.abs(d.value) } )
