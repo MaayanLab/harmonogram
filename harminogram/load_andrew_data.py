@@ -6,14 +6,14 @@ def main():
 	# # load resource classes
 	# load_resource_classes()
 
-	# load resource mapping names 
-	load_resource_real_names()
+	# # load resource mapping names 
+	# load_resource_real_names()
 
 	# # check resource classes
 	# check_resource_classes()
 
-	# # genrate d3 json 
-	# generate_d3_json()
+	# genrate d3 json 
+	generate_d3_json()
 
 def check_resource_classes():
 	import json_scripts
@@ -41,8 +41,9 @@ def generate_d3_json():
 
 	# gene and resource classes 
 	################################# 
+	# gene class 
 	gc = json_scripts.load_to_dict('gene_classes_harminogram.json')
-
+	# resource class 
 	rc = json_scripts.load_to_dict('resource_classes_harminogram.json')
 
 	# loop through classes
@@ -187,85 +188,6 @@ def load_resource_classes():
 	# save resource classes 
 	json_scripts.save_to_json(rc,'resource_classes_harminogram.json','indent')
 
-# load andrew json and convert to scipy array 
-def load_andrew_data():
-	import json_scripts 
-	import scipy
-	import numpy as np 
-
-	# load Andrew's data 
-	matrix = json_scripts.load_to_dict('andrew_data/gene_dataset_cumulprobs_20150609.json')
-
-	# Andrew data format 
-	######################
-	# matrix is a list of dictionaries 
-	# each element of the list has a dictionary with two keys: label and entries
-	# the first element of the list describes the columns of the matrix - label: n.a., entries: resources 
-	# the rest of the rows have gene names and the value of the gene in each resource  
-	# I will convert Andrew's data into 
-	# nodes and data_mat 
-
-	# save row and column data to nodes 
-	nodes = {}
-	nodes['row'] = []
-	nodes['col'] = []
-
-	num_rows = len(matrix)
-
-	# initialize data matrix 
-	data_mat = scipy.zeros([ num_rows, len(matrix[0]['entries']) ])
-
-	# print(type(matrix))
-	# print(len(matrix))
-	# print('\n')
-
-	# loop through the list 
-	for i in range(num_rows):
-
-		# get the inst row of the matrix 
-		inst_row = matrix[i]
-
-		# grab the gene name 
-		inst_name = inst_row['label']
-
-		# grab the list of entries 
-		inst_entries = inst_row['entries'] 
-
-		# gather the resource names 
-		if i == 0:
-
-			# gather resource (columns) 
-			nodes['col'] = inst_row['entries']
-
-		# skip the first line - it has column information
-		if i > 0:
-
-			# save to nodes['row']
-			nodes['row'].append(inst_name)
-
-			# save values to matrix 
-			for j in range(len(inst_entries)):
-
-				# fill in the matrix with the entries from row i 
-				data_mat[i,j] = inst_entries[j]
-
-	print('converting to list')
-
-	# save json of the numpy ready data 
-	#
-	# convert numpy array to list 
-	data_mat = data_mat.tolist()
-
-	# make one dictionary 
-	inst_dict = {}
-	inst_dict['nodes'] = nodes
-	inst_dict['data_mat'] = data_mat 
-
-	print('save to json')
-
-	# save to json 
-	json_scripts.save_to_json(inst_dict,'andrew_data/cumul_probs.json','no_indent')
-	
 # make clustergram
 def make_enrichment_clustergram(enr, dist_type):
 	import d3_clustergram
@@ -287,6 +209,106 @@ def make_enrichment_clustergram(enr, dist_type):
 	d3_json = d3_clustergram.d3_clust_single_value( nodes, clust_order, data_mat, terms_colors )
 
 	return d3_json
+
+# load andrew json and convert to scipy array 
+def load_andrew_data():
+	import json_scripts 
+	import scipy
+	import numpy as np 
+
+	# load Andrew's data 
+	matrix = json_scripts.load_to_dict('andrew_data/gene_dataset_cumulprobs_20150609.json')
+
+	# only keep the resources with real names 
+	rn = json_scripts.load_to_dict('resource_real_names.json')
+
+	# Andrew data format 
+	######################
+	# matrix is a list of dictionaries 
+	# each element of the list has a dictionary with two keys: label and entries
+	# the first element of the list describes the columns of the matrix - label: n.a., entries: resources 
+	# the rest of the rows have gene names and the value of the gene in each resource  
+	# I will convert Andrew's data into 
+	# nodes and data_mat 
+	print('starting to process data')
+
+	# save row and column data to nodes 
+	nodes = {}
+	# initialize a list of genes 
+	nodes['row'] = []
+	# get the good resources 
+	nodes['col'] = rn.keys()
+
+	# get the number of rows in the matrix 
+	num_rows = len(matrix)
+
+	# initialize data matrix
+	# rows - genes
+	# cols - good resources 
+	data_mat = scipy.zeros([ num_rows, len(rn.keys()) ])
+
+	# loop through the list 
+	for i in range(num_rows):
+
+		# get the inst row of the matrix 
+		inst_row = matrix[i]
+
+		# grab the gene name 
+		inst_name = inst_row['label']
+
+		# grab the list of entries - the actual numerical data 
+		inst_entries = inst_row['entries'] 
+
+		# gather the resource names 
+		if i == 0:
+
+			# gather all resource (columns) 
+			all_res = inst_row['entries']
+
+		# skip the first line - it has column information
+		if i > 0:
+
+			# save to nodes['row']
+			nodes['row'].append(inst_name)
+
+			# only add data from good resources
+			######################################
+
+			# save values to matrix 
+			for j in range(len(inst_entries)):
+
+				# only add data from good resources 
+				if all_res[j] in rn:
+
+					# get the inst 
+					inst_data_point = inst_entries[j]
+
+					# get the resource index in the list of good resources - nodes['col']
+					inst_index = nodes['col'].index(all_res[j])
+
+					# fill in the matrix with the entries from row i 
+					data_mat[i,inst_index] = inst_data_point
+
+	# # check that the resources are included in rn 
+	# for inst_res in all_res:
+	# 	if inst_res not in rn:
+	# 		print('\nnot found\t'+inst_res + '\n')
+
+	# save json of the numpy-ready data 
+	#
+	# convert numpy array to list 
+	print('converting matrix to list')
+	data_mat = data_mat.tolist()
+
+	# make one dictionary 
+	inst_dict = {}
+	inst_dict['nodes'] = nodes
+	inst_dict['data_mat'] = data_mat 
+
+	print('save to json')
+
+	# save to json 
+	json_scripts.save_to_json(inst_dict,'andrew_data/cumul_probs.json','no_indent')
 
 # run main
 main()
