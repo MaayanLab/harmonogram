@@ -193,7 +193,8 @@ function make_d3_clustergram(network_data) {
     .attr("text-anchor", "start")
     .attr('full_name',function(d) { return d.name } )
     .style('font-size',default_fs_col+'px')
-    .text(function(d, i) { return d.name; });
+    // remove underscores from name 
+    .text(function(d, i) { return d.name.replace(/_/g, ' ') ; });
 
   // add triangle under rotated labels
   col_label_click
