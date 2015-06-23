@@ -3,8 +3,22 @@ def main():
 	# # load andrew data 
 	# load_andrew_data()
 
-	# genrate d3 json 
-	generate_d3_json()
+	# # load resource classes
+	# load_resource_classes()
+
+	# check resource classes
+	check_resource_classes()
+
+	# # genrate d3 json 
+	# generate_d3_json()
+
+def check_resource_classes():
+	import json_scripts
+
+	# load resource classes 
+	rc = json_scripts.load_to_dict('resource_classes_harminogram.json')
+
+	print(len(rc.keys()))
 
 def generate_d3_json():
 	import json_scripts
@@ -22,9 +36,11 @@ def generate_d3_json():
 
 	print('calculating clustering orders')
 
-	# cluster classes 
+	# gene and resource classes 
 	################################# 
 	gc = json_scripts.load_to_dict('gene_classes_harminogram.json')
+
+	rc = json_scripts.load_to_dict('resource_classes_harminogram.json')
 
 	# loop through classes
 	for inst_class in gc:
@@ -88,6 +104,57 @@ def generate_d3_json():
 		# save visualization json 
 		json_scripts.save_to_json(d3_json,'static/networks/'+inst_class+'_cumul_probs.json','no_indent')
 
+def load_resource_classes():
+	import json_scripts
+	print('loading resource classes')
+
+	# open text file 
+	filename = 'andrew_data/resource_classes.txt'
+	f = open(filename,'r')
+	lines = f.readlines()
+	f.close()
+
+	# add the information into a dictionary 
+	rc = {}
+
+	# loop through the lines
+	for i in range(len(lines)):
+
+		# get a list of line components 
+		inst_line = lines[i].split('\t')
+
+		# get key names from first row 
+		if i != 0:
+
+			# get resource name
+			inst_name = inst_line[0]
+
+			# initialize dictionary 
+			rc[inst_name] = {}
+
+			# dataset name
+			rc[inst_name]['dataset_name'] = inst_line[1]
+
+			# description 
+			rc[inst_name]['description'] = inst_line[2]
+
+			# data type 
+			rc[inst_name]['data_type'] = inst_line[3]
+
+			# data group
+			rc[inst_name]['data_group'] = inst_line[4]
+
+			# association
+			rc[inst_name]['association'] = inst_line[5]
+
+			# attribute type
+			rc[inst_name]['attribute_type'] = inst_line[6]
+
+			# attribute group 
+			rc[inst_name]['attribute_group'] = inst_line[7]
+
+	# save resource classes 
+	json_scripts.save_to_json(rc,'resource_classes_harminogram.json','indent')
 
 # load andrew json and convert to scipy array 
 def load_andrew_data():
@@ -167,7 +234,6 @@ def load_andrew_data():
 
 	# save to json 
 	json_scripts.save_to_json(inst_dict,'andrew_data/cumul_probs.json','no_indent')
-	
 	
 # make clustergram
 def make_enrichment_clustergram(enr, dist_type):
