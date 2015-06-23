@@ -735,6 +735,11 @@ look like the input gene list text title*/
 }
 
 #class_buttons{
-  margin-left: 20px;
+  margin-left: 30px;
   margin-top:10px;
+}
+
+#toggle_order{
+  margin-left: 45px;
+  margin-top: 20px
 }
