@@ -421,14 +421,10 @@ function initialize_clustergram(network_data){
 
   // set up the real zoom (2d zoom) as a function of the number of col_nodes
   // since these are the nodes that are zoomed into in 2d zooming 
-  real_zoom_scale = d3.scale.linear().domain([min_node_num,max_node_num]).range([2,7]).clamp('true');
+  real_zoom_scale_col = d3.scale.linear().domain([min_node_num,max_node_num]).range([2,7]).clamp('true');
+  // 
   // calculate the zoom factor - the more nodes the more zooming allowed
-  if (row_nodes.length > col_nodes.length){
-    real_zoom = real_zoom_scale(row_nodes.length);
-  }
-  else{
-    real_zoom = real_zoom_scale(col_nodes.length);
-  }
+  real_zoom = real_zoom_scale_col(col_nodes.length);
 
   // set opacity scale 
   max_link = _.max( inst_links, function(d){ return Math.abs(d.value) } )
@@ -733,23 +729,18 @@ function reorder_click_row(d,i){
   x_scale.domain(tmp_sort);
 
   // reorder
+  ////////////////////
+  
   // define the t variable as the transition function 
   var t = clust_group.transition().duration(2500);
 
   // reorder matrix
-  t.selectAll(".row")
-    .attr("transform", function(d, i) { return "translate(0," + y_scale(i) + ")"; })
-    .selectAll(".cell")
+  t.selectAll(".cell")
     .attr('x', function(d){ 
-      return x_scale(d.pos_x);
-    })
-  // Move Row Labels
-  // 
-  d3.select('#row_labels').selectAll('.row_label_text')
-    .transition().duration(2500)
-    .attr('transform', function(d, i) { return 'translate(0,' + y_scale(i) + ')'; });
+    return x_scale(d.pos_x);
+  });
 
-  // t.selectAll(".column")
+  // Move Row Labels
   d3.select('#col_labels').selectAll(".col_label_text")
     .transition().duration(2500)
     .attr("transform", function(d, i) { 

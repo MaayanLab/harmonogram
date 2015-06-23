@@ -1,7 +1,8 @@
 Harminogram 6-16-2015
 	I'm going to work on modularizing the visualization code so that I can swap in a canvas for svg and improve the zooming of the original svg visualization. 
 
-	
+
+harmonogram - 	
 
 Harminogram notes 6-10-2015
 
