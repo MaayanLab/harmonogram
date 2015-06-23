@@ -22,72 +22,71 @@ def generate_d3_json():
 
 	print('calculating clustering orders')
 
-	# visualize one class at a time 
+	# cluster classes 
 	################################# 
 	gc = json_scripts.load_to_dict('gene_classes_harminogram.json')
-	# class_mat = scipy.zeros([len(gc['KIN']),len(nodes['col'])])
-	class_mat = np.array([])
 
-	print(len(class_mat))
+	# loop through classes
+	for inst_class in gc:
 
-	# initialize class_nodes for export 
-	class_nodes = {}
-	class_nodes['col'] = nodes['col']
-	class_nodes['row'] = []
+		# initialize class matrix 
+		class_mat = np.array([])
 
-	# loop through the rows and check if they are kinases
-	for i in range(len(nodes['row'])):
+		# initialize class_nodes for export 
+		class_nodes = {}
+		class_nodes['col'] = nodes['col']
+		class_nodes['row'] = []
 
-		# get the index 
-		inst_gs = nodes['row'][i]
+		# loop through the rows and check if they are in the class
+		for i in range(len(nodes['row'])):
 
-		# check if in gc['KIN']
-		if inst_gs in gc['KIN']:
+			# get the index 
+			inst_gs = nodes['row'][i]
 
-			print(inst_gs)
+			# check if in class list 
+			if inst_gs in gc[inst_class]:
 
-			# append kinase name to row 
-			class_nodes['row'].append(inst_gs)
+				print(inst_gs)
 
-			# initialize class_mat if necesary 
-			if len(class_mat) == 0:
-				class_mat = data_mat[i,:]
-			else:
+				# append gene symbol name to row 
+				class_nodes['row'].append(inst_gs)
 
-				# fill in class_mat
-				class_mat = np.vstack( (class_mat, data_mat[i,:] ))  
+				# initialize class_mat if necesary 
+				if len(class_mat) == 0:
+					class_mat = data_mat[i,:]
+				else:
 
-	# check
-	print(class_mat.shape)
+					# fill in class_mat
+					class_mat = np.vstack( (class_mat, data_mat[i,:] ))  
 
 
-	# actual clustering 
-	########################
-	# cluster the matrix, return clust_order
-	clust_order = d3_clustergram.cluster_row_and_column( class_nodes, class_mat, 'euclidean' )
+		# actual clustering 
+		########################
+		# cluster the matrix, return clust_order
+		clust_order = d3_clustergram.cluster_row_and_column( class_nodes, class_mat, 'euclidean' )
 
-	# # mock clustering
-	# ############################
-	# print('mock clustering')
-	# clust_order = {}
-	# # mock cluster 
-	# clust_order['clust'] = {}
-	# clust_order['clust']['row'] = range(len(class_nodes['row']))
-	# clust_order['clust']['col'] = range(len(class_nodes['col']))
-	# # mock rank 
-	# clust_order['rank'] = {}
-	# clust_order['rank']['row'] = range(len(class_nodes['row']))
-	# clust_order['rank']['col'] = range(len(class_nodes['col']))
+		# # mock clustering
+		# ############################
+		# print('mock clustering')
+		# clust_order = {}
+		# # mock cluster 
+		# clust_order['clust'] = {}
+		# clust_order['clust']['row'] = range(len(class_nodes['row']))
+		# clust_order['clust']['col'] = range(len(class_nodes['col']))
+		# # mock rank 
+		# clust_order['rank'] = {}
+		# clust_order['rank']['row'] = range(len(class_nodes['row']))
+		# clust_order['rank']['col'] = range(len(class_nodes['col']))
 
-	print('generating d3 json')
+		print('generating d3 json')
 
-	# generate d3_clust json: return json 
-	d3_json = d3_clustergram.d3_clust_single_value(class_nodes, clust_order, class_mat )
+		# generate d3_clust json: return json 
+		d3_json = d3_clustergram.d3_clust_single_value(class_nodes, clust_order, class_mat )
 
-	print('saving to disk')
+		print('saving to disk')
 
-	# save visualization json 
-	json_scripts.save_to_json(d3_json,'static/networks/network_cumul_probs.json','no_indent')
+		# save visualization json 
+		json_scripts.save_to_json(d3_json,'static/networks/'+inst_class+'_cumul_probs.json','no_indent')
 
 
 # load andrew json and convert to scipy array 
