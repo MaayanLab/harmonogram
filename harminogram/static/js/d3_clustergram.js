@@ -322,7 +322,13 @@ function row_function(row_data) {
     .style('fill', function(d) { 
       // console.log(d)
       // return d.value > 0 ? '#FF0000' : '#1C86EE' ;
-      return d.color;
+      if (d.value != 0){
+        inst_color = d.color;
+      }
+      else{
+        inst_color = null;
+      }
+      return inst_color ;
     } )
     .on("mouseover", function(p) {
       d3.selectAll(".row_label_text text").classed("active", function(d, i) { return i == p.pos_y; });

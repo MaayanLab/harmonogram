@@ -21,6 +21,9 @@ def generate_d3_json():
 
 	print('calculating clustering orders')
 
+	# visualize kinases 
+	
+
 	# # actual clustering 
 	# ########################
 	# # cluster the matrix, return clust_order
