@@ -386,17 +386,21 @@ function initialize_clustergram(network_data){
   row_nodes  = network_data.row_nodes ;
   inst_links = network_data.links; 
 
+  // define screen limits
+  min_screen_width = 800;
+  max_screen_width = 2500;
+
   // initialize visualization size
   set_visualization_size();
 
   // define screen width font size scale 
-  scale_fs_screen = d3.scale.linear().domain([800,2000]).range([0.5,1.0]).clamp('true');
+  scale_fs_screen = d3.scale.linear().domain([min_screen_width,max_screen_width]).range([0.75,1.35]).clamp('true');
 
   // font size controls 
   // scale default font size: input domain is the number of nodes
-  min_node_num = 30;
+  min_node_num = 10;
   max_node_num = 2000;
-  min_fs = 0.5;
+  min_fs = 0.05 * scale_fs_screen(screen_width);
   // reduce or increase the font size based on the total screen width 
   max_fs = 15 * scale_fs_screen(screen_width);
   // output range is the font size 
@@ -406,9 +410,10 @@ function initialize_clustergram(network_data){
   // and zooming is required 
   // 1: do not increase font size while zooming
   // 0: increase font size while zooming
+  min_fs_zoom = 1.0;
   max_fs_zoom = 0.0; 
   // define the scaling for the reduce font size factor 
-  scale_reduce_font_size_factor = d3.scale.log().domain([min_node_num,max_node_num]).range([1,max_fs_zoom]).clamp('true');
+  scale_reduce_font_size_factor = d3.scale.log().domain([min_node_num,max_node_num]).range([min_fs_zoom,max_fs_zoom]).clamp('true');
   // define the scaling for the zoomability of the adjacency matrix
   scale_zoom  = d3.scale.log().domain([min_node_num,max_node_num]).range([2,17]).clamp('true');
 
@@ -422,9 +427,11 @@ function initialize_clustergram(network_data){
   // set up the real zoom (2d zoom) as a function of the number of col_nodes
   // since these are the nodes that are zoomed into in 2d zooming 
   real_zoom_scale_col = d3.scale.linear().domain([min_node_num,max_node_num]).range([2,7]).clamp('true');
-  // 
+  // scale the zoom based on the screen size
+  // smaller screens can zoom in more, compensates for reduced font size with small screen 
+  real_zoom_scale_screen = d3.scale.linear().domain([min_screen_width,max_screen_width]).range([3,1]).clamp('true');
   // calculate the zoom factor - the more nodes the more zooming allowed
-  real_zoom = real_zoom_scale_col(col_nodes.length);
+  real_zoom = real_zoom_scale_col(col_nodes.length)*real_zoom_scale_screen(screen_width);
 
   // set opacity scale 
   max_link = _.max( inst_links, function(d){ return Math.abs(d.value) } )
@@ -440,7 +447,7 @@ function set_visualization_size(){
   // define label scale parameters: the more characters in the longest name, the larger the margin 
   min_num_char = 5;
   max_num_char = 40;
-  min_label_width = 50;
+  min_label_width = 60;
   max_label_width = 200;
   label_scale = d3.scale.linear().domain([min_num_char,max_num_char]).range([min_label_width,max_label_width]).clamp('true');
 
@@ -730,7 +737,7 @@ function reorder_click_row(d,i){
 
   // reorder
   ////////////////////
-  
+
   // define the t variable as the transition function 
   var t = clust_group.transition().duration(2500);
 
