@@ -1,7 +1,7 @@
 # this will load Andrew's data 
 def main():
-	# load andrew data 
-	load_andrew_data()
+	# # load andrew data 
+	# load_andrew_data()
 
 	# # load resource classes
 	# load_resource_classes()
@@ -12,8 +12,8 @@ def main():
 	# # check resource classes
 	# check_resource_classes()
 
-	# # genrate d3 json 
-	# generate_d3_json()
+	# genrate d3 json 
+	generate_d3_json()
 
 def check_resource_classes():
 	import json_scripts
@@ -130,8 +130,8 @@ def load_resource_real_names():
 		# if there is a real name, keep the resource 
 		if len(inst_line) == 2:
 			
-			# add the resource and real name to dict 
-			rn[inst_line[0]] = inst_line[1]
+			# add the resource and real name to dict - no spaces 
+			rn[inst_line[0]] = inst_line[1].replace(' ','_')
 
 	# save dictionary to json 
 	json_scripts.save_to_json(rn,'resource_real_names.json','indent')
