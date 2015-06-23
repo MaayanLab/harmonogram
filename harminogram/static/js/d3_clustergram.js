@@ -394,15 +394,19 @@ function initialize_clustergram(network_data){
   set_visualization_size();
 
   // define screen width font size scale 
+  // having a small screen width should reduce the font size of the columns 
+  // this will be compensated by increasing the available real zoom 
   scale_fs_screen = d3.scale.linear().domain([min_screen_width,max_screen_width]).range([0.75,1.35]).clamp('true');
 
   // font size controls 
   // scale default font size: input domain is the number of nodes
   min_node_num = 10;
   max_node_num = 2000;
-  min_fs = 0.05 * scale_fs_screen(screen_width);
-  // reduce or increase the font size based on the total screen width 
-  max_fs = 15 * scale_fs_screen(screen_width);
+  // max and min font sizes 
+  // min_fs = 0.05 * scale_fs_screen(screen_width);
+  // max_fs = 15 * scale_fs_screen(screen_width);
+  min_fs = 0.05;
+  max_fs = 15;
   // output range is the font size 
   scale_font_size = d3.scale.log().domain([min_node_num,max_node_num]).range([max_fs,min_fs]).clamp('true');
 
@@ -417,9 +421,11 @@ function initialize_clustergram(network_data){
   // define the scaling for the zoomability of the adjacency matrix
   scale_zoom  = d3.scale.log().domain([min_node_num,max_node_num]).range([2,17]).clamp('true');
 
-  // font size is a variable since it gets scaled down with zooming  
+  // the default font sizes are set here 
   default_fs_row = scale_font_size(row_nodes.length); 
-  default_fs_col = scale_font_size(col_nodes.length); 
+  // the colum font size is scaled by the width 
+  default_fs_col = scale_font_size(col_nodes.length)*scale_fs_screen(screen_width); 
+
   // calculate the reduce font-size factor: 0 for no reduction in font size and 1 for full reduction of font size
   reduce_font_size_factor_row = scale_reduce_font_size_factor(row_nodes.length);
   reduce_font_size_factor_col = scale_reduce_font_size_factor(col_nodes.length);
@@ -429,7 +435,7 @@ function initialize_clustergram(network_data){
   real_zoom_scale_col = d3.scale.linear().domain([min_node_num,max_node_num]).range([2,7]).clamp('true');
   // scale the zoom based on the screen size
   // smaller screens can zoom in more, compensates for reduced font size with small screen 
-  real_zoom_scale_screen = d3.scale.linear().domain([min_screen_width,max_screen_width]).range([3,1]).clamp('true');
+  real_zoom_scale_screen = d3.scale.linear().domain([min_screen_width,max_screen_width]).range([5,1]).clamp('true');
   // calculate the zoom factor - the more nodes the more zooming allowed
   real_zoom = real_zoom_scale_col(col_nodes.length)*real_zoom_scale_screen(screen_width);
 

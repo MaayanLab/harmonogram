@@ -498,7 +498,7 @@ because the sidebar will be closed*/
 
 #clust_instruct_container{
   display: block;
-  padding-left: 10px;
+  padding-left: 0px;
   border-left: 0px;
   /*border-style: solid;*/
   /*border-width: 5px;*/
