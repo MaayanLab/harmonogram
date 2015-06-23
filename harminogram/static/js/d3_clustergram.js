@@ -444,7 +444,7 @@ function set_visualization_size(){
   min_num_char = 5;
   max_num_char = 40;
   min_label_width = 50;
-  max_label_width = 250;
+  max_label_width = 200;
   label_scale = d3.scale.linear().domain([min_num_char,max_num_char]).range([min_label_width,max_label_width]).clamp('true');
 
   // set col_label_width and row_label_width

@@ -1,7 +1,7 @@
 # this will load Andrew's data 
 def main():
-	# # load andrew data 
-	# load_andrew_data()
+	# load andrew data 
+	load_andrew_data()
 
 	# # load resource classes
 	# load_resource_classes()
@@ -12,8 +12,8 @@ def main():
 	# # check resource classes
 	# check_resource_classes()
 
-	# genrate d3 json 
-	generate_d3_json()
+	# # genrate d3 json 
+	# generate_d3_json()
 
 def check_resource_classes():
 	import json_scripts
@@ -236,8 +236,8 @@ def load_andrew_data():
 	nodes = {}
 	# initialize a list of genes 
 	nodes['row'] = []
-	# get the good resources 
-	nodes['col'] = rn.keys()
+	# get the good resources - get the real names 
+	nodes['col'] = rn.values()
 
 	# get the number of rows in the matrix 
 	num_rows = len(matrix)
@@ -284,7 +284,8 @@ def load_andrew_data():
 					inst_data_point = inst_entries[j]
 
 					# get the resource index in the list of good resources - nodes['col']
-					inst_index = nodes['col'].index(all_res[j])
+					# translate the long name (with underscores) to the real name 
+					inst_index = nodes['col'].index( rn[all_res[j]] )
 
 					# fill in the matrix with the entries from row i 
 					data_mat[i,inst_index] = inst_data_point
