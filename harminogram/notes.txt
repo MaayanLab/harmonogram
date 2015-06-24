@@ -16,3 +16,5 @@ Harminogram notes 6-10-2015
 
 	I'm outputting toy data to visualize. 
 
+
+/v2/apps 8080 

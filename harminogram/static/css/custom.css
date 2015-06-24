@@ -493,7 +493,10 @@ because the sidebar will be closed*/
   /*set height here so that it will 
   look normal with out clustergram*/
   /*height: 950px;*/
-  margin-left: 260px;
+
+  /*reduced sidebar width
+  margin-left used to be 260px*/
+  margin-left: 220px;
 }
 
 #clust_instruct_container{
@@ -505,7 +508,8 @@ because the sidebar will be closed*/
   /*border-color: #f5f5f5;*/
   /*set up fixed positions*/
   position:absolute;
-  width:245px;
+  /*reduce sidebar width - used to ge 245px*/
+  width:200px;
 
 }
 
@@ -731,15 +735,21 @@ look like the input gene list text title*/
 
 /*title for the visualization*/
 #viz_website_title{
-  font-size: 40px;
+  /*reduced width sidebar - font size 
+  used to be 40*/
+  font-size: 33px;
 }
 
 #class_buttons{
-  margin-left: 30px;
+  /*reduced width sidebar 
+  margin-left used to be 30*/
+  margin-left: 15px;
   margin-top:10px;
 }
 
 #toggle_order{
-  margin-left: 45px;
+  /*reduced width sidebar 
+  margin-left used to be 45*/
+  margin-left: 30px;
   margin-top: 20px
 }

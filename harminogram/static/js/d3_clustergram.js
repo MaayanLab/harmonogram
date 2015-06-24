@@ -511,7 +511,9 @@ function set_visualization_size(){
 
   // define offsets for permanent row and col margins 
   // takes into consideration sidebar
-  container_row_offset = 280;
+  // reducing sidebar width, row_offset used to be 280 when left margin was 260
+  // now, left margin is reduced to 220 and row_offset can be 240
+  container_row_offset = 240;
   // takes into consideration footer and header margin
   container_col_offset = 50;
 
