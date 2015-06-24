@@ -403,10 +403,10 @@ function initialize_clustergram(network_data){
   min_node_num = 10;
   max_node_num = 2000;
   // max and min font sizes 
-  // min_fs = 0.05 * scale_fs_screen(screen_width);
-  // max_fs = 15 * scale_fs_screen(screen_width);
-  min_fs = 0.05;
-  max_fs = 15;
+  min_fs = 0.05 * scale_fs_screen(screen_width);
+  max_fs = 15 * scale_fs_screen(screen_width);
+  // min_fs = 0.05;
+  // max_fs = 15;
   // output range is the font size 
   scale_font_size = d3.scale.log().domain([min_node_num,max_node_num]).range([max_fs,min_fs]).clamp('true');
 
@@ -424,7 +424,7 @@ function initialize_clustergram(network_data){
   // the default font sizes are set here 
   default_fs_row = scale_font_size(row_nodes.length); 
   // the colum font size is scaled by the width 
-  default_fs_col = scale_font_size(col_nodes.length)*scale_fs_screen(screen_width); 
+  default_fs_col = scale_font_size(col_nodes.length); //*scale_fs_screen(screen_width); 
 
   // calculate the reduce font-size factor: 0 for no reduction in font size and 1 for full reduction of font size
   reduce_font_size_factor_row = scale_reduce_font_size_factor(row_nodes.length);
