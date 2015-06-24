@@ -135,7 +135,20 @@ function make_d3_clustergram(network_data) {
     .append('g')
     .attr('class','row_label_text')
     .attr('transform', function(d, i) { return "translate(0," + y_scale(i) + ")"; })
-    .on('click', reorder_click_row );
+    .on('click', reorder_click_row )
+    .on('mouseover', function(){
+      // highlight text
+      d3.select(this).select('text')
+        .style('font-weight','bold');
+    })
+    .on("mouseout", function mouseout() {
+      // d3.selectAll("text").classed("active", false);
+      d3.select(this).select('text')
+        .style('font-weight','normal');
+      // reset highlighted col 
+      d3.select('#clicked_row')
+        .style('font-weight','bold');
+    });
 
   // append row label text 
   row_label_obj.append('text')
@@ -186,7 +199,20 @@ function make_d3_clustergram(network_data) {
     .attr('class','col_label_click')
     // rotate column labels 
     .attr('transform', 'translate('+x_scale.rangeBand()/2+','+ x_offset_click +') rotate(45)')
-    .on('click', reorder_click_col );
+    .on('click', reorder_click_col )
+    .on('mouseover', function(){
+      // highlight text
+      d3.select(this).select('text')
+        .style('font-weight','bold');
+    })
+    .on("mouseout", function mouseout() {
+      // d3.selectAll("text").classed("active", false);
+      d3.select(this).select('text')
+        .style('font-weight','normal');
+      // reset highlighted col 
+      d3.select('#clicked_col')
+        .style('font-weight','bold');
+    });
 
   // add column label 
   col_label_click
@@ -218,11 +244,8 @@ function make_d3_clustergram(network_data) {
     // .attr('fill','#eee')
     // change the colors of the triangles 
     .attr('fill', function(d) {
-      // look up color 
-      console.log(d.data_group)
-      // name
+      // look up color using data_group
       inst_color = res_color_dict[d.data_group];
-      console.log(inst_color)
       return inst_color;
     });
 
@@ -769,7 +792,6 @@ function zoomed() {
   // change the font size of the labels 
   d3.selectAll('.row_label_text').select('text').style('font-size', fin_font);
 
-
   // reduce font-size to compensate for zoom 
   // calculate the recuction of the font size 
   reduce_font_size = d3.scale.linear().domain([0,1]).range([1,zoom_x]).clamp('true');
@@ -779,6 +801,12 @@ function zoomed() {
   fin_font = fin_font + 'px';
   // change the font size of the labels 
   d3.selectAll('.col_label_text').select('text').style('font-size', fin_font);
+
+
+  // reset highlighted col 
+  d3.select('#clicked_col')
+    // .style('font-size',default_fs_col*1.25)
+    .style('font-weight','bold');
 };
 
 // reorder columns with row click 
@@ -787,16 +815,19 @@ function reorder_click_row(d,i){
   // get inst row (gene)
   inst_gene = d3.select(this).select('text').text();
 
-  // set font to bold 
-  d3.selectAll('.row_label_text').select('text').style('font-weight','normal')
-  d3.select(this).select('text').style('font-weight','bold');
+  // highlight clicked column 
+  // first un-highlight all others 
+  d3.selectAll('.rol_label_text').select('text')
+    .style('font-weight','normal');
+  // remove previous id 
+  d3.select('#clicked_row')
+    .attr('id','');
 
-  // set rect to increased opacity 
-  d3.selectAll('.row_label_text').select('rect').style('opacity',0.3);
-  d3.select(this).select('rect').style('opacity',0.5)
+  // highlight current 
+  d3.select(this).select('text')
+    .style('font-weight','bold')
+    .attr('id','clicked_row');
 
-  // set rect opacity higher 
-  
   // find the row number of this term from row_nodes 
   // gather row node names 
   tmp_arr = []
@@ -845,17 +876,18 @@ function reorder_click_col(d,i){
   // get inst col (term)
   inst_term = d3.select(this).select('text').attr('full_name')
 
-  // add outline 
-  d3.selectAll('.col_label_text').select('rect').style('stroke-width',0)
-  d3.select(this).select('rect').style('stroke','black').style('stroke-width',1);
+  // highlight clicked column 
+  // first un-highlight all others 
+  d3.selectAll('.col_label_text').select('text')
+    .style('font-weight','normal');
+  // remove previous id 
+  d3.select('#clicked_col')
+    .attr('id','');
 
-  // set font to bold 
-  d3.selectAll('.col_label_text').select('text').style('font-weight','normal')
-  d3.select(this).select('text').style('font-weight','bold');
-
-  // set rect to increased opacity 
-  d3.selectAll('.col_label_text').select('rect').style('opacity',0.6);
-  d3.select(this).select('rect').style('opacity',0.9)
+  // highlight current 
+  d3.select(this).select('text')
+    .style('font-weight','bold')
+    .attr('id','clicked_col');
 
   // find the column number of this term from col_nodes 
   // gather column node names 
