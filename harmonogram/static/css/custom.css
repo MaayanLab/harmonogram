@@ -510,7 +510,8 @@ because the sidebar will be closed*/
   position:absolute;
   /*reduce sidebar width - used to ge 245px*/
   width:200px;
-
+  margin-left: 10px;
+  padding-right: 15px;
 }
 
 #website_title{
@@ -606,6 +607,7 @@ because the sidebar will be closed*/
   font-weight: 300;
   /*clear float left*/
   clear:both;
+  padding-left: 10px;
 }
 
 /*homepage container for gmt labels in homepage*/
@@ -617,6 +619,7 @@ because the sidebar will be closed*/
 #viz_gmt_labels{
   margin-top: 0px;
   margin-bottom: 20px;
+  display: none;
 }
 
 /*reduce the size of the text in the viz label*/
@@ -635,6 +638,7 @@ look like the input gene list text title*/
   margin-bottom: 10px;
   font-size: 14px;
   font-weight: 300;
+  padding-left: 10px;
 }
 
 .initial_paragraph{
@@ -737,7 +741,9 @@ look like the input gene list text title*/
 #viz_website_title{
   /*reduced width sidebar - font size 
   used to be 40*/
-  font-size: 33px;
+  font-size: 32px;
+  margin-top: 15px;
+  margin-bottom: 5px;
 }
 
 #class_buttons{

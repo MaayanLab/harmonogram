@@ -33,3 +33,21 @@ function load_class_clustergram(inst_prot_class){
 
 	};
 };
+
+function highlight_resource_types(){
+	console.log('here');
+
+	res_hexcodes = ['#097054','#FFDE00','#6599FF','#FF9900','#834C24','#003366','#1F1209']
+
+	// get all data groups
+	all_groups = [];
+
+	// loop through col_nodes
+	for (i=0; i<col_nodes.length; i++){
+		all_groups.push( col_nodes[i]['data_group'] ); 
+	};
+	
+	// get unique 
+	all_groups = _.uniq(all_groups);
+
+};

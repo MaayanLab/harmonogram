@@ -134,7 +134,7 @@
                   <div id='viz_gmt_labels'></div>
 
                   <div id='title_viz_instruct_text'>About:</div>
-                  <div class='viz_instruct_text'> The clustergram visualizes gene appearance in Harmonozome resources. Genes are shown as rows and resources as columns. The gene occurance value is normalized relative to the other genes apearing in the resource. </div>
+                  <div class='viz_instruct_text'> The clustergram visualizes gene appearance in Harmonozome resources. Genes are shown as rows and resources as columns. The gene occurance value is normalized relative to the occurance of other genes in the resource. </div>
 
                   <!-- button container -->
                   <div>
@@ -312,6 +312,9 @@
 
     // pass the network data to d3_clustergram 
     make_d3_clustergram(network_data);
+
+    // highlight resource types - set up type/color association
+    highlight_resource_types();
 
     // turn off the wait sign 
     $.unblockUI();
