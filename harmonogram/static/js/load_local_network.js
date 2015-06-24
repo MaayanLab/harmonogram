@@ -65,31 +65,34 @@ function highlight_resource_types(){
 		.selectAll('row')
 		.data(all_groups)
 		.enter()
-		.append('row');
+		.append('row')
+		.style('padding-top','15px');
 
-	// // add paragraphs 
-	// key_divs
-	// 	.append('div')
-	// 	.attr('class-xs-3')
-	// 	// .text(function(d){ console.log(d); return res_color_dict[d]; })
-	// 	.text('x')
-	// 	// .style('width','10px')
-	// 	// .style('height','10px')
-	// 	// .style('fill','red')
-
+	// add color 
 	key_divs
 		.append('div')
 		.attr('class','col-xs-2')
-		.append('text')
-		.text('x')
+		// get rid of excess padding 
+		.style('padding-left','10px')
+		.style('padding-right','0px')
+		.style('padding-top','4px')
+		.append('div')
+		.style('width','12px')
+		.style('height','12px')
+		.style('background-color', function(d){
+			return res_color_dict[d];
+		})
 
+	// add names 
 	key_divs
 		.append('div')
 		.attr('class','col-xs-10 res_names_in_key')
 		.append('text')
-		.text(function(d){ return d.replace(/_/g, ' ') ;})
+		.text(function(d){ 
+			inst_res = d.replace(/_/g, ' ');
+			inst_res = _(inst_res).capitalize();
+			return inst_res ;
+		})
 
-		// .style('float','left')
-		// .style('clear','left')
 
 };
