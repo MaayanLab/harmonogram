@@ -634,6 +634,9 @@ function reset_visualization_size(){
 
   // pass the network data to d3_clustergram 
   make_d3_clustergram(global_network_data);
+  
+  // turn off the wait sign 
+  $.unblockUI();
 };
 
 // define zoomed function 
@@ -896,5 +899,17 @@ function timeout_resize(){
   // clear timeout
   clearTimeout(doit);
 
+  // set up wait message before request is made 
+  $.blockUI({ css: { 
+          border: 'none', 
+          padding: '15px', 
+          backgroundColor: '#000', 
+          '-webkit-border-radius': '10px', 
+          '-moz-border-radius': '10px', 
+          opacity: .8, 
+          color: '#fff' 
+      } });
+
   doit = setTimeout( reset_visualization_size, 500)  ;
+
 };
