@@ -51,6 +51,7 @@ Mac specific
 
 
 # example building docker: enrichrgram example  
+###################################################
 	
 	# build the image (delete old ones using rmi)
 	# e.g. docker rmi <image id> 
