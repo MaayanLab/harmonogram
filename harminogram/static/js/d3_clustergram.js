@@ -53,6 +53,7 @@ function make_d3_clustergram(network_data) {
   clust_group = d3.select("#svg_div")
       .append("svg")
       .attr('id', 'main_svg')
+      // the svg can be larger than the visualization - use svg_height and svg_width
       .attr("width",  svg_width  + margin.left + margin.right + spillover_x_offset)
       .attr("height", svg_height + margin.top  + margin.bottom)
       .attr('border',1)
@@ -67,7 +68,7 @@ function make_d3_clustergram(network_data) {
     .attr("class", "background")
     .attr('id','grey_background')
     .attr("width", svg_width)
-    .attr("height", svg_height);
+    .attr("height", viz_height);
 
   // make rows 
   // use matrix for the data join, which contains a two dimensional 
@@ -101,7 +102,7 @@ function make_d3_clustergram(network_data) {
   vert_lines
     .append('line')
     .attr('x1',0)
-    .attr('x2',-20*svg_height)
+    .attr('x2',-20*viz_height)
     .style('stroke-width', border_width+'px')
 
 
@@ -390,23 +391,30 @@ function initialize_clustergram(network_data){
   min_screen_width = 800;
   max_screen_width = 2500;
 
+  // define screen limits
+  min_viz_width = 400;
+  max_viz_width = 2000;
+
   // initialize visualization size
   set_visualization_size();
-
-  // define screen width font size scale 
-  // having a small screen width should reduce the font size of the columns 
-  // this will be compensated by increasing the available real zoom 
-  scale_fs_screen = d3.scale.linear().domain([min_screen_width,max_screen_width]).range([0.75,1.35]).clamp('true');
 
   // font size controls 
   // scale default font size: input domain is the number of nodes
   min_node_num = 10;
   max_node_num = 2000;
+
+  // // scale col and row font size 
+  // ///////////////////////////////
+  // // max and min font sizes 
+  // min_fs = 0.01 * scale_fs_screen(screen_width);
+  // max_fs = 15 * scale_fs_screen(screen_width);
+
+  // scale only col font size 
+  ///////////////////////////////
   // max and min font sizes 
-  min_fs = 0.05 * scale_fs_screen(screen_width);
-  max_fs = 15 * scale_fs_screen(screen_width);
-  // min_fs = 0.05;
-  // max_fs = 15;
+  min_fs = 0.05;
+  max_fs = 15;
+
   // output range is the font size 
   scale_font_size = d3.scale.log().domain([min_node_num,max_node_num]).range([max_fs,min_fs]).clamp('true');
 
@@ -414,17 +422,24 @@ function initialize_clustergram(network_data){
   // and zooming is required 
   // 1: do not increase font size while zooming
   // 0: increase font size while zooming
-  min_fs_zoom = 1.0;
+  // allow some increase in font size when zooming
+  min_fs_zoom = 0.95;
+  // allow full increase in font size when zooming
   max_fs_zoom = 0.0; 
   // define the scaling for the reduce font size factor 
   scale_reduce_font_size_factor = d3.scale.log().domain([min_node_num,max_node_num]).range([min_fs_zoom,max_fs_zoom]).clamp('true');
-  // define the scaling for the zoomability of the adjacency matrix
-  scale_zoom  = d3.scale.log().domain([min_node_num,max_node_num]).range([2,17]).clamp('true');
+  // // define the scaling for the zoomability of the adjacency matrix
+  // scale_zoom  = d3.scale.log().domain([min_node_num,max_node_num]).range([2,17]).clamp('true');
+
+  // define screen width font size scale 
+  // having a small screen width should reduce the font size of the columns 
+  // this will be compensated by increasing the available real zoom 
+  scale_fs_screen = d3.scale.linear().domain([min_viz_width,max_viz_width]).range([0.55,1.35]).clamp('true');
 
   // the default font sizes are set here 
-  default_fs_row = scale_font_size(row_nodes.length); 
+  default_fs_row = scale_font_size(row_nodes.length)* scale_fs_screen(viz_height); 
   // the colum font size is scaled by the width 
-  default_fs_col = scale_font_size(col_nodes.length); //*scale_fs_screen(screen_width); 
+  default_fs_col = scale_font_size(col_nodes.length)* scale_fs_screen(viz_width); 
 
   // calculate the reduce font-size factor: 0 for no reduction in font size and 1 for full reduction of font size
   reduce_font_size_factor_row = scale_reduce_font_size_factor(row_nodes.length);
@@ -432,10 +447,10 @@ function initialize_clustergram(network_data){
 
   // set up the real zoom (2d zoom) as a function of the number of col_nodes
   // since these are the nodes that are zoomed into in 2d zooming 
-  real_zoom_scale_col = d3.scale.linear().domain([min_node_num,max_node_num]).range([2,7]).clamp('true');
+  real_zoom_scale_col = d3.scale.linear().domain([min_node_num,max_node_num]).range([2,5]).clamp('true');
   // scale the zoom based on the screen size
   // smaller screens can zoom in more, compensates for reduced font size with small screen 
-  real_zoom_scale_screen = d3.scale.linear().domain([min_screen_width,max_screen_width]).range([5,1]).clamp('true');
+  real_zoom_scale_screen = d3.scale.linear().domain([min_screen_width,max_screen_width]).range([2,1]).clamp('true');
   // calculate the zoom factor - the more nodes the more zooming allowed
   real_zoom = real_zoom_scale_col(col_nodes.length)*real_zoom_scale_screen(screen_width);
 
@@ -521,20 +536,40 @@ function set_visualization_size(){
   svg_width  = width_clust_container  - svg_x_offset - row_label_width ;
   svg_height = height_clust_container - svg_y_offset - col_label_width ;
 
-  // set zoom factor 
-  zoom_factor = (svg_width/col_nodes.length)/(svg_height/row_nodes.length)
+  // define a visualization size, which may be smaller than the svg size if
+  // there are a small number of rows 
+  // or if there are more columns than rows 
+  //////////////////////////////////////////////////
 
+  // viz_width
+  ////////////////////////
+  // set up a scale that will prevent the visualization
+  // from stretching a few rows across the entire width 
+  prevent_col_stetch = d3.scale.linear().domain([1,20]).range([0.05,1]).clamp('true');
+
+  viz_width = svg_width * prevent_col_stetch(col_nodes.length) ; 
+
+  // viz_height 
+  ////////////////
   // ensure that width of rects is not less than height 
-  // !! needs to be fixed, need more symmetry in the panning/zoom rules 
-  if (zoom_factor < 1){
+  if (col_nodes.length > row_nodes.length){
     // scale the height 
-    svg_height = svg_width*(row_nodes.length/col_nodes.length);
+    viz_height = svg_width*(row_nodes.length/col_nodes.length);
+
+    // make sure that this scaling does not cause the viz to be taller 
+    // than the svg 
+    if (viz_height > svg_height){
+      viz_height = svg_height;
+    };
+  }
+  // use the unaltered height 
+  else{
+    viz_height = svg_height;
   };
 
-  // scaling functions 
-  // scale used to size rects 
-  x_scale = d3.scale.ordinal().rangeBands([0, svg_width]) ;
-  y_scale = d3.scale.ordinal().rangeBands([0, svg_height]); 
+  // scaling functions used to position tiles 
+  x_scale = d3.scale.ordinal().rangeBands([0, viz_width]) ;
+  y_scale = d3.scale.ordinal().rangeBands([0, viz_height]); 
 
   // Sort rows and columns 
   orders = {
@@ -555,9 +590,9 @@ function set_visualization_size(){
   // define border width 
   border_width = x_scale.rangeBand()/16.66;
 
-  // define the zoom switch value
+  // define the zoom switch value - use viz_width and viz_height
   // switch from 1 to 2d zoom 
-  zoom_switch = (svg_width/col_nodes.length)/(svg_height/row_nodes.length);
+  zoom_switch = (viz_width/col_nodes.length)/(viz_height/row_nodes.length);
 };
 
 // recalculate the size of the visualization
