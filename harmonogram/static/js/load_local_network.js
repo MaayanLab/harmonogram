@@ -58,4 +58,38 @@ function highlight_resource_types(){
 		res_color_dict[all_groups[i]] = res_hexcodes[i];
 	};
 
+	// add color key 
+	////////////////////
+	// add keys 
+	key_divs = d3.select('#res_color_key_div')
+		.selectAll('row')
+		.data(all_groups)
+		.enter()
+		.append('row');
+
+	// // add paragraphs 
+	// key_divs
+	// 	.append('div')
+	// 	.attr('class-xs-3')
+	// 	// .text(function(d){ console.log(d); return res_color_dict[d]; })
+	// 	.text('x')
+	// 	// .style('width','10px')
+	// 	// .style('height','10px')
+	// 	// .style('fill','red')
+
+	key_divs
+		.append('div')
+		.attr('class','col-xs-2')
+		.append('text')
+		.text('x')
+
+	key_divs
+		.append('div')
+		.attr('class','col-xs-10 res_names_in_key')
+		.append('text')
+		.text(function(d){ return d.replace(/_/g, ' ') ;})
+
+		// .style('float','left')
+		// .style('clear','left')
+
 };

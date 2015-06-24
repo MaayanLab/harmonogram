@@ -603,7 +603,7 @@ because the sidebar will be closed*/
   margin-top: 5px;
   padding-top:5px;
   margin-bottom: 5px;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 300;
   /*clear float left*/
   clear:both;
@@ -764,3 +764,29 @@ look like the input gene list text title*/
   font-size: 12px;
 }
 
+/* title for res_key */
+#title_res_color_key{
+  width:99%;
+  margin: 0 auto;
+  color:#333;
+  text-align: left;
+  margin-top: 20px;
+  padding-top:5px;
+  margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: 300;
+  /*clear float left*/
+  clear:both;
+  padding-left: 10px;
+}
+
+/*div holding res color key */
+#res_color_key_div{
+  margin-top: 0px;
+}
+
+/*resource names in key*/
+.res_names_in_key{
+  padding-left: 0px;
+  padding-right: 0px;
+}
