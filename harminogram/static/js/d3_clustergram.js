@@ -394,6 +394,8 @@ function initialize_clustergram(network_data){
   // define screen limits
   min_viz_width = 400;
   max_viz_width = 2000;
+  min_viz_height = 600;
+  max_viz_height = 1500;
 
   // initialize visualization size
   set_visualization_size();
@@ -434,12 +436,19 @@ function initialize_clustergram(network_data){
   // define screen width font size scale 
   // having a small screen width should reduce the font size of the columns 
   // this will be compensated by increasing the available real zoom 
-  scale_fs_screen = d3.scale.linear().domain([min_viz_width,max_viz_width]).range([0.55,1.35]).clamp('true');
+  scale_fs_screen_width = d3.scale.linear().domain( [min_viz_width,max_viz_width]).range([0.75,1.15]).clamp('true');
+  scale_fs_screen_height = d3.scale.linear().domain([min_viz_width,max_viz_width]).range([0.75,1.15]).clamp('true');
 
   // the default font sizes are set here 
-  default_fs_row = scale_font_size(row_nodes.length)* scale_fs_screen(viz_height); 
+  default_fs_row = scale_font_size(row_nodes.length)* scale_fs_screen_height(viz_height); 
   // the colum font size is scaled by the width 
-  default_fs_col = scale_font_size(col_nodes.length)* scale_fs_screen(viz_width); 
+  default_fs_col = scale_font_size(col_nodes.length)* scale_fs_screen_width(viz_width); 
+
+  // correct for forcing the tiles to be squares - if theya re forced, then use the col font size scaling on the rows 
+  if (force_square == 1){
+    // scale the row font size by the col scaling  
+    default_fs_row = default_fs_col;
+  };
 
   // calculate the reduce font-size factor: 0 for no reduction in font size and 1 for full reduction of font size
   reduce_font_size_factor_row = scale_reduce_font_size_factor(row_nodes.length);
@@ -556,15 +565,31 @@ function set_visualization_size(){
     // scale the height 
     viz_height = svg_width*(row_nodes.length/col_nodes.length);
 
+    // keep track of whether or not a force square has occurred 
+    // so that I can adjust the font accordingly 
+    // here it has
+    force_square = 1;
+
     // make sure that this scaling does not cause the viz to be taller 
     // than the svg 
     if (viz_height > svg_height){
+      // make the height equal to the width, to force square tiles - rather than thin tiles that 
+      // are taller than they are wide 
       viz_height = svg_height;
+
+      // keep track of whether or not a force square has occurred 
+      // here it has not
+      force_square = 0;
     };
   }
   // use the unaltered height 
   else{
+    // the height will be calculated normally - leading to wide tiles 
     viz_height = svg_height;
+
+    // keep track of whether or not a force square has occurred 
+    // here it has not
+    force_square = 0;
   };
 
   // scaling functions used to position tiles 
