@@ -24,6 +24,10 @@ function make_d3_clustergram(network_data) {
   d3.select('#footer_div')
     .style('margin-left','0px');
 
+
+  // highlight resource types - set up type/color association
+  highlight_resource_types();
+
   // define the variable zoom, a d3 method 
   zoom = d3.behavior.zoom().scaleExtent([1,real_zoom*zoom_switch]).on('zoom',zoomed);
 
@@ -211,7 +215,16 @@ function make_d3_clustergram(network_data) {
         output_string = 'M '+origin_y+',0 L ' + start_y + ',' + start_x + ', L ' + final_y + ','+final_x+' Z';
         return output_string;
        })
-    .attr('fill','#eee')
+    // .attr('fill','#eee')
+    // change the colors of the triangles 
+    .attr('fill', function(d) {
+      // look up color 
+      console.log(d.data_group)
+      // name
+      inst_color = res_color_dict[d.data_group];
+      console.log(inst_color)
+      return inst_color;
+    });
 
 
   // Rects to hide spillover 

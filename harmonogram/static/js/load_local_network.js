@@ -47,7 +47,15 @@ function highlight_resource_types(){
 		all_groups.push( col_nodes[i]['data_group'] ); 
 	};
 	
-	// get unique 
+	// get unique groups 
 	all_groups = _.uniq(all_groups);
+
+	// generate an object to associate group with color 
+	res_color_dict = {};
+
+	// loop through the data groups 
+	for (i=0; i<all_groups.length; i++){
+		res_color_dict[all_groups[i]] = res_hexcodes[i];
+	};
 
 };
