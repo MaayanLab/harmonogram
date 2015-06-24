@@ -1,3 +1,18 @@
+
+Harmonogram notes 6-24-2015
+
+	I think I'll deploy this as a flask app. 
+	/v2/apps 8080 
+
+	I've made a lot of improvements to the visualization. It's now very flexible - resizes, handles wide tiles, etc. 
+
+	resource category colors 
+		I need to create a color key for the resources and color the tiles. 
+
+	gene/resource search
+
+
+
 Harminogram 6-16-2015
 	I'm going to work on modularizing the visualization code so that I can swap in a canvas for svg and improve the zooming of the original svg visualization. 
 
@@ -16,5 +31,3 @@ Harminogram notes 6-10-2015
 
 	I'm outputting toy data to visualize. 
 
-
-/v2/apps 8080 

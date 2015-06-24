@@ -18,7 +18,7 @@ function load_class_clustergram(inst_prot_class){
 		    } });
 
 		// use d3 to load a json 
-		d3.json('/harminogram/static/networks/'+inst_prot_class+'_cumul_probs.json', function(network_data){
+		d3.json('/harmonogram/static/networks/'+inst_prot_class+'_cumul_probs.json', function(network_data){
 
 			// make global copy of network_data 
 			global_network_data = network_data;

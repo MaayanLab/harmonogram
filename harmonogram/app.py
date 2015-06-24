@@ -17,17 +17,17 @@ from flask import send_from_directory
 # app = Flask(__name__)
 app = Flask(__name__, static_url_path='')
 
-ENTRY_POINT = '/harminogram'
+ENTRY_POINT = '/harmonogram'
 
 # switch for local and docker development 
 # docker_vs_local
 ##########################################
 
 # for local development 
-SERVER_ROOT = os.path.dirname(os.getcwd()) + '/harminogram/harminogram' ## original 
+SERVER_ROOT = os.path.dirname(os.getcwd()) + '/harmonogram/harmonogram' ## original 
 
 # # for docker development
-# SERVER_ROOT = '/app/harminogram'
+# SERVER_ROOT = '/app/harmonogram'
 
 
 @app.route(ENTRY_POINT + '/<path:path>') ## original 
@@ -41,13 +41,13 @@ def send_static(path):
   return send_from_directory(SERVER_ROOT, path)
 
 
-@app.route("/harminogram/")
+@app.route("/harmonogram/")
 def index():
   print('Rendering index template')
   return render_template("index.html")
 
 # post request
-@app.route('/harminogram/', methods=['GET','POST'])
+@app.route('/harmonogram/', methods=['GET','POST'])
 def python_function():
   import flask 
   import make_enr_clust

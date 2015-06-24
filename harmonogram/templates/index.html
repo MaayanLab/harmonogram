@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <base href='/harminogram/'>
+    <base href='/harmonogram/'>
 
     <title>Harmonogram</title>
 
@@ -134,7 +134,7 @@
                   <div id='viz_gmt_labels'></div>
 
                   <div id='title_viz_instruct_text'>About:</div>
-                  <div class='viz_instruct_text'> The clustergram visualizes gene appearance in various resources. Genes are shown as rows and resources as columns. </div>
+                  <div class='viz_instruct_text'> The clustergram visualizes gene appearance in Harmonozome resources. Genes are shown as rows and resources as columns. The gene occurance value is normalized relative to the other genes apearing in the resource. </div>
 
                   <!-- button container -->
                   <div>
@@ -143,39 +143,39 @@
                     <div id='class_buttons' class="btn-group-vertical text-center" data-toggle="buttons" >
 
                       <!-- <label class="btn btn-primary active" onclick="reorder_clust_rank('clust');"> -->
-                      <label class="btn btn-primary active" onclick="load_class_clustergram('KIN');">
+                      <label class="btn btn-primary active prot_class" onclick="load_class_clustergram('KIN');">
                         <input type="radio" name="options" id="clust_button" autocomplete="off" checked > Kinases
                       </label>
 
-                      <label class="btn btn-primary" onclick="load_class_clustergram('PP');" >
+                      <label class="btn btn-primary  prot_class" onclick="load_class_clustergram('PP');" >
                         <input type="radio" name="options" id="rank_button" autocomplete="off" > Phosphatases
                       </label>
 
-                      <label class="btn btn-primary" onclick="load_class_clustergram('GPCR');" >
+                      <label class="btn btn-primary  prot_class" onclick="load_class_clustergram('GPCR');" >
                         <input type="radio" name="options" id="rank_button" autocomplete="off" > GPCRs
                       </label>
 
-                      <label class="btn btn-primary" onclick="load_class_clustergram('IC');" >
+                      <label class="btn btn-primary prot_class" onclick="load_class_clustergram('IC');" >
                         <input type="radio" name="options" id="rank_button" autocomplete="off" > Ion Channels
                       </label>
 
-                      <label class="btn btn-primary" onclick="load_class_clustergram('TF');" >
+                      <label class="btn btn-primary prot_class" onclick="load_class_clustergram('TF');" >
                         <input type="radio" name="options" id="rank_button" autocomplete="off" > Transcription Factors
                       </label>
 
-                      <label class="btn btn-primary" onclick="load_class_clustergram('ACT');" >
+                      <label class="btn btn-primary prot_class" onclick="load_class_clustergram('ACT');" >
                         <input type="radio" name="options" id="rank_button" autocomplete="off" > Acetyltransferases
                       </label>
 
-                      <label class="btn btn-primary" onclick="load_class_clustergram('DACT');" >
+                      <label class="btn btn-primary prot_class" onclick="load_class_clustergram('DACT');" >
                         <input type="radio" name="options" id="rank_button" autocomplete="off" > Deacetylases
                       </label>
 
-                      <label class="btn btn-primary" onclick="load_class_clustergram('MET');" >
+                      <label class="btn btn-primary prot_class" onclick="load_class_clustergram('MET');" >
                         <input type="radio" name="options" id="rank_button" autocomplete="off" > Methyltransferases
                       </label>
 
-                      <label class="btn btn-primary" onclick="load_class_clustergram('DMET');" >
+                      <label class="btn btn-primary prot_class" onclick="load_class_clustergram('DMET');" >
                         <input type="radio" name="options" id="rank_button" autocomplete="off" > Demethylases
                       </label>
 
@@ -183,10 +183,10 @@
                   </div>
 
                   <div id='toggle_order' class="btn-group" data-toggle="buttons" >
-                    <label class="btn btn-primary active" onclick="reorder_clust_rank('clust');">
+                    <label class="btn btn-primary active prot_class" onclick="reorder_clust_rank('clust');">
                       <input type="radio" name="options" id="clust_button" autocomplete="off" checked > Cluster
                     </label>
-                    <label class="btn btn-primary" onclick="reorder_clust_rank('rank');">
+                    <label class="btn btn-primary prot_class" onclick="reorder_clust_rank('rank');">
                       <input type="radio" name="options" id="rank_button" autocomplete="off" > Rank
                     </label>
                   </div>                  
@@ -305,7 +305,7 @@
       } });
 
   // use d3 to load a json 
-  d3.json('/harminogram/static/networks/'+inst_prot_class+'_cumul_probs.json', function(network_data){
+  d3.json('/harmonogram/static/networks/'+inst_prot_class+'_cumul_probs.json', function(network_data){
 
     // make global copy of network_data 
     global_network_data = network_data;

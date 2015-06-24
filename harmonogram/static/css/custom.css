@@ -630,7 +630,7 @@ look like the input gene list text title*/
   width:99%;
   margin: 0 auto;
   color:#333;
-  text-align: left;
+  text-align: justify;
   margin-top:10px;
   margin-bottom: 10px;
   font-size: 14px;
@@ -743,13 +743,17 @@ look like the input gene list text title*/
 #class_buttons{
   /*reduced width sidebar 
   margin-left used to be 30*/
-  margin-left: 15px;
+  margin-left: 28px;
   margin-top:10px;
 }
 
 #toggle_order{
   /*reduced width sidebar 
   margin-left used to be 45*/
-  margin-left: 30px;
+  margin-left: 38px;
   margin-top: 20px
+}
+
+.prot_class{
+  font-size: 12px;
 }

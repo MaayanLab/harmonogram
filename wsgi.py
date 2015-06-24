@@ -1,1 +1,1 @@
-from harminogram.app import app as application
+from harmonogram.app import app as application
