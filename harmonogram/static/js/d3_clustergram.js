@@ -759,7 +759,7 @@ function zoomed() {
 
   };
  
-  // apply transformation: no transition 
+  // apply transformation: no transition duration when zooming with mouse 
   apply_transformation(trans_x, trans_y, zoom_x, zoom_y, 0);
 
   // reset highlighted col 
@@ -775,21 +775,21 @@ function apply_transformation(trans_x, trans_y, zoom_x, zoom_y, duration){
   ///////////////////////////////////////////////////
   // translate clustergram 
   clust_group
-    // .transition()
-    // .duration(duration)
+    .transition()
+    .duration(duration)
     .attr('transform','translate(' + [ margin.left + trans_x, margin.top + trans_y ] + ') scale('+ zoom_x +',' + zoom_y + ')');
 
   // transform row labels 
   d3.select('#row_labels')
-    // .transition()
-    // .duration(duration)
+    .transition()
+    .duration(duration)
     .attr('transform','translate(' + [row_margin.left , margin.top + trans_y] + ') scale(' + zoom_y + ')');
 
   // transform col labels
   // move down col labels as zooming occurs, subtract trans_x - 20 almost works 
   d3.select('#col_labels')
-    // .transition()
-    // .duration(duration)
+    .transition()
+    .duration(duration)
     .attr('transform','translate(' + [col_margin.left + trans_x , col_margin.top] + ') scale(' + zoom_x + ')');
 
   // reset translate vector - add back margins to trans_x and trans_y  
@@ -812,8 +812,8 @@ function apply_transformation(trans_x, trans_y, zoom_x, zoom_y, duration){
   // change the font size of the labels 
   d3.selectAll('.row_label_text')
     .select('text')
-    // .transition()
-    // .duration()
+    .transition()
+    .duration(duration)
     .style('font-size', fin_font);
 
   // reduce font-size to compensate for zoom 
@@ -826,8 +826,8 @@ function apply_transformation(trans_x, trans_y, zoom_x, zoom_y, duration){
   // change the font size of the labels 
   d3.selectAll('.col_label_text')
     .select('text')
-    // .transition()
-    // .duration()
+    .transition()
+    .duration(duration)
     .style('font-size', fin_font);
 
 

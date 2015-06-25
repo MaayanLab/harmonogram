@@ -171,7 +171,7 @@ function find_gene_in_clust(){
   inst_gene_index = _.indexOf( all_genes, search_gene );	
 
   // get y position 
-  inst_y_pos = - 4*y_scale(inst_gene_index);
+  inst_y_pos = - ( 4*y_scale(inst_gene_index) ) + 20 ;
 
   console.log(inst_gene_index)
   console.log(inst_y_pos)
