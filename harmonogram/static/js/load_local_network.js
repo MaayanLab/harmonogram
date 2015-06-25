@@ -107,8 +107,8 @@ function highlight_resource_types(){
 		all_genes.push( row_nodes[i]['name'] ); 
 	};
 	
-	// get unique genes - not necessary
-	all_genes = _.uniq(all_genes);
+	// // get unique genes - not necessary
+	// all_genes = _.uniq(all_genes);
 
 	// // use the list of genes for autocomplete 
  //  $( "#gene_search_box" ).autocomplete({
@@ -140,18 +140,7 @@ function highlight_resource_types(){
 	    cb(matches);
 	  };
 	};
-	 
-	// var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-	//   'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-	//   'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-	//   'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-	//   'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-	//   'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-	//   'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-	//   'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-	//   'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-	// ];
-	 
+	 	 
 	// select the container and the input box 
 	$('#gene_search_box').typeahead({
 	  hint: true,
@@ -159,14 +148,8 @@ function highlight_resource_types(){
 	  minLength: 1
 	},
 	{
-	  name: 'states',
 	  source: substringMatcher(all_genes)
 	});
-
-
-	
-
-
 
 };
 
@@ -182,7 +165,22 @@ $("#gene_search_box").keyup(function (e) {
 // find gene in clustergram 
 function find_gene_in_clust(){
 	// console.log(this);
-	console.log($('#gene_search_box').val());
+	search_gene = $('#gene_search_box').val();
+
+	// find the index of the gene 
+  inst_gene_index = _.indexOf( all_genes, search_gene );	
+
+  // get y position 
+  inst_y_pos = - 4*y_scale(inst_gene_index);
+
+  console.log(inst_gene_index)
+  console.log(inst_y_pos)
+
+  // apply transformation: trans_x, trans_y, zoom_x, zoom_y
+  // use a transition duration of 1 second 
+  apply_transformation(0,inst_y_pos,1,4, 2000)
+
+
 }
 
 // $(document).ready(function(){

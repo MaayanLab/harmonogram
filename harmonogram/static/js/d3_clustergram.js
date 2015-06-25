@@ -480,7 +480,7 @@ function initialize_clustergram(network_data){
   // the colum font size is scaled by the width 
   default_fs_col = scale_font_size(col_nodes.length)* scale_fs_screen_width(viz_width); 
 
-  // correct for forcing the tiles to be squares - if theya re forced, then use the col font size scaling on the rows 
+  // correct for forcing the tiles to be squares - if they are forced, then use the col font size scaling on the rows 
   if (force_square == 1){
     // scale the row font size by the col scaling  
     default_fs_row = default_fs_col;
@@ -758,24 +758,43 @@ function zoomed() {
     };
 
   };
+ 
+  // apply transformation: no transition 
+  apply_transformation(trans_x, trans_y, zoom_x, zoom_y, 0);
 
+  // reset highlighted col 
+  d3.select('#clicked_col')
+    // .style('font-size',default_fs_col*1.25)
+    .style('font-weight','bold');
+};
+
+// apply transformation 
+function apply_transformation(trans_x, trans_y, zoom_x, zoom_y, duration){
   // apply transformation and reset translate vector 
   // the zoom vector (zoom.scale) never gets reset 
   ///////////////////////////////////////////////////
   // translate clustergram 
-  clust_group.attr('transform','translate(' + [ margin.left + trans_x, margin.top + trans_y ] + ') scale('+ zoom_x +',' + zoom_y + ')');
+  clust_group
+    // .transition()
+    // .duration(duration)
+    .attr('transform','translate(' + [ margin.left + trans_x, margin.top + trans_y ] + ') scale('+ zoom_x +',' + zoom_y + ')');
 
   // transform row labels 
   d3.select('#row_labels')
+    // .transition()
+    // .duration(duration)
     .attr('transform','translate(' + [row_margin.left , margin.top + trans_y] + ') scale(' + zoom_y + ')');
 
   // transform col labels
   // move down col labels as zooming occurs, subtract trans_x - 20 almost works 
   d3.select('#col_labels')
+    // .transition()
+    // .duration(duration)
     .attr('transform','translate(' + [col_margin.left + trans_x , col_margin.top] + ') scale(' + zoom_x + ')');
 
   // reset translate vector - add back margins to trans_x and trans_y  
-  zoom.translate([ trans_x +  margin.left, trans_y + margin.top]);
+  zoom
+    .translate([ trans_x +  margin.left, trans_y + margin.top]);
 
   // Font Sizes 
   //////////////////
@@ -791,7 +810,11 @@ function zoomed() {
   // add back the 'px' to the font size 
   fin_font = fin_font + 'px';
   // change the font size of the labels 
-  d3.selectAll('.row_label_text').select('text').style('font-size', fin_font);
+  d3.selectAll('.row_label_text')
+    .select('text')
+    // .transition()
+    // .duration()
+    .style('font-size', fin_font);
 
   // reduce font-size to compensate for zoom 
   // calculate the recuction of the font size 
@@ -801,14 +824,14 @@ function zoomed() {
   // add back the 'px' to the font size 
   fin_font = fin_font + 'px';
   // change the font size of the labels 
-  d3.selectAll('.col_label_text').select('text').style('font-size', fin_font);
+  d3.selectAll('.col_label_text')
+    .select('text')
+    // .transition()
+    // .duration()
+    .style('font-size', fin_font);
 
 
-  // reset highlighted col 
-  d3.select('#clicked_col')
-    // .style('font-size',default_fs_col*1.25)
-    .style('font-weight','bold');
-};
+}
 
 // reorder columns with row click 
 function reorder_click_row(d,i){
@@ -895,7 +918,7 @@ function reorder_click_col(d,i){
   tmp_arr = []
   for (i=0; i<col_nodes.length; i++){
     tmp_arr.push(col_nodes[i].name);
-  }
+  };
 
   // find index 
   inst_col = _.indexOf( tmp_arr, inst_term );
@@ -904,7 +927,7 @@ function reorder_click_col(d,i){
   tmp_arr = [];
   for (i=0; i<row_nodes.length; i++) {
     tmp_arr.push(matrix[i][inst_col].value);
-  }
+  };
 
   // sort the rows 
   tmp_sort = d3.range( tmp_arr.length).sort(function(a, b) { return tmp_arr[b]  - tmp_arr[a]; })

@@ -758,7 +758,8 @@ look like the input gene list text title*/
   /*reduced width sidebar 
   margin-left used to be 45*/
   margin-left: 38px;
-  margin-top: 20px
+  margin-top: 20px;
+  margin-bottom:5px;
 }
 
 .prot_class{

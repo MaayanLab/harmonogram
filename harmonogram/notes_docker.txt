@@ -140,7 +140,7 @@ raw format json
 push to local docker repo by changing the tag. Instructions are on 
 
 	http://amp.pharm.mssm.edu/confluence/display/AP/Docker
-	
+
 an example is 
 
 	docker tag enrichr 146.203.54.165:5000/enrichr
@@ -180,3 +180,58 @@ http://elizabeth/harmonogram/
 
 view marathon 
 elizabeth:8080 
+
+
+
+--------------------
+6-25-2015
+
+We have a new proxying system set up. I had to change the post to a put and add labels, public:true, see below:
+
+{
+    "id":"harmonogram",
+    "instances": 1,
+    "cpus": 0.5,
+    "mem": 256,
+    "container": {
+        "type": "DOCKER",
+        "docker": {
+            "image": "146.203.54.165:5000/harmonogram",
+            "forcePullImage":true,
+            "network": "BRIDGE",
+            "portMappings": [{"containerPort": 80, "hostPort": 0, "protocol": "tcp"}]
+        }
+    },
+  "labels":{
+    "public":"true"
+  }
+}
+
+
+I got the following response 
+
+{
+    "version": "2015-06-25T19:34:13.827Z",
+    "deploymentId": "a3f3fa96-5dae-4b17-8870-8c713b65d345"
+}
+
+I made the following post for enrichrgram 
+
+{
+    "id":"enrichrgram",
+    "instances": 1,
+    "cpus": 0.5,
+    "mem": 256,
+    "container": {
+        "type": "DOCKER",
+        "docker": {
+            "image": "146.203.54.165:5000/enrichrgram",
+            "forcePullImage":true,
+            "network": "BRIDGE",
+            "portMappings": [{"containerPort": 80, "hostPort": 0, "protocol": "tcp"}]
+        }
+    },
+  "labels":{
+    "public":"true"
+  }
+}
