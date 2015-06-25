@@ -690,13 +690,35 @@ function zoomed() {
   trans_y = d3.event.translate[1] - margin.top;
 
 
+  
+  // apply transformation: no transition duration when zooming with mouse 
+  apply_transformation(trans_x, trans_y, zoom_x, zoom_y, 0);
+
+  // reset highlighted col 
+  d3.select('#clicked_col')
+    // .style('font-size',default_fs_col*1.25)
+    .style('font-weight','bold');
+};
+
+// apply transformation 
+function apply_transformation(trans_x, trans_y, zoom_x, zoom_y, duration){
+  
+  // define d3 scale 
+  d3_scale = zoom_x ; 
+
   // y - rules 
   ///////////////////////////////////////////////////
 
   // available panning room in the y direction 
   // multiple extra room (zoom - 1) by the width
   // always defined in the same way 
-  pan_room_y = (d3.event.scale - 1) * svg_height ;
+  pan_room_y = (d3_scale - 1) * svg_height ;
+
+  // if the transformation is from a gene search, the remove pan_room_y restriction 
+  if (duration > 0){
+    // set pan_room_y to svg_height - removing restriction 
+    pan_room_y = svg_height;
+  };
 
   // do not translate if translate in y direction is positive 
   if (trans_y >= 0 ) {
@@ -714,7 +736,7 @@ function zoomed() {
   // x - rules 
   ///////////////////////////////////////////////////
   // zoom in y direction only - translate in y only
-  if (d3.event.scale < zoom_switch) {
+  if (d3_scale < zoom_switch) {
     // no x translate or zoom 
     trans_x = 0;
     zoom_x = 1;
@@ -726,7 +748,7 @@ function zoomed() {
 
     // available panning room in the x direction 
     // multiple extra room (zoom - 1) by the width
-    pan_room_x = (d3.event.scale/zoom_switch - 1) * svg_width ;
+    pan_room_x = (d3_scale/zoom_switch - 1) * svg_width ;
 
     // no panning in the positive direction 
     if (trans_x > 0){
@@ -735,7 +757,7 @@ function zoomed() {
       // no panning in the x direction 
       trans_x = 0; 
       // set zoom_x
-      zoom_x = d3.event.scale/zoom_switch;
+      zoom_x = d3_scale/zoom_switch;
 
     }
     // restrict panning to pan_room_x 
@@ -745,7 +767,7 @@ function zoomed() {
       // no panning in the x direction 
       trans_x = -pan_room_x; 
       // set zoom_x 
-      zoom_x = d3.event.scale/zoom_switch;
+      zoom_x = d3_scale/zoom_switch;
 
     }
     // allow two dimensional panning 
@@ -753,23 +775,14 @@ function zoomed() {
 
       // restrict transformation parameters 
       // set zoom_x 
-      zoom_x = d3.event.scale/zoom_switch;
+      zoom_x = d3_scale/zoom_switch;
 
     };
 
   };
  
-  // apply transformation: no transition duration when zooming with mouse 
-  apply_transformation(trans_x, trans_y, zoom_x, zoom_y, 0);
 
-  // reset highlighted col 
-  d3.select('#clicked_col')
-    // .style('font-size',default_fs_col*1.25)
-    .style('font-weight','bold');
-};
 
-// apply transformation 
-function apply_transformation(trans_x, trans_y, zoom_x, zoom_y, duration){
   // apply transformation and reset translate vector 
   // the zoom vector (zoom.scale) never gets reset 
   ///////////////////////////////////////////////////

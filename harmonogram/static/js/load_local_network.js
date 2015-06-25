@@ -170,15 +170,33 @@ function find_gene_in_clust(){
 	// find the index of the gene 
   inst_gene_index = _.indexOf( all_genes, search_gene );	
 
+  // fake zoom 
+  fake_zoom = 1;
+
   // get y position 
-  inst_y_pos = - ( 4*y_scale(inst_gene_index) ) + 20 ;
+  inst_y_pos = - ( fake_zoom*y_scale(inst_gene_index) ) + 20 ;
 
   console.log(inst_gene_index)
   console.log(inst_y_pos)
 
+  // highlight row name 
+  console.log('trying to highlight row name')
+  console.log(search_gene)
+	d3.selectAll('.row_label_text')
+		.filter(function(d){ return d.name == 'MINA'})
+		.select('text').style('font-weight','bold');
+
+  // reset zoom 
+  // zoom.scale(1).translate([margin.left, margin.top]);
+  zoom.scale(fake_zoom,1);
+
   // apply transformation: trans_x, trans_y, zoom_x, zoom_y
   // use a transition duration of 1 second 
-  apply_transformation(0,inst_y_pos,1,4, 2000)
+  ///////////////////////////////////////////
+  // first zoom 
+  // apply_transformation(0,0,1,fake_zoom, 2000);
+  // // then transition 
+  apply_transformation(0,inst_y_pos,1,fake_zoom, 2000);
 
 
 }
