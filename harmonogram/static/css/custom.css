@@ -768,6 +768,9 @@ look like the input gene list text title*/
 /*div holding res color key */
 #res_color_key_div{
   margin-top: 0px;
+  /*set height so that the elements below
+  will be placed correctly*/
+  height: 135px;
 }
 
 /*resource names in key*/
@@ -782,4 +785,9 @@ look like the input gene list text title*/
 #button_container{
   margin-top: 5px;
   margin-bottom: 10px;
+}
+
+/*container for gene search box*/
+#gene_search_container{
+  margin-top: 10px;
 }

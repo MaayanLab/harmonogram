@@ -195,6 +195,14 @@
                   <div class='title_viz_instructs'>Resource Groups:</div>
                   <div id='res_color_key_div'></div>
 
+                  <!-- input box for gene search -->
+                  <div id='gene_search_container'>
+                    <div class="input-group input-group-sm">
+                      <span type='submit' class="input-group-addon" id="sizing-addon2" onClick='find_gene_in_clust(this);'>Find Gene</span>
+                      <input id='gene_search_box' type="text" class="form-control" placeholder="Input Gene" aria-describedby="sizing-addon2">
+                    </div>
+                  </div>
+
                   <!-- <div class='viz_instruct_text'>  </div> -->
 
                   <!-- <button id='modify_enrichrgram_button' class='btn btn-danger buttons' onClick='rerun_enrichrgram();'>Re-run Enrichrgram</button> -->

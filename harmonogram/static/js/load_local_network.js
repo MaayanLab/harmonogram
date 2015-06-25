@@ -35,7 +35,6 @@ function load_class_clustergram(inst_prot_class){
 };
 
 function highlight_resource_types(){
-	console.log('here');
 
 	res_hexcodes = ['#097054','#FFDE00','#6599FF','#FF9900','#834C24','#003366','#1F1209']
 
@@ -94,5 +93,35 @@ function highlight_resource_types(){
 			return inst_res ;
 		})
 
-
 };
+
+// submit genes button 
+$("#gene_search_box").keyup(function (e) {
+    if (e.keyCode == 13) {
+        // Do something
+				// console.log('pressed enter');
+				find_gene_in_clust();
+    }
+});
+
+// find gene in clustergram 
+function find_gene_in_clust(){
+	// console.log(this);
+	console.log($('#gene_search_box').val());
+}
+
+// $(document).ready(function(){
+// $('form').submit(
+// 	console.log('submit form')
+// 	);
+// })
+
+
+var textareaval=$('#userInput').val();
+
+function outputTranslated()
+{
+$('#toBeTranslatedForm').submit(function() {
+   alert(textareaval);
+});
+}
