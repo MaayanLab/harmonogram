@@ -73,9 +73,9 @@ function highlight_resource_types(){
 		.append('div')
 		.attr('class','col-xs-2')
 		// get rid of excess padding 
-		.style('padding-left','10px')
+		.style('padding-left','5px')
 		.style('padding-right','0px')
-		.style('padding-top','4px')
+		.style('padding-top','1px')
 		.append('div')
 		.style('width','12px')
 		.style('height','12px')

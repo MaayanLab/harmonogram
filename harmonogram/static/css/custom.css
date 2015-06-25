@@ -496,7 +496,8 @@ because the sidebar will be closed*/
 
   /*reduced sidebar width
   margin-left used to be 260px*/
-  margin-left: 220px;
+  /*lowered from 220 to 210*/
+  margin-left: 210px;
 }
 
 #clust_instruct_container{
@@ -773,6 +774,8 @@ look like the input gene list text title*/
 .res_names_in_key{
   padding-left: 0px;
   padding-right: 0px;
+  font-size:12px;
+  margin-left: -10px;
 }
 
 /*container for prot class and sorting buttons*/
