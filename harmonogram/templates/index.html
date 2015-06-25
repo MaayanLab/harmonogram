@@ -129,7 +129,7 @@
 
               <div class='row'>
                 <div id='clust_instruct_container' >
-                  <h1 id='viz_website_title'>Harmonogram</h1>
+                  <h1 id='viz_website_title' >Harmonogram</h1>
 
                   <div id='viz_gmt_labels'></div>
 
@@ -137,7 +137,7 @@
                   <div class='viz_instruct_text'> The clustergram visualizes gene appearance in Harmonozome resources. Genes are shown as rows and resources as columns. The gene occurance value is normalized relative to the occurance of other genes in the resource. </div>
 
                   <!-- button container -->
-                  <div>
+                  <div id='button_container'>
                     
                     <!-- choose protein class  -->
                     <div id='class_buttons' class="btn-group-vertical text-center" data-toggle="buttons" >
@@ -180,16 +180,16 @@
                       </label>
 
                     </div>
-                  </div>
 
-                  <div id='toggle_order' class="btn-group" data-toggle="buttons" >
-                    <label class="btn btn-primary active prot_class" onclick="reorder_clust_rank('clust');">
-                      <input type="radio" name="options" id="clust_button" autocomplete="off" checked > Cluster
-                    </label>
-                    <label class="btn btn-primary prot_class" onclick="reorder_clust_rank('rank');">
-                      <input type="radio" name="options" id="rank_button" autocomplete="off" > Rank
-                    </label>
-                  </div>                  
+                    <div id='toggle_order' class="btn-group" data-toggle="buttons" >
+                      <label class="btn btn-primary active prot_class" onclick="reorder_clust_rank('clust');">
+                        <input type="radio" name="options" id="clust_button" autocomplete="off" checked > Cluster
+                      </label>
+                      <label class="btn btn-primary prot_class" onclick="reorder_clust_rank('rank');">
+                        <input type="radio" name="options" id="rank_button" autocomplete="off" > Rank
+                      </label>
+                    </div>                  
+                  </div>
 
                   <!-- resource key -->
                   <div class='title_viz_instructs'>Resource Groups:</div>

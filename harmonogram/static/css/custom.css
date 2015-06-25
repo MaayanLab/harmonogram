@@ -761,7 +761,7 @@ look like the input gene list text title*/
 }
 
 .prot_class{
-  font-size: 12px;
+  font-size: 11px;
 }
 
 /*div holding res color key */
@@ -773,4 +773,10 @@ look like the input gene list text title*/
 .res_names_in_key{
   padding-left: 0px;
   padding-right: 0px;
+}
+
+/*container for prot class and sorting buttons*/
+#button_container{
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
