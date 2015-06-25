@@ -113,3 +113,70 @@ raw format json
         }
     }
 }
+
+----
+
+{
+    "instances": 1,
+    "cpus": 0.5,
+    "mem": 256,
+    "container": {
+        "type": "DOCKER",
+        "docker": {
+            "image": "maayanlab/enrichrgram",
+            "forcePullImage":true,
+            "network": "BRIDGE",
+            "portMappings": [{"containerPort": 80, "hostPort": 0, "protocol": "tcp"}]
+        }
+    }
+}
+
+
+
+
+------------------
+
+6-24-2015 
+push to local docker repo by changing the tag. Instructions are on 
+
+	http://amp.pharm.mssm.edu/confluence/display/AP/Docker
+	
+an example is 
+
+	docker tag enrichr 146.203.54.165:5000/enrichr
+
+-----------------
+
+{
+    "id":"harmonogram",
+    "instances": 1,
+    "cpus": 0.5,
+    "mem": 256,
+    "container": {
+        "type": "DOCKER",
+        "docker": {
+            "image": "146.203.54.165:5000/harmonogram",
+            "forcePullImage":true,
+            "network": "BRIDGE",
+            "portMappings": [{"containerPort": 80, "hostPort": 0, "protocol": "tcp"}]
+        }
+    }
+}
+
+----
+on maayanlab 
+amp.pharm.mssm.edu 
+
+vim /etc/apache2/conf.d/proxies.conf
+
+service apache2 restart 
+service apache2 status
+
+
+---
+
+view harmonogram on elizabeth
+http://elizabeth/harmonogram/
+
+view marathon 
+elizabeth:8080 
