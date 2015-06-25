@@ -510,8 +510,8 @@ because the sidebar will be closed*/
   position:absolute;
   /*reduce sidebar width - used to ge 245px*/
   width:200px;
-  margin-left: 10px;
-  padding-right: 15px;
+  margin-left: 0px;
+  padding-right: 0px;
 }
 
 #website_title{
@@ -595,19 +595,19 @@ because the sidebar will be closed*/
 }
 
 /*title for instructions*/
-#title_viz_instruct_text{
+.title_viz_instructs{
   width:99%;
   margin: 0 auto;
   color:#333;
   text-align: left;
-  margin-top: 5px;
-  padding-top:5px;
-  margin-bottom: 5px;
-  font-size: 20px;
+  margin-top: 0px;
+  /*padding-top:5px;*/
+  /*margin-bottom: 5px;*/
+  font-size: 17px;
   font-weight: 300;
   /*clear float left*/
   clear:both;
-  padding-left: 10px;
+  padding-left: 0px;
 }
 
 /*homepage container for gmt labels in homepage*/
@@ -634,11 +634,11 @@ look like the input gene list text title*/
   margin: 0 auto;
   color:#333;
   text-align: justify;
-  margin-top:10px;
-  margin-bottom: 10px;
-  font-size: 14px;
+  /*margin-top:10px;*/
+  /*margin-bottom: 10px;*/
+  font-size: 12px;
   font-weight: 300;
-  padding-left: 10px;
+  padding-left: 0px;
 }
 
 .initial_paragraph{
@@ -741,8 +741,8 @@ look like the input gene list text title*/
 #viz_website_title{
   /*reduced width sidebar - font size 
   used to be 40*/
-  font-size: 32px;
-  margin-top: 15px;
+  font-size: 30px;
+  margin-top: 10px;
   margin-bottom: 5px;
 }
 
@@ -762,22 +762,6 @@ look like the input gene list text title*/
 
 .prot_class{
   font-size: 12px;
-}
-
-/* title for res_key */
-#title_res_color_key{
-  width:99%;
-  margin: 0 auto;
-  color:#333;
-  text-align: left;
-  margin-top: 20px;
-  padding-top:5px;
-  margin-bottom: 5px;
-  font-size: 20px;
-  font-weight: 300;
-  /*clear float left*/
-  clear:both;
-  padding-left: 10px;
 }
 
 /*div holding res color key */
