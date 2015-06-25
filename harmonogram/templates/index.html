@@ -188,20 +188,39 @@
                       <label class="btn btn-primary prot_class" onclick="reorder_clust_rank('rank');">
                         <input type="radio" name="options" id="rank_button" autocomplete="off" > Rank
                       </label>
-                    </div>                  
+                    </div>
                   </div>
 
                   <!-- resource key -->
-                  <div class='title_viz_instructs'>Resource Groups:</div>
+                  <div id='res_color_key_title' class='title_viz_instructs'>Resource Groups:</div>
                   <div id='res_color_key_div'></div>
 
                   <!-- input box for gene search -->
-                  <div id='gene_search_container'>
-                    <div class="input-group input-group-sm">
-                      <span type='submit' class="input-group-addon" id="sizing-addon2" onClick='find_gene_in_clust(this);'>Find Gene</span>
+                  <div id='gene_search_container' class='row'>
+
+                    <!-- search box cols -->
+                    <!-- <div clas='col-xs-3'> -->
                       <input id='gene_search_box' type="text" class="form-control" placeholder="Input Gene" aria-describedby="sizing-addon2">
-                    </div>
+                    <!-- </div> -->
+
+                    <!-- search button -->
+                    <!-- <div clas='col-xs-3'> -->
+                      <div id='gene_search_button' class="btn-group" data-toggle="buttons" >
+                        <label class="btn btn-primary active " onclick="console.log('clicking on search button');">
+                          <input type="radio" name="options" id="" autocomplete="off" checked > Search
+                        </label>
+                      </div>
+                    <!-- </div> -->
+
+                    <!-- div to clear float -->
+                    <!-- <div id='clear'></div> -->
+
                   </div>
+
+                  <!-- states example -->
+                  <!-- <div id="the-basics">
+                    <input class="typeahead" type="text" placeholder="States of USA">
+                  </div> -->
 
                   <!-- <div class='viz_instruct_text'>  </div> -->
 
@@ -282,6 +301,10 @@
   <!-- Vendor -->
   <!-- jQuery -->
   <script src="static/lib/js/jquery-1.11.2.min.js"></script>
+
+  <!-- adding jquery links -->
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
   <script src='static/lib/js/jquery.accordion.js'></script>
   <!-- Bootstrap Core JavaScript -->
   <script src="static/lib/js/bootstrap.min.js"></script>
@@ -294,6 +317,7 @@
   <script src="static/lib/js/underscore-min.js"></script>
   <script src="static/lib/js/underscore.strings.js"></script>
   <script src='static/lib/js/blockUI.js'></script>
+  <script src='static/lib/js/type_ahead.js'></script>
   <!-- Clustergram Scripts -->
   <script src='static/js/d3_clustergram.js'></script>
   <script src='static/js/load_local_network.js'></script>
@@ -325,6 +349,12 @@
 
     // pass the network data to d3_clustergram 
     make_d3_clustergram(network_data);
+
+    // once everything has been set up show color key and search box
+    d3.select('#res_color_key_title').style('display','block');
+    d3.select('#gene_search_container').style('display','block')
+    d3.select('#gene_search_box').style('display','inline-block')
+    d3.select('#gene_search_button').style('display','inline-block')
 
     // turn off the wait sign 
     $.unblockUI();

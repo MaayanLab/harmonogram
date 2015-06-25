@@ -36,6 +36,10 @@ function load_class_clustergram(inst_prot_class){
 
 function highlight_resource_types(){
 
+	// This will set up the resource type color key 
+	// and generate an array of genes for later use
+	//////////////////////////////////////////////////////
+
 	res_hexcodes = ['#097054','#FFDE00','#6599FF','#FF9900','#834C24','#003366','#1F1209']
 
 	// get all data groups
@@ -93,6 +97,77 @@ function highlight_resource_types(){
 			return inst_res ;
 		})
 
+	// generate a list of genes for auto complete 
+	////////////////////////////////////////////////
+	// get all genes 
+	all_genes = [];
+
+	// loop through row_nodes
+	for (i=0; i<row_nodes.length; i++){
+		all_genes.push( row_nodes[i]['name'] ); 
+	};
+	
+	// get unique genes - not necessary
+	all_genes = _.uniq(all_genes);
+
+	// // use the list of genes for autocomplete 
+ //  $( "#gene_search_box" ).autocomplete({
+ //    source: all_genes
+ //  });	
+
+
+
+	// implementing typeahead
+	////////////////////////////
+	var substringMatcher = function(strs) {
+	  return function findMatches(q, cb) {
+	    var matches, substringRegex;
+	 
+	    // an array that will be populated with substring matches
+	    matches = [];
+	 
+	    // regex used to determine if a string contains the substring `q`
+	    substrRegex = new RegExp(q, 'i');
+	 
+	    // iterate through the pool of strings and for any string that
+	    // contains the substring `q`, add it to the `matches` array
+	    $.each(strs, function(i, str) {
+	      if (substrRegex.test(str)) {
+	        matches.push(str);
+	      }
+	    });
+	 
+	    cb(matches);
+	  };
+	};
+	 
+	// var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
+	//   'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
+	//   'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+	//   'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+	//   'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+	//   'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+	//   'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
+	//   'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+	//   'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+	// ];
+	 
+	// select the container and the input box 
+	$('#gene_search_box').typeahead({
+	  hint: true,
+	  highlight: true,
+	  minLength: 1
+	},
+	{
+	  name: 'states',
+	  source: substringMatcher(all_genes)
+	});
+
+
+	
+
+
+
 };
 
 // submit genes button 
@@ -125,3 +200,5 @@ $('#toBeTranslatedForm').submit(function() {
    alert(textareaval);
 });
 }
+
+
