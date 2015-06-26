@@ -675,7 +675,12 @@ function zoomed() {
 
 // apply transformation 
 function apply_transformation(trans_x, trans_y, zoom_x, zoom_y, duration){
-  
+ 
+  // console.log('trans_x ' + String(trans_x))
+  // console.log('trans_y ' + String(trans_y))
+  // console.log('zoom_x ' + String(zoom_x))
+  // console.log('zoom_y ' + String(zoom_y))
+
   // define d3 scale 
   d3_scale = zoom_x ; 
 
@@ -693,20 +698,19 @@ function apply_transformation(trans_x, trans_y, zoom_x, zoom_y, duration){
     pan_room_y = svg_height;
   };
 
-  // set duration to zero !! need to improve 
-  duration = 0 ;
 
   // do not translate if translate in y direction is positive 
   if (trans_y >= 0 ) {
+    console.log('\nrestrict panning in the positive y direction')
+    console.log(trans_y)
     // restrict transformation parameters 
     // no panning in either direction 
     trans_y = 0; 
   }
   // restrict y pan to pan_room_y if necessary 
   else if (trans_y <= -pan_room_y) {
-    // restrict transformation parameters 
-    // no panning in x direction 
     trans_y = -pan_room_y; 
+    console.log('\nrestrict y panning based on y panning ')
   };
 
   // x - rules 
@@ -783,10 +787,7 @@ function apply_transformation(trans_x, trans_y, zoom_x, zoom_y, duration){
   //////////////////
   // reduce the font size by dividing by some part of the zoom 
   // if reduce_font_size_factor_ is 1, then the font will be divided by the whole zoom - and the labels will not increase in size 
-  // if reduce_font_size_factor_ is 0, then the font will be divided 1 - and the labels will increase in size 
-
-  // reduce font-size to compensate for zoom 
-  // calculate the recuction of the font size 
+  // if reduce_font_size_factor_ is 0, then the font will be divided 1 - and the labels will increase cuction of the font size 
   reduce_font_size = d3.scale.linear().domain([0,1]).range([1,zoom_y]).clamp('true');
   // scale down the font to compensate for zooming 
   fin_font = default_fs_row/(reduce_font_size(reduce_font_size_factor_row)); 
@@ -965,63 +966,6 @@ function timeout_resize(){
 
 // interpolate pan and zoom
 function interpolate_pan_zoom(pan_dx, pan_dy, fin_zoom){
-
-  // get the initial zoom and translate information 
-  ini_pan = zoom.translate();
-  // remove the margins from the initial pan 
-  // switch sign since positive panning moves image up
-  ini_pan_x = -(ini_pan[0] - margin.left);
-  ini_pan_y = -(ini_pan[1] - margin.top);
-
-  // get old zoom 
-  ini_zoom = zoom.scale();
-
-  // calculate the final x and y positions 
-  fin_pan_x = ini_pan_x + pan_dx;
-  fin_pan_y = ini_pan_y + pan_dy;
-
-  console.log('ini_pan_y '+ String(ini_pan_y) )
-  console.log('fin_pan_y '+ String(fin_pan_y) )
-  console.log('ini_zoom '+ String(ini_zoom) )
-
-  // define transition that will take place over 1 second 
-  d3.transition()
-    .duration(1000)
-    // the first argument to tween is not imporant, I think 
-    .tween('something', function(){
-
-      // define the interpolation - start at initial pan/zoom and move to final pan/zoom 
-      // interpolate y movement 
-      my_x = d3.interpolate(ini_pan_x, fin_pan_x);
-      my_y = d3.interpolate(ini_pan_y, fin_pan_y);
-
-      // interpolate zoom 
-      // the zoom needs to be initialized 
-      my_zoom = d3.interpolate(ini_zoom, fin_zoom );
-
-
-      // tween will return an anonymous function, with input value t
-      // the function will apply the zoom/pan in small increments 
-      return function(t){
-
-        // apply pan/zoom in small increments 
-        /////////////////////////////////////////
-
-        // // return the interpolated value over time, determined by transition and t
-        // console.log( 'inst_y: ' + String( my_y(t) ) );
-        // console.log( 'inst_zoom: ' + String( my_zoom(t) ) );
-
-        // include fake duration to avoid panning restrictions 
-        // apply transformation in small increments 
-        apply_transformation( -my_x(t), -my_y(t), 1, my_zoom(t), 1 );
-
-      };
-    });
-
-  // set the zoom and translate to the final value 
-  zoom
-    .translate([ ini_pan[0] - pan_dx, ini_pan[1] - pan_dy ])
-    .scale(fin_zoom);
 };
 
 function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
@@ -1041,17 +985,14 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
   // fin_pan_y = ini_pan_y + pan_dy;
 
 
-  // trans_x = 0;
-  // trans_y = 0;
-  // zoom_x = 1;
-  // zoom_y = 2;
+  // need to add pan zoom restruction !! 
 
   // will improve this !!
   zoom_y = fin_zoom; 
   zoom_x = 1;
 
   // search duration - the duration of zooming and panning 
-  search_duration = 1500;
+  search_duration = 2000;
 
   // example of two translate 
   // first translate to center of visualization, then scale, then translate to final destination
@@ -1059,6 +1000,10 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
 
   // center_y
   center_y = (fin_zoom -1)*(viz_height/2);
+
+
+  console.log('\ncenter_y\t'+center_y+'\n')
+  console.log('\npan_dy\t'+pan_dy+'\n')
 
 
   // write custom apply_transformation here 
@@ -1122,6 +1067,12 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
     .style('font-size', fin_font);
 
 
+  // set y translate, center_y requires an extra offset
+  var net_y_offset = center_y + 800; //+  pan_dy - margin.top;
+
+  // reset the zoom translate and zoom 
+  zoom.scale(zoom_y);
+  zoom.translate([  pan_dx,  -net_y_offset])
 
 };
 
@@ -1129,55 +1080,55 @@ function double_click_reset() {
 
   console.log('double clicking')
 
-  console.log('current zoom and pan ')
-  console.log(zoom.scale())
-  console.log(zoom.translate())
+  // console.log('current zoom and pan ')
+  // console.log(zoom.scale())
+  // console.log(zoom.translate())
   
-  // new way of resetting zoom 
-  ////////////////////////////////////////
-  // get current pan and zoom 
-  inst_pan = zoom.translate();
-  inst_pan_x = inst_pan[0];
-  inst_pan_y = inst_pan[1];
-  inst_zoom = zoom.scale();
+  // // new way of resetting zoom 
+  // ////////////////////////////////////////
+  // // get current pan and zoom 
+  // inst_pan = zoom.translate();
+  // inst_pan_x = inst_pan[0];
+  // inst_pan_y = inst_pan[1];
+  // inst_zoom = zoom.scale();
 
 
-  // calculate dx, dy, and dz 
-  ////////////////////////////////////////
-  // calculate the dy - the amount needed to reset the x position 
-  pan_dy = margin.top - inst_pan_y ; 
-  interpolate_pan_zoom(0,-pan_dy,1)
+  // // calculate dx, dy, and dz 
+  // ////////////////////////////////////////
+  // // calculate the dy - the amount needed to reset the x position 
+  // pan_dy = margin.top - inst_pan_y ; 
+  // interpolate_pan_zoom(0,-pan_dy,1)
 
 
   // calculate
 
-  // // old way of resetting zoom, no transition 
-  // ////////////////////////////////////////////
-  // // reset adj zoom 
-  // d3.select('#clust_group')
-  //   .attr("transform", "translate(" + (margin.left) + "," + (margin.top) + ")");
-  // // reset column label zoom 
-  // d3.select('#col_labels')
-  //   .attr("transform", "translate(" + col_margin.left + "," + col_margin.top + ")");
-  // // reset row label zoom 
-  // d3.select('#row_labels')
-  //   .attr("transform", "translate(" + row_margin.left + "," + row_margin.top + ")");
+  // old way of resetting zoom, no transition 
+  ////////////////////////////////////////////
+  // reset adj zoom 
+  d3.select('#clust_group')
+    .attr("transform", "translate(" + (margin.left) + "," + (margin.top) + ")");
+  // reset column label zoom 
+  d3.select('#col_labels')
+    .attr("transform", "translate(" + col_margin.left + "," + col_margin.top + ")");
+  // reset row label zoom 
+  d3.select('#row_labels')
+    .attr("transform", "translate(" + row_margin.left + "," + row_margin.top + ")");
     
-  // // use Qiaonan method to reset zoom 
-  // zoom.scale(1).translate([margin.left, margin.top]);
+  // use Qiaonan method to reset zoom 
+  zoom.scale(1).translate([margin.left, margin.top]);
 
-  // // reset the font size because double click zoom is not disabled
-  // d3.selectAll('.row_label_text').select('text').style('font-size', default_fs_row+'px');
-  // d3.selectAll('.col_label_text').select('text').style('font-size', default_fs_col+'px');
+  // reset the font size because double click zoom is not disabled
+  d3.selectAll('.row_label_text').select('text').style('font-size', default_fs_row+'px');
+  d3.selectAll('.col_label_text').select('text').style('font-size', default_fs_col+'px');
 
-  // // reset the heights of the bars
-  // // recalculate the original heights
-  // col_label_obj.select('rect')
-  //   // column is rotated - effectively width and height are switched
-  //   .attr('width', function(d,i) { return bar_scale_col( d.nl_pval ); })
-  //   .attr('transform', function(d, i) { return "translate(0,0)"; });
+  // reset the heights of the bars
+  // recalculate the original heights
+  col_label_obj.select('rect')
+    // column is rotated - effectively width and height are switched
+    .attr('width', function(d,i) { return bar_scale_col( d.nl_pval ); })
+    .attr('transform', function(d, i) { return "translate(0,0)"; });
 
-  // ////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////
 
 }
 

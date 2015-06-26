@@ -511,7 +511,8 @@ because the sidebar will be closed*/
   position:absolute;
   /*reduce sidebar width - used to ge 245px*/
   width:200px;
-  margin-left: 0px;
+  /*needs to be improved !!*/
+  /*margin-left: 5px;*/
   padding-right: 0px;
 }
 

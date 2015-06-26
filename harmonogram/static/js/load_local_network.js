@@ -176,12 +176,12 @@ function find_gene_in_clust(){
   // get y position 
   inst_y_pos = y_scale(inst_gene_index)  ;
 
-  console.log(inst_gene_index)
-  console.log(inst_y_pos)
+  // console.log(inst_gene_index)
+  // console.log(inst_y_pos)
 
   // highlight row name 
-  console.log('trying to highlight row name')
-  console.log(search_gene)
+  // console.log('trying to highlight row name')
+  // console.log(search_gene)
 	d3.selectAll('.row_label_text')
 		.filter(function(d){ return d.name == search_gene})
 		.select('text').style('font-weight','bold');
