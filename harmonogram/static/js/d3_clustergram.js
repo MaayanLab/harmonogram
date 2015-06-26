@@ -304,12 +304,14 @@ function make_d3_clustergram(network_data) {
   // do this for all svg elements 
   d3.selectAll("svg").on("dblclick.zoom", null);    
 
-  // add double click zoom reset
+  // double click to reset zoom - add transition 
   d3.select('#main_svg')
     .on('dblclick', function() { 
 
       console.log('double clicking')
       
+      // old way of resetting zoom, no transition 
+      ////////////////////////////////////////////
       // reset adj zoom 
       d3.select('#clust_group')
         .attr("transform", "translate(" + (margin.left) + "," + (margin.top) + ")");
@@ -720,6 +722,9 @@ function apply_transformation(trans_x, trans_y, zoom_x, zoom_y, duration){
     pan_room_y = svg_height;
   };
 
+  // set duration to zero !! need to improve 
+  duration = 0 ;
+
   // do not translate if translate in y direction is positive 
   if (trans_y >= 0 ) {
     // restrict transformation parameters 
@@ -997,8 +1002,25 @@ function timeout_resize(){
 };
 
 
-// interpolate pan and zoom 
-function interpolate_pan_zoom(){
+// interpolate pan and zoom
+function interpolate_pan_zoom(pan_dx, pan_dy, fin_zoom){
+
+  // get the initial zoom and translate information 
+  ini_pan = zoom.translate();
+  // remove the margins from the initial pan 
+  // switch sign since positive panning moves image up
+  ini_pan_x = -(ini_pan[0] - margin.left);
+  ini_pan_y = -(ini_pan[1] - margin.top);
+  ini_zoom = zoom.scale();
+
+  // calculate the final x and y positions 
+  fin_pan_x = ini_pan_x + pan_dx;
+  fin_pan_y = ini_pan_y + pan_dy;
+
+  // console.log('ini_pan_x '+ String(ini_pan_x) )
+  console.log('ini_pan_y '+ String(ini_pan_y) )
+  // console.log('fin_pan_x '+ String(fin_pan_x) )
+  console.log('fin_pan_y '+ String(fin_pan_y) )
 
   // define transition that will take place over 1 second 
   d3.transition()
@@ -1007,19 +1029,34 @@ function interpolate_pan_zoom(){
     .tween('something', function(){
 
       // define the interpolation - start at initial pan/zoom and move to final pan/zoom 
-      my_x = d3.interpolate(0,100);
+      // interpolate y movement 
+      my_x = d3.interpolate(ini_pan_x, fin_pan_x);
+      my_y = d3.interpolate(ini_pan_y, fin_pan_y);
+
+      // interpolate zoom 
+      // the zoom needs to be initialized 
+      my_zoom = d3.interpolate(ini_zoom, fin_zoom );
+
 
       // tween will return an anonymous function, with input value t
       // the function will apply the zoom/pan in small increments 
       return function(t){
 
         // apply pan/zoom in small increments 
+        /////////////////////////////////////////
 
         // return the interpolated value over time, determined by transition and t
-        console.log(my_x(t));
+        console.log(my_y(t));
+
+        // apply transformation in small increments 
+        // include fake duration to avoid panning restrictions 
+        apply_transformation( -my_x(t), -my_y(t), 1, my_zoom(t), 1 );
 
       };
     });
+
+  // set the zoom and translate to the final value 
+  zoom.scale(fin_zoom).translate([ ini_pan[0] - pan_dx, ini_pan[1] - pan_dy ])
 };
 
 
