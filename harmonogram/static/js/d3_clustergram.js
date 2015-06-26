@@ -1036,15 +1036,22 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
   // get old zoom 
   ini_zoom = zoom.scale();
 
-  // calculate the final x and y positions 
-  fin_pan_x = ini_pan_x + pan_dx;
-  fin_pan_y = ini_pan_y + pan_dy;
+  // // calculate the final x and y positions 
+  // fin_pan_x = ini_pan_x + pan_dx;
+  // fin_pan_y = ini_pan_y + pan_dy;
 
 
   // trans_x = 0;
   // trans_y = 0;
   // zoom_x = 1;
   // zoom_y = 2;
+
+  // will improve this !!
+  zoom_y = fin_zoom; 
+  zoom_x = 1;
+
+  // search duration - the duration of zooming and panning 
+  search_duration = 1500;
 
   // example of two translate 
   // first translate to center of visualization, then scale, then translate to final destination
@@ -1053,10 +1060,11 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
   // center_y
   center_y = (fin_zoom -1)*(viz_height/2);
 
+
   // write custom apply_transformation here 
   clust_group
     .transition()
-    .duration(1000)
+    .duration(search_duration)
     // .attr('transform','translate(' + [ margin.left + pan_dx, margin.top + pan_dy ] + ') scale('+ 1 +',' + fin_zoom + ')');
     // first apply the margin transformation
     // then zoom, then apply the final transformation 
@@ -1065,17 +1073,53 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
   // transform row labels 
   d3.select('#row_labels')
     .transition()
-    .duration(1000)
+    .duration(search_duration)
     // .attr('transform','translate(' + [row_margin.left , margin.top + pan_dy] + ') scale(' + fin_zoom + ')');
-    .attr('transform', 'translate(' + [ row_margin.left,  margin.top - center_y ] + ')'+' scale('+ 1 +',' + fin_zoom + ')'+'translate(' + [  0,  pan_dy ] + ')');
+    .attr('transform', 'translate(' + [ row_margin.left,  margin.top - center_y ] + ')'+' scale('+ fin_zoom +',' + fin_zoom + ')'+'translate(' + [  0,  pan_dy ] + ')');
 
   // transform col labels
   // move down col labels as zooming occurs, subtract trans_x - 20 almost works 
   d3.select('#col_labels')
     .transition()
-    .duration(1000)
+    .duration(search_duration)
     // .attr('transform','translate(' + [col_margin.left + pan_dx , col_margin.top] + ') scale(' + 1 + ')');
     .attr('transform', 'translate(' + [ col_margin.left,  col_margin.top ] + ')'+' scale('+ 1 +',' + 1 + ')'+'translate(' + [  pan_dx,  0 ] + ')');
+
+
+  // Font Sizes 
+  //////////////////
+  // reduce the font size by dividing by some part of the zoom 
+  // if reduce_font_size_factor_ is 1, then the font will be divided by the whole zoom - and the labels will not increase in size 
+  // if reduce_font_size_factor_ is 0, then the font will be divided 1 - and the labels will increase in size 
+  // transition is needed to smoothly make the change 
+
+  // reduce font-size to compensate for zoom 
+  // calculate the recuction of the font size 
+  reduce_font_size = d3.scale.linear().domain([0,1]).range([1,zoom_y]).clamp('true');
+  // scale down the font to compensate for zooming 
+  fin_font = default_fs_row/(reduce_font_size(reduce_font_size_factor_row)); 
+  // add back the 'px' to the font size 
+  fin_font = fin_font + 'px';
+  // change the font size of the labels 
+  d3.selectAll('.row_label_text')
+    .transition()
+    .duration(search_duration)
+    .select('text')
+    .style('font-size', fin_font);
+
+  // reduce font-size to compensate for zoom 
+  // calculate the recuction of the font size 
+  reduce_font_size = d3.scale.linear().domain([0,1]).range([1,zoom_x]).clamp('true');
+  // scale down the font to compensate for zooming 
+  fin_font = default_fs_col/(reduce_font_size(reduce_font_size_factor_col)); 
+  // add back the 'px' to the font size 
+  fin_font = fin_font + 'px';
+  // change the font size of the labels 
+  d3.selectAll('.col_label_text')
+    .transition()
+    .duration(search_duration)
+    .select('text')
+    .style('font-size', fin_font);
 
 
 

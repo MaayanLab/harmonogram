@@ -200,30 +200,20 @@ function find_gene_in_clust(){
 
 
 
-  // apply interpolated pan and zoom 
-  interpolate_pan_zoom( 0, viz_height/2, 2 );
+  // // apply interpolated pan and zoom 
+  // interpolate_pan_zoom( 0, viz_height/2, 2 );
 
-  // trans_x = 0;
-  // trans_y = 0;
-  // zoom_x = 1;
-  // zoom_y = 2;
 
-  // // write custom apply_transformation here 
-  // clust_group
-  //   .attr('transform','translate(' + [ margin.left + trans_x, margin.top + trans_y ] + ') scale('+ zoom_x +',' + zoom_y + ')');
 
-  // // transform row labels 
-  // d3.select('#row_labels')
-  //   .attr('transform','translate(' + [row_margin.left , margin.top + trans_y] + ') scale(' + zoom_y + ')');
 
-  // // transform col labels
-  // // move down col labels as zooming occurs, subtract trans_x - 20 almost works 
-  // d3.select('#col_labels')
-  //   .attr('transform','translate(' + [col_margin.left + trans_x , col_margin.top] + ') scale(' + zoom_x + ')');
+  // calculate the y panning required to center the found gene 
+  console.log('inst_y_pos '+String(inst_y_pos))
+  pan_dy = viz_height/2 - inst_y_pos;
+  console.log('pan_dy into two_translate_zoom ' + pan_dy)
 
   // use two translate method to control zooming 
   // pan_x, pan_y, zoom 
-  two_translate_zoom(0, 0, 2);
+  two_translate_zoom(0, pan_dy, zoom_switch );
 
 
 };
