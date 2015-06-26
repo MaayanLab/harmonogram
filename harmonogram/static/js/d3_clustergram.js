@@ -995,3 +995,32 @@ function timeout_resize(){
   doit = setTimeout( reset_visualization_size, 500)  ;
 
 };
+
+
+// interpolate pan and zoom 
+function interpolate_pan_zoom(){
+
+  // define transition that will take place over 1 second 
+  d3.transition()
+    .duration(1000)
+    // the first argument to tween is not imporant, I think 
+    .tween('something', function(){
+
+      // define the interpolation - start at initial pan/zoom and move to final pan/zoom 
+      my_x = d3.interpolate(0,100);
+
+      // tween will return an anonymous function, with input value t
+      // the function will apply the zoom/pan in small increments 
+      return function(t){
+
+        // apply pan/zoom in small increments 
+
+        // return the interpolated value over time, determined by transition and t
+        console.log(my_x(t));
+
+      };
+    });
+};
+
+
+

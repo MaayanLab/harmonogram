@@ -171,10 +171,10 @@ function find_gene_in_clust(){
   inst_gene_index = _.indexOf( all_genes, search_gene );	
 
   // fake zoom 
-  fake_zoom = 1;
+  fake_zoom =1;
 
   // get y position 
-  inst_y_pos = - ( fake_zoom*y_scale(inst_gene_index) ) + 20 ;
+  inst_y_pos = - y_scale(inst_gene_index)  ;
 
   console.log(inst_gene_index)
   console.log(inst_y_pos)
@@ -183,7 +183,7 @@ function find_gene_in_clust(){
   console.log('trying to highlight row name')
   console.log(search_gene)
 	d3.selectAll('.row_label_text')
-		.filter(function(d){ return d.name == 'MINA'})
+		.filter(function(d){ return d.name == search_gene})
 		.select('text').style('font-weight','bold');
 
   // reset zoom 
@@ -199,22 +199,7 @@ function find_gene_in_clust(){
   apply_transformation(0,inst_y_pos,1,fake_zoom, 2000);
 
 
-}
+};
 
-// $(document).ready(function(){
-// $('form').submit(
-// 	console.log('submit form')
-// 	);
-// })
-
-
-var textareaval=$('#userInput').val();
-
-function outputTranslated()
-{
-$('#toBeTranslatedForm').submit(function() {
-   alert(textareaval);
-});
-}
 
 
