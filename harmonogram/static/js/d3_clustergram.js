@@ -1050,27 +1050,32 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
   // first translate to center of visualization, then scale, then translate to final destination
   // .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
 
+  // center_y
+  center_y = (fin_zoom -1)*(viz_height/2);
+
   // write custom apply_transformation here 
   clust_group
     .transition()
-    .duration(700)
+    .duration(1000)
     // .attr('transform','translate(' + [ margin.left + pan_dx, margin.top + pan_dy ] + ') scale('+ 1 +',' + fin_zoom + ')');
     // first apply the margin transformation
     // then zoom, then apply the final transformation 
-    .attr('transform', 'translate(' + [ margin.left,  margin.top ] + ')'+' scale('+ 1 +',' + fin_zoom + ')'+'translate(' + [  pan_dx,  pan_dy ] + ')');
+    .attr('transform', 'translate(' + [ margin.left,  margin.top - center_y ] + ')'+' scale('+ 1 +',' + fin_zoom + ')'+'translate(' + [  pan_dx,  pan_dy ] + ')');
 
   // transform row labels 
   d3.select('#row_labels')
     .transition()
-    .duration(700)
-    .attr('transform','translate(' + [row_margin.left , margin.top + pan_dy] + ') scale(' + fin_zoom + ')');
+    .duration(1000)
+    // .attr('transform','translate(' + [row_margin.left , margin.top + pan_dy] + ') scale(' + fin_zoom + ')');
+    .attr('transform', 'translate(' + [ row_margin.left,  margin.top - center_y ] + ')'+' scale('+ 1 +',' + fin_zoom + ')'+'translate(' + [  0,  pan_dy ] + ')');
 
   // transform col labels
   // move down col labels as zooming occurs, subtract trans_x - 20 almost works 
   d3.select('#col_labels')
     .transition()
-    .duration(700)
-    .attr('transform','translate(' + [col_margin.left + pan_dx , col_margin.top] + ') scale(' + 1 + ')');
+    .duration(1000)
+    // .attr('transform','translate(' + [col_margin.left + pan_dx , col_margin.top] + ') scale(' + 1 + ')');
+    .attr('transform', 'translate(' + [ col_margin.left,  col_margin.top ] + ')'+' scale('+ 1 +',' + 1 + ')'+'translate(' + [  pan_dx,  0 ] + ')');
 
 
 
