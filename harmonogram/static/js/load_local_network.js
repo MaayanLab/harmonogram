@@ -170,11 +170,11 @@ function find_gene_in_clust(){
 	// find the index of the gene 
   inst_gene_index = _.indexOf( all_genes, search_gene );	
 
-  // fake zoom 
-  fake_zoom =1;
+  // // fake zoom 
+  // fake_zoom = 1;
 
   // get y position 
-  inst_y_pos = - y_scale(inst_gene_index)  ;
+  inst_y_pos = y_scale(inst_gene_index)  ;
 
   console.log(inst_gene_index)
   console.log(inst_y_pos)
@@ -186,17 +186,44 @@ function find_gene_in_clust(){
 		.filter(function(d){ return d.name == search_gene})
 		.select('text').style('font-weight','bold');
 
-  // reset zoom 
-  // zoom.scale(1).translate([margin.left, margin.top]);
-  zoom.scale(fake_zoom,1);
+  // // reset zoom 
+  // // zoom.scale(1).translate([margin.left, margin.top]);
+  // zoom.scale(fake_zoom,1);
 
   // apply transformation: trans_x, trans_y, zoom_x, zoom_y
   // use a transition duration of 1 second 
   ///////////////////////////////////////////
-  // first zoom 
-  // apply_transformation(0,0,1,fake_zoom, 2000);
+  // // first zoom 
+  // apply_transformation(0,0,1,fake_zoom, 2000); 
   // // then transition 
-  apply_transformation(0,inst_y_pos,1,fake_zoom, 2000);
+  // apply_transformation(0,inst_y_pos,1,fake_zoom, 2000);
+
+
+
+  // apply interpolated pan and zoom 
+  interpolate_pan_zoom( 0, viz_height/2, 2 );
+
+  // trans_x = 0;
+  // trans_y = 0;
+  // zoom_x = 1;
+  // zoom_y = 2;
+
+  // // write custom apply_transformation here 
+  // clust_group
+  //   .attr('transform','translate(' + [ margin.left + trans_x, margin.top + trans_y ] + ') scale('+ zoom_x +',' + zoom_y + ')');
+
+  // // transform row labels 
+  // d3.select('#row_labels')
+  //   .attr('transform','translate(' + [row_margin.left , margin.top + trans_y] + ') scale(' + zoom_y + ')');
+
+  // // transform col labels
+  // // move down col labels as zooming occurs, subtract trans_x - 20 almost works 
+  // d3.select('#col_labels')
+  //   .attr('transform','translate(' + [col_margin.left + trans_x , col_margin.top] + ') scale(' + zoom_x + ')');
+
+  // use two translate method to control zooming 
+  // pan_x, pan_y, zoom 
+  two_translate_zoom(0, 0, 2);
 
 
 };
