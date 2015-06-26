@@ -306,37 +306,8 @@ function make_d3_clustergram(network_data) {
 
   // double click to reset zoom - add transition 
   d3.select('#main_svg')
-    .on('dblclick', function() { 
-
-      console.log('double clicking')
-      
-      // old way of resetting zoom, no transition 
-      ////////////////////////////////////////////
-      // reset adj zoom 
-      d3.select('#clust_group')
-        .attr("transform", "translate(" + (margin.left) + "," + (margin.top) + ")");
-      // reset column label zoom 
-      d3.select('#col_labels')
-        .attr("transform", "translate(" + col_margin.left + "," + col_margin.top + ")");
-      // reset row label zoom 
-      d3.select('#row_labels')
-        .attr("transform", "translate(" + row_margin.left + "," + row_margin.top + ")");
-        
-      // use Qiaonan method to reset zoom 
-      zoom.scale(1).translate([margin.left, margin.top]);
-
-      // reset the font size because double click zoom is not disabled
-      d3.selectAll('.row_label_text').select('text').style('font-size', default_fs_row+'px');
-      d3.selectAll('.col_label_text').select('text').style('font-size', default_fs_col+'px');
-
-      // reset the heights of the bars
-      // recalculate the original heights
-      col_label_obj.select('rect')
-        // column is rotated - effectively width and height are switched
-        .attr('width', function(d,i) { return bar_scale_col( d.nl_pval ); })
-        .attr('transform', function(d, i) { return "translate(0,0)"; });
-
-    });
+    // for some reason, do not put brackets in these functions 
+    .on('dblclick', double_click_reset );
 };
 
 // row function 
@@ -1011,15 +982,15 @@ function interpolate_pan_zoom(pan_dx, pan_dy, fin_zoom){
   // switch sign since positive panning moves image up
   ini_pan_x = -(ini_pan[0] - margin.left);
   ini_pan_y = -(ini_pan[1] - margin.top);
+
+  // get old zoom 
   ini_zoom = zoom.scale();
 
   // calculate the final x and y positions 
   fin_pan_x = ini_pan_x + pan_dx;
   fin_pan_y = ini_pan_y + pan_dy;
 
-  // console.log('ini_pan_x '+ String(ini_pan_x) )
   console.log('ini_pan_y '+ String(ini_pan_y) )
-  // console.log('fin_pan_x '+ String(fin_pan_x) )
   console.log('fin_pan_y '+ String(fin_pan_y) )
 
   // define transition that will take place over 1 second 
@@ -1059,5 +1030,59 @@ function interpolate_pan_zoom(pan_dx, pan_dy, fin_zoom){
   zoom.scale(fin_zoom).translate([ ini_pan[0] - pan_dx, ini_pan[1] - pan_dy ])
 };
 
+function double_click_reset() { 
 
+      console.log('double clicking')
+
+      console.log('current zoom and pan ')
+      console.log(zoom.scale())
+      console.log(zoom.translate())
+      
+      // new way of resetting zoom 
+      ////////////////////////////////////////
+      // get current pan and zoom 
+      inst_pan = zoom.translate();
+      inst_pan_x = inst_pan[0];
+      inst_pan_y = inst_pan[1];
+      inst_zoom = zoom.scale();
+
+
+      // calculate dx, dy, and dz 
+      ////////////////////////////////////////
+      // calculate the dy - the amount needed to reset the x position 
+      pan_dy = margin.top - inst_pan_y ; 
+      interpolate_pan_zoom(0,-pan_dy,1)
+
+
+      // calculate
+
+      // // old way of resetting zoom, no transition 
+      // ////////////////////////////////////////////
+      // // reset adj zoom 
+      // d3.select('#clust_group')
+      //   .attr("transform", "translate(" + (margin.left) + "," + (margin.top) + ")");
+      // // reset column label zoom 
+      // d3.select('#col_labels')
+      //   .attr("transform", "translate(" + col_margin.left + "," + col_margin.top + ")");
+      // // reset row label zoom 
+      // d3.select('#row_labels')
+      //   .attr("transform", "translate(" + row_margin.left + "," + row_margin.top + ")");
+        
+      // // use Qiaonan method to reset zoom 
+      // zoom.scale(1).translate([margin.left, margin.top]);
+
+      // // reset the font size because double click zoom is not disabled
+      // d3.selectAll('.row_label_text').select('text').style('font-size', default_fs_row+'px');
+      // d3.selectAll('.col_label_text').select('text').style('font-size', default_fs_col+'px');
+
+      // // reset the heights of the bars
+      // // recalculate the original heights
+      // col_label_obj.select('rect')
+      //   // column is rotated - effectively width and height are switched
+      //   .attr('width', function(d,i) { return bar_scale_col( d.nl_pval ); })
+      //   .attr('transform', function(d, i) { return "translate(0,0)"; });
+
+      // ////////////////////////////////////////////////////////
+
+    }
 
