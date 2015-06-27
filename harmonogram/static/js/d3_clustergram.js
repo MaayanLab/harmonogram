@@ -974,6 +974,11 @@ function interpolate_pan_zoom(pan_dx, pan_dy, fin_zoom){
 
 function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
 
+  console.log('two_translate_zoom')
+  console.log('pan_dx: '+String(pan_dx))
+  console.log('pan_dy: '+String(pan_dy))
+  console.log('fin_zoom: '+String(fin_zoom))
+
   // define the commonly used variable half_height
   var half_height = viz_height/2 ;
 
@@ -982,11 +987,12 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
   // panning out of the visible region  
   var y_pan_room = ((half_height)/zoom_switch);
 
-  console.log('y_pan_room ' + String(y_pan_room))
 
   // prevent visualization from panning down too much 
   // when zooming into genes near the top of the clustergram 
   if (pan_dy >= half_height - y_pan_room){
+
+    console.log('restricting pan down')
 
     // prevent the clustergram from panning down too much 
     // if the amount of panning is equal to the half_height then it needs to be reduced
@@ -1013,11 +1019,21 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
 
   // prevent visualization from panning up too much
   // when zooming into genes at the bottom of the clustergram 
-  if (pan_dy <= -(half_height - y_pan_room) ){
+  if (pan_dy < -(half_height - y_pan_room) ){
 
+    console.log('restricting pan up')
     var shift_top_viz = half_height + pan_dy ;
+
+    // does not seem to be needed 
+    /////////
     // move up by one row height 
-    var shift_up_viz  =  half_height/zoom_switch - shift_top_viz - y_scale.rangeBand();
+    // var move_up_one_row = y_scale.rangeBand();
+    // // do not move up one row if the clustergram is square 
+    // if (zoom_switch == 1){
+    //   move_up_one_row = 0;
+    // };
+
+    var shift_up_viz  =  half_height/zoom_switch - shift_top_viz; //- move_up_one_row;
 
     // reduce pan_dy so that the visualization does not get panned to far down
     pan_dy = pan_dy + shift_up_viz ;
