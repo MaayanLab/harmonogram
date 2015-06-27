@@ -184,7 +184,14 @@ function find_gene_in_clust(){
   // console.log(search_gene)
 	d3.selectAll('.row_label_text')
 		.filter(function(d){ return d.name == search_gene})
-		.select('text').style('font-weight','bold');
+		.select('text')
+		.style('font-weight','bold');
+
+	d3.selectAll('.row_label_text')
+		.filter(function(d){ return d.name == search_gene})
+		.select('rect')
+		.style('opacity',1);
+
 
   // // reset zoom 
   // // zoom.scale(1).translate([margin.left, margin.top]);

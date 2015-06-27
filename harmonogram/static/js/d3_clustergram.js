@@ -151,7 +151,8 @@ function make_d3_clustergram(network_data) {
     });
 
   // append row label text 
-  row_label_obj.append('text')
+  row_label_obj
+    .append('text')
     // !! this will be fixed once I have separate x and y scales 
     // !! can be improved 
     .attr('y', y_scale.rangeBand()/2 )
@@ -159,6 +160,53 @@ function make_d3_clustergram(network_data) {
     .attr('text-anchor','end')
     .style('font-size',default_fs_row+'px')
     .text(function(d, i) { return d.name; } )
+
+  // append rectangle behind text 
+  row_label_obj
+    .insert('rect','text')
+    .attr('x',-10)
+    .attr('y',0)
+    .attr('width',10)
+    .attr('height',10)
+    .style('opacity',0)
+
+  g_row_label_obj = row_label_obj;
+
+  // change the size of the rects 
+  row_label_obj
+    // .attr('somethihg',function(){
+    .each(function(){
+      // get the bounding box of the row label text 
+      var bbox = d3.select(this)
+                   .select('text')[0][0]
+                   .getBBox();
+
+      // use the bounding box to set the size of the rect 
+      // don't know 
+      d3.select(this)
+        .select('rect')
+      .attr('x', bbox.x/2)
+      .attr('y', 0)
+      .attr('width', bbox.width/2)
+      .attr('height', y_scale.rangeBand())
+      .style('fill','yellow')
+      .style('opacity',0);
+
+
+    })
+
+  console.log(row_label_obj)
+
+  // // # obtain its bounding box (without considering transforms)
+  // bbox = text[0][0].getBBox()
+
+  // // put rect behind the text 
+  // // # insert a yellow rect beneath the text, to represent the bounding box
+  //   svg.insert('rect','text')
+  //     .attr('x', bbox.x)
+  //     .attr('y', bbox.y)
+  //     .attr('width', bbox.width)
+  //     .attr('height', bbox.height)
 
 
   // col labels 
