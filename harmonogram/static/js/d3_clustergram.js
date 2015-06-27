@@ -970,36 +970,35 @@ function interpolate_pan_zoom(pan_dx, pan_dy, fin_zoom){
 
 function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
 
-  // get the initial zoom and translate information 
-  ini_pan = zoom.translate();
-  // remove the margins from the initial pan 
-  // switch sign since positive panning moves image up
-  ini_pan_x = -(ini_pan[0] - margin.left);
-  ini_pan_y = -(ini_pan[1] - margin.top);
+  // // get the initial zoom and translate information 
+  // ini_pan = zoom.translate();
 
-  // get old zoom 
-  ini_zoom = zoom.scale();
-
+  // // remove the margins from the initial pan 
+  // // switch sign since positive panning moves image up
+  // ini_pan_x = -(ini_pan[0] - margin.left);
+  // ini_pan_y = -(ini_pan[1] - margin.top);
+  // // get old zoom 
+  // ini_zoom = zoom.scale();
   // // calculate the final x and y positions 
   // fin_pan_x = ini_pan_x + pan_dx;
   // fin_pan_y = ini_pan_y + pan_dy;
 
 
-  // need to add pan zoom restruction !! 
+  // need to add pan zoom restriction !! 
 
   // will improve this !!
   zoom_y = fin_zoom; 
   zoom_x = 1;
 
   // search duration - the duration of zooming and panning 
-  search_duration = 2000;
+  search_duration = 2500;
 
   // example of two translate 
   // first translate to center of visualization, then scale, then translate to final destination
   // .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
 
   // center_y
-  center_y = (fin_zoom -1)*(viz_height/2);
+  center_y = -(zoom_y -1)*(viz_height/2);
 
 
   console.log('\ncenter_y\t'+center_y+'\n')
@@ -1010,17 +1009,15 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
   clust_group
     .transition()
     .duration(search_duration)
-    // .attr('transform','translate(' + [ margin.left + pan_dx, margin.top + pan_dy ] + ') scale('+ 1 +',' + fin_zoom + ')');
     // first apply the margin transformation
     // then zoom, then apply the final transformation 
-    .attr('transform', 'translate(' + [ margin.left,  margin.top - center_y ] + ')'+' scale('+ 1 +',' + fin_zoom + ')'+'translate(' + [  pan_dx,  pan_dy ] + ')');
+    .attr('transform', 'translate(' + [ margin.left,  margin.top + center_y ] + ')'+' scale('+ 1 +',' + zoom_y + ')'+'translate(' + [  pan_dx,  pan_dy ] + ')');
 
   // transform row labels 
   d3.select('#row_labels')
     .transition()
     .duration(search_duration)
-    // .attr('transform','translate(' + [row_margin.left , margin.top + pan_dy] + ') scale(' + fin_zoom + ')');
-    .attr('transform', 'translate(' + [ row_margin.left,  margin.top - center_y ] + ')'+' scale('+ fin_zoom +',' + fin_zoom + ')'+'translate(' + [  0,  pan_dy ] + ')');
+    .attr('transform', 'translate(' + [ row_margin.left,  margin.top + center_y ] + ')'+' scale('+ zoom_y +',' + zoom_y + ')'+'translate(' + [  0,  pan_dy ] + ')');
 
   // transform col labels
   // move down col labels as zooming occurs, subtract trans_x - 20 almost works 
@@ -1033,11 +1030,6 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
 
   // Font Sizes 
   //////////////////
-  // reduce the font size by dividing by some part of the zoom 
-  // if reduce_font_size_factor_ is 1, then the font will be divided by the whole zoom - and the labels will not increase in size 
-  // if reduce_font_size_factor_ is 0, then the font will be divided 1 - and the labels will increase in size 
-  // transition is needed to smoothly make the change 
-
   // reduce font-size to compensate for zoom 
   // calculate the recuction of the font size 
   reduce_font_size = d3.scale.linear().domain([0,1]).range([1,zoom_y]).clamp('true');
@@ -1052,28 +1044,13 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
     .select('text')
     .style('font-size', fin_font);
 
-  // reduce font-size to compensate for zoom 
-  // calculate the recuction of the font size 
-  reduce_font_size = d3.scale.linear().domain([0,1]).range([1,zoom_x]).clamp('true');
-  // scale down the font to compensate for zooming 
-  fin_font = default_fs_col/(reduce_font_size(reduce_font_size_factor_col)); 
-  // add back the 'px' to the font size 
-  fin_font = fin_font + 'px';
-  // change the font size of the labels 
-  d3.selectAll('.col_label_text')
-    .transition()
-    .duration(search_duration)
-    .select('text')
-    .style('font-size', fin_font);
 
-
-  // set y translate, center_y requires an extra offset
-  // var net_y_offset = center_y - (pan_dy*zoom_switch - margin.top);
-  var net_y_offset = center_y - (pan_dy*zoom_switch + margin.top);
+  // set y translate: center_y is positive 
+  var net_y_offset = center_y + ( pan_dy * zoom_y + margin.top );
 
   // reset the zoom translate and zoom 
   zoom.scale(zoom_y);
-  zoom.translate([  pan_dx,  -net_y_offset])
+  zoom.translate([  pan_dx, net_y_offset])
 
 };
 
