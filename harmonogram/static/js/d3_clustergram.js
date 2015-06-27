@@ -1068,7 +1068,8 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
 
 
   // set y translate, center_y requires an extra offset
-  var net_y_offset = center_y + 800; //+  pan_dy - margin.top;
+  // var net_y_offset = center_y - (pan_dy*zoom_switch - margin.top);
+  var net_y_offset = center_y - (pan_dy*zoom_switch + margin.top);
 
   // reset the zoom translate and zoom 
   zoom.scale(zoom_y);
