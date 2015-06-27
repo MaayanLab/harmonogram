@@ -307,7 +307,11 @@ function make_d3_clustergram(network_data) {
   // double click to reset zoom - add transition 
   d3.select('#main_svg')
     // for some reason, do not put brackets in these functions 
-    .on('dblclick', double_click_reset );
+    .on('dblclick', function(){
+      // apply the following two translate zoom to reset zoom 
+      // programatically 
+      two_translate_zoom(0,0,1)
+    } );
 };
 
 // row function 
@@ -970,19 +974,23 @@ function interpolate_pan_zoom(pan_dx, pan_dy, fin_zoom){
 
 function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
 
-  // // get the initial zoom and translate information 
-  // ini_pan = zoom.translate();
+  // prevent positive panning 
+  if (pan_dy >= viz_height/2){
 
-  // // remove the margins from the initial pan 
-  // // switch sign since positive panning moves image up
-  // ini_pan_x = -(ini_pan[0] - margin.left);
-  // ini_pan_y = -(ini_pan[1] - margin.top);
-  // // get old zoom 
-  // ini_zoom = zoom.scale();
-  // // calculate the final x and y positions 
-  // fin_pan_x = ini_pan_x + pan_dx;
-  // fin_pan_y = ini_pan_y + pan_dy;
-
+    // prevent the clustergram from panning down too much 
+    // if the amount of panning is equal to the viz_height/2 then it needs to be reduced
+    // effectively, the the visualization needs to be moved up (negative) by some factor
+    // of the half width of the visualization. If there was no zooming involved, then the
+    // visualization would be centered first, then panned to center the top term, then 
+    // the correction would re-center it. However, because of the zooming the offset is 
+    // reduced by the zoom factor (this is because the panning is occurring on something 
+    // that will be zoomed into - this is why the pan_dy value is not scaled in the two
+    // translate transformations, but it has to be scaled afterwards to set the translate
+    // vector)
+    pan_dy = viz_height/2 - (viz_height/2)/zoom_switch
+    console.log('restricting pan_dy to '+ String(pan_dy))
+    console.log('vi')
+  };
 
   // need to add pan zoom restriction !! 
 
@@ -993,15 +1001,11 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
   // search duration - the duration of zooming and panning 
   search_duration =700;
 
-  // example of two translate 
-  // first translate to center of visualization, then scale, then translate to final destination
-  // .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
-
   // center_y
   center_y = -(zoom_y -1)*(viz_height/2);
 
-  console.log('\ncenter_y\t'+center_y+'\n')
-  console.log('\npan_dy\t'+pan_dy+'\n')
+  // console.log('\ncenter_y\t'+center_y+'\n')
+  // console.log('\npan_dy\t'+pan_dy+'\n')
 
   // write custom apply_transformation here 
   clust_group
@@ -1057,8 +1061,10 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
     .select('text')
     .style('font-size', fin_font);
 
-  // set y translate: center_y is positive 
-  var net_y_offset = center_y + ( pan_dy * zoom_y + margin.top );
+  // set y translate: center_y is positive, positive moves the visualization down 
+  // the translate vector has the initial margin, the first y centering, and pan_dy
+  // times the scaling zoom_y  
+  var net_y_offset = margin.top + center_y +  pan_dy * zoom_y  ;
 
   // reset the zoom translate and zoom 
   zoom.scale(zoom_y);
@@ -1066,63 +1072,5 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
 
 };
 
-function double_click_reset() { 
 
-  console.log('double clicking')
-
-  // console.log('current zoom and pan ')
-  // console.log(zoom.scale())
-  // console.log(zoom.translate())
-  
-  // // new way of resetting zoom 
-  // ////////////////////////////////////////
-  // // get current pan and zoom 
-  // inst_pan = zoom.translate();
-  // inst_pan_x = inst_pan[0];
-  // inst_pan_y = inst_pan[1];
-  // inst_zoom = zoom.scale();
-
-
-  // // calculate dx, dy, and dz 
-  // ////////////////////////////////////////
-  // // calculate the dy - the amount needed to reset the x position 
-  // pan_dy = margin.top - inst_pan_y ; 
-  // interpolate_pan_zoom(0,-pan_dy,1)
-
-
-  // new way of resetting zoom using two transition zoom 
-  // transition 1: move to center
-  // zoom: 1x
-  // transition 2: do not move from center 
-  two_translate_zoom(0,0,1)
-
-  // // old way of resetting zoom, no transition 
-  // ////////////////////////////////////////////
-  // // reset adj zoom 
-  // d3.select('#clust_group')
-  //   .attr("transform", "translate(" + (margin.left) + "," + (margin.top) + ")");
-  // // reset column label zoom 
-  // d3.select('#col_labels')
-  //   .attr("transform", "translate(" + col_margin.left + "," + col_margin.top + ")");
-  // // reset row label zoom 
-  // d3.select('#row_labels')
-  //   .attr("transform", "translate(" + row_margin.left + "," + row_margin.top + ")");
-    
-  // // use Qiaonan method to reset zoom 
-  // zoom.scale(1).translate([margin.left, margin.top]);
-
-  // // reset the font size because double click zoom is not disabled
-  // d3.selectAll('.row_label_text').select('text').style('font-size', default_fs_row+'px');
-  // d3.selectAll('.col_label_text').select('text').style('font-size', default_fs_col+'px');
-
-  // // reset the heights of the bars
-  // // recalculate the original heights
-  // col_label_obj.select('rect')
-  //   // column is rotated - effectively width and height are switched
-  //   .attr('width', function(d,i) { return bar_scale_col( d.nl_pval ); })
-  //   .attr('transform', function(d, i) { return "translate(0,0)"; });
-
-  // ////////////////////////////////////////////////////////
-
-}
 
