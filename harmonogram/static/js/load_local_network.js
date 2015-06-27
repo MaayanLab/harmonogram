@@ -164,64 +164,12 @@ $("#gene_search_box").keyup(function (e) {
 
 // find gene in clustergram 
 function find_gene_in_clust(){
-	// console.log(this);
+	// get the searched gene 
 	search_gene = $('#gene_search_box').val();
 
-	// find the index of the gene 
-  inst_gene_index = _.indexOf( all_genes, search_gene );	
-
-  // // fake zoom 
-  // fake_zoom = 1;
-
-  // get y position 
-  inst_y_pos = y_scale(inst_gene_index)  ;
-
-  // console.log(inst_gene_index)
-  // console.log(inst_y_pos)
-
-  // highlight row name 
-  // console.log('trying to highlight row name')
-  // console.log(search_gene)
-	d3.selectAll('.row_label_text')
-		.filter(function(d){ return d.name == search_gene})
-		.select('text')
-		.style('font-weight','bold');
-
-	d3.selectAll('.row_label_text')
-		.filter(function(d){ return d.name == search_gene})
-		.select('rect')
-		.style('opacity',1);
-
-
-  // // reset zoom 
-  // // zoom.scale(1).translate([margin.left, margin.top]);
-  // zoom.scale(fake_zoom,1);
-
-  // apply transformation: trans_x, trans_y, zoom_x, zoom_y
-  // use a transition duration of 1 second 
-  ///////////////////////////////////////////
-  // // first zoom 
-  // apply_transformation(0,0,1,fake_zoom, 2000); 
-  // // then transition 
-  // apply_transformation(0,inst_y_pos,1,fake_zoom, 2000);
-
-
-
-  // // apply interpolated pan and zoom 
-  // interpolate_pan_zoom( 0, viz_height/2, 2 );
-
-
-
-
-  // calculate the y panning required to center the found gene 
-  console.log('inst_y_pos '+String(inst_y_pos))
-  pan_dy = viz_height/2 - inst_y_pos;
-  console.log('pan_dy into two_translate_zoom ' + pan_dy)
-
-  // use two translate method to control zooming 
-  // pan_x, pan_y, zoom 
-  two_translate_zoom(0, pan_dy, zoom_switch );
-
+  // zoom and highlight found gene 
+  /////////////////////////////////
+  zoom_and_highlight_found_gene(search_gene);
 
 };
 

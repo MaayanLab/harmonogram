@@ -924,6 +924,10 @@ function reorder_click_row(d,i){
     .attr("transform", function(d, i) { 
       return "translate(" + x_scale(i) + ")rotate(-90)"; 
     });
+
+  // zoom into and highlight selected row 
+  zoom_and_highlight_found_gene(inst_gene);
+
 };
 
 // reorder rows with column click 
@@ -1167,5 +1171,39 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
 
 };
 
+// zoom into and highlight the found the gene 
+function zoom_and_highlight_found_gene(search_gene){
 
+  // unhighlight and unbold all genes 
+  d3.selectAll('.row_label_text')
+    .select('text')
+    .style('font-weight','normal');
+  d3.selectAll('.row_label_text')
+    .select('rect')
+    .style('opacity',0);
+
+  // find the index of the gene 
+  inst_gene_index = _.indexOf( all_genes, search_gene );  
+
+  // get y position 
+  inst_y_pos = y_scale(inst_gene_index)  ;
+
+  // make row name bold 
+  d3.selectAll('.row_label_text')
+    .filter(function(d){ return d.name == search_gene})
+    .select('text')
+    .style('font-weight','bold');
+  // highlight row name 
+  d3.selectAll('.row_label_text')
+    .filter(function(d){ return d.name == search_gene})
+    .select('rect')
+    .style('opacity',1);
+
+  // calculate the y panning required to center the found gene 
+  pan_dy = viz_height/2 - inst_y_pos;
+
+  // use two translate method to control zooming 
+  // pan_x, pan_y, zoom 
+  two_translate_zoom(0, pan_dy, zoom_switch );
+};
 
