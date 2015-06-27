@@ -991,7 +991,7 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
   zoom_x = 1;
 
   // search duration - the duration of zooming and panning 
-  search_duration = 2500;
+  search_duration =700;
 
   // example of two translate 
   // first translate to center of visualization, then scale, then translate to final destination
@@ -1000,10 +1000,8 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
   // center_y
   center_y = -(zoom_y -1)*(viz_height/2);
 
-
   console.log('\ncenter_y\t'+center_y+'\n')
   console.log('\npan_dy\t'+pan_dy+'\n')
-
 
   // write custom apply_transformation here 
   clust_group
@@ -1045,6 +1043,20 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
     .style('font-size', fin_font);
 
 
+  // reduce font-size to compensate for zoom 
+  // calculate the recuction of the font size 
+  reduce_font_size = d3.scale.linear().domain([0,1]).range([1,zoom_x]).clamp('true');
+  // scale down the font to compensate for zooming 
+  fin_font = default_fs_col/(reduce_font_size(reduce_font_size_factor_col)); 
+  // add back the 'px' to the font size 
+  fin_font = fin_font + 'px';
+  // change the font size of the labels 
+  d3.selectAll('.col_label_text')
+    .transition()
+    .duration(search_duration)
+    .select('text')
+    .style('font-size', fin_font);
+
   // set y translate: center_y is positive 
   var net_y_offset = center_y + ( pan_dy * zoom_y + margin.top );
 
@@ -1078,35 +1090,39 @@ function double_click_reset() {
   // interpolate_pan_zoom(0,-pan_dy,1)
 
 
-  // calculate
+  // new way of resetting zoom using two transition zoom 
+  // transition 1: move to center
+  // zoom: 1x
+  // transition 2: do not move from center 
+  two_translate_zoom(0,0,1)
 
-  // old way of resetting zoom, no transition 
-  ////////////////////////////////////////////
-  // reset adj zoom 
-  d3.select('#clust_group')
-    .attr("transform", "translate(" + (margin.left) + "," + (margin.top) + ")");
-  // reset column label zoom 
-  d3.select('#col_labels')
-    .attr("transform", "translate(" + col_margin.left + "," + col_margin.top + ")");
-  // reset row label zoom 
-  d3.select('#row_labels')
-    .attr("transform", "translate(" + row_margin.left + "," + row_margin.top + ")");
+  // // old way of resetting zoom, no transition 
+  // ////////////////////////////////////////////
+  // // reset adj zoom 
+  // d3.select('#clust_group')
+  //   .attr("transform", "translate(" + (margin.left) + "," + (margin.top) + ")");
+  // // reset column label zoom 
+  // d3.select('#col_labels')
+  //   .attr("transform", "translate(" + col_margin.left + "," + col_margin.top + ")");
+  // // reset row label zoom 
+  // d3.select('#row_labels')
+  //   .attr("transform", "translate(" + row_margin.left + "," + row_margin.top + ")");
     
-  // use Qiaonan method to reset zoom 
-  zoom.scale(1).translate([margin.left, margin.top]);
+  // // use Qiaonan method to reset zoom 
+  // zoom.scale(1).translate([margin.left, margin.top]);
 
-  // reset the font size because double click zoom is not disabled
-  d3.selectAll('.row_label_text').select('text').style('font-size', default_fs_row+'px');
-  d3.selectAll('.col_label_text').select('text').style('font-size', default_fs_col+'px');
+  // // reset the font size because double click zoom is not disabled
+  // d3.selectAll('.row_label_text').select('text').style('font-size', default_fs_row+'px');
+  // d3.selectAll('.col_label_text').select('text').style('font-size', default_fs_col+'px');
 
-  // reset the heights of the bars
-  // recalculate the original heights
-  col_label_obj.select('rect')
-    // column is rotated - effectively width and height are switched
-    .attr('width', function(d,i) { return bar_scale_col( d.nl_pval ); })
-    .attr('transform', function(d, i) { return "translate(0,0)"; });
+  // // reset the heights of the bars
+  // // recalculate the original heights
+  // col_label_obj.select('rect')
+  //   // column is rotated - effectively width and height are switched
+  //   .attr('width', function(d,i) { return bar_scale_col( d.nl_pval ); })
+  //   .attr('transform', function(d, i) { return "translate(0,0)"; });
 
-  ////////////////////////////////////////////////////////
+  // ////////////////////////////////////////////////////////
 
 }
 
