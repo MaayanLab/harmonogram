@@ -974,18 +974,22 @@ function interpolate_pan_zoom(pan_dx, pan_dy, fin_zoom){
 
 function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
 
-  // y pan room, the pan room has to be less than viz_height/2 since 
+  // define the commonly used variable half_height
+  var half_height = viz_height/2 ;
+
+  // y pan room, the pan room has to be less than half_height since 
   // zooming in on a gene that is near the top of the clustergram also causes 
   // panning out of the visible region  
-  var y_pan_room = (viz_height/2)/zoom_switch;
+  var y_pan_room = ((half_height)/zoom_switch);
 
   console.log('y_pan_room ' + String(y_pan_room))
 
-  // prevent positive panning 
-  if (pan_dy >= y_pan_room){
+  // prevent visualization from panning down too much 
+  // when zooming into genes near the top of the clustergram 
+  if (pan_dy >= half_height - y_pan_room){
 
     // prevent the clustergram from panning down too much 
-    // if the amount of panning is equal to the viz_height/2 then it needs to be reduced
+    // if the amount of panning is equal to the half_height then it needs to be reduced
     // effectively, the the visualization needs to be moved up (negative) by some factor
     // of the half width of the visualization. If there was no zooming involved, then the
     // visualization would be centered first, then panned to center the top term, then 
@@ -994,19 +998,32 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
     // that will be zoomed into - this is why the pan_dy value is not scaled in the two
     // translate transformations, but it has to be scaled afterwards to set the translate
     // vector)
-    // pan_dy = viz_height/2 - (viz_height/2)/zoom_switch
+    // pan_dy = half_height - (half_height)/zoom_switch
 
-    // center the selected gene, then move the visualization back up so that it 
-    // does not pan out of the visible area 
-    // calculate amount to shift back up pan_dy 
-    // first shift up half the height then shift back down to have the top of the visualizatio visible
-    var shift_up_viz = viz_height/2 - (viz_height/2 - pan_dy)*zoom_switch ; // - (viz_height/2 - pan_dy )
-    console.log('shift_up_viz '+ String(shift_up_viz))
-    pan_dy = pan_dy - shift_up_viz /zoom_switch
-    console.log('restricting pan_dy to '+ String(pan_dy))
+    // if pan_dy is greater than the pan room, then panning has to be restricted
+    // start by shifting back up (negative) by half_height/zoom_switch then shift bak down
+    // by the difference between half_height and pan_dy (so that the top of the clustergram is 
+    // visible)
+    var shift_top_viz = half_height - pan_dy ;
+    var shift_up_viz  = - half_height/zoom_switch + shift_top_viz ; 
+
+    // reduce pan_dy so that the visualization does not get panned to far down
+    pan_dy = pan_dy + shift_up_viz ;
   };
 
-  // need to add pan zoom restriction !! 
+  // prevent visualization from panning up too much
+  // when zooming into genes at the bottom of the clustergram 
+  if (pan_dy <= -(half_height - y_pan_room) ){
+
+    var shift_top_viz = half_height + pan_dy ;
+    // move up by one row height 
+    var shift_up_viz  =  half_height/zoom_switch - shift_top_viz - y_scale.rangeBand();
+
+    // reduce pan_dy so that the visualization does not get panned to far down
+    pan_dy = pan_dy + shift_up_viz ;
+
+
+  };
 
   // will improve this !!
   zoom_y = fin_zoom; 
@@ -1016,7 +1033,7 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
   search_duration =700;
 
   // center_y
-  center_y = -(zoom_y -1)*(viz_height/2);
+  center_y = -(zoom_y -1)*half_height;
 
   // console.log('\ncenter_y\t'+center_y+'\n')
   // console.log('\npan_dy\t'+pan_dy+'\n')
