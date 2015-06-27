@@ -974,8 +974,15 @@ function interpolate_pan_zoom(pan_dx, pan_dy, fin_zoom){
 
 function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
 
+  // y pan room, the pan room has to be less than viz_height/2 since 
+  // zooming in on a gene that is near the top of the clustergram also causes 
+  // panning out of the visible region  
+  var y_pan_room = (viz_height/2)/zoom_switch;
+
+  console.log('y_pan_room ' + String(y_pan_room))
+
   // prevent positive panning 
-  if (pan_dy >= viz_height/2){
+  if (pan_dy >= y_pan_room){
 
     // prevent the clustergram from panning down too much 
     // if the amount of panning is equal to the viz_height/2 then it needs to be reduced
@@ -987,9 +994,16 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
     // that will be zoomed into - this is why the pan_dy value is not scaled in the two
     // translate transformations, but it has to be scaled afterwards to set the translate
     // vector)
-    pan_dy = viz_height/2 - (viz_height/2)/zoom_switch
+    // pan_dy = viz_height/2 - (viz_height/2)/zoom_switch
+
+    // center the selected gene, then move the visualization back up so that it 
+    // does not pan out of the visible area 
+    // calculate amount to shift back up pan_dy 
+    // first shift up half the height then shift back down to have the top of the visualizatio visible
+    var shift_up_viz = viz_height/2 - (viz_height/2 - pan_dy)*zoom_switch ; // - (viz_height/2 - pan_dy )
+    console.log('shift_up_viz '+ String(shift_up_viz))
+    pan_dy = pan_dy - shift_up_viz /zoom_switch
     console.log('restricting pan_dy to '+ String(pan_dy))
-    console.log('vi')
   };
 
   // need to add pan zoom restriction !! 
