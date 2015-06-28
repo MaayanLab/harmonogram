@@ -142,7 +142,6 @@ function make_d3_clustergram(network_data) {
         .style('font-weight','bold');
     })
     .on("mouseout", function mouseout() {
-      // d3.selectAll("text").classed("active", false);
       d3.select(this).select('text')
         .style('font-weight','normal');
       // reset highlighted col 
@@ -168,13 +167,10 @@ function make_d3_clustergram(network_data) {
     .attr('y',0)
     .attr('width',10)
     .attr('height',10)
-    .style('opacity',0)
+    .style('opacity',0);
 
-  g_row_label_obj = row_label_obj;
-
-  // change the size of the rects 
+  // change the size of the highlighting rects 
   row_label_obj
-    // .attr('somethihg',function(){
     .each(function(){
       // get the bounding box of the row label text 
       var bbox = d3.select(this)
@@ -182,32 +178,15 @@ function make_d3_clustergram(network_data) {
                    .getBBox();
 
       // use the bounding box to set the size of the rect 
-      // don't know 
       d3.select(this)
         .select('rect')
-      .attr('x', bbox.x/2)
+      .attr('x', bbox.x*0.5)
       .attr('y', 0)
-      .attr('width', bbox.width/2)
+      .attr('width', bbox.width*0.5)
       .attr('height', y_scale.rangeBand())
       .style('fill','yellow')
       .style('opacity',0);
-
-
-    })
-
-  console.log(row_label_obj)
-
-  // // # obtain its bounding box (without considering transforms)
-  // bbox = text[0][0].getBBox()
-
-  // // put rect behind the text 
-  // // # insert a yellow rect beneath the text, to represent the bounding box
-  //   svg.insert('rect','text')
-  //     .attr('x', bbox.x)
-  //     .attr('y', bbox.y)
-  //     .attr('width', bbox.width)
-  //     .attr('height', bbox.height)
-
+    });
 
   // col labels 
   //////////////////////////////////
@@ -274,6 +253,39 @@ function make_d3_clustergram(network_data) {
     .style('font-size',default_fs_col+'px')
     // remove underscores from name 
     .text(function(d, i) { return d.name.replace(/_/g, ' ') ; });
+
+  // append rectangle behind text 
+  col_label_click
+    .insert('rect','text')
+    .attr('x',10)
+    .attr('y',0)
+    .attr('width',10)
+    .attr('height',10)
+    .style('opacity',0);
+
+  // change the size of the highlighting rects
+  col_label_click
+    .each(function(){
+
+      // get the bounding box of the row label text 
+      var bbox = d3.select(this)
+                   .select('text')[0][0]
+                   .getBBox();
+
+      // use the bounding box to set the size of the rect 
+      d3.select(this)
+        .select('rect')
+      .attr('x', bbox.x*1.25)
+      .attr('y', 0)
+      .attr('width', bbox.width*1.25)
+      // used teh reduced rect width for the columsn 
+      // reduced because thee rects are slanted
+      .attr('height', x_scale.rangeBand()*0.6)
+      // .attr('height', reduce_rect_width)
+      .style('fill','yellow')
+      .style('opacity',0);
+    });
+
 
   // add triangle under rotated labels
   col_label_click
@@ -713,8 +725,6 @@ function zoomed() {
   // gather translate vector components 
   trans_x = d3.event.translate[0] - margin.left;
   trans_y = d3.event.translate[1] - margin.top;
-
-
   
   // apply transformation: no transition duration when zooming with mouse 
   apply_transformation(trans_x, trans_y, zoom_x, zoom_y, 0);
@@ -728,11 +738,6 @@ function zoomed() {
 // apply transformation 
 function apply_transformation(trans_x, trans_y, zoom_x, zoom_y, duration){
  
-  // console.log('trans_x ' + String(trans_x))
-  // console.log('trans_y ' + String(trans_y))
-  // console.log('zoom_x ' + String(zoom_x))
-  // console.log('zoom_y ' + String(zoom_y))
-
   // define d3 scale 
   d3_scale = zoom_x ; 
 
@@ -749,7 +754,6 @@ function apply_transformation(trans_x, trans_y, zoom_x, zoom_y, duration){
     // set pan_room_y to svg_height - removing restriction 
     pan_room_y = svg_height;
   };
-
 
   // do not translate if translate in y direction is positive 
   if (trans_y >= 0 ) {
@@ -813,8 +817,6 @@ function apply_transformation(trans_x, trans_y, zoom_x, zoom_y, duration){
 
   };
  
-
-
   // apply transformation and reset translate vector 
   // the zoom vector (zoom.scale) never gets reset 
   ///////////////////////////////////////////////////
@@ -850,6 +852,25 @@ function apply_transformation(trans_x, trans_y, zoom_x, zoom_y, duration){
     .select('text')
     .style('font-size', fin_font);
 
+  // re-size of the highlighting rects 
+  d3.select('#row_labels')
+    .each(function(){
+      // get the bounding box of the row label text 
+      var bbox = d3.select(this)
+                   .select('text')[0][0]
+                   .getBBox();
+
+      // use the bounding box to set the size of the rect 
+      d3.select(this)
+        .select('rect')
+      .attr('x', bbox.x*0.5)
+      .attr('y', 0)
+      .attr('width', bbox.width*0.5)
+      .attr('height', y_scale.rangeBand())
+      .style('fill','yellow');
+    });
+
+
   // reduce font-size to compensate for zoom 
   // calculate the recuction of the font size 
   reduce_font_size = d3.scale.linear().domain([0,1]).range([1,zoom_x]).clamp('true');
@@ -862,8 +883,30 @@ function apply_transformation(trans_x, trans_y, zoom_x, zoom_y, duration){
     .select('text')
     .style('font-size', fin_font);
 
+  // change the size of the highlighting rects
+  // col_label_click
+  d3.select('#col_labels')
+    .each(function(){
 
-}
+      // get the bounding box of the row label text 
+      var bbox = d3.select(this)
+                   .select('text')[0][0]
+                   .getBBox();
+
+      // use the bounding box to set the size of the rect 
+      d3.select(this)
+        .select('rect')
+      .attr('x', bbox.x*1.25)
+      .attr('y', 0)
+      .attr('width', bbox.width * 1.25)
+      // used teh reduced rect width for the columsn 
+      // reduced because thee rects are slanted
+      .attr('height', x_scale.rangeBand()*0.6)
+      .style('fill','yellow')
+      .style('opacity',0);
+    });
+
+};
 
 // reorder columns with row click 
 function reorder_click_row(d,i){
@@ -995,6 +1038,21 @@ function reorder_click_col(d,i){
     .attr("transform", function(d, i) { 
       return "translate(" + x_scale(i) + ")rotate(-90)"; 
     });
+
+  // highlight selected column 
+  ///////////////////////////////
+
+  // unhilight and unbold all columns (already unbolded earlier)
+  d3.selectAll('.col_label_text')
+    .select('rect')
+    .style('opacity',0);
+
+  // highlight column name
+  d3.select(this)
+    .select('rect')
+    .style('opacity',1);
+
+
 };
 
 // resize clustergram with screensize change
@@ -1106,7 +1164,7 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
   // console.log('\ncenter_y\t'+center_y+'\n')
   // console.log('\npan_dy\t'+pan_dy+'\n')
 
-  // write custom apply_transformation here 
+  // transform clsut group 
   clust_group
     .transition()
     .duration(search_duration)
@@ -1144,6 +1202,26 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
     .duration(search_duration)
     .select('text')
     .style('font-size', fin_font);
+
+  // resize the highlighting bar when performing two transition zoom 
+  // re-size of the highlighting rects 
+  d3.select('#row_labels')
+    .each(function(){
+      // get the bounding box of the row label text 
+      var bbox = d3.select(this)
+                   .select('text')[0][0]
+                   .getBBox();
+
+      // use the bounding box to set the size of the rect 
+      d3.select(this)
+        .select('rect')
+      .attr('x', bbox.x*0.5)
+      .attr('y', 0)
+      .attr('width', bbox.width*0.5)
+      .attr('height', y_scale.rangeBand())
+      .style('fill','yellow');
+    });
+
 
 
   // reduce font-size to compensate for zoom 
