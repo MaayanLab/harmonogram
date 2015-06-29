@@ -968,8 +968,9 @@ function reorder_click_row(d,i){
       return "translate(" + x_scale(i) + ")rotate(-90)"; 
     });
 
-  // zoom into and highlight selected row 
-  zoom_and_highlight_found_gene(inst_gene);
+  // !! this causes a bug with reordering the columns 
+  // // zoom into and highlight selected row 
+  // zoom_and_highlight_found_gene(inst_gene);
 
 };
 
