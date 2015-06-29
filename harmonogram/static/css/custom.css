@@ -813,11 +813,17 @@ look like the input gene list text title*/
 #gene_search_button{
   /*width:50px;*/
   /*float:left;*/
-  margin-top:12px;
+  margin-top:-2px;
   display: none;
 }
 
 /*clear float left*/
 #clear{
   clear:both;
+}
+
+/*fizing jquery autocomplete*/
+.ui-menu-item{
+  float:left;
+  clear: left;
 }
