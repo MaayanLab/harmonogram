@@ -133,9 +133,13 @@ function find_gene_in_clust(){
 	// get the searched gene 
 	search_gene = $('#gene_search_box').val();
 
-  // zoom and highlight found gene 
-  /////////////////////////////////
-  zoom_and_highlight_found_gene(search_gene);
+	if (all_genes.indexOf(search_gene) != -1){
+	  // zoom and highlight found gene 
+	  /////////////////////////////////
+	  zoom_and_highlight_found_gene(search_gene);
+		
+	}
+
 
 };
 

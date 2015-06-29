@@ -1,9 +1,12 @@
 
 Harmonogram 
 	1. add extra columns that show the total amount of information for each gene in each category of data - genomic, structure, etc. 
-	2. add gene search feature that zooms into the matrix or opens up a new window and shows the most similar genes across all categories. 
+	-. add gene search feature that zooms into the matrix or opens up a new window and shows the most similar genes across all categories. 
 	3. clicking on a tile should pull up the information behind this tile, possibly in a new window or a pop up. 
 	4. Try to make a more powerful canvas version that would allow the visualization of all genes at once. 
+
+Harmonogram notes 6-29-2015
+	I made a gene search tool. I need to add the extra rows that show the total amount of information we have on each gene in each category. I don't want to add this right aways because it will break the visualization somewhat. 
 
 Harmonogram notes 6-24-2015
 
