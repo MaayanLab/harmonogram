@@ -1,5 +1,8 @@
 function load_class_clustergram(inst_prot_class){
 
+	// clear input search box 
+	$('#gene_search_box').val('')
+
 	// only make clustergram if its a new class
 	if (inst_prot_class != glob_prot_class)	{
 
