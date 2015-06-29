@@ -107,11 +107,11 @@ function highlight_resource_types(){
 		all_genes.push( row_nodes[i]['name'] ); 
 	};
 
-	// // use Jquery autocomplete
-	// ////////////////////////////////
- //  $( "#gene_search_box" ).autocomplete({
- //    source: all_genes
- //  });
+	// use Jquery autocomplete
+	////////////////////////////////
+  $( "#gene_search_box" ).autocomplete({
+    source: all_genes
+  });
 
 
 };
@@ -136,40 +136,40 @@ function find_gene_in_clust(){
 
 };
 
-// initialize typeahead 
-function initialize_typeahead(){
-	// implementing typeahead
-	////////////////////////////
-	var substringMatcher = function(strs) {
-		// strs are the list of possible strings 
-	  return function findMatches(q, cb) {
-	    var matches, substringRegex;
-	    // an array that will be populated with substring matches
-	    matches = [];
-	    // regex used to determine if a string contains the substring `q`
-	    substrRegex = new RegExp(q, 'i');
-	    // iterate through the pool of strings and for any string that
-	    // contains the substring `q`, add it to the `matches` array
-	    $.each(strs, function(i, str) {
-	      if (substrRegex.test(str)) {
-	        matches.push(str);
-	      }
-	    });
-	    cb(matches);
-	  };
-	};
-	// // first remove any old data in typeahead
-	// $('#gene_search_box').typeahead('destroy');
-	// select the container and the input box 
-	$('#gene_search_box')
-		.typeahead(
-			{
-			  hint: true,
-			  highlight: true,
-			  minLength: 1
-			},
-			{
-			  source: substringMatcher(all_genes)
-			});
-};	
+// // initialize typeahead 
+// function initialize_typeahead(){
+// 	// implementing typeahead
+// 	////////////////////////////
+// 	var substringMatcher = function(strs) {
+// 		// strs are the list of possible strings 
+// 	  return function findMatches(q, cb) {
+// 	    var matches, substringRegex;
+// 	    // an array that will be populated with substring matches
+// 	    matches = [];
+// 	    // regex used to determine if a string contains the substring `q`
+// 	    substrRegex = new RegExp(q, 'i');
+// 	    // iterate through the pool of strings and for any string that
+// 	    // contains the substring `q`, add it to the `matches` array
+// 	    $.each(strs, function(i, str) {
+// 	      if (substrRegex.test(str)) {
+// 	        matches.push(str);
+// 	      }
+// 	    });
+// 	    cb(matches);
+// 	  };
+// 	};
+// 	// // first remove any old data in typeahead
+// 	// $('#gene_search_box').typeahead('destroy');
+// 	// select the container and the input box 
+// 	$('#gene_search_box')
+// 		.typeahead(
+// 			{
+// 			  hint: true,
+// 			  highlight: true,
+// 			  minLength: 1
+// 			},
+// 			{
+// 			  source: substringMatcher(all_genes)
+// 			});
+// };	
 
