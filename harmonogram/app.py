@@ -29,6 +29,7 @@ SERVER_ROOT = os.path.dirname(os.getcwd()) + '/harmonogram/harmonogram' ## origi
 # # for docker development
 # SERVER_ROOT = '/app/harmonogram'
 
+#######################################
 
 @app.route(ENTRY_POINT + '/<path:path>') ## original 
 # @crossdomain(origin='*')

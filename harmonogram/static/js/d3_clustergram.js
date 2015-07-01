@@ -442,9 +442,11 @@ function reorder_clust_rank(order_type) {
   // Move Row Labels
   d3.select('#row_labels').selectAll('.row_label_text')
     .transition().duration(2500)
-    .attr('transform', function(d, i) { return 'translate(0,' + y_scale(i) + ')'; });
+    .attr('transform', function(d, i) { 
+      return 'translate(0,' + y_scale(i) + ')'; 
+    });
 
-  // t.selectAll(".column")
+  // Move Col Labels 
   d3.select('#col_labels').selectAll(".col_label_text")
     .transition().duration(2500)
     .attr("transform", function(d, i) { 
@@ -1149,7 +1151,6 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
     // reduce pan_dy so that the visualization does not get panned to far down
     pan_dy = pan_dy + shift_up_viz ;
 
-
   };
 
   // will improve this !!
@@ -1161,9 +1162,6 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
 
   // center_y
   center_y = -(zoom_y -1)*half_height;
-
-  // console.log('\ncenter_y\t'+center_y+'\n')
-  // console.log('\npan_dy\t'+pan_dy+'\n')
 
   // transform clsut group 
   clust_group
@@ -1184,7 +1182,6 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
   d3.select('#col_labels')
     .transition()
     .duration(search_duration)
-    // .attr('transform','translate(' + [col_margin.left + pan_dx , col_margin.top] + ') scale(' + 1 + ')');
     .attr('transform', 'translate(' + [ col_margin.left,  col_margin.top ] + ')'+' scale('+ 1 +',' + 1 + ')'+'translate(' + [  pan_dx,  0 ] + ')');
 
 
@@ -1222,7 +1219,6 @@ function two_translate_zoom(pan_dx, pan_dy, fin_zoom){
       .attr('height', y_scale.rangeBand())
       .style('fill','yellow');
     });
-
 
 
   // reduce font-size to compensate for zoom 
