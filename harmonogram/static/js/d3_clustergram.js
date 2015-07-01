@@ -370,7 +370,11 @@ function make_d3_clustergram(network_data) {
     .on('dblclick', function(){
       // apply the following two translate zoom to reset zoom 
       // programatically 
-      two_translate_zoom(0,0,1)
+      // only apply programatic zoom if no transitions are occurring 
+      if (global_reorder == 0){
+        // apply programatic zoom  
+        two_translate_zoom(0,0,1)
+      };
     } );
 };
 
@@ -416,6 +420,9 @@ function row_function(row_data) {
 
 function reorder_clust_rank(order_type) {
 
+  // set up a global variable to track when a reordering is occurring 
+  global_reorder = 1;
+
   // load orders 
   if ( order_type == 'clust' ){ 
     // order by enrichment 
@@ -451,12 +458,21 @@ function reorder_clust_rank(order_type) {
     .transition().duration(2500)
     .attr("transform", function(d, i) { 
       return "translate(" + x_scale(i) + ")rotate(-90)"; 
+    })
+    // set global reorder to 0 when done reordering
+    .each('end', function(){
+      // set global reorder value to 0
+      global_reorder = 0;
     });
 };
 
 // initialize clustergram: size, scales, etc. 
 function initialize_clustergram(network_data){
   
+  // define global reordering value 
+  // not currently reordering 
+  global_reorder = 0;
+
   // move network_data information into global variables 
   col_nodes  = network_data.col_nodes ;
   row_nodes  = network_data.row_nodes ;
@@ -913,6 +929,9 @@ function apply_transformation(trans_x, trans_y, zoom_x, zoom_y, duration){
 // reorder columns with row click 
 function reorder_click_row(d,i){
 
+  // set up a global variable to track when a reordering is occurring 
+  global_reorder = 1;
+
   // get inst row (gene)
   inst_gene = d3.select(this).select('text').text();
 
@@ -968,6 +987,11 @@ function reorder_click_row(d,i){
     .transition().duration(2500)
     .attr("transform", function(d, i) { 
       return "translate(" + x_scale(i) + ")rotate(-90)"; 
+    })
+    // set global reorder to 0 when done reordering
+    .each('end', function(){
+      // set global reorder value to 0
+      global_reorder = 0;
     });
 
   // !! this causes a bug with reordering the columns 
@@ -978,6 +1002,9 @@ function reorder_click_row(d,i){
 
 // reorder rows with column click 
 function reorder_click_col(d,i){
+
+  // set up a global variable to track when a reordering is occurring 
+  global_reorder = 1;
 
   // get inst col (term)
   inst_term = d3.select(this).select('text').attr('full_name')
@@ -1040,6 +1067,11 @@ function reorder_click_col(d,i){
     .transition().duration(2500)
     .attr("transform", function(d, i) { 
       return "translate(" + x_scale(i) + ")rotate(-90)"; 
+    })
+    // set global reorder to 0 when done reordering
+    .each('end', function(){
+      // set global reorder value to 0
+      global_reorder = 0;
     });
 
   // highlight selected column 
@@ -1279,6 +1311,10 @@ function zoom_and_highlight_found_gene(search_gene){
 
   // use two translate method to control zooming 
   // pan_x, pan_y, zoom 
-  two_translate_zoom(0, pan_dy, zoom_switch );
+  // only apply programatic zoom if no transitions are occurring 
+  if (global_reorder == 0){
+    // apply programatic zoom  
+    two_translate_zoom(0, pan_dy, zoom_switch );
+  }; 
 };
 
