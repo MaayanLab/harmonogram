@@ -279,6 +279,14 @@
     "data_group": "disease or phenotype associations", 
     "association": "gene-phenotype associations by automated GWAS curation"
   }, 
+  "Grants_Per_Gene": {
+    "description": "grants", 
+    "data_type": "grants", 
+    "attribute_type": "grants", 
+    "attribute_group": "grants", 
+    "data_group": "grants", 
+    "association": "grants"
+  }, 
   "Roadmap_Epigenomics_Cell_and_Tissue_Gene_Expression_Profiles": {
     "description": "mRNA expression profiles for primary cells and tissues measured by RNA-seq", 
     "data_type": "gene expression RNA-seq", 
@@ -739,7 +747,7 @@
     "description": "sets of proteins participating in pathways", 
     "data_type": "literature curation", 
     "attribute_type": "pathway", 
-    "attribute_group": "functional term, phrase or reference", 
+    "attribute_group": "functional term, phrase or reference\n", 
     "data_group": "structural or functional annotations", 
     "association": "gene-pathway associations from curated pathways"
   }, 

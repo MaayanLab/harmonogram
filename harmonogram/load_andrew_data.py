@@ -1,17 +1,154 @@
 # this will load Andrew's data 
 def main():
-	# # load andrew data 
+
+	# # load andrew data - there are 32,153 genes
 	# load_andrew_data()
-
-	# # load resource classes
-	# load_resource_classes()
-
-	# # load resource mapping names 
-	# load_resource_real_names()
 
 	# genrate d3 json 
 	generate_d3_json()
 
+def add_grant_num_to_clust():
+	import json_scripts
+	import numpy as np 
+	import scipy
+
+	print('\n-----------------\nadding grant numbers\n-----------------\n')
+
+	# load json of Andrew data
+	data_json = json_scripts.load_to_dict('andrew_data/cumul_probs.json')
+
+	print( '\nthere are ' + str(len(data_json['nodes']['row'])) + ' genes in total' )
+	print( 'there are ' + str(len(data_json['nodes']['col'])) + ' resources in total\n' )
+
+	data_mat = np.asarray(data_json['data_mat'])
+
+	print('data_mat shape')
+	print(data_mat.shape)
+
+	print('\ngoing to add grants per gene as a column into the harmonogram\n')
+
+	# make an array of zeros that will be added to the matrix as a new column 
+	num_rows = len(data_json['nodes']['row'])
+	extra_col = scipy.zeros([ num_rows, 1 ])
+	# #!! temporarily switching to ones from zeros
+	# extra_col = scipy.ones([ num_rows, 1 ])
+
+	print('extra col shape')
+	print(extra_col.shape)
+	print(extra_col)
+
+	# add the column using hstack
+	data_mat = np.hstack((data_mat, extra_col))
+
+	print('data_mat shape after adding in extra column')
+	print(data_mat.shape)
+
+	# does not need to be done here 
+	######################
+	# # add extra resource name 
+	# data_json['nodes']['col'].append('Grants_Per_Gene')
+
+	print( 'there are ' + str(len(data_json['nodes']['col'])) + ' resources in total after adding grants per gene\n' )
+	# print(data_json['nodes']['col'])
+
+ 	# add grants data to data_mat
+ 	###############################
+	# load grants_per_gene data
+	grants_gene = json_scripts.load_to_dict('andrew_data/grants_per_gene.json')
+
+	# make list of genes that were not found
+	genes_not_found = []
+	genes_found = []
+
+	# loop through genes and add grant information into data_mat 
+	for inst_gene in grants_gene:
+
+		# get the index if the gene is in rows 
+		if inst_gene in data_json['nodes']['row']:
+
+			# get the index of inst_gene
+			inst_index = data_json['nodes']['row'].index(inst_gene)
+
+			# print(inst_index)
+
+			# keep track of found genes 
+			genes_found.append(inst_gene)
+
+			# save CumulProbWeightSum to the matrix 
+			inst_grants = grants_gene[inst_gene]['CumulProbWeightSum']
+
+			# save the number of grants to the last column  
+			# data_mat[inst_index,-1] = inst_grants
+			## put in fake data
+			data_mat[inst_index,82] = 1 #inst_grants
+
+		else:
+			# keep track of not found genes 
+			genes_not_found.append(inst_gene)
+
+	# print(len(genes_found))
+	# print(len(genes_not_found))
+	# print(data_mat.shape)
+
+
+	print('\n-------------\nchecking data_mat\n----------------\n')
+	print(len(data_mat[:,-1]))
+	print(data_mat[inst_index,82])
+	print(data_mat[2,82])
+
+	# convert data_mat to list
+	data_mat = data_mat.tolist()
+
+	# add back to json 
+	data_json['data_mat'] = data_mat
+
+	# save to json 
+	json_scripts.save_to_json(data_json, 'andrew_data/cumul_probs.json', 'no_indent')
+
+def load_grants_per_gene():
+	import json_scripts
+
+	# open text file
+	filename = 'andrew_data/grantspergene_weighted_standardized.txt'
+	f = open(filename,'r')
+	lines = f.readlines()
+	f.close()
+
+	# grab the column names 
+	col_names = lines[0].strip().split('\t')
+
+	# initialize dictionary 
+	grant_gene = {}
+
+	# loop through the lines
+	for i in range(len(lines)):
+
+		# grab the data for each gene 
+		if i > 0:
+
+			# get inst_line 
+			inst_line = lines[i].strip().split('\t')
+
+			# get gene name 
+			inst_name = inst_line[0]
+
+			# initialize dictionary for gene
+			grant_gene[inst_name] = {}
+
+			# save information on gene 
+			for j in range(len(col_names)):
+				# skip first element 
+				if j > 0:
+
+					# save column name as dictionary key
+					grant_gene[inst_name][col_names[j]] = float(inst_line[j])
+
+			# print(grant_gene[inst_name])
+
+	# print(grant_gene['SELL'])
+
+	# save to json 
+	json_scripts.save_to_json(grant_gene, 'andrew_data/grants_per_gene.json', 'indent')
 
 def generate_d3_json():
 	import json_scripts
@@ -27,6 +164,12 @@ def generate_d3_json():
 	nodes = data_json['nodes']
 	data_mat = np.asarray(data_json['data_mat'])
 
+	# #!! temporarily set data_mat to zeros
+	# data_mat = scipy.zeros([ len(nodes['row']), len(nodes['col']) ])
+
+	print(nodes['col'])
+	print(data_mat.shape)
+
 	print('calculating clustering orders')
 
 	# gene and resource classes 
@@ -39,7 +182,10 @@ def generate_d3_json():
 	# loop through classes
 	for inst_class in gc:
 
+		print(inst_class + '\n')
+
 		# initialize class matrix 
+		# class_mat is the subset of data_mat that only has genes of one class, e.g. kinases
 		class_mat = np.array([])
 
 		# initialize class_nodes for export 
@@ -70,23 +216,25 @@ def generate_d3_json():
 					class_mat = np.vstack( (class_mat, data_mat[i,:] ))  
 
 
-		# actual clustering 
-		########################
-		# cluster the matrix, return clust_order
-		clust_order = d3_clustergram.cluster_row_and_column( class_nodes, class_mat, 'cosine' )
+		# # actual clustering 
+		# ########################
+		# # cluster the matrix, return clust_order
+		# clust_order = d3_clustergram.cluster_row_and_column( class_nodes, class_mat, 'cosine' )
 
-		# # mock clustering
-		# ############################
-		# print('mock clustering')
-		# clust_order = {}
-		# # mock cluster 
-		# clust_order['clust'] = {}
-		# clust_order['clust']['row'] = range(len(class_nodes['row']))
-		# clust_order['clust']['col'] = range(len(class_nodes['col']))
-		# # mock rank 
-		# clust_order['rank'] = {}
-		# clust_order['rank']['row'] = range(len(class_nodes['row']))
-		# clust_order['rank']['col'] = range(len(class_nodes['col']))
+		#!! performing mock clusteringl
+
+		# mock clustering
+		############################
+		print('mock clustering')
+		clust_order = {}
+		# mock cluster 
+		clust_order['clust'] = {}
+		clust_order['clust']['row'] = range(len(class_nodes['row']))
+		clust_order['clust']['col'] = range(len(class_nodes['col']))
+		# mock rank 
+		clust_order['rank'] = {}
+		clust_order['rank']['row'] = range(len(class_nodes['row']))
+		clust_order['rank']['col'] = range(len(class_nodes['col']))
 
 		print('generating d3 json')
 
@@ -199,8 +347,19 @@ def load_andrew_data():
 	import scipy
 	import numpy as np 
 
+	# load resource classes
+	load_resource_classes()
+
+	# load resource mapping names 
+	load_resource_real_names()
+
 	# load Andrew's data 
 	matrix = json_scripts.load_to_dict('andrew_data/gene_dataset_cumulprobs_20150609.json')
+
+ 	# add grants data to data_mat
+ 	###############################
+	# load grants_per_gene data
+	grants_gene = json_scripts.load_to_dict('andrew_data/grants_per_gene.json')
 
 	# only keep the resources with real names 
 	rn = json_scripts.load_to_dict('resource_real_names.json')
@@ -213,7 +372,7 @@ def load_andrew_data():
 	# the rest of the rows have gene names and the value of the gene in each resource  
 	# I will convert Andrew's data into 
 	# nodes and data_mat 
-	print('starting to process data')
+	print('\nstarting to process data')
 
 	# save row and column data to nodes 
 	nodes = {}
@@ -222,16 +381,39 @@ def load_andrew_data():
 	# get the good resources - get the real names 
 	nodes['col'] = rn.values()
 
-	# get the number of rows in the matrix 
-	num_rows = len(matrix)
+	# save the column index of grants per gene 
+	col_index_grant = nodes['col'].index('Grants_Per_Gene')
+
+	# print('\nlength of nodes col')
+	# print(len(nodes['col']))
+	# print('\n')
+
+	# get the number of rows in the matrix
+	# make the matrix smaller by one row 
+	# num_rows = len(matrix) 
+	num_rows = len(matrix) - 1
+
+	# print('\nmatrix:')
+	# print(matrix[0]['label'])
+	# print(matrix[1]['label'])
+	# print(matrix[2]['label'])
+	# print('...')
+	# print(matrix[-2]['label'])
+	# print(matrix[-1]['label'])
+	# print('\n')
+
+	# print('there are '+str(num_rows)+' genes in the original data from Andrew')
 
 	# initialize data matrix
 	# rows - genes
 	# cols - good resources 
 	data_mat = scipy.zeros([ num_rows, len(rn.keys()) ])
 
+	print('\n---------------\nadding original data to matrix\n----------------')
+
 	# loop through the list 
-	for i in range(num_rows):
+	# add one to account for the full length of the matrix
+	for i in range(num_rows+1):
 
 		# get the inst row of the matrix 
 		inst_row = matrix[i]
@@ -271,17 +453,45 @@ def load_andrew_data():
 					inst_index = nodes['col'].index( rn[all_res[j]] )
 
 					# fill in the matrix with the entries from row i 
-					data_mat[i,inst_index] = inst_data_point
 
-	# # check that the resources are included in rn 
-	# for inst_res in all_res:
-	# 	if inst_res not in rn:
-	# 		print('\nnot found\t'+inst_res + '\n')
+					# shift the index back one to compensate for first row
+					matrix_index = i-1
+					# shift the index to account for first row of colun labels
+					data_mat[matrix_index,inst_index] = inst_data_point
+
+	print('\n---------------\nadding grants to matrix\n----------------')
+
+	# add grants per gene to matrix
+	##################################
+	for inst_gene in grants_gene:
+
+		# get the index of the gene if it is in the original rows 
+		if inst_gene in nodes['row']:
+
+			# get the index of inst_gene
+			inst_index = nodes['row'].index(inst_gene)
+
+			# get the number of grants
+			inst_grants = grants_gene[inst_gene]['CumulProbWeightSum']
+
+			# save the number of grants to the appropriate column
+			data_mat[inst_index,col_index_grant] = inst_grants
+
+	# print('i '+str(i))
+	# print('\n')			
+	# print('shape of data_mat after filling in ')
+	# print(data_mat.shape)
+	# print('\n')			
+	# print('length of nodes row')
+	# print(len(nodes['row']))
+	# print('nodes')
+	# print(nodes['row'][0])
+	# print(nodes['row'][-1])
+	# print('\n')
 
 	# save json of the numpy-ready data 
 	#
 	# convert numpy array to list 
-	print('converting matrix to list')
 	data_mat = data_mat.tolist()
 
 	# make one dictionary 
@@ -289,10 +499,11 @@ def load_andrew_data():
 	inst_dict['nodes'] = nodes
 	inst_dict['data_mat'] = data_mat 
 
-	print('save to json')
-
 	# save to json 
 	json_scripts.save_to_json(inst_dict,'andrew_data/cumul_probs.json','no_indent')
+
+	# # add grant number to clustergram 
+	# add_grant_num_to_clust()
 
 # run main
 main()

@@ -5,6 +5,7 @@
   "disease_gwasdb_20140908": "GWASdb_SNP-Disease_Associations", 
   "bestsnp_gtex_20150312": "GTEx_eQTL", 
   "cellline_klijn_cnv_20150415": "Klijn_Cell_Line_Gene_CNV_Profiles", 
+  "grants_per_gene": "Grants_Per_Gene", 
   "phenotype_clinvar_pathogenic_20150415": "ClinVar_SNP-Phenotype_Associations", 
   "tissue_gtex_20150311": "GTEx_Tissue_Gene_Expression_Profiles", 
   "cellline_cclecnv": "CCLE_Cell_Line_Gene_CNV_Profiles", 

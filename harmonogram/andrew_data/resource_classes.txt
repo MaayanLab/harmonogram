@@ -124,3 +124,4 @@ TRANSFAC	TRANSFAC Predicted Transcription Factor Targets	target genes of transcr
 Universal Protein Resource	UniProt Protein Domain Annotations	protein domains predicted for gene products based on sequence similarity to known domain signatures	prediction	structural or functional annotations	gene-protein domain associations by sequence similarity to domain signatures	protein domain	structural feature
 Virus MINT	Virus MINT Protein-Viral Protein Interactions	interactions between viral and human proteins manually curated from literature	literature curation	physical interactions	gene-viral protein associations from curated protein interaction studies	viral protein	gene
 Wikipathways	Wikipathways Pathways	sets of proteins participating in pathways	literature curation	structural or functional annotations	gene-pathway associations from curated pathways	pathway	functional term, phrase or reference
+Grants Per Gene	Grants Per Gene	grants	grants	grants	grants	grants	grants
