@@ -1,0 +1,19 @@
+deploying a dockerized app notes
+----------------------------------
+
+locally running through python 
+http://localhost:9000/harmonogram/
+
+docker images
+docker build -t 146.203.54.165:5000/harmonogram:latest .
+docker run -it --rm -p 8087:80 146.203.54.165:5000/harmonogram:latest
+docker ps 
+docker push 146.203.54.165:5000/harmonogram
+
+
+find it running locally on on 
+http://192.168.59.103:8087/harmonogram 
+
+make the post request using postman
+
+reset the app on marathon 
