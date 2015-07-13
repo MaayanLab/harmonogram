@@ -50,7 +50,15 @@ function highlight_resource_types(){
 
 	// loop through col_nodes
 	for (i=0; i<col_nodes.length; i++){
-		all_groups.push( col_nodes[i]['data_group'] ); 
+		// do not include grants in group color labels
+		if (col_nodes[i]['data_group'] != 'grants'){
+			all_groups.push( col_nodes[i]['data_group'] ); 
+		};
+
+		// find the index of grants
+		if (col_nodes[i]['data_group'] == 'grants'){
+			col_index_grants = i;
+		}
 	};
 	
 	// get unique groups 

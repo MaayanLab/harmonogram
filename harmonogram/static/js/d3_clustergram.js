@@ -398,15 +398,27 @@ function row_function(row_data) {
       return output_opacity ; 
     }) 
     // switch the color based on up/dn enrichment 
-    .style('fill', function(d) { 
+    .style('fill', function(d,i) { 
+
       // console.log(d)
       // return d.value > 0 ? '#FF0000' : '#1C86EE' ;
-      if (d.value != 0){
-        inst_color = d.color;
+      // if (d.value != 0){
+      //   inst_color = d.color;
+      // }
+      // else{
+      //   inst_color = null;
+      // }
+
+      // console.log(i)
+
+      // initialize tile color to black 
+      inst_color = 'black'
+      if (i==col_index_grants){
+        // make grants blue 
+        inst_color ='blue';
       }
-      else{
-        inst_color = null;
-      }
+
+
       return inst_color ;
     } )
     .on("mouseover", function(p) {
