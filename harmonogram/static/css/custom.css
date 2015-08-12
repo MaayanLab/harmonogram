@@ -76,12 +76,15 @@ text.active {
 /* gene search box */
 #gene_search_box{
   width:120px;
-  margin-left: 32px;
+  margin-left: 0px;
+  display: inline-block;
 }
+
 
 /* gene search button */
 #gene_search_button{
-  margin-top:4px;
+  margin-top:-2px;
+  display: inline-block;
 }
 
 /*reduce the padding on the buttons*/
@@ -92,7 +95,7 @@ text.active {
 
 /*position submit gene button harmonogram*/
 #submit_gene_button{
-  margin-left: 58px;
+  /*margin-left: 58px;*/
 }
 
 /* from old css */
@@ -111,4 +114,33 @@ text.active {
 
 .prot_class{
   font-size: 11px;
+}
+
+#res_color_key_div{
+  margin-top: 0px;
+  /*set height so that the elements below
+  will be placed correctly*/
+  height: 135px;
+}
+
+/*resource names in key*/
+.res_names_in_key{
+  padding-left: 0px;
+  padding-right: 0px;
+  font-size:12px;
+  margin-left: -10px;
+}
+
+/*gene search submit*/
+#gene_search_submit{
+  padding-top:6px;
+  padding-bottom:6px;
+}
+
+/*container for gene search box*/
+#gene_search_container{
+  margin-top: 10px;
+  /*needed for some reason*/
+  margin-left: 0px;
+  display: none:;
 }

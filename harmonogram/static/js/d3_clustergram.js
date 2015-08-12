@@ -42,7 +42,8 @@ function initialize_visualization(network_data, params){
   var min_num_char = 5;
   var max_num_char = 60;
   var min_label_width = 60;
-  var max_label_width = 220;
+  //!! harmonogram - increased space available for labels 
+  var max_label_width = 260;
   var label_scale = d3.scale.linear().domain([min_num_char,max_num_char]).range([min_label_width,max_label_width]).clamp('true');
 
   // Nomal Labels 
@@ -547,7 +548,7 @@ function make_d3_clustergram(args) {
 
   // !! need to set up
   // highlight resource types - set up type/color association
-  params = highlight_resource_types(params);
+  params = highlight_resource_types_harmonogram(params);
 
   // define the variable zoom, a d3 method 
   params.zoom = d3.behavior.zoom().scaleExtent([1, params.real_zoom*params.zoom_switch]).on('zoom',zoomed);
@@ -1329,6 +1330,22 @@ function highlight_resource_types(params){
   var col_nodes = d3_clustergram.network_data.col_nodes;
   var row_nodes = d3_clustergram.network_data.row_nodes;
 
+  // generate a list of genes for auto complete 
+  ////////////////////////////////////////////////
+  // get all genes 
+  params.all_genes = [];
+
+  // loop through row_nodes
+  for (var i=0; i<row_nodes.length; i++){
+    params.all_genes.push( row_nodes[i]['name'] ); 
+  };
+
+  // use Jquery autocomplete
+  ////////////////////////////////
+  $( "#gene_search_box" ).autocomplete({
+    source: params.all_genes
+  });
+
   // // This will set up the resource type color key 
   // // and generate an array of genes for later use
   // //////////////////////////////////////////////////////
@@ -1415,6 +1432,16 @@ function highlight_resource_types(params){
   //     return inst_res ;
   //   })
 
+
+  return params;
+};
+
+
+function highlight_resource_types_harmonogram(params){
+
+  var col_nodes = d3_clustergram.network_data.col_nodes;
+  var row_nodes = d3_clustergram.network_data.row_nodes;
+
   // generate a list of genes for auto complete 
   ////////////////////////////////////////////////
   // get all genes 
@@ -1431,14 +1458,100 @@ function highlight_resource_types(params){
     source: params.all_genes
   });
 
-  return params;
+  // This will set up the resource type color key 
+  // and generate an array of genes for later use
+  //////////////////////////////////////////////////////
+
+  res_hexcodes = ['#097054','#FFDE00','#6599FF','#FF9900','#834C24','#003366','#1F1209']
+
+  // get all data groups
+  all_groups = [];
+
+  // loop through col_nodes
+  for (i=0; i<col_nodes.length; i++){
+    // do not include grants in group color labels
+    if (col_nodes[i]['data_group'] != 'grants'){
+      all_groups.push( col_nodes[i]['data_group'] ); 
+    };
+
+    // find the index of grants
+    if (col_nodes[i]['data_group'] == 'grants'){
+      col_index_grants = i;
+    }
+  };
+  
+  // get unique groups 
+  all_groups = _.uniq(all_groups);
+
+  // generate an object to associate group with color 
+  res_color_dict = {};
+
+  // loop through the data groups 
+  for (i=0; i<all_groups.length; i++){
+    res_color_dict[all_groups[i]] = res_hexcodes[i];
+  };
+
+  // add color key 
+  ////////////////////
+  // add keys 
+  key_divs = d3.select('#res_color_key_div')
+    .selectAll('row')
+    .data(all_groups)
+    .enter()
+    .append('row')
+    .style('padding-top','15px');
+
+  // add color 
+  key_divs
+    .append('div')
+    .attr('class','col-xs-2')
+    // get rid of excess padding 
+    .style('padding-left','5px')
+    .style('padding-right','0px')
+    .style('padding-top','1px')
+    .append('div')
+    .style('width','12px')
+    .style('height','12px')
+    .style('background-color', function(d){
+      return res_color_dict[d];
+    })
+
+  // add names 
+  key_divs
+    .append('div')
+    .attr('class','col-xs-10 res_names_in_key')
+    .append('text')
+    .text(function(d){ 
+      inst_res = d.replace(/_/g, ' ');
+      inst_res = _(inst_res).capitalize();
+      return inst_res ;
+    })
+
+  // generate a list of genes for auto complete 
+  ////////////////////////////////////////////////
+  // get all genes 
+  all_genes = [];
+
+  // loop through row_nodes
+  for (i=0; i<row_nodes.length; i++){
+    all_genes.push( row_nodes[i]['name'] ); 
+  };
+
+  // use Jquery autocomplete
+  ////////////////////////////////
+  $( "#gene_search_box" ).autocomplete({
+    source: all_genes
+  });
+
+  return params
 };
 
 // make each row in the clustergram 
 function row_function(row_data) {
 
-  // remove zero values to make visualization faster
-  var row_data = _.filter(row_data, function(num){ return num.value != 0; });
+  // tmp remove to highlight grants-per-gene
+  // // remove zero values to make visualization faster
+  // var row_data = _.filter(row_data, function(num){ return num.value != 0; });
 
   // load parameters
   var params = d3_clustergram.params;
@@ -1462,8 +1575,14 @@ function row_function(row_data) {
       return output_opacity ; 
     }) 
     // switch the color based on up/dn value 
-    .style('fill', function(d) { 
-      return d.value > 0 ? params.tile_colors[0] : params.tile_colors[1] ;
+    .style('fill', function(d,i) { 
+      // !! harmonogram change 
+      var inst_color = d.value > 0 ? params.tile_colors[0] : params.tile_colors[1] ;
+      if (i==col_index_grants){
+        // make grants blue 
+        inst_color ='blue';
+      }
+      return inst_color 
     } )
     .on("mouseover", function(p) {
       // highlight row - set text to active if 
@@ -1767,8 +1886,8 @@ function reset_visualization_size(){
   // reset zoom and translate 
   d3_clustergram.params.zoom.scale(1).translate([d3_clustergram.params.clust.margin.left, d3_clustergram.params.clust.margin.top]);
 
-  // // turn off the wait sign 
-  // $.unblockUI();
+  // turn off the wait sign 
+  $.unblockUI();
 };
 
 // define zoomed function 
@@ -2351,16 +2470,16 @@ function timeout_resize(){
     // clear timeout
     clearTimeout(doit);
 
-    // // set up wait message before request is made 
-    // $.blockUI({ css: { 
-    //         border: 'none', 
-    //         padding: '15px', 
-    //         backgroundColor: '#000', 
-    //         '-webkit-border-radius': '10px', 
-    //         '-moz-border-radius': '10px', 
-    //         opacity: .8, 
-    //         color: '#fff' 
-    //     } });
+    // set up wait message before request is made 
+    $.blockUI({ css: { 
+            border: 'none', 
+            padding: '15px', 
+            backgroundColor: '#000', 
+            '-webkit-border-radius': '10px', 
+            '-moz-border-radius': '10px', 
+            opacity: .8, 
+            color: '#fff' 
+        } });
 
     doit = setTimeout( reset_visualization_size, 500)  ;
 

@@ -799,14 +799,14 @@ look like the input gene list text title*/
   margin-top: 10px;
   /*needed for some reason*/
   margin-left: 0px;
-  display: none:;
+  /*display: none;*/
 }
 
 /*gene search box */
 #gene_search_box{
   width:120px;
   /*float:left;*/
-  display: none;
+  /*display: none;*/
 }
 
 /*gene search button*/
@@ -814,7 +814,7 @@ look like the input gene list text title*/
   /*width:50px;*/
   /*float:left;*/
   margin-top:-2px;
-  display: none;
+  /*display: none;*/
 }
 
 /*clear float left*/
