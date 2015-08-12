@@ -17,7 +17,8 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="static/css/custom.css">
     <!-- for jquery sliders -->
-    <!-- <link rel="stylesheet" href="jquery-ui.css"> -->
+    <link rel="stylesheet" href="static/lib/css/jquery-ui.css">
+
 
 </head>
 
@@ -33,78 +34,78 @@
   <!-- <div id='title_viz_instruct_text'>About:</div> -->
   <div class='viz_instruct_text'> The clustergram visualizes gene appearance in Harmonizome resources. Genes are shown as rows and resources as columns. The gene occurance value is normalized relative to the occurance of other genes in the resource. Change the clustergram ordering by using the toggle switch or by clicking row or column labels. </div>
 
-                  <!-- button container -->
-                  <div id='button_container'>
-                    
-                    <!-- choose protein class  -->
-                    <div id='class_buttons' class="btn-group-vertical text-center" data-toggle="buttons" >
+    <!-- button container -->
+    <div id='button_container'>
+      
+      <!-- choose protein class  -->
+      <div id='class_buttons' class="btn-group-vertical text-center" data-toggle="buttons" >
 
-                      <!-- <label class="btn btn-primary active" onclick="reorder_clust_rank('clust');"> -->
-                      <label class="btn btn-primary active prot_class" onclick="load_class_clustergram('KIN');">
-                        <input type="radio" name="options" id="clust_button" autocomplete="off" checked > Kinases
-                      </label>
+        <!-- <label class="btn btn-primary active" onclick="reorder_clust_rank('clust');"> -->
+        <label class="btn btn-primary active prot_class" onclick="load_class_clustergram('KIN');">
+          <input type="radio" name="options" id="clust_button" autocomplete="off" checked > Kinases
+        </label>
 
-                      <label class="btn btn-primary  prot_class" onclick="load_class_clustergram('PP');" >
-                        <input type="radio" name="options" id="rank_button" autocomplete="off" > Phosphatases
-                      </label>
+        <label class="btn btn-primary  prot_class" onclick="load_class_clustergram('PP');" >
+          <input type="radio" name="options" id="rank_button" autocomplete="off" > Phosphatases
+        </label>
 
-                      <label class="btn btn-primary  prot_class" onclick="load_class_clustergram('GPCR');" >
-                        <input type="radio" name="options" id="rank_button" autocomplete="off" > GPCRs
-                      </label>
+        <label class="btn btn-primary  prot_class" onclick="load_class_clustergram('GPCR');" >
+          <input type="radio" name="options" id="rank_button" autocomplete="off" > GPCRs
+        </label>
 
-                      <label class="btn btn-primary prot_class" onclick="load_class_clustergram('IC');" >
-                        <input type="radio" name="options" id="rank_button" autocomplete="off" > Ion Channels
-                      </label>
+        <label class="btn btn-primary prot_class" onclick="load_class_clustergram('IC');" >
+          <input type="radio" name="options" id="rank_button" autocomplete="off" > Ion Channels
+        </label>
 
-                      <label class="btn btn-primary prot_class" onclick="load_class_clustergram('TF');" >
-                        <input type="radio" name="options" id="rank_button" autocomplete="off" > Transcription Factors
-                      </label>
+        <label class="btn btn-primary prot_class" onclick="load_class_clustergram('TF');" >
+          <input type="radio" name="options" id="rank_button" autocomplete="off" > Transcription Factors
+        </label>
 
-                      <label class="btn btn-primary prot_class" onclick="load_class_clustergram('ACT');" >
-                        <input type="radio" name="options" id="rank_button" autocomplete="off" > Acetyltransferases
-                      </label>
+        <label class="btn btn-primary prot_class" onclick="load_class_clustergram('ACT');" >
+          <input type="radio" name="options" id="rank_button" autocomplete="off" > Acetyltransferases
+        </label>
 
-                      <label class="btn btn-primary prot_class" onclick="load_class_clustergram('DACT');" >
-                        <input type="radio" name="options" id="rank_button" autocomplete="off" > Deacetylases
-                      </label>
+        <label class="btn btn-primary prot_class" onclick="load_class_clustergram('DACT');" >
+          <input type="radio" name="options" id="rank_button" autocomplete="off" > Deacetylases
+        </label>
 
-                      <label class="btn btn-primary prot_class" onclick="load_class_clustergram('MET');" >
-                        <input type="radio" name="options" id="rank_button" autocomplete="off" > Methyltransferases
-                      </label>
+        <label class="btn btn-primary prot_class" onclick="load_class_clustergram('MET');" >
+          <input type="radio" name="options" id="rank_button" autocomplete="off" > Methyltransferases
+        </label>
 
-                      <label class="btn btn-primary prot_class" onclick="load_class_clustergram('DMET');" >
-                        <input type="radio" name="options" id="rank_button" autocomplete="off" > Demethylases
-                      </label>
+        <label class="btn btn-primary prot_class" onclick="load_class_clustergram('DMET');" >
+          <input type="radio" name="options" id="rank_button" autocomplete="off" > Demethylases
+        </label>
 
-                    </div>
+      </div>
 
-                    <!-- <div id='toggle_order' class="btn-group" data-toggle="buttons" >
-                      <label class="btn btn-primary active prot_class" onclick="reorder_clust_rank('clust');">
-                        <input type="radio" name="options" id="clust_button" autocomplete="off" checked > Cluster
-                      </label>
-                      <label class="btn btn-primary prot_class" onclick="reorder_clust_rank('rank');">
-                        <input type="radio" name="options" id="rank_button" autocomplete="off" > Rank
-                      </label>
-                    </div> -->
+      <!-- <div id='toggle_order' class="btn-group" data-toggle="buttons" >
+        <label class="btn btn-primary active prot_class" onclick="reorder_clust_rank('clust');">
+          <input type="radio" name="options" id="clust_button" autocomplete="off" checked > Cluster
+        </label>
+        <label class="btn btn-primary prot_class" onclick="reorder_clust_rank('rank');">
+          <input type="radio" name="options" id="rank_button" autocomplete="off" > Rank
+        </label>
+      </div> -->
 
-                    <!-- toggle clustergram order -->
-                    <div id='toggle_order' class="btn-group" data-toggle="buttons" >
-                      <label class="btn btn-primary active order_name" onclick="d3_clustergram.reorder('clust');">
-                        <input type="radio" name="options" id="clust_button" autocomplete="off" checked > Cluster
-                      </label>
-                      <label class="btn btn-primary order_name" onclick="d3_clustergram.reorder('rank');">
-                        <input type="radio" name="options" id="rank_button" autocomplete="off" > Rank
-                      </label>
-                      <!-- <label class="btn btn-primary order_name" onclick="d3_clustergram.reorder('class');">
-                        <input type="radio" name="options" id="class_button" autocomplete="off" > Class
-                      </label> -->
-                    </div>
-                    
-                  </div>
+      <!-- toggle clustergram order -->
+      <div id='toggle_order' class="btn-group" data-toggle="buttons" >
+        <label class="btn btn-primary active order_name" onclick="d3_clustergram.reorder('clust');">
+          <input type="radio" name="options" id="clust_button" autocomplete="off" checked > Cluster
+        </label>
+        <label class="btn btn-primary order_name" onclick="d3_clustergram.reorder('rank');">
+          <input type="radio" name="options" id="rank_button" autocomplete="off" > Rank
+        </label>
+        <!-- <label class="btn btn-primary order_name" onclick="d3_clustergram.reorder('class');">
+          <input type="radio" name="options" id="class_button" autocomplete="off" > Class
+        </label> -->
+      </div>
 
-                  <!-- resource key -->
-                  <div id='res_color_key_title' class='title_viz_instructs'>Resource Groups:</div>
-                  <div id='res_color_key_div'></div>
+    </div>
+
+    <!-- resource key -->
+    <div id='res_color_key_title' class='title_viz_instructs'>Resource Groups:</div>
+    <div id='res_color_key_div'></div>
 
 
     <!-- input box for gene search -->
@@ -209,7 +210,7 @@
       // 'opacity_scale':'log',
       // 'input_domain':7,
       'tile_colors':['#000000','#1C86EE'],
-      // 'title_tile': true,
+      'title_tile': true,
       // 'click_tile': click_tile_callback,
       // 'click_group': click_group_callback
       // 'resize':false
