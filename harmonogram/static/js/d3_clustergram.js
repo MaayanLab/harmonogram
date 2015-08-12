@@ -992,9 +992,11 @@ function make_d3_clustergram(args) {
        })
     .attr('fill',function(d){
       var inst_color = '#eee';
-      if(_.has(params, 'class_colors')){
-        inst_color = params.class_colors.col[d.cl];
-      }
+      // if(_.has(params, 'class_colors')){
+      //   inst_color = params.class_colors.col[d.cl];
+      // }
+      //!! harmonogram change 
+      inst_color = res_color_dict[d.data_group];
       return inst_color;
     });
 
@@ -1193,7 +1195,7 @@ function make_d3_clustergram(args) {
       .attr('transform', function(){
         // position in the middle of the clustergram
         var inst_x = params.super_label_width - params.uni_margin;
-        var inst_y = params.clust.dim.height/2 ;
+        var inst_y = params.clust.dim.height/1.25 ;
         return 'translate('+inst_x+','+inst_y+')';
       });
 
