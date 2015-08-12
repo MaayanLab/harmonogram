@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <base href='/harmonogram/'>
+
+    <title>Harmonogram</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="static/lib/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="static/lib/css/simple-sidebar.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="static/lib/css/keen-dashboards.css">
+    <link rel="stylesheet" href="static/lib/css/bootstrap-switch.css">
+    <link rel="stylesheet" href="static/lib/css/dc.css">
+    <link rel="stylesheet" href="static/css/specific.css" />
+    <link rel="stylesheet" href="static/css/jquery.accordion.css">
+    <link rel="stylesheet" href="static/css/custom.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+  <div id="wrapper" class='toggled'>
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+
+        <div id='title_input_gene_list'>
+            Input Gene List
+        </div>
+
+        <div >
+          <form role='form' action="{{ url_for('python_function') }}" id="searchForm">
+
+            <div class="form-group">
+              <textarea  name="genes" placeholder='input genes' id='gene_input_box' class='clearable'></textarea>
+              <div id='input_genes_button_group' class='text-center' ></div>
+            </div>
+
+            <div class='text-center'>
+              <button id='submit_genes_button' type="submit" class='btn btn-primary buttons' >Submit</button>
+              <div class="btn-group">
+                <button type="button" class='btn btn-primary buttons' onClick="$('#gene_input_box').val(example_gene_list_50.join('\n'));">Example</button>
+                <button id='clear_input_button' type="button" class='btn btn-danger buttons' onClick="$('#gene_input_box').val('');" >Clear</button>
+              </div>
+              
+            </div>
+
+          </form>
+
+          <div id='return_prev_enrichrgram' class='text-center' style='display:none;'>
+            <button id='return_prev_button' class='btn btn-danger buttons' onClick='return_prev_enrichrgram();' >Return to Previous <br> Enrichrgram</button>
+          </div>
+
+        </div>
+      </ul>
+    </div>
+    <!-- end sidebar -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <!-- Initial Content --> 
+      <div id='main_container'>
+
+        <!-- this row is required, -fluid causes problems --> 
+        <div class="row" > 
+
+          <div class="col-lg-12">
+
+            <!-- initial screen -->
+            <div id='initial_container'>
+              <h1 id='website_title'> Enrichrgram
+              </h1>
+              <p class='initial_paragraph'>Enrichrgram performs enrichment analysis on your set of genes using Enrichr and displays a clustergram of the results. Choose up to three gene set libraries for enrichment analysis. </p>
+
+
+              <div class='row'>
+                <!-- GMT menu -->              
+                <div class='col-xs-7' >
+                  <section id="gmt_menu" data-accordion-group>
+                    <div id='title_gmt_menu'>Choose Libraries</div>
+                  </section>
+                  <!-- <h2>gmt menu</h2> -->
+                </div>
+
+                <!-- Selected GMTs --> 
+                <div id='container_gmt_labels' class='col-xs-5'>
+
+                  <div id='selected_gmts_group'>
+                   
+                   <div id='title_selected_libraries'>
+                     Selected Libraries 
+                   </div> 
+
+                    <!-- selected gmt group --> 
+                    <div class='selected_gmts  ' id='current_gmt'></div>
+                    <!-- end gmt group --> 
+
+                  </div>
+
+                  <div id='add_new_gmt' onclick="plus_new_gmt();"> + </div>
+
+                </div>
+                
+
+            </div>
+            <!-- end initial screen -->
+
+            <!-- visualization -->
+            <div id='viz_container'>
+
+              <div class='row'>
+                <div id='clust_instruct_container' >
+                  <h1 id='viz_website_title' >Harmonogram</h1>
+
+                  <div id='viz_gmt_labels'></div>
+
+                  <div class='title_viz_instructs'>About:</div>
+                  <div class='viz_instruct_text'> The clustergram visualizes gene appearance in Harmonizome resources. Genes are shown as rows and resources as columns. The gene occurance value is normalized relative to the occurance of other genes in the resource. Change the clustergram ordering by using the toggle switch or by clicking row or column labels. </div>
+
+                  <!-- button container -->
+                  <div id='button_container'>
+                    
+                    <!-- choose protein class  -->
+                    <div id='class_buttons' class="btn-group-vertical text-center" data-toggle="buttons" >
+
+                      <!-- <label class="btn btn-primary active" onclick="reorder_clust_rank('clust');"> -->
+                      <label class="btn btn-primary active prot_class" onclick="load_class_clustergram('KIN');">
+                        <input type="radio" name="options" id="clust_button" autocomplete="off" checked > Kinases
+                      </label>
+
+                      <label class="btn btn-primary  prot_class" onclick="load_class_clustergram('PP');" >
+                        <input type="radio" name="options" id="rank_button" autocomplete="off" > Phosphatases
+                      </label>
+
+                      <label class="btn btn-primary  prot_class" onclick="load_class_clustergram('GPCR');" >
+                        <input type="radio" name="options" id="rank_button" autocomplete="off" > GPCRs
+                      </label>
+
+                      <label class="btn btn-primary prot_class" onclick="load_class_clustergram('IC');" >
+                        <input type="radio" name="options" id="rank_button" autocomplete="off" > Ion Channels
+                      </label>
+
+                      <label class="btn btn-primary prot_class" onclick="load_class_clustergram('TF');" >
+                        <input type="radio" name="options" id="rank_button" autocomplete="off" > Transcription Factors
+                      </label>
+
+                      <label class="btn btn-primary prot_class" onclick="load_class_clustergram('ACT');" >
+                        <input type="radio" name="options" id="rank_button" autocomplete="off" > Acetyltransferases
+                      </label>
+
+                      <label class="btn btn-primary prot_class" onclick="load_class_clustergram('DACT');" >
+                        <input type="radio" name="options" id="rank_button" autocomplete="off" > Deacetylases
+                      </label>
+
+                      <label class="btn btn-primary prot_class" onclick="load_class_clustergram('MET');" >
+                        <input type="radio" name="options" id="rank_button" autocomplete="off" > Methyltransferases
+                      </label>
+
+                      <label class="btn btn-primary prot_class" onclick="load_class_clustergram('DMET');" >
+                        <input type="radio" name="options" id="rank_button" autocomplete="off" > Demethylases
+                      </label>
+
+                    </div>
+
+                    <div id='toggle_order' class="btn-group" data-toggle="buttons" >
+                      <label class="btn btn-primary active prot_class" onclick="reorder_clust_rank('clust');">
+                        <input type="radio" name="options" id="clust_button" autocomplete="off" checked > Cluster
+                      </label>
+                      <label class="btn btn-primary prot_class" onclick="reorder_clust_rank('rank');">
+                        <input type="radio" name="options" id="rank_button" autocomplete="off" > Rank
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- resource key -->
+                  <div id='res_color_key_title' class='title_viz_instructs'>Resource Groups:</div>
+                  <div id='res_color_key_div'></div>
+
+                  <!-- input box for gene search -->
+                  <div id='gene_search_container' class='row'>
+                      <input id='gene_search_box' type="text" class="form-control" placeholder="Input Gene" aria-describedby="sizing-addon2">
+
+                      <div id='gene_search_button' class="btn-group" data-toggle="buttons" >
+                        <label id='gene_search_submit' class="btn btn-primary active " onclick="find_gene_in_clust();">
+                          <input type="radio" name="options" id="" autocomplete="off" checked > Search
+                        </label>
+                      </div>
+                  </div>
+
+
+
+                  <!-- <div class='viz_instruct_text'>  </div> -->
+
+                  <!-- <button id='modify_enrichrgram_button' class='btn btn-danger buttons' onClick='rerun_enrichrgram();'>Re-run Enrichrgram</button> -->
+
+                  <!-- <div class='viz_instruct_text'>Ordering</div> -->
+
+                  <!-- <div class="btn-group" data-toggle="buttons" >
+                    <label class="btn btn-primary active" onclick="reorder_clust_rank('clust');">
+                      <input type="radio" name="options" id="clust_button" autocomplete="off" checked > Cluster
+                    </label>
+                    <label class="btn btn-primary" onclick="reorder_clust_rank('rank');">
+                      <input type="radio" name="options" id="rank_button" autocomplete="off" > Rank
+                    </label>
+                  </div> -->
+
+
+                  <!-- <div class='viz_instruct_text'><a href="">Export data to table</a></div> -->
+                  <!-- <div class='viz_instruct_text'>Save SVG</div> -->
+                </div>
+                <div id='clustergram_container' >
+                  <div id='col_title'>Resources</div>
+                  <div id='clust_and_row_container'>
+                    <div id='row_title'>Genes</div>
+                    <div id='svg_div'></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end visualization -->
+
+          </div>
+        </div> <!-- end row -->
+
+      </div>
+
+
+
+    </div>
+    <!-- /#page-content-wrapper -->
+  </div>
+  <!-- /#wrapper -->
+
+  <footer id='footer_div' class="footer navbar-fixed-bottom">
+
+        <div class="row" > 
+          <div class="col-xs-12 footer_section"> 
+            <p class="text-muted">Harmonogram is being developed by the <a href="http://icahn.mssm.edu/research/labs/maayan-laboratory">Ma'ayan Lab</a> at the <a href="http://icahn.mssm.edu/">Icahn School of Medicine at Mount Sinai</a>. </p>
+          </div>
+        </div>
+  </footer>
+
+  <!-- Modal -->
+  <div id='modal_no_input' class="modal fade" role="dialog" aria-labelledby="gridSystemModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="gridSystemModalLabel">Please input genes</h4>
+        </div>
+        <div class="modal-body">
+
+          <div class="container-fluid">
+            <p>Input one human/mouse gene symbol per line. </p>
+            <p>For instance:</p>
+            <div>PER1</div>
+            <div>SENP3</div>
+            <div>TOP2A</div>
+            <div>PTPN7</div>
+            <div>...</div>
+
+          </div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <!-- Vendor -->
+  <!-- jQuery -->
+  <script src="static/lib/js/jquery-1.11.2.min.js"></script>
+
+  <!-- adding jquery links -->
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+  <script src='static/lib/js/jquery.accordion.js'></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="static/lib/js/bootstrap.min.js"></script>
+  <script src="static/lib/js/bootstrap-switch.min.js"></script>
+  <script src="static/lib/js/crossfilter.js"></script>
+  <script src="static/lib/js/d3.js"></script>
+  <script src="static/lib/js/dc.js"></script>
+  <script src="static/lib/js/queue.js"></script>
+  <script src="static/lib/js/keen.min.js"></script>
+  <script src="static/lib/js/underscore-min.js"></script>
+  <script src="static/lib/js/underscore.strings.js"></script>
+  <script src='static/lib/js/blockUI.js'></script>
+  <script src='static/lib/js/type_ahead.js'></script>
+  <!-- Clustergram Scripts -->
+  <script src='static/js/d3_clustergram.js'></script>
+  <script src='static/js/load_local_network.js'></script>
+
+  <script>
+  
+  // initialize protein class 
+  var inst_prot_class = 'KIN';
+  // save global variable 
+  glob_prot_class = inst_prot_class;
+  
+  // make first clustergram 
+  // set up wait message before request is made 
+  $.blockUI({ css: { 
+          border: 'none', 
+          padding: '15px', 
+          backgroundColor: '#000', 
+          '-webkit-border-radius': '10px', 
+          '-moz-border-radius': '10px', 
+          opacity: .8, 
+          color: '#fff' 
+      } });
+
+  // use d3 to load a json 
+  d3.json('/harmonogram/static/networks/'+inst_prot_class+'_cumul_probs.json', function(network_data){
+
+    // // make global copy of network_data 
+    // global_network_data = network_data;
+
+    // // pass the network data to d3_clustergram 
+    // make_d3_clustergram(network_data);
+
+    // // once everything has been set up show color key and search box
+    // d3.select('#res_color_key_title').style('display','block');
+    // d3.select('#gene_search_container').style('display','block')
+    // d3.select('#gene_search_box').style('display','inline-block')
+    // d3.select('#gene_search_button').style('display','inline-block')
+
+    // define the outer margins of the visualization 
+    var outer_margins = {
+        'top':5,
+        'bottom':33,
+        'left':225,
+        'right':2
+      };
+
+    // define callback function for clicking on tile 
+    function click_tile_callback(tile_info){
+      console.log('my callback')
+      console.log('clicking on ' + tile_info.row + ' row and ' + tile_info.col + ' col with value ' + String(tile_info.value))
+    };
+
+    // define callback function for clicking on group 
+    function click_group_callback(group_info){
+      console.log('running user defined click group callback')
+      console.log(group_info.type);
+      console.log(group_info.nodes);
+      console.log(group_info.info);
+    };
+
+    // define arguments object 
+    var arguments_obj = {
+      'network_data': network_data,
+      'svg_div_id': 'svg_div',
+      'row_label':'Genes',
+      'col_label':'Resources',
+      'outer_margins': outer_margins,
+      // 'opacity_scale':'log',
+      // 'input_domain':7,
+      'tile_colors':['#000000','#1C86EE'],
+      // 'title_tile': true,
+      // 'click_tile': click_tile_callback,
+      // 'click_group': click_group_callback
+      // 'resize':false
+      // 'order':'rank'
+    };
+
+    // make clustergram: pass network_data and the div name where the svg should be made 
+    d3_clustergram.make_clust( arguments_obj );
+
+    // turn off the wait sign 
+    $.unblockUI();
+
+  });
+
+
+  </script>
+
+</body>
+
+</html>
