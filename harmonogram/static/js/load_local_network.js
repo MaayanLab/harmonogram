@@ -9,14 +9,14 @@ function load_class_clustergram(inst_prot_class){
 		// save global variable
 		glob_prot_class = inst_prot_class;
 
-		// change active button states
-		d3.select('#class_buttons')
-			.selectAll('label')
-			.attr('class','btn btn-primary prot_class');
+		// // change active button states
+		// d3.select('#class_buttons')
+		// 	.selectAll('label')
+		// 	.attr('class','btn btn-primary prot_class');
 
-		console.log(this)
-		// d3.select(this)
-		// 	.attr('class','btn btn-primary prot_class active');
+		// console.log(this)
+		// // d3.select(this)
+		// // 	.attr('class','btn btn-primary prot_class active');
 
 
 		// set up wait message before request is made 
