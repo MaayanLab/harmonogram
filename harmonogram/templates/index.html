@@ -150,7 +150,7 @@
   <script src='static/js/d3_clustergram.js'></script>
   <script src='static/lib/js/blockUI.js'></script>
   <!-- use d3_clustergram.js to load clustergram -->
-  <!-- <script src='load_network.js'></script> -->
+  <script src='static/js/load_local_network.js'></script>
 
   <!-- set up group size sliders -->
   <script type="text/javascript">
@@ -190,14 +190,6 @@
     function click_tile_callback(tile_info){
       console.log('my callback')
       console.log('clicking on ' + tile_info.row + ' row and ' + tile_info.col + ' col with value ' + String(tile_info.value))
-    };
-
-    // define callback function for clicking on group 
-    function click_group_callback(group_info){
-      console.log('running user defined click group callback')
-      console.log(group_info.type);
-      console.log(group_info.nodes);
-      console.log(group_info.info);
     };
 
     // define arguments object 
