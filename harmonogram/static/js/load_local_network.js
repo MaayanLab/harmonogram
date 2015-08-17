@@ -40,10 +40,10 @@ function load_class_clustergram(inst_prot_class){
 
 	    // define the outer margins of the visualization 
 	    var outer_margins = {
-	        'top':1,
-	        'bottom':1,
+	        'top':10,
+	        'bottom':10,
 	        'left':225,
-	        'right':1
+	        'right':10
 	      };
 
 	    // define callback function for clicking on tile 
