@@ -18,7 +18,6 @@ function load_class_clustergram(inst_prot_class){
 		// // d3.select(this)
 		// // 	.attr('class','btn btn-primary prot_class active');
 
-
 		// set up wait message before request is made 
 		$.blockUI({ css: { 
 		        border: 'none', 
@@ -63,6 +62,7 @@ function load_class_clustergram(inst_prot_class){
 	      // 'input_domain':7,
 	      'tile_colors':['#000000','#1C86EE'],
 	      'title_tile': true,
+	      'col_overflow':0.3	
 	      // 'click_tile': click_tile_callback,
 	      // 'click_group': click_group_callback
 	      // 'resize':false
