@@ -2067,8 +2067,8 @@ var d3_clustergram = (function() {
       .margin.left, d3_clustergram.params.clust.margin.top
     ]);
 
-    // // turn off the wait sign
-    // $.unblockUI();
+    // turn off the wait sign
+    $.unblockUI();
   }
 
   // define zoomed function
@@ -2789,16 +2789,16 @@ var d3_clustergram = (function() {
       // clear timeout
       clearTimeout(doit);
 
-      // // set up wait message before request is made
-      // $.blockUI({ css: {
-      //         border: 'none',
-      //         padding: '15px',
-      //         backgroundColor: '#000',
-      //         '-webkit-border-radius': '10px',
-      //         '-moz-border-radius': '10px',
-      //         opacity: .8,
-      //         color: '#fff'
-      //     } });
+      // set up wait message before request is made
+      $.blockUI({ css: {
+              border: 'none',
+              padding: '15px',
+              backgroundColor: '#000',
+              '-webkit-border-radius': '10px',
+              '-moz-border-radius': '10px',
+              opacity: .8,
+              color: '#fff'
+          } });
 
       doit = setTimeout(reset_visualization_size, 500);
 

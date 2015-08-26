@@ -176,8 +176,12 @@ def generate_d3_json():
 	# resource class 
 	rc = json_scripts.load_to_dict('resource_classes_harminogram.json')
 
-	# loop through classes
-	for inst_class in gc:
+	# # loop through classes
+	# for inst_class in gc:
+
+	#!! tmp only make met clustergram 
+	all_gs = ['MET']
+	for inst_class in all_gs:
 
 		print(inst_class + '\n')
 
