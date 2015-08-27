@@ -179,10 +179,6 @@ def generate_d3_json():
 	# loop through classes
 	for inst_class in gc:
 
-	# #!! tmp only make met clustergram 
-	# all_gs = ['MET']
-	# for inst_class in all_gs:
-
 		print(inst_class + '\n')
 
 		# initialize class matrix 
@@ -202,8 +198,6 @@ def generate_d3_json():
 
 			# check if in class list 
 			if inst_gs in gc[inst_class]:
-
-				# print(inst_gs)
 
 				# append gene symbol name to row 
 				class_nodes['row'].append(inst_gs)
