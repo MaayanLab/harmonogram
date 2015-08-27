@@ -176,12 +176,12 @@ def generate_d3_json():
 	# resource class 
 	rc = json_scripts.load_to_dict('resource_classes_harminogram.json')
 
-	# # loop through classes
-	# for inst_class in gc:
+	# loop through classes
+	for inst_class in gc:
 
-	#!! tmp only make met clustergram 
-	all_gs = ['MET']
-	for inst_class in all_gs:
+	# #!! tmp only make met clustergram 
+	# all_gs = ['MET']
+	# for inst_class in all_gs:
 
 		print(inst_class + '\n')
 
@@ -250,6 +250,16 @@ def generate_d3_json():
 
 			# add the resource-class - data_group
 			inst_col['data_group'] = rc[ inst_res ]['data_group'].replace(' ','_')
+
+		# add extra link information about grant: this will be used to color the grant links externally 
+		# from the d3_clustergram code 
+		for inst_link in d3_json['links']:
+
+			inst_link['info'] = 0
+
+			if d3_json['col_nodes'][inst_link['target']]['name'] == 'Grants_Per_Gene':
+
+				inst_link['info'] = 1
 
 		print('saving to disk')
 

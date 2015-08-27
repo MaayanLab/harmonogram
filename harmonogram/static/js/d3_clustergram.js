@@ -736,12 +736,12 @@ var d3_clustergram = (function() {
       if (params.tile_type === 'group') {
         params.matrix[link.source][link.target].value_up = link.value_up;
         params.matrix[link.source][link.target].value_dn = link.value_dn;
-        if (params.highlight === 1) {
-          params.matrix[link.source][link.target].highlight = link.highlight;
-        }
-        if (_.has(link, 'info')) {
-          params.matrix[link.source][link.target].info = link.info;
-        }
+      }
+      if (params.highlight === 1) {
+        params.matrix[link.source][link.target].highlight = link.highlight;
+      }
+      if (_.has(link, 'info')) {
+        params.matrix[link.source][link.target].info = link.info;
       }
     });
 
@@ -2066,6 +2066,24 @@ var d3_clustergram = (function() {
     d3_clustergram.params.zoom.scale(1).translate([d3_clustergram.params.clust
       .margin.left, d3_clustergram.params.clust.margin.top
     ]);
+
+    // !! harmonogram specific code - recolor after screen resize
+    // highlight grants per gene 
+    d3.selectAll('.tile').each(function(d){ 
+      if (d.info === 1){
+        d3.select(this).style('fill','blue') 
+      }
+    });
+
+    // color resource class triangles 
+    d3.selectAll('.col_label_click')
+      .each(function(d){
+        d3.select(this)
+          .select('path')
+          .attr('fill', function(d){
+            return res_color_dict[d.data_group];
+          })
+      });
 
     // turn off the wait sign
     $.unblockUI();
