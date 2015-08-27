@@ -15,6 +15,10 @@ class Network(object):
 		self.dat['nodes']['row'] = []
 		self.dat['nodes']['col'] = []
 		self.dat['mat'] = []
+		# add row/col classification information into 'cl' section
+		self.dat['node_info'] = {}
+		self.dat['node_info']['row'] = []
+		self.dat['node_info']['col'] = []
 
 		# network: viz-state
 		self.viz = {}
@@ -103,7 +107,47 @@ class Network(object):
 		lines = f.readlines()
 		f.close()
 
+		# initialize list for all classifications 
+		# which will be used to make a classification dictionary 
+		# the classifiaction information will be stored in 
+		# that is located in net.dat['node_info']['rowcol']['cl']
 
+		# loop through the lines of the file 
+		for i in range(len(lines)):
+
+			# get the inst_line and make list 
+			inst_line = lines[i].strip().split('\t')
+
+			# line 1: get daatset names 
+			if i ==0:
+
+				# gather column information 
+				for j in range(len(inst_line)):
+					# skip the first three columns
+					if j > 2: 
+						# get inst label
+						inst_col = inst_line[j]
+						# gather column labels 
+						self.dat['nodes']['col'].append(inst_col)
+
+			# line 2: get dataset groups 
+			if i ==1:
+				# gather column classification information 
+				for j in range(len(inst_line)):
+					# skip the first three columns
+					if j > 2: 
+						# get inst label
+						inst_col = inst_line[j]
+						# gather column labels 
+						self.dat['node_info']['col'].append(inst_col)
+
+			# line 3: no information 
+
+			# line 4: get gene symbol and data 
+			if i > 2:
+				pass
+
+		print(self.dat['node_info']['col'])
 	def load_cst_kea_enr_to_net(self, enr, pval_cutoff):
 		import scipy
 		import numpy as np
