@@ -108,12 +108,12 @@ function load_class_clustergram(inst_prot_class){
 		  // loop through col_nodes
 		  for (i=0; i<col_nodes.length; i++){
 		    // do not include grants in group color labels
-		    if (col_nodes[i]['data_group'] != 'grants'){
-		      all_groups.push( col_nodes[i]['data_group'] ); 
+		    if (col_nodes[i]['info'] != 'grants'){
+		      all_groups.push( col_nodes[i]['info'] ); 
 		    };
 
 		    // find the index of grants
-		    if (col_nodes[i]['data_group'] == 'grants'){
+		    if (col_nodes[i]['info'] == 'grants'){
 		      col_index_grants = i;
 		    }
 		  };
@@ -154,16 +154,16 @@ function load_class_clustergram(inst_prot_class){
 		      return res_color_dict[d];
 		    })
 
-		  // // add names 
-		  // key_divs
-		  //   .append('div')
-		  //   .attr('class','col-xs-10 res_names_in_key')
-		  //   .append('text')
-		  //   .text(function(d){ 
-		  //     inst_res = d.replace(/_/g, ' ');
-		  //     inst_res = _(inst_res).capitalize();
-		  //     return inst_res ;
-		  //   })
+			  // add names 
+			  key_divs
+			    .append('div')
+			    .attr('class','col-xs-10 res_names_in_key')
+			    .append('text')
+			    .text(function(d){ 
+			      inst_res = d.replace(/_/g, ' ');
+			      inst_res = _(inst_res).capitalize();
+			      return inst_res ;
+			    })
 
 			// color resource class triangles 
 			d3.selectAll('.col_label_click')
@@ -171,7 +171,7 @@ function load_class_clustergram(inst_prot_class){
 					d3.select(this)
 						.select('path')
 						.attr('fill', function(d){
-							return res_color_dict[d.data_group];
+							return res_color_dict[d.info];
 						})
 				});
 

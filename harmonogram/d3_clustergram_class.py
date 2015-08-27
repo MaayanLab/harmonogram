@@ -14,11 +14,20 @@ class Network(object):
 		self.dat['nodes'] = {}
 		self.dat['nodes']['row'] = []
 		self.dat['nodes']['col'] = []
-		self.dat['mat'] = []
-		# add row/col classification information into 'cl' section
+
+		# node_info holds the orderings (ini, clust, rank), classification ('cl'), and other general information 
 		self.dat['node_info'] = {}
-		self.dat['node_info']['row'] = []
-		self.dat['node_info']['col'] = []
+		for rowcol in self.dat['nodes']:
+			self.dat['node_info'][rowcol] = {}
+			self.dat['node_info'][rowcol]['ini'] = []
+			self.dat['node_info'][rowcol]['clust'] = []
+			self.dat['node_info'][rowcol]['rank'] = []
+			self.dat['node_info'][rowcol]['info'] = []
+			# classification is specifically used to color the class triangles 
+			self.dat['node_info'][rowcol]['cl'] = []
+
+		# initialize matrix 
+		self.dat['mat'] = []
 
 		# network: viz-state
 		self.viz = {}
@@ -111,6 +120,9 @@ class Network(object):
 		lines = f.readlines()
 		f.close()
 
+		# add hgram specific key - res_group 
+		self.dat['node_info']['col']['res_group'] = []
+
 		# loop through the lines of the file 
 		for i in range(len(lines)):
 
@@ -132,7 +144,7 @@ class Network(object):
 						# gather column labels 
 						self.dat['nodes']['col'].append(inst_col)
 
-			# line 2: get dataset groups 
+			# line 2: get dataset groups - do not save as 'cl', save as 'res_group'
 			if i ==1:
 				# gather column classification information 
 				for j in range(len(inst_line)):
@@ -141,7 +153,7 @@ class Network(object):
 						# get inst label
 						inst_col = inst_line[j]
 						# gather column labels 
-						self.dat['node_info']['col'].append(inst_col)
+						self.dat['node_info']['col']['res_group'].append(inst_col)
 
 			# line 3: no information 
 
@@ -161,7 +173,7 @@ class Network(object):
 				# 	if inst_gene in gc[inst_gc]:
 				# 		inst_prot_class = inst_gc
 				# # add class to node_info
-				# self.dat['node_info']['row'].append(inst_prot_class)
+				# self.dat['node_info']['row']['cl'].append(inst_prot_class)
 
 				# grab data, convert to float, and make numpy array 
 				inst_data_row = inst_line[3:]
@@ -626,8 +638,16 @@ class Network(object):
 		clust_order['row']['rank'] = self.sort_rank_nodes('row')
 		clust_order['col']['rank'] = self.sort_rank_nodes('col')
 
-		# save to dat 
-		self.dat['node_info'] = clust_order
+		# save clustering orders to node_info 
+		# row
+		self.dat['node_info']['row']['ini']   = clust_order['row']['ini']
+		self.dat['node_info']['row']['clust'] = clust_order['row']['clust']
+		self.dat['node_info']['row']['rank']  = clust_order['row']['rank']
+		# col 
+		self.dat['node_info']['col']['ini']   = clust_order['col']['ini']
+		self.dat['node_info']['col']['clust'] = clust_order['col']['clust']
+		self.dat['node_info']['col']['rank']  = clust_order['col']['rank']
+
 
 		# make the viz json - can optionally leave out dendrogram
 		self.viz_json(dendro)
@@ -719,11 +739,22 @@ class Network(object):
 				inst_dict = {}
 				inst_dict['name']  = self.dat['nodes'][inst_rc][i]
 				inst_dict['ini']   = self.dat['node_info'][inst_rc]['ini'][i]
+				#!! clean this up so I do not have to get the index here 
 				inst_dict['clust'] = self.dat['node_info'][inst_rc]['clust'].index(i)
 				inst_dict['rank']  = self.dat['node_info'][inst_rc]['rank'][i]
+
+
 				# add node class 'cl' - this could potentially be a list of several classes 
-				if 'cl' in self.dat['node_info'][inst_rc]:
+				# if 'cl' in self.dat['node_info'][inst_rc]:
+				if len(self.dat['node_info'][inst_rc]['cl']) > 0:
+					print(self.dat['node_info'][inst_rc]['cl'])
 					inst_dict['cl'] = self.dat['node_info'][inst_rc]['cl'][i]
+
+				# add node information 
+				# if 'info' in self.dat['node_info'][inst_rc]:
+				if len(self.dat['node_info'][inst_rc]['info']) > 0:
+					print(self.dat['node_info'][inst_rc]['info'][i])
+					inst_dict['info'] = self.dat['node_info'][inst_rc]['info'][i]
 
 				# group info 
 				if dendro==True:

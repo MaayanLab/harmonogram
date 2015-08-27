@@ -43,6 +43,7 @@ def make_prot_type_hgrams():
 	# load dat json from file to network - this will be done frequently so I made a module 
 	hgram.load_data_file_to_net('hgram_data_latest/hgram_latest.json')
 
+
 	# gene classes 
 	gc = hgram.load_json_to_dict('gene_classes_harmonogram.json')
 
@@ -55,9 +56,14 @@ def make_prot_type_hgrams():
 		all_net[inst_gc] = deepcopy(Network())
 
 		# set the columns - the same for all networks 
-		all_net[inst_gc].dat['nodes']['col'] = deepcopy(hgram.dat['nodes']['col'])
+		all_net[inst_gc].dat['nodes']['col'] = hgram.dat['nodes']['col']
 
-	print(all_net.keys())
+		# transfer node information 
+		all_net[inst_gc].dat['node_info']['col'] = hgram.dat['node_info']['col']
+
+		# transfer 'res_group' information to 'info'
+		all_net[inst_gc].dat['node_info']['col']['info'] = all_net[inst_gc].dat['node_info']['col']['res_group']
+
 
 	# loop through the genes in hgram 
 	for i in range(len(hgram.dat['nodes']['row'])):
@@ -79,12 +85,12 @@ def make_prot_type_hgrams():
 				else:
 					all_net[inst_gc].dat['mat'] = np.vstack( ( all_net[inst_gc].dat['mat'], hgram.dat['mat'][i,:] ) )
 
-	# check the size of the matrices from the different protein types 
-	for inst_gc in all_net:
-		print(inst_gc)
-		print(len(all_net[inst_gc].dat['nodes']['row']))
-		print(all_net[inst_gc].dat['mat'].shape)
-		print('\n')
+	# # check the size of the matrices from the different protein types 
+	# for inst_gc in all_net:
+	# 	print(inst_gc)
+	# 	print(len(all_net[inst_gc].dat['nodes']['row']))
+	# 	print(all_net[inst_gc].dat['mat'].shape)
+	# 	print('\n')
 
 	# cluster MET first 
 
