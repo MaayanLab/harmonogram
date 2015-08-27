@@ -71,8 +71,11 @@ var d3_clustergram = (function() {
     // rotated column labels - approx trig
     params.norm_label = {};
     params.norm_label.width = {};
-    params.norm_label.width.row = label_scale(row_max_char);
-    params.norm_label.width.col = 0.8 * label_scale(col_max_char);
+
+    // allow the user to increase or decrease the overall size of the labels 
+    params.norm_label.width.row = label_scale(row_max_char) * params.row_label_scale;
+    params.norm_label.width.col = 0.8 * label_scale(col_max_char) * params.col_label_scale;
+
     // normal label margins
     params.norm_label.margin = {};
     params.norm_label.margin.left = params.grey_border_width + params.super_label_width;
@@ -101,7 +104,7 @@ var d3_clustergram = (function() {
     // svg size: less than svg size
     ///////////////////////////////////
     // 0.8 approximates the trigonometric distance required for hiding the spillover
-    params.spillover_x_offset = label_scale(col_max_char) * 0.8;
+    params.spillover_x_offset = label_scale(col_max_char) * 0.8 * params.col_label_scale;
 
     // get height and width from parent div
     params.svg_dim = {};
@@ -112,11 +115,11 @@ var d3_clustergram = (function() {
 
     // reduce width by row/col labels and by grey_border width (reduce width by less since this is less aparent with slanted col labels)
     var ini_clust_width = params.svg_dim.width - (params.super_label_width +
-        label_scale(row_max_char) + params.class_room.row) - params.grey_border_width -
+        label_scale(row_max_char)*params.row_label_scale + params.class_room.row) - params.grey_border_width -
       params.spillover_x_offset;
     // there is space between the clustergram and the border
     var ini_clust_height = params.svg_dim.height - (params.super_label_width +
-        0.8 * label_scale(col_max_char) + params.class_room.col) - 5 *
+        0.8 * label_scale(col_max_char)*params.col_label_scale + params.class_room.col) - 5 *
       params.grey_border_width;
 
     // the visualization dimensions can be smaller than the svg
@@ -432,6 +435,18 @@ var d3_clustergram = (function() {
       params.label_overflow.col = args.col_overflow;
     }
 
+    // row and label overall scale 
+    if (typeof args.row_label_scale == 'undefined'){
+      params.row_label_scale = 1;
+    } else {
+      params.row_label_scale = args.row_label_scale;
+    }
+    if (typeof args.col_label_scale == 'undefined'){
+      params.col_label_scale = 1;
+    } else {
+      params.col_label_scale = args.col_label_scale;
+    }
+
     // transpose matrix - if requested
     if (typeof args.transpose === 'undefined') {
       params.transpose = false;
@@ -619,7 +634,7 @@ var d3_clustergram = (function() {
     // check if row/col have class information
     if (_.has(row_nodes[0], 'cl') || _.has(col_nodes[0], 'cl')) {
       // gather classes
-      params.class_colors = {};
+      params.click_groupclass_colors = {};
     }
 
     // gather class information from row
@@ -2079,7 +2094,7 @@ var d3_clustergram = (function() {
         d3.select(this)
           .select('path')
           .attr('fill', function(d){
-            return res_color_dict[d.data_group];
+            return res_color_dict[d.info];
           })
       });
 

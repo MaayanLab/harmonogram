@@ -61,11 +61,13 @@ def make_prot_type_hgrams():
 		# transfer node information 
 		all_net[inst_gc].dat['node_info']['col'] = hgram.dat['node_info']['col']
 
-		# transfer 'res_group' information to 'info'
-		all_net[inst_gc].dat['node_info']['col']['info'] = all_net[inst_gc].dat['node_info']['col']['res_group']
+		# not necessary since its already there as info 
+		# # transfer 'res_group' information to 'info'
+		# all_net[inst_gc].dat['node_info']['col']['info'] = all_net[inst_gc].dat['node_info']['col']['res_group']
 
 
-	# loop through the genes in hgram 
+	# transfer data from hgram to gene classes 
+	#############################################
 	for i in range(len(hgram.dat['nodes']['row'])):
 
 		# get inst_gene 
@@ -77,7 +79,7 @@ def make_prot_type_hgrams():
 				# add inst_gene and current row data to gene class network 
 				all_net[inst_gc].dat['nodes']['row'].append(inst_gene)
 
-				# add data 
+				# add mat 
 				# initialize matrix 
 				if type( all_net[inst_gc].dat['mat'] ) is list:
 					all_net[inst_gc].dat['mat'] = hgram.dat['mat'][i,:]
@@ -86,22 +88,44 @@ def make_prot_type_hgrams():
 					all_net[inst_gc].dat['mat'] = np.vstack( ( all_net[inst_gc].dat['mat'], hgram.dat['mat'][i,:] ) )
 
 
-	# generate clustergrams for all protein types 
-	# for inst_gc in all_net:
+	# add mat_info to each of the gene classes 
+	######################################################
+	for inst_gc in gc:
 
-	for inst_gc in ['MET']:
+		# get the col index of the grants
+		grants_col_index = all_net[inst_gc].dat['nodes']['col'].index('NIH Reporter Grants Linked to NCBI Genes Through Publications')
+
+		mat_info = {}
+		for i in range(len(all_net[inst_gc].dat['nodes']['row'])):
+			for j in range(len(all_net[inst_gc].dat['nodes']['col'])):
+
+				# tmp make all info 1 
+				mat_info[(i,j)] = 0
+
+				# if j is the grants column, change info to 1 
+				if j == grants_col_index:
+					mat_info[(i,j)] = 1	
+
+			# transfer to .dat 
+			all_net[inst_gc].dat['mat_info'] = mat_info
+
+	# generate clustergrams for all protein types 
+	###############################################
+	for inst_gc in all_net:
 
 		print('\n\nclustering\t' + inst_gc)
 		print(all_net[inst_gc].dat['mat'].shape)
+
+		# # filter the matrix 
+		# all_net[inst_gc].filter_network_thresh(cutoff=0.3, min_num_meet=10)
 
 		# cluster 
 		#############
 		# only compare vectors with at least min_num_comp common data points
 		# with absolute values above cutoff_comp 
-		cutoff_comp = 0.01
-		min_num_comp = 2
+		cutoff_comp = 0.05
+		min_num_comp = 3
 		all_net[inst_gc].cluster_row_and_col('cos', cutoff_comp, min_num_comp, dendro=False)
-
 
 		# export data visualization to file 
 		######################################

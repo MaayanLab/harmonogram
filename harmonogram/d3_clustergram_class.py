@@ -28,10 +28,8 @@ class Network(object):
 
 		# initialize matrix 
 		self.dat['mat'] = []
-		# save information about links into a dictionary called mat_info
-		# they keys of the dictionary will be tuples and the data in the 
-		# dictionary can be any object 
-		# self.dat['mat_info'] = {}
+		# mat_info is an optional dictionary 
+		# so I'm not including it by default 
 
 		# network: viz-state
 		self.viz = {}
@@ -124,9 +122,6 @@ class Network(object):
 		lines = f.readlines()
 		f.close()
 
-		# add hgram specific key - res_group 
-		self.dat['node_info']['col']['res_group'] = []
-
 		# loop through the lines of the file 
 		for i in range(len(lines)):
 
@@ -148,7 +143,7 @@ class Network(object):
 						# gather column labels 
 						self.dat['nodes']['col'].append(inst_col)
 
-			# line 2: get dataset groups - do not save as 'cl', save as 'res_group'
+			# line 2: get dataset groups - do not save as 'cl', save as 'info' to sidestep d3_clustergram.js code
 			if i ==1:
 				# gather column classification information 
 				for j in range(len(inst_line)):
@@ -157,7 +152,7 @@ class Network(object):
 						# get inst label
 						inst_col = inst_line[j]
 						# gather column labels 
-						self.dat['node_info']['col']['res_group'].append(inst_col)
+						self.dat['node_info']['col']['info'].append(inst_col)
 
 			# line 3: no information 
 
@@ -197,7 +192,6 @@ class Network(object):
 		print('there are ' + str(len(self.dat['nodes']['col'])) + ' resources\n' )
 		print('matrix shape')
 		print(self.dat['mat'].shape)
-
 
 	def load_cst_kea_enr_to_net(self, enr, pval_cutoff):
 		import scipy
@@ -378,7 +372,6 @@ class Network(object):
 				# map primary data to mat 
 				self.dat['mat'][i,j] = ccle['data_z'][index_x, index_y]
 
-
 	def load_g2e_to_net(self, g2e):
 		import numpy as np
 
@@ -530,7 +523,7 @@ class Network(object):
 			inst_nodes_row = self.dat['nodes']['row'][i]
 
 			# get node info - disregard ini, clust, and rank orders
-			if 'info' in self.dat['node_info']['row']:
+			if len(self.dat['node_info']['row']['info']) > 0:
 				inst_node_info = self.dat['node_info']['row']['info'][i]
 
 			# get row vect 
@@ -544,7 +537,7 @@ class Network(object):
 				nodes['row'].append(inst_nodes_row)
 
 				# add info if necessary 
-				if 'info' in self.dat['node_info']['row']:
+				if len(self.dat['node_info']['row']['info']) > 0:
 					node_info['row'].append(inst_node_info)
 
 		# add cols with non-zero values 
@@ -555,7 +548,7 @@ class Network(object):
 			inst_nodes_col = self.dat['nodes']['col'][i]
 
 			# get node info - disregard ini, clust, and rank orders
-			if 'info' in self.dat['node_info']['col']:
+			if len(self.dat['node_info']['col']['info']) > 0:
 				inst_node_info = self.dat['node_info']['col']['info'][i]
 
 			# get col vect 
@@ -569,7 +562,7 @@ class Network(object):
 				nodes['col'].append(inst_nodes_col)
 
 				# add info if necessary 
-				if 'info' in self.dat['node_info']['col']:
+				if len(self.dat['node_info']['col']['info']) > 0:
 					node_info['col'].append(inst_node_info)
 
 		# cherrypick data from self.dat['mat'] 
@@ -580,6 +573,7 @@ class Network(object):
 			filt_mat_up = scipy.zeros([ len(nodes['row']), len(nodes['col']) ])
 			filt_mat_dn = scipy.zeros([ len(nodes['row']), len(nodes['col']) ])
 		if 'mat_info' in self.dat:
+			# initialize filtered mat_info dictionary with tuple keys 
 			filt_mat_info = {}
 
 		# loop through the rows
@@ -604,7 +598,7 @@ class Network(object):
 
 		# save nodes array - list of node names 
 		self.dat['nodes'] = nodes
-		
+
 		# save node_info array - list of node infos 
 		self.dat['node_info']['row']['info'] = node_info['row']
 		self.dat['node_info']['col']['info'] = node_info['col']
@@ -819,6 +813,7 @@ class Network(object):
 						inst_dict['value_dn'] = self.dat['mat_dn'][i,j]
 
 					# add information if necessary - use dictionary with tuple key
+					# each element of the matrix needs to have information 
 					if 'mat_info' in self.dat:
 						inst_dict['info'] = self.dat['mat_info'][(i,j)]
 

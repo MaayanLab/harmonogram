@@ -64,6 +64,28 @@ function load_class_clustergram(inst_prot_class){
 	      console.log('clicking on ' + tile_info.row + ' row and ' + tile_info.col + ' col with value ' + String(tile_info.value))
 	    };
 
+	    // define a function to run after the visualization is made 
+	    function run_after(){
+
+				// highlight grants per gene in blue - also being done in d3_clustergram after resize 
+		    d3.selectAll('.tile').each(function(d){ 
+		    	if (d.info === 1){
+			    	d3.select(this).style('fill','blue') 
+		    	}
+		    });
+
+		    // color resource class triangles 
+				d3.selectAll('.col_label_click')
+					.each(function(d){
+						d3.select(this)
+							.select('path')
+							.attr('fill', function(d){
+								return res_color_dict[d.info];
+							})
+					});
+	    	
+	    };
+
 	    // define arguments object 
 	    var arguments_obj = {
 	      'network_data': network_data,
@@ -75,7 +97,9 @@ function load_class_clustergram(inst_prot_class){
 	      // 'input_domain':7,
 	      'tile_colors':['#000000','#1C86EE'],
 	      'title_tile': true,
-	      'col_overflow':0.3	
+	      'col_overflow':0.3,
+	      'col_label_scale':0.75,
+	      'run_after':run_after
 	      // 'click_tile': click_tile_callback,
 	      // 'click_group': click_group_callback
 	      // 'resize':false
@@ -85,12 +109,7 @@ function load_class_clustergram(inst_prot_class){
 	    // make clustergram: pass network_data and the div name where the svg should be made 
 	    d3_clustergram.make_clust( arguments_obj );
 
-	    // highlight grants per gene in blue - also being done in d3_clustergram after resize 
-	    d3.selectAll('.tile').each(function(d){ 
-	    	if (d.info === 1){
-		    	d3.select(this).style('fill','blue') 
-	    	}
-	    });
+	    
 
 	    // set up resource key
 		  var col_nodes = d3_clustergram.network_data.col_nodes;
@@ -108,14 +127,11 @@ function load_class_clustergram(inst_prot_class){
 		  // loop through col_nodes
 		  for (i=0; i<col_nodes.length; i++){
 		    // do not include grants in group color labels
-		    if (col_nodes[i]['info'] != 'grants'){
+		    // grants do not have a data group name - this is signified by -666 
+		    if (col_nodes[i]['info'] != '-666'){
 		      all_groups.push( col_nodes[i]['info'] ); 
 		    };
 
-		    // find the index of grants
-		    if (col_nodes[i]['info'] == 'grants'){
-		      col_index_grants = i;
-		    }
 		  };
 		  
 		  // get unique groups 
@@ -154,26 +170,19 @@ function load_class_clustergram(inst_prot_class){
 		      return res_color_dict[d];
 		    })
 
-			  // add names 
-			  key_divs
-			    .append('div')
-			    .attr('class','col-xs-10 res_names_in_key')
-			    .append('text')
-			    .text(function(d){ 
-			      inst_res = d.replace(/_/g, ' ');
-			      inst_res = _(inst_res).capitalize();
-			      return inst_res ;
-			    })
+		  // add names 
+		  key_divs
+		    .append('div')
+		    .attr('class','col-xs-10 res_names_in_key')
+		    .append('text')
+		    .text(function(d){ 
+		      inst_res = d.replace(/_/g, ' ');
+		      inst_res = _(inst_res).capitalize();
+		      return inst_res ;
+		    })
 
-			// color resource class triangles 
-			d3.selectAll('.col_label_click')
-				.each(function(d){
-					d3.select(this)
-						.select('path')
-						.attr('fill', function(d){
-							return res_color_dict[d.info];
-						})
-				});
+		 //  // color tiles and classification triangles 
+			// run_after();
 
 		  // turn off the wait sign 
 		  $.unblockUI();
