@@ -64,28 +64,6 @@ function load_class_clustergram(inst_prot_class){
 	      console.log('clicking on ' + tile_info.row + ' row and ' + tile_info.col + ' col with value ' + String(tile_info.value))
 	    };
 
-	    // define a function to run after the visualization is made 
-	    function run_after(){
-
-				// highlight grants per gene in blue - also being done in d3_clustergram after resize 
-		    d3.selectAll('.tile').each(function(d){ 
-		    	if (d.info === 1){
-			    	d3.select(this).style('fill','blue') 
-		    	}
-		    });
-
-		    // color resource class triangles 
-				d3.selectAll('.col_label_click')
-					.each(function(d){
-						d3.select(this)
-							.select('path')
-							.attr('fill', function(d){
-								return res_color_dict[d.info];
-							})
-					});
-	    	
-	    };
-
 	    // define arguments object 
 	    var arguments_obj = {
 	      'network_data': network_data,
@@ -98,8 +76,7 @@ function load_class_clustergram(inst_prot_class){
 	      'tile_colors':['#000000','#1C86EE'],
 	      'title_tile': true,
 	      'col_overflow':0.3,
-	      'col_label_scale':0.75,
-	      'run_after':run_after
+	      'col_label_scale':0.70,
 	      // 'click_tile': click_tile_callback,
 	      // 'click_group': click_group_callback
 	      // 'resize':false
@@ -181,8 +158,24 @@ function load_class_clustergram(inst_prot_class){
 		      return inst_res ;
 		    })
 
-		 //  // color tiles and classification triangles 
-			// run_after();
+			// run_after 
+			///////////////////////////////
+			// highlight grants per gene in blue - also being done in d3_clustergram after resize 
+	    d3.selectAll('.tile').each(function(d){ 
+	    	if (d.info === 1){
+		    	d3.select(this).style('fill','blue') 
+	    	}
+	    });
+
+	    // color resource class triangles 
+			d3.selectAll('.col_label_click')
+				.each(function(d){
+					d3.select(this)
+						.select('path')
+						.attr('fill', function(d){
+							return res_color_dict[d.info];
+						})
+				});			
 
 		  // turn off the wait sign 
 		  $.unblockUI();
