@@ -154,16 +154,16 @@ function load_class_clustergram(inst_prot_class){
 		      return res_color_dict[d];
 		    })
 
-		  // add names 
-		  key_divs
-		    .append('div')
-		    .attr('class','col-xs-10 res_names_in_key')
-		    .append('text')
-		    .text(function(d){ 
-		      inst_res = d.replace(/_/g, ' ');
-		      inst_res = _(inst_res).capitalize();
-		      return inst_res ;
-		    })
+		  // // add names 
+		  // key_divs
+		  //   .append('div')
+		  //   .attr('class','col-xs-10 res_names_in_key')
+		  //   .append('text')
+		  //   .text(function(d){ 
+		  //     inst_res = d.replace(/_/g, ' ');
+		  //     inst_res = _(inst_res).capitalize();
+		  //     return inst_res ;
+		  //   })
 
 			// color resource class triangles 
 			d3.selectAll('.col_label_click')

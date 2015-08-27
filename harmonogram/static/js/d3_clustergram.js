@@ -429,7 +429,6 @@ var d3_clustergram = (function() {
       // make sensitivity to overflow the max, 1
       params.label_overflow.col = 1;
     } else {
-      console.log('loading col overflow')
       params.label_overflow.col = args.col_overflow;
     }
 
