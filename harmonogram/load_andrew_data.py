@@ -172,7 +172,7 @@ def generate_d3_json():
 	# gene and resource classes 
 	################################# 
 	# gene class 
-	gc = json_scripts.load_to_dict('gene_classes_harminogram.json')
+	gc = json_scripts.load_to_dict('gene_classes_harmonogram.json')
 	# resource class 
 	rc = json_scripts.load_to_dict('resource_classes_harminogram.json')
 

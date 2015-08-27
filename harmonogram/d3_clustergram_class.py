@@ -74,15 +74,16 @@ class Network(object):
 				# save the row data as an array 
 				inst_data_row = np.asarray(inst_data_row)
 
-				# initailize the matrix 
-				if i ==1:
+				# initailize matrix 
+				if i == 1:
 					self.dat['mat'] = inst_data_row
 
-				# add rows to matri 
+				# add rows to matrix
 				if i > 1: 
 					self.dat['mat']	= np.vstack( ( self.dat['mat'], inst_data_row ) )
 
 	def load_hgram(self, filename):
+		import numpy as np
 
 		# example data format 
 		###########################
@@ -103,14 +104,12 @@ class Network(object):
 		# line 3 has column labels and dataset numbers, but no information that I need
 		# line 4 and after have gene symbols (first column) and values (4th and after columns)
 
+		# load gene classes for harmonogram 
+		gc = self.load_json_to_dict('gene_classes_harmonogram.json')
+
 		f = open(filename,'r')
 		lines = f.readlines()
 		f.close()
-
-		# initialize list for all classifications 
-		# which will be used to make a classification dictionary 
-		# the classifiaction information will be stored in 
-		# that is located in net.dat['node_info']['rowcol']['cl']
 
 		# loop through the lines of the file 
 		for i in range(len(lines)):
@@ -118,7 +117,10 @@ class Network(object):
 			# get the inst_line and make list 
 			inst_line = lines[i].strip().split('\t')
 
-			# line 1: get daatset names 
+			if i%1000 == 0: 
+				print(i)
+
+			# line 1: get dataset names 
 			if i ==0:
 
 				# gather column information 
@@ -145,9 +147,40 @@ class Network(object):
 
 			# line 4: get gene symbol and data 
 			if i > 2:
-				pass
 
-		print(self.dat['node_info']['col'])
+				# get gene 
+				inst_gene = inst_line[0]
+				# add gene to rows 
+				self.dat['nodes']['row'].append(inst_gene)
+
+				# # add protein type to classification and initialize class to other
+				# inst_prot_class = 'other'
+				# for inst_gc in gc:
+				# 	if inst_gene in gc[inst_gc]:
+				# 		inst_prot_class = inst_gc
+				# # add class to node_info
+				# self.dat['node_info']['row'].append(inst_prot_class)
+
+				# grab data, convert to float, and make numpy array 
+				inst_data_row = inst_line[3:]
+				inst_data_row = [float(tmp_dat) for tmp_dat in inst_data_row]
+				inst_data_row = np.asarray(inst_data_row)
+
+				# initialize matrix 
+				if i == 3:
+					self.dat['mat'] = inst_data_row
+
+				# # add rows to matrix 
+				# if i > 3:
+				# 	self.dat['mat'] = np.vstack( ( self.dat['mat'], inst_data_row ) )
+
+
+		print('\nthere are ' + str(len(self.dat['nodes']['row'])) + ' genes' )
+		print('there are ' + str(len(self.dat['nodes']['col'])) + ' resources\n' )
+		print(self.dat['mat'])
+
+		print(self.dat['node_info']['row'])
+
 	def load_cst_kea_enr_to_net(self, enr, pval_cutoff):
 		import scipy
 		import numpy as np
@@ -388,6 +421,11 @@ class Network(object):
 				# save inst_value to matrix 
 				self.dat['mat'][row_index, col_index] = inst_value
 
+	def load_data_file_to_net(self, filename):
+		# load json from file to new dictionary 
+		inst_dat = self.load_json_to_dict(filename)
+		# convert dat['mat'] to numpy array and add to network 
+		self.load_data_to_net(inst_dat)
 
 	def load_data_to_net(self, inst_net):
 		''' load data into nodes and mat, also convert mat to numpy array''' 
@@ -401,11 +439,9 @@ class Network(object):
 		from copy import deepcopy
 
 		if net_type == 'dat':
-			exp_dict = deepcopy( self.dat)
+			exp_dict = deepcopy(self.dat)
 			# convert numpy array to list 
 			exp_dict['mat'] = exp_dict['mat'].tolist()
-			#!! tmp remove node_info 
-			exp_dict['node_info'] = []
 		elif net_type == 'viz':
 			exp_dict = self.viz
 

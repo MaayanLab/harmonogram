@@ -22,6 +22,18 @@ def proc_hgram_data():
 	# use hgram method to load Andrew data 	
 	hgram.load_hgram('hgram_data_latest/gene_dataset_cumulprobs_20150814.txt')
 
+	# export dictionary and save to file 
+	hgram_data_json = hgram.write_json_to_file('dat', 'hgram_data_latest/hgram_latest.json')
+
+
+	# example of loading net.dat to new network instance 
+	######################################################
+	# # load self.dat from json: first load json, then load to dat 
+	# new_hgram = deepcopy(Network())
+	# # load dat json from file to network - this will be done frequently so I made a module 
+	# new_hgram.load_data_file_to_net('hgram_data_latest/hgram_latest.json')
+	# print(new_hgram.dat)
+
 
 
 
