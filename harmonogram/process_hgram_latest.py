@@ -4,10 +4,13 @@ def main():
 	from the latest matrix from Andrew.
 	''' 
 
-	# load data, filter protein type, and cluster 
-	proc_hgram_data()
+	# # load data, filter protein type, and cluster 
+	# load_hgram_data_to_json()
 
-def proc_hgram_data():
+	# make protein type clustergrams 
+	make_prot_type_hgrams()	
+
+def load_hgram_data_to_json():
 	from d3_clustergram_class import Network
 	from copy import deepcopy
 
@@ -25,14 +28,20 @@ def proc_hgram_data():
 	# export dictionary and save to file 
 	hgram_data_json = hgram.write_json_to_file('dat', 'hgram_data_latest/hgram_latest.json')
 
+def make_prot_type_hgrams():
+	from d3_clustergram_class import Network
+	from copy import deepcopy
+
+	# generate jgram object 
+	hgram = deepcopy(Network())
 
 	# example of loading net.dat to new network instance 
-	######################################################
-	# # load self.dat from json: first load json, then load to dat 
-	# new_hgram = deepcopy(Network())
-	# # load dat json from file to network - this will be done frequently so I made a module 
-	# new_hgram.load_data_file_to_net('hgram_data_latest/hgram_latest.json')
-	# print(new_hgram.dat)
+	#####################################################
+	# load self.dat from json: first load json, then load to dat 
+	hgram = deepcopy(Network())
+	# load dat json from file to network - this will be done frequently so I made a module 
+	hgram.load_data_file_to_net('hgram_data_latest/hgram_latest.json')
+	print(hgram.dat['mat'].shape)
 
 
 

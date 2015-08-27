@@ -153,6 +153,8 @@ class Network(object):
 				# add gene to rows 
 				self.dat['nodes']['row'].append(inst_gene)
 
+				# not going to do this here
+				############################
 				# # add protein type to classification and initialize class to other
 				# inst_prot_class = 'other'
 				# for inst_gc in gc:
@@ -170,16 +172,16 @@ class Network(object):
 				if i == 3:
 					self.dat['mat'] = inst_data_row
 
-				# # add rows to matrix 
-				# if i > 3:
-				# 	self.dat['mat'] = np.vstack( ( self.dat['mat'], inst_data_row ) )
+				# add rows to matrix 
+				if i > 3:
+					self.dat['mat'] = np.vstack( ( self.dat['mat'], inst_data_row ) )
 
 
 		print('\nthere are ' + str(len(self.dat['nodes']['row'])) + ' genes' )
 		print('there are ' + str(len(self.dat['nodes']['col'])) + ' resources\n' )
-		print(self.dat['mat'])
+		print('matrix shape')
+		print(self.dat['mat'].shape)
 
-		print(self.dat['node_info']['row'])
 
 	def load_cst_kea_enr_to_net(self, enr, pval_cutoff):
 		import scipy
