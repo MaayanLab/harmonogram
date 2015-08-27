@@ -85,27 +85,26 @@ def make_prot_type_hgrams():
 				else:
 					all_net[inst_gc].dat['mat'] = np.vstack( ( all_net[inst_gc].dat['mat'], hgram.dat['mat'][i,:] ) )
 
-	# # check the size of the matrices from the different protein types 
+
+	# generate clustergrams for all protein types 
 	# for inst_gc in all_net:
-	# 	print(inst_gc)
-	# 	print(len(all_net[inst_gc].dat['nodes']['row']))
-	# 	print(all_net[inst_gc].dat['mat'].shape)
-	# 	print('\n')
 
-	# cluster MET first 
+	for inst_gc in ['MET']:
 
-	# cluster 
-	#############
-	# only compare vectors with at least min_num_comp common data points
-	# with absolute values above cutoff_comp 
-	cutoff_comp = 0
-	min_num_comp = 2
-	all_net['MET'].cluster_row_and_col('cos', cutoff_comp, min_num_comp, dendro=False)
+		print('\n\nclustering\t' + inst_gc)
+		print(all_net[inst_gc].dat['mat'].shape)
 
-	inst_gc = 'MET'
+		# cluster 
+		#############
+		# only compare vectors with at least min_num_comp common data points
+		# with absolute values above cutoff_comp 
+		cutoff_comp = 0.01
+		min_num_comp = 2
+		all_net[inst_gc].cluster_row_and_col('cos', cutoff_comp, min_num_comp, dendro=False)
 
-	# export data visualization to file 
-	######################################
-	all_net[inst_gc].write_json_to_file('viz', 'static/networks/'+inst_gc+'_cumul_probs.json')	
+
+		# export data visualization to file 
+		######################################
+		all_net[inst_gc].write_json_to_file('viz', 'static/networks/'+inst_gc+'_cumul_probs.json')	
 
 main()

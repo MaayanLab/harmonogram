@@ -17,17 +17,21 @@ class Network(object):
 
 		# node_info holds the orderings (ini, clust, rank), classification ('cl'), and other general information 
 		self.dat['node_info'] = {}
-		for rowcol in self.dat['nodes']:
-			self.dat['node_info'][rowcol] = {}
-			self.dat['node_info'][rowcol]['ini'] = []
-			self.dat['node_info'][rowcol]['clust'] = []
-			self.dat['node_info'][rowcol]['rank'] = []
-			self.dat['node_info'][rowcol]['info'] = []
+		for inst_rc in self.dat['nodes']:
+			self.dat['node_info'][inst_rc] = {}
+			self.dat['node_info'][inst_rc]['ini'] = []
+			self.dat['node_info'][inst_rc]['clust'] = []
+			self.dat['node_info'][inst_rc]['rank'] = []
+			self.dat['node_info'][inst_rc]['info'] = []
 			# classification is specifically used to color the class triangles 
-			self.dat['node_info'][rowcol]['cl'] = []
+			self.dat['node_info'][inst_rc]['cl'] = []
 
 		# initialize matrix 
 		self.dat['mat'] = []
+		# save information about links into a dictionary called mat_info
+		# they keys of the dictionary will be tuples and the data in the 
+		# dictionary can be any object 
+		# self.dat['mat_info'] = {}
 
 		# network: viz-state
 		self.viz = {}
@@ -506,37 +510,67 @@ class Network(object):
 
 		print('\nfiltering network using cutoff of ' + str(cutoff) + ' and min_num_meet of ' + str(min_num_meet))
 
+		# transfer the nodes 
 		nodes = {}
 		nodes['row'] = []
 		nodes['col'] = []
+
+		# transfer the 'info' part of node_info if necessary 
+		node_info = {}
+		node_info['row'] = []
+		node_info['col'] = []
 
 		print( 'initial mat shape' + str(self.dat['mat'].shape ))
 
 		# add rows with non-zero values 
 		#################################
 		for i in range(len(self.dat['nodes']['row'])):
+
 			# get row name 
-			inst_row = self.dat['nodes']['row'][i]
+			inst_nodes_row = self.dat['nodes']['row'][i]
+
+			# get node info - disregard ini, clust, and rank orders
+			if 'info' in self.dat['node_info']['row']:
+				inst_node_info = self.dat['node_info']['row']['info'][i]
+
 			# get row vect 
 			row_vect = np.absolute(self.dat['mat'][i,:])
+
 			# check if there are nonzero values 
 			found_tuple = np.where(row_vect >= cutoff)
 			if len(found_tuple[0])>=min_num_meet:
+
 				# add name 
-				nodes['row'].append(inst_row)
+				nodes['row'].append(inst_nodes_row)
+
+				# add info if necessary 
+				if 'info' in self.dat['node_info']['row']:
+					node_info['row'].append(inst_node_info)
 
 		# add cols with non-zero values 
 		#################################
 		for i in range(len(self.dat['nodes']['col'])):
+
 			# get col name
-			inst_col = self.dat['nodes']['col'][i]
+			inst_nodes_col = self.dat['nodes']['col'][i]
+
+			# get node info - disregard ini, clust, and rank orders
+			if 'info' in self.dat['node_info']['col']:
+				inst_node_info = self.dat['node_info']['col']['info'][i]
+
 			# get col vect 
 			col_vect = np.absolute(self.dat['mat'][:,i])
+
 			# check if there are nonzero values
 			found_tuple = np.where(col_vect >= cutoff)
 			if len(found_tuple[0])>=min_num_meet:
+
 				# add name
-				nodes['col'].append(inst_col)
+				nodes['col'].append(inst_nodes_col)
+
+				# add info if necessary 
+				if 'info' in self.dat['node_info']['col']:
+					node_info['col'].append(inst_node_info)
 
 		# cherrypick data from self.dat['mat'] 
 		##################################
@@ -568,8 +602,13 @@ class Network(object):
 				if 'mat_info' in self.dat:
 					filt_mat_info[(i,j)] = self.dat['mat_info'][(pick_row,pick_col)]
 
-		# save nodes 
+		# save nodes array - list of node names 
 		self.dat['nodes'] = nodes
+		
+		# save node_info array - list of node infos 
+		self.dat['node_info']['row']['info'] = node_info['row']
+		self.dat['node_info']['col']['info'] = node_info['col']
+
 		# overwrite with new filtered data 
 		self.dat['mat'] = filt_mat
 		# overwrite with up/dn data if necessary 
@@ -747,13 +786,11 @@ class Network(object):
 				# add node class 'cl' - this could potentially be a list of several classes 
 				# if 'cl' in self.dat['node_info'][inst_rc]:
 				if len(self.dat['node_info'][inst_rc]['cl']) > 0:
-					print(self.dat['node_info'][inst_rc]['cl'])
 					inst_dict['cl'] = self.dat['node_info'][inst_rc]['cl'][i]
 
 				# add node information 
 				# if 'info' in self.dat['node_info'][inst_rc]:
 				if len(self.dat['node_info'][inst_rc]['info']) > 0:
-					print(self.dat['node_info'][inst_rc]['info'][i])
 					inst_dict['info'] = self.dat['node_info'][inst_rc]['info'][i]
 
 				# group info 
