@@ -167,53 +167,53 @@
   // initial view of harmonogram 
   load_class_clustergram('KIN');
 
-    // slider script - col 
-    $(function() {
-      $( "#slider_col" ).slider({
-        value:0.5,
-        min: 0,
-        max: 1,
-        step: 0.1,
-        slide: function( event, ui ) {
-          $( "#amount" ).val( "$" + ui.value );
-          var inst_index = ui.value*10;
+  // slider script - col 
+  $(function() {
+    $( "#slider_col" ).slider({
+      value:0.5,
+      min: 0,
+      max: 1,
+      step: 0.1,
+      slide: function( event, ui ) {
+        $( "#amount" ).val( "$" + ui.value );
+        var inst_index = ui.value*10;
 
-          // save slider value to global variable 
-          d3_clustergram.params.group_level.col = ui.value*10 ;
+        // save slider value to global variable 
+        d3_clustergram.params.group_level.col = ui.value*10 ;
 
-          // change group size of col 
-          d3.selectAll('.col_class_rect')
-            .style('fill', function(d){
-              return d3_clustergram.params.group_colors.col[d.group[inst_index]];
-            });
-        }
-      });
-      $( "#amount" ).val( "$" + $( "#slider_col" ).slider( "value" ) );
+        // change group size of col 
+        d3.selectAll('.col_class_rect')
+          .style('fill', function(d){
+            return d3_clustergram.params.group_colors.col[d.group[inst_index]];
+          });
+      }
     });
+    $( "#amount" ).val( "$" + $( "#slider_col" ).slider( "value" ) );
+  });
 
-    // slider script - row
-    $(function() {
-      $( "#slider_row" ).slider({
-        value:0.5,
-        min: 0,
-        max: 1,
-        step: 0.1,
-        slide: function( event, ui ) {
-          $( "#amount" ).val( "$" + ui.value );
-          var inst_index = ui.value*10;
+  // slider script - row
+  $(function() {
+    $( "#slider_row" ).slider({
+      value:0.5,
+      min: 0,
+      max: 1,
+      step: 0.1,
+      slide: function( event, ui ) {
+        $( "#amount" ).val( "$" + ui.value );
+        var inst_index = ui.value*10;
 
-          // save slider value to global variable 
-          d3_clustergram.params.group_level.row = ui.value*10 ;
+        // save slider value to global variable 
+        d3_clustergram.params.group_level.row = ui.value*10 ;
 
-          // change group size of row
-          d3.selectAll('.row_class_rect')
-            .style('fill', function(d){
-              return d3_clustergram.params.group_colors.row[d.group[inst_index]];
-            });
-        }
-      });
-      $( "#amount" ).val( "$" + $( "#slider_row" ).slider( "value" ) );
+        // change group size of row
+        d3.selectAll('.row_class_rect')
+          .style('fill', function(d){
+            return d3_clustergram.params.group_colors.row[d.group[inst_index]];
+          });
+      }
     });
+    $( "#amount" ).val( "$" + $( "#slider_row" ).slider( "value" ) );
+  });
 
   </script>
 

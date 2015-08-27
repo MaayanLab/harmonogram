@@ -432,7 +432,6 @@ var d3_clustergram = (function() {
       console.log('loading col overflow')
       params.label_overflow.col = args.col_overflow;
     }
-    console.log(args)
 
     // transpose matrix - if requested
     if (typeof args.transpose === 'undefined') {

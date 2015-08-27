@@ -1,5 +1,18 @@
 function load_class_clustergram(inst_prot_class){
 
+
+  // generate dictionary for protein types 
+  var prot_names = {};
+  prot_names.KIN = 'Kinases';
+  prot_names.PP = 'Phosphatases';
+  prot_names.GPCR = 'G Protein-Coupled Receptors';
+  prot_names.IC = 'Ion Channels';
+  prot_names.TF = 'Transcription Factors';
+  prot_names.ACT = 'Acetyltransferases';
+  prot_names.DACT = 'Deacetylases';
+  prot_names.MET = 'Methyltransferases';
+  prot_names.DMET = 'Demethylases';
+
 	// clear input search box 
 	$('#gene_search_box').val('')
 
@@ -55,7 +68,7 @@ function load_class_clustergram(inst_prot_class){
 	    var arguments_obj = {
 	      'network_data': network_data,
 	      'svg_div_id': 'svg_div',
-	      'row_label':'Genes',
+	      'row_label': prot_names[inst_prot_class],
 	      'col_label':'Resources',
 	      'outer_margins': outer_margins,
 	      // 'opacity_scale':'log',
