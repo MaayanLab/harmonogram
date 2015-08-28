@@ -23,11 +23,11 @@ ENTRY_POINT = '/harmonogram'
 # docker_vs_local
 ##########################################
 
-# for local development /
-SERVER_ROOT = os.path.dirname(os.getcwd()) + '/harmonogram/harmonogram' 
+# # for local development /
+# SERVER_ROOT = os.path.dirname(os.getcwd()) + '/harmonogram/harmonogram' 
 
-# # for docker development
-# SERVER_ROOT = '/app/harmonogram'
+# for docker development
+SERVER_ROOT = '/app/harmonogram'
 
 #######################################
 

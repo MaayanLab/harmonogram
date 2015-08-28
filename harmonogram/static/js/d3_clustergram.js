@@ -890,7 +890,7 @@ var d3_clustergram = (function() {
       .attr('transform', function(d, index) {
         return 'translate(0,' + params.y_scale(index) + ')';
       })
-      .on('click', reorder_click_row)
+      .on('dblclick', reorder_click_row)
       .on('mouseover', function() {
         // highlight text
         d3
@@ -1115,7 +1115,7 @@ var d3_clustergram = (function() {
       // rotate column labels
       .attr('transform', 'translate(' + params.x_scale.rangeBand() / 2 +
         ',' + x_offset_click + ') rotate(45)')
-      .on('click', reorder_click_col)
+      .on('dblclick', reorder_click_col)
       .on('mouseover', function() {
         d3.select(this).select('text')
           .classed('active',true);
@@ -2683,6 +2683,17 @@ var d3_clustergram = (function() {
         // set running transition to 0
         d3_clustergram.params.run_trans = 0;
       });
+
+    // highlight selected column
+    ///////////////////////////////
+    d3.selectAll('.row_label_text')
+      .select('rect')
+      .style('opacity', 0);
+
+    // highlight column name
+    d3.select(this)
+      .select('rect')
+      .style('opacity', 1);
 
     // backup allow programmatic zoom
     setTimeout(end_reorder, 2500);
