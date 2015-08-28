@@ -76,7 +76,7 @@ function load_class_clustergram(inst_prot_class){
 	      'tile_colors':['#000000','#1C86EE'],
 	      'title_tile': true,
 	      'col_overflow':0.3,
-	      'col_label_scale':0.70,
+	      'col_label_scale':0.75,
 	      // 'click_tile': click_tile_callback,
 	      // 'click_group': click_group_callback
 	      // 'resize':false

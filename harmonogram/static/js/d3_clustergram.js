@@ -896,17 +896,12 @@ var d3_clustergram = (function() {
         d3
           .select(this)
           .select('text')
-          .style('font-weight', 'bold');
+          .classed('active',true);
       })
       .on('mouseout', function mouseout() {
-        d3
-          .select(this)
+        d3.select(this)
           .select('text')
-          .style('font-weight', 'normal');
-        // reset highlighted col
-        d3
-          .select('#clicked_row')
-          .style('font-weight', 'bold');
+          .classed('active',false)
       });
 
     // append row label text
@@ -1123,13 +1118,11 @@ var d3_clustergram = (function() {
       .on('click', reorder_click_col)
       .on('mouseover', function() {
         d3.select(this).select('text')
-          .style('font-weight', 'bold');
+          .classed('active',true);
       })
       .on('mouseout', function mouseout() {
         d3.select(this).select('text')
-          .style('font-weight', 'normal');
-        d3.select('#clicked_col')
-          .style('font-weight', 'bold');
+          .classed('active',false);
       });
 
     // add column label
@@ -2635,11 +2628,6 @@ var d3_clustergram = (function() {
     d3.select('#clicked_row')
       .attr('id', '');
 
-    // highlight current
-    d3.select(this).select('text')
-      .style('font-weight', 'bold')
-      .attr('id', 'clicked_row');
-
     // find the row number of this term from row_nodes
     // gather row node names
     var tmp_arr = [];
@@ -2715,19 +2703,6 @@ var d3_clustergram = (function() {
 
     // get inst col (term)
     var inst_term = d3.select(this).select('text').attr('full_name');
-
-    // highlight clicked column
-    // first un-highlight all others
-    d3.selectAll('.col_label_text').select('text')
-      .style('font-weight', 'normal');
-    // remove previous id
-    d3.select('#clicked_col')
-      .attr('id', '');
-
-    // highlight current
-    d3.select(this).select('text')
-      .style('font-weight', 'bold')
-      .attr('id', 'clicked_col');
 
     // find the column number of this term from col_nodes
     // gather column node names
@@ -2856,13 +2831,14 @@ var d3_clustergram = (function() {
     // get y position
     var inst_y_pos = params.y_scale(inst_gene_index);
 
-    // make row name bold
-    d3.selectAll('.row_label_text')
-      .filter(function(d) {
-        return d.name === search_gene;
-      })
-      .select('text')
-      .style('font-weight', 'bold');
+    // // make row name bold
+    // d3.selectAll('.row_label_text')
+    //   .filter(function(d) {
+    //     return d.name === search_gene;
+    //   })
+    //   .select('text')
+    //   .style('font-weight', 'bold');
+
     // highlight row name
     d3.selectAll('.row_label_text')
       .filter(function(d) {
