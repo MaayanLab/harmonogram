@@ -676,10 +676,12 @@ class Network(object):
 		self.dat['node_info']['row']['ini']   = clust_order['row']['ini']
 		self.dat['node_info']['row']['clust'] = clust_order['row']['clust']
 		self.dat['node_info']['row']['rank']  = clust_order['row']['rank']
+		self.dat['node_info']['row']['group'] = clust_order['row']['group']
 		# col 
 		self.dat['node_info']['col']['ini']   = clust_order['col']['ini']
 		self.dat['node_info']['col']['clust'] = clust_order['col']['clust']
 		self.dat['node_info']['col']['rank']  = clust_order['col']['rank']
+		self.dat['node_info']['col']['group'] = clust_order['col']['group']
 
 
 		# make the viz json - can optionally leave out dendrogram
@@ -775,7 +777,6 @@ class Network(object):
 				#!! clean this up so I do not have to get the index here 
 				inst_dict['clust'] = self.dat['node_info'][inst_rc]['clust'].index(i)
 				inst_dict['rank']  = self.dat['node_info'][inst_rc]['rank'][i]
-
 
 				# add node class 'cl' - this could potentially be a list of several classes 
 				# if 'cl' in self.dat['node_info'][inst_rc]:
