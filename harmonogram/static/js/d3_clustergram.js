@@ -634,7 +634,7 @@ var d3_clustergram = (function() {
     // check if row/col have class information
     if (_.has(row_nodes[0], 'cl') || _.has(col_nodes[0], 'cl')) {
       // gather classes
-      params.click_groupclass_colors = {};
+      params.class_colors = {};
     }
 
     // gather class information from row
@@ -910,10 +910,7 @@ var d3_clustergram = (function() {
       .attr('y', params.y_scale.rangeBand() * 0.75)
       // .attr('dy', params.y_scale.rangeBand()/4)
       .attr('text-anchor', 'end')
-      // original font size
       .style('font-size', params.default_fs_row + 'px')
-      // // !! simple font size
-      // .style('font-size', params.y_scale.rangeBand()*0.9+'px')
       .text(function(d) {
         return d.name;
       });
@@ -2263,16 +2260,14 @@ var d3_clustergram = (function() {
     // check if widest row or col are wider than the allowed label width
     ////////////////////////////////////////////////////////////////////////
 
-    if (params.bounding_width_max.row * params.zoom.scale() > params.norm_label
-      .width.row) {
+    if (params.bounding_width_max.row * params.zoom.scale() > params.norm_label.width.row) {
       params.zoom_scale_font.row = params.norm_label.width.row / (params.bounding_width_max
         .row * params.zoom.scale());
 
       // reduce font size
       d3.selectAll('.row_label_text').each(function() {
         d3.select(this).select('text')
-          .style('font-size', params.default_fs_row * params.zoom_scale_font
-            .row + 'px')
+          .style('font-size', params.default_fs_row * params.zoom_scale_font.row + 'px')
           .attr('y', params.y_scale.rangeBand() * params.scale_font_offset(
             params.zoom_scale_font.row));
       });
@@ -2684,7 +2679,7 @@ var d3_clustergram = (function() {
         d3_clustergram.params.run_trans = 0;
       });
 
-    // highlight selected column
+    // highlight selected row
     ///////////////////////////////
     d3.selectAll('.row_label_text')
       .select('rect')
@@ -2842,13 +2837,6 @@ var d3_clustergram = (function() {
     // get y position
     var inst_y_pos = params.y_scale(inst_gene_index);
 
-    // // make row name bold
-    // d3.selectAll('.row_label_text')
-    //   .filter(function(d) {
-    //     return d.name === search_gene;
-    //   })
-    //   .select('text')
-    //   .style('font-weight', 'bold');
 
     // highlight row name
     d3.selectAll('.row_label_text')
