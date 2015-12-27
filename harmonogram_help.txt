@@ -1,0 +1,5 @@
+Raj - text/descripion for help page 
+
+The Harmonogram visualizes gene appearance in the Harmonizome resources using interactive clustergrams. Genes are shown as rows and resources are shown as columns. The gene occurance value is normalized relative to the occurance of other genes in the resource - the darker the tile the more the gene occurs in the resource. The NIH Reporter Grants Linked to NCBI Genes column shows the number of grants linked to each gene and this column is highlighted in blue. The resource columns are classified into Resource Groups, e.g. Disease or Phenotype Associations, and they are color coded using the column triangles. 
+
+You can view clustergrams for different gene classes, e.g. kinases, using the buttons on the sidebar. The ordering of the clustergram can be changed by clicking the reordering buttons or by double-clicking the row or column labels. For instance, double-clicking the NIH Reporter Grants column in Kinases view and zooming into the top of the clustergram reveals that EGFR is the kinase associated with the most grants. 
