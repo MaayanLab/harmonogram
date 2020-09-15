@@ -3,6 +3,7 @@ import cookielib, urllib2, urllib
 import poster
 import sys
 import os
+from flask import current_app
 
 def EnrichrLink(genesStr,clusterInfo=''):
     #post a gene list to enrichr server and get the link.
@@ -12,16 +13,16 @@ def EnrichrLink(genesStr,clusterInfo=''):
 
     params = {'list':genesStr,'description':clusterInfo}
     datagen, headers = poster.encode.multipart_encode(params)
-    url = "http://amp.pharm.mssm.edu/Enrichr/enrich"
+    url = current_app.config['ENRICHR_URL'] + "/enrich"
     request = urllib2.Request(url, datagen,headers)
     urllib2.urlopen(request)
 
 
-    x = urllib2.urlopen("http://amp.pharm.mssm.edu/Enrichr/share")
+    x = urllib2.urlopen(current_app.config['ENRICHR_URL'] + "/share")
     responseStr = x.read()
     splitPhrases = responseStr.split('"')
     linkID = splitPhrases[3]
-    shareUrlHead = "http://amp.pharm.mssm.edu/Enrichr/enrich?dataset="
+    shareUrlHead = current_app.config['ENRICHR_URL'] + "/enrich?dataset="
     enrichrLink = shareUrlHead + linkID
     return enrichrLink
 
@@ -32,7 +33,7 @@ def readperdiff(path):
         return
 
     print 'Processing:'+path
-    
+
     baseName = os.path.basename(path);
     fileName = os.path.splitext(baseName)[0];
     dirName = os.path.dirname(path);
@@ -55,7 +56,7 @@ def readperdiff(path):
         if linesCount == 0:
             break
 
-    
+
     header = lines[0]
     dat = [lines[i] for i in range(1,linesCount)]
 
@@ -110,27 +111,27 @@ def readperdiff(path):
                 if match.group(0) is not perGene:
                     print '"' + perGene + '"' + ' is not a valid gene symbol and converted to ' + '"' + match.group(0) + '"'
                     comparisonsUpGenes[i][j] = match.group(0)
-                    
+
             upLink = EnrichrLink('\n'.join(comparisonsUpGenes[i]), upInfo)
-        
+
         downInfo = comparisons[i][0]+','+comparisons[i][1]+'\tDown Genes'
         if len(comparisonsDownGenes[i]) == 0:
             downLink = ''
         else:
             for j in range(len(comparisonsDownGenes[i])):
                 perGene = comparisonsDownGenes[i][j]
-               
+
                 match = re.search(r'[\w\-@./]+',perGene)
                 if match.group(0) is not perGene:
-                    
+
                     print '"' + perGene + '"' + ' is not a valid gene symbol and converted to ' + '"' + match.group(0)+ '"'
                     comparisonsDownGenes[i][j] = match.group(0)
-                    
+
             downLink = EnrichrLink('\n'.join(comparisonsDownGenes[i]), downInfo)
-        
+
         wStr = wStr + upInfo+'\t'+ upLink +'\n'
         wStr = wStr + downInfo+ '\t' + downLink+'\n'
-                
+
     f = open(writeDir+'\\'+fileName+'_enrichrLinks.txt','w')
     f.write(wStr)
     f.close()
@@ -141,7 +142,7 @@ def readperdiff(path):
     for perComparisonUpGenes in comparisonsUpGenes:
         if rowMax < len(perComparisonUpGenes):
             rowMax = len(perComparisonUpGenes)
-            
+
     for perComparisonDownGenes in comparisonsDownGenes:
         if rowMax < len(perComparisonDownGenes):
             rowMax = len(perComparisonDownGenes)
@@ -176,7 +177,7 @@ def readperdiff(path):
     f.write(wStr)
     f.close()
     print '\n'
-    
+
 def readdiff(path):
     print '\n'
     if os.path.isfile(path):

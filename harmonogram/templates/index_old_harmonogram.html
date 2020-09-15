@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <base href='/harmonogram/'>
+    <base href='{{ config.ENTRY_POINT }}/'>
 
     <title>Harmonogram</title>
 
@@ -61,7 +61,7 @@
                 <button type="button" class='btn btn-primary buttons' onClick="$('#gene_input_box').val(example_gene_list_50.join('\n'));">Example</button>
                 <button id='clear_input_button' type="button" class='btn btn-danger buttons' onClick="$('#gene_input_box').val('');" >Clear</button>
               </div>
-              
+
             </div>
 
           </form>
@@ -78,11 +78,11 @@
     <!-- Page Content -->
     <div id="page-content-wrapper">
 
-      <!-- Initial Content --> 
+      <!-- Initial Content -->
       <div id='main_container'>
 
-        <!-- this row is required, -fluid causes problems --> 
-        <div class="row" > 
+        <!-- this row is required, -fluid causes problems -->
+        <div class="row" >
 
           <div class="col-lg-12">
 
@@ -94,7 +94,7 @@
 
 
               <div class='row'>
-                <!-- GMT menu -->              
+                <!-- GMT menu -->
                 <div class='col-xs-7' >
                   <section id="gmt_menu" data-accordion-group>
                     <div id='title_gmt_menu'>Choose Libraries</div>
@@ -102,25 +102,25 @@
                   <!-- <h2>gmt menu</h2> -->
                 </div>
 
-                <!-- Selected GMTs --> 
+                <!-- Selected GMTs -->
                 <div id='container_gmt_labels' class='col-xs-5'>
 
                   <div id='selected_gmts_group'>
-                   
-                   <div id='title_selected_libraries'>
-                     Selected Libraries 
-                   </div> 
 
-                    <!-- selected gmt group --> 
+                   <div id='title_selected_libraries'>
+                     Selected Libraries
+                   </div>
+
+                    <!-- selected gmt group -->
                     <div class='selected_gmts  ' id='current_gmt'></div>
-                    <!-- end gmt group --> 
+                    <!-- end gmt group -->
 
                   </div>
 
                   <div id='add_new_gmt' onclick="plus_new_gmt();"> + </div>
 
                 </div>
-                
+
 
             </div>
             <!-- end initial screen -->
@@ -139,7 +139,7 @@
 
                   <!-- button container -->
                   <div id='button_container'>
-                    
+
                     <!-- choose protein class  -->
                     <div id='class_buttons' class="btn-group-vertical text-center" data-toggle="buttons" >
 
@@ -253,8 +253,8 @@
 
   <footer id='footer_div' class="footer navbar-fixed-bottom">
 
-        <div class="row" > 
-          <div class="col-xs-12 footer_section"> 
+        <div class="row" >
+          <div class="col-xs-12 footer_section">
             <p class="text-muted">Harmonogram is being developed by the <a href="http://icahn.mssm.edu/research/labs/maayan-laboratory">Ma'ayan Lab</a> at the <a href="http://icahn.mssm.edu/">Icahn School of Medicine at Mount Sinai</a>. </p>
           </div>
         </div>
@@ -310,31 +310,31 @@
   <script src='static/js/load_local_network.js'></script>
 
   <script>
-  
-  // initialize protein class 
+
+  // initialize protein class
   var inst_prot_class = 'KIN';
-  // save global variable 
+  // save global variable
   glob_prot_class = inst_prot_class;
-  
-  // make first clustergram 
-  // set up wait message before request is made 
-  $.blockUI({ css: { 
-          border: 'none', 
-          padding: '15px', 
-          backgroundColor: '#000', 
-          '-webkit-border-radius': '10px', 
-          '-moz-border-radius': '10px', 
-          opacity: .8, 
-          color: '#fff' 
+
+  // make first clustergram
+  // set up wait message before request is made
+  $.blockUI({ css: {
+          border: 'none',
+          padding: '15px',
+          backgroundColor: '#000',
+          '-webkit-border-radius': '10px',
+          '-moz-border-radius': '10px',
+          opacity: .8,
+          color: '#fff'
       } });
 
-  // use d3 to load a json 
+  // use d3 to load a json
   d3.json('/harmonogram/static/networks/'+inst_prot_class+'_cumul_probs.json', function(network_data){
 
-    // // make global copy of network_data 
+    // // make global copy of network_data
     // global_network_data = network_data;
 
-    // // pass the network data to d3_clustergram 
+    // // pass the network data to d3_clustergram
     // make_d3_clustergram(network_data);
 
     // // once everything has been set up show color key and search box
@@ -343,7 +343,7 @@
     // d3.select('#gene_search_box').style('display','inline-block')
     // d3.select('#gene_search_button').style('display','inline-block')
 
-    // define the outer margins of the visualization 
+    // define the outer margins of the visualization
     var outer_margins = {
         'top':5,
         'bottom':33,
@@ -351,13 +351,13 @@
         'right':2
       };
 
-    // define callback function for clicking on tile 
+    // define callback function for clicking on tile
     function click_tile_callback(tile_info){
       console.log('my callback')
       console.log('clicking on ' + tile_info.row + ' row and ' + tile_info.col + ' col with value ' + String(tile_info.value))
     };
 
-    // define callback function for clicking on group 
+    // define callback function for clicking on group
     function click_group_callback(group_info){
       console.log('running user defined click group callback')
       console.log(group_info.type);
@@ -365,7 +365,7 @@
       console.log(group_info.info);
     };
 
-    // define arguments object 
+    // define arguments object
     var arguments_obj = {
       'network_data': network_data,
       'svg_div_id': 'svg_div',
@@ -382,10 +382,10 @@
       // 'order':'rank'
     };
 
-    // make clustergram: pass network_data and the div name where the svg should be made 
+    // make clustergram: pass network_data and the div name where the svg should be made
     d3_clustergram.make_clust( arguments_obj );
 
-    // turn off the wait sign 
+    // turn off the wait sign
     $.unblockUI();
 
   });

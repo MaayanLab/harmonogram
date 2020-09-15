@@ -8,16 +8,18 @@ import logging
 from logging.handlers import RotatingFileHandler
 import os
 from flask import send_from_directory
+import settings
 
 # # change routing of logs when running docker
 # logging.basicConfig(stream=sys.stderr)
 
-
-
 # app = Flask(__name__)
 app = Flask(__name__, static_url_path='')
 
-ENTRY_POINT = '/harmonogram'
+app.config['ENTRY_POINT'] = settings.ENTRY_POINT
+app.config['ORIGIN'] = settings.ORIGIN
+app.config['ENRICHR_URL'] = settings.ENRICHR_URL
+app.config['HARMONIZOME_URL'] = settings.HARMONIZOME_URL
 
 # switch for local and docker development
 # docker_vs_local
@@ -31,7 +33,7 @@ SERVER_ROOT = '/app/harmonogram'
 
 #######################################
 
-@app.route(ENTRY_POINT + '/<path:path>') ## original
+@app.route(settings.ENTRY_POINT + '/<path:path>') ## original
 # @crossdomain(origin='*')
 def send_static(path):
 
@@ -42,13 +44,13 @@ def send_static(path):
   return send_from_directory(SERVER_ROOT, path)
 
 
-@app.route("/harmonogram/")
+@app.route(settings.ENTRY_POINT + "/")
 def index():
   print('Rendering index template')
-  return render_template("index.html")
+  return render_template("index.html", config=app.config)
 
 # post request
-@app.route('/harmonogram/', methods=['GET','POST'])
+@app.route(settings.ENTRY_POINT + '/', methods=['GET','POST'])
 def python_function():
   import flask
   import make_enr_clust
